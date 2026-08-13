@@ -1,0 +1,60 @@
+name: ModelRank Agency
+
+# Autonomous "company of agents" (Paperclip-style) that grows ModelRank.
+# Runs the safe, no-network heartbeats on a schedule. Gated routines
+# (newsletter publish, creator outreach send) and the network-heavy asset
+# refresh stay human-approved via `python agency/agency.py --run --approve`
+# locally, or run here when AGENCY_APPROVE + HF_TOKEN are provided.
+
+on:
+  schedule:
+    - cron: '0 * * * *'      # hourly: badge sync heartbeat (eng)
+    - cron: '0 9 * * *'      # daily:   CMO social draft
+    - cron: '0 12 * * MON'   # weekly:  analytics revenue review + CEO strategy
+  workflow_dispatch:
+    inputs:
+      approve:
+        description: 'Clear approval gates (run gated + network routines)'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  agency:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Agency heartbeat (safe agents)
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          python agency/agency.py --run --routine hourly_badge_sync
+          python agency/agency.py --run --agent cmo
+          python agency/agency.py --run --agent analyst
+          python agency/agency.py --run --agent ceo
+
+      - name: Agency heartbeat (gated, with approval)
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.approve == 'true' }}
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          python agency/agency.py --run --approve --agent devrel
+          python agency/agency.py --run --approve --agent outreach
+
+      - name: Upload activity log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agency-activity
+          path: agency/activity.jsonl
+          if-no-files-found: ignore
+          retention-days: 30

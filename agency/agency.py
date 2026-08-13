@@ -202,6 +202,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--dry-run", action="store_true", help="plan only, mutate nothing (default)")
     ap.add_argument("--approve", action="store_true", help="clear approval gates (with --run)")
     ap.add_argument("--agent", type=str, help="only run routines for this agent id")
+    ap.add_argument("--routine", type=str, help="only run this routine id")
     ap.add_argument("--list", action="store_true", help="print the org chart and exit")
     ap.add_argument("--budget-report", action="store_true", help="print budget usage and exit")
     args = ap.parse_args(argv)
@@ -222,6 +223,8 @@ def main(argv: list[str] | None = None) -> int:
         if not r.get("enabled", True):
             continue
         if args.agent and r["agent_id"] != args.agent:
+            continue
+        if args.routine and r["id"] != args.routine:
             continue
         entry = run_routine(r, manifest, execute=execute, approve=args.approve)
         print(f"  {entry['mode']:>7} | {entry['routine']:<22} | {entry['result']}")
