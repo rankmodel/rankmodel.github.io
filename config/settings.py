@@ -18,11 +18,11 @@ ALLOWED_ORIGINS = [o.strip() for o in os.getenv('ALLOWED_ORIGINS', '*').split(',
 TOP_MODELS_LIMIT = 1000
 
 SCORING_WEIGHTS = {
-    "benchmarks": 0.40,
-    "efficiency": 0.20,
-    "community": 0.20,
-    "recency": 0.10,
-    "reproducibility": 0.10,
+    "benchmarks": 0.70,
+    "efficiency": 0.05,
+    "community": 0.10,
+    "recency": 0.15,
+    "reproducibility": 0.00,
 }
 
 BENCHMARK_WEIGHTS = {

@@ -1,0 +1,119 @@
+name: 'ModelRank Score Check'
+description: 'Check your HuggingFace model score on ModelRank. Fail CI if score drops below threshold.'
+author: 'ModelRank'
+branding:
+  icon: 'award'
+  color: 'blue'
+
+inputs:
+  model_id:
+    description: 'HuggingFace model ID (e.g. mistralai/Mistral-7B-v0.1)'
+    required: true
+  min_score:
+    description: 'Minimum composite score (0-100). Fail if below this.'
+    required: false
+    default: '0'
+  min_tier:
+    description: 'Minimum tier (S, A, B, C, D). Fail if below this tier.'
+    required: false
+    default: 'D'
+  leaderboard_url:
+    description: 'ModelRank leaderboard.json URL'
+    required: false
+    default: 'https://rankmodel.github.io/rankmodel1/leaderboard.json'
+  fail_on_unscored:
+    description: 'Fail if model is not yet scored on ModelRank'
+    required: false
+    default: 'false'
+
+outputs:
+  score:
+    description: 'The composite ModelRank score (0-100)'
+  tier:
+    description: 'The ModelRank tier (S/A/B/C/D)'
+  rank:
+    description: 'The global rank on the ModelRank leaderboard'
+  badge_url:
+    description: 'URL to the ModelRank SVG badge'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Check ModelRank Score
+      shell: bash
+      run: |
+        set -e
+        MODEL_ID="${{ inputs.model_id }}"
+        MIN_SCORE="${{ inputs.min_score }}"
+        MIN_TIER="${{ inputs.min_tier }}"
+        LB_URL="${{ inputs.leaderboard_url }}"
+        FAIL_UNSCORED="${{ inputs.fail_on_unscored }}"
+
+        echo "🏆 ModelRank Score Check"
+        echo "   Model: $MODEL_ID"
+        echo "   Minimum score: $MIN_SCORE | Minimum tier: $MIN_TIER"
+        echo ""
+
+        LEADERBOARD=$(curl -sf "$LB_URL" 2>/dev/null || echo "")
+        if [ -z "$LEADERBOARD" ]; then
+          echo "⚠️  Could not fetch ModelRank leaderboard from $LB_URL"
+          if [ "$FAIL_UNSCORED" = "true" ]; then exit 1; fi
+          exit 0
+        fi
+
+        SCORE=$(echo "$LEADERBOARD" | python3 -c "
+        import sys, json
+        data = json.load(sys.stdin)
+        model_id = '${MODEL_ID}'
+        for m in data.get('models', []):
+            if m['model_id'] == model_id:
+                print(f\"{m['composite']}|{m['tier']}|{m['rank']}\")
+                sys.exit(0)
+        print('NOT_FOUND')
+        " 2>/dev/null || echo "NOT_FOUND")
+
+        if [ "$SCORE" = "NOT_FOUND" ]; then
+          echo "❌ Model '$MODEL_ID' not found on ModelRank leaderboard."
+          echo "   Submit for scoring: https://rankmodel.github.io/rankmodel1"
+          if [ "$FAIL_UNSCORED" = "true" ]; then exit 1; fi
+          exit 0
+        fi
+
+        COMPOSITE=$(echo $SCORE | cut -d'|' -f1)
+        TIER=$(echo $SCORE | cut -d'|' -f2)
+        RANK=$(echo $SCORE | cut -d'|' -f3)
+        BADGE_URL="https://rankmodel.github.io/rankmodel1/badges/${MODEL_ID}/score.svg"
+
+        echo "score=$COMPOSITE" >> $GITHUB_OUTPUT
+        echo "tier=$TIER" >> $GITHUB_OUTPUT
+        echo "rank=$RANK" >> $GITHUB_OUTPUT
+        echo "badge_url=$BADGE_URL" >> $GITHUB_OUTPUT
+
+        echo "📊 ModelRank Score: $COMPOSITE/100 ($TIER-tier) — Global Rank #$RANK"
+        echo "🏷️  Badge: $BADGE_URL"
+        echo ""
+
+        # Check tier order: S > A > B > C > D
+        declare -A TIER_ORDER=([S]=5 [A]=4 [B]=3 [C]=2 [D]=1)
+        MODEL_TIER_VAL=${TIER_ORDER[$TIER]:-0}
+        MIN_TIER_VAL=${TIER_ORDER[$MIN_TIER]:-0}
+
+        FAILED=0
+
+        if (( $(echo "$COMPOSITE < $MIN_SCORE" | bc -l) )); then
+          echo "❌ Score $COMPOSITE is below minimum $MIN_SCORE"
+          FAILED=1
+        fi
+
+        if [ $MODEL_TIER_VAL -lt $MIN_TIER_VAL ]; then
+          echo "❌ Tier $TIER is below minimum tier $MIN_TIER"
+          FAILED=1
+        fi
+
+        if [ $FAILED -eq 1 ]; then
+          exit 1
+        fi
+
+        echo "✅ ModelRank check passed!"
+        echo "   Add this badge to your README:"
+        echo "   ![ModelRank](${BADGE_URL})"

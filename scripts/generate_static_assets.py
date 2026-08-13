@@ -26,6 +26,7 @@ import base64
 import argparse
 import pathlib
 import logging
+import math
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent.parent))
 
@@ -121,6 +122,32 @@ def generate_shields_json(model_id: str, score: float, tier: str, rank: int) -> 
     }
 
 
+def generate_mini_radar_svg(scores: dict) -> str:
+    # scores = {'benchmarks': 82.0, 'efficiency': 46.3, 'community': 67.7, 'recency': 45.0, 'reproducibility': 55.0}
+    dims = ['benchmarks', 'efficiency', 'community', 'recency', 'reproducibility']
+    cx, cy, r = 30, 30, 22
+    # Polygon points for score area
+    points = []
+    for i, dim in enumerate(dims):
+        angle = math.pi * 2 * i / 5 - math.pi / 2
+        val = scores.get(dim, 50) / 100 * r
+        points.append((cx + val * math.cos(angle), cy + val * math.sin(angle)))
+    # Background pentagon (full scale)
+    bg_pts = []
+    for i in range(5):
+        angle = math.pi * 2 * i / 5 - math.pi / 2
+        bg_pts.append((cx + r * math.cos(angle), cy + r * math.sin(angle)))
+    bg_str = ' '.join(f'{x:.1f},{y:.1f}' for x,y in bg_pts)
+    pts_str = ' '.join(f'{x:.1f},{y:.1f}' for x,y in points)
+    # Build SVG
+    lines = ''.join(f'<line x1="{cx}" y1="{cy}" x2="{bx:.1f}" y2="{by:.1f}" stroke="#ffffff15" stroke-width="0.5"/>' for bx,by in bg_pts)
+    return f'''<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="{bg_str}" fill="none" stroke="#ffffff15" stroke-width="0.8"/>
+  {lines}
+  <polygon points="{pts_str}" fill="#3b82f680" stroke="#3b82f6" stroke-width="1.2"/>
+</svg>'''
+
+
 def generate_leaderboard_html(models: list, base_url: str) -> str:
     """Generate a standalone leaderboard HTML page for GitHub Pages using Tailwind & daisyUI."""
     rows = ''
@@ -131,124 +158,544 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
         tier = s.get('tier', 'C')
         composite = s.get('composite', 0)
         
-        tier_badges = {
-            'S': 'badge-secondary',
-            'A': 'badge-primary',
-            'B': 'badge-success',
-            'C': 'badge-warning',
-            'D': 'badge-error'
+        # Color codes for tiers
+        tier_colors = {
+            'S': 'text-purple-400 border-purple-400 bg-purple-400/10',
+            'A': 'text-blue-400 border-blue-400 bg-blue-400/10',
+            'B': 'text-green-400 border-green-400 bg-green-400/10',
+            'C': 'text-yellow-400 border-yellow-400 bg-yellow-400/10',
+            'D': 'text-red-400 border-red-400 bg-red-400/10'
         }
-        tier_badge = tier_badges.get(tier, 'badge-ghost')
+        score_colors = {
+            'S': 'text-purple-400',
+            'A': 'text-blue-400',
+            'B': 'text-green-400',
+            'C': 'text-yellow-400',
+            'D': 'text-red-400'
+        }
+        
+        tier_style = tier_colors.get(tier, 'text-gray-400 border-gray-400 bg-gray-400/10')
+        score_style = score_colors.get(tier, 'text-gray-400')
         
         hf_url = f'https://huggingface.co/{mid}'
         badge_url = f'{base_url}/badges/{mid}/score.svg'
         
+        parts = mid.split('/', 1)
+        org = parts[0] if len(parts) > 1 else ''
+        model_name = parts[1] if len(parts) > 1 else mid
+        
+        medal = '🥇' if i == 1 else '🥈' if i == 2 else '🥉' if i == 3 else f'#{i}'
+        
+        radar_svg = generate_mini_radar_svg(bd)
+        
+        b_score = bd.get("benchmarks", 0)
+        e_score = bd.get("efficiency", 0)
+        c_score = bd.get("community", 0)
+        
+        copy_code = f'![ModelRank]({badge_url})'
+        
         rows += f'''
-        <tr class="hover:bg-base-200 transition-colors">
-          <td class="text-base-content/50 font-mono text-sm">{i}</td>
-          <td>
-            <a href="{hf_url}" target="_blank" class="link link-hover text-primary font-semibold">{mid}</a>
+        <tr class="hover:bg-white/5 transition-colors border-b border-white/5 group model-row" data-name="{mid.lower()}" data-tier="{tier}">
+          <td class="px-4 py-4 text-center font-mono text-gray-400">{medal}</td>
+          <td class="px-4 py-4">
+            <a href="{hf_url}" target="_blank" class="block hover:opacity-80 transition-opacity">
+              <div class="text-xs text-gray-500 font-medium mb-1">{org}</div>
+              <div class="text-base font-bold text-gray-100">{model_name}</div>
+            </a>
           </td>
-          <td class="text-center">
-            <span class="font-black text-lg">{composite:.1f}</span>
+          <td class="px-4 py-4 text-center">
+            <span class="font-black text-2xl {score_style} font-mono">{composite:.1f}</span>
           </td>
-          <td class="text-center">
-            <div class="badge {tier_badge} badge-sm font-bold uppercase">{tier}</div>
+          <td class="px-4 py-4 text-center">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border {tier_style} uppercase">{tier}</span>
           </td>
-          <td class="text-center text-base-content/60 text-sm hidden md:table-cell">{bd.get("benchmarks",0):.0f}</td>
-          <td class="text-center text-base-content/60 text-sm hidden md:table-cell">{bd.get("efficiency",0):.0f}</td>
-          <td class="text-center text-base-content/60 text-sm hidden lg:table-cell">{bd.get("community",0):.0f}</td>
-          <td>
-            <img src="{badge_url}" class="h-6" alt="Score Badge" onerror="this.style.display='none'"/>
+          <td class="px-4 py-4 text-center hidden md:table-cell w-20">
+            {radar_svg}
+          </td>
+          <td class="px-4 py-4 hidden md:table-cell w-32">
+            <div class="flex items-center justify-between text-xs mb-1">
+              <span class="text-gray-400 font-mono">{b_score:.0f}</span>
+            </div>
+            <div class="w-full bg-gray-800 rounded-full h-1.5">
+              <div class="bg-blue-500 h-1.5 rounded-full" style="width: {b_score}%"></div>
+            </div>
+          </td>
+          <td class="px-4 py-4 hidden md:table-cell w-32">
+            <div class="flex items-center justify-between text-xs mb-1">
+              <span class="text-gray-400 font-mono">{e_score:.0f}</span>
+            </div>
+            <div class="w-full bg-gray-800 rounded-full h-1.5">
+              <div class="bg-green-500 h-1.5 rounded-full" style="width: {e_score}%"></div>
+            </div>
+          </td>
+          <td class="px-4 py-4 hidden lg:table-cell w-32">
+            <div class="flex items-center justify-between text-xs mb-1">
+              <span class="text-gray-400 font-mono">{c_score:.0f}</span>
+            </div>
+            <div class="w-full bg-gray-800 rounded-full h-1.5">
+              <div class="bg-purple-500 h-1.5 rounded-full" style="width: {c_score}%"></div>
+            </div>
+          </td>
+          <td class="px-4 py-4 text-center">
+            <button onclick="copyBadge(this, '{copy_code}')" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white" title="Copy embed code">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            </button>
+          </td>
+          <td class="px-4 py-4 text-center text-gray-500 font-mono text-sm">
+            0
+          </td>
+          <td class="px-4 py-4 text-center">
+            <input type="checkbox" class="compare-checkbox w-4 h-4 rounded border-gray-700 bg-gray-800 text-blue-500 focus:ring-blue-500" data-model="{mid}" data-score="{composite}" data-bench="{b_score}" data-effic="{e_score}" data-comm="{c_score}">
           </td>
         </tr>'''
 
     updated = __import__('datetime').datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')
+    
     return f'''<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>ModelRank — HuggingFace Model Leaderboard</title>
+  <title>ModelRank — The independent standard for open-weight AI</title>
   <meta name="description" content="Composite scoring and tier rankings for HuggingFace models. Independent benchmarks, efficiency, community, and freshness scores."/>
   
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {{
+      darkMode: 'class',
+      theme: {{
+        extend: {{
+          colors: {{
+            base: '#0a0a0f',
+            surface: '#13131a',
+            border: '#232330'
+          }},
+          fontFamily: {{
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }}
+        }}
+      }}
+    }}
+  </script>
   
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet"/>
   <style>
-    body {{ font-family: 'Inter', system-ui, sans-serif; }}
+    body {{ background-color: #0a0a0f; color: #f1f5f9; font-family: 'Inter', sans-serif; }}
+    .glass-card {{ background: rgba(19, 19, 26, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }}
+    .stat-bar {{ transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }}
+    @keyframes fadeIn {{ from {{ opacity: 0; transform: translateY(10px); }} to {{ opacity: 1; transform: translateY(0); }} }}
+    .animate-fade-in {{ animation: fadeIn 0.5s ease-out forwards; }}
+    
+    /* Smooth hiding for filters */
+    .model-row {{ transition: opacity 0.2s, transform 0.2s; }}
+    .hidden-row {{ display: none !important; }}
   </style>
 </head>
-<body class="min-h-screen bg-base-300 text-base-content">
+<body class="min-h-screen text-gray-200">
   
-  <div class="container mx-auto px-4 py-12 max-w-6xl">
+  <!-- Hero Section -->
+  <header class="relative overflow-hidden pt-16 pb-24 border-b border-white/5">
+    <!-- Abstract background glow -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="absolute top-20 right-0 w-[400px] h-[400px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none"></div>
     
-    <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">🏆 ModelRank</h1>
-      <p class="text-base-content/70 text-lg">Independent composite scoring for HuggingFace models</p>
+    <div class="container mx-auto px-4 max-w-7xl relative z-10">
+      <nav class="flex items-center justify-between mb-16">
+        <div class="text-2xl font-black tracking-tight flex items-center gap-2">
+          🏆 ModelRank
+        </div>
+        <div class="flex items-center gap-6 text-sm font-medium text-gray-400">
+          <a href="#" class="text-white">Leaderboard</a>
+          <a href="#methodology" class="hover:text-white transition-colors">Methodology</a>
+          <a href="pricing.html" class="hover:text-white transition-colors">Pricing</a>
+          <a href="https://github.com/rankmodel/rankmodel1" class="hover:text-white transition-colors flex items-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+            GitHub
+          </a>
+        </div>
+      </nav>
       
-      <div class="mt-6">
-        <a href="https://github.com/rankmodel/rankmodel1" target="_blank" class="btn btn-outline btn-sm rounded-full">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          Star on GitHub
-        </a>
+      <div class="text-center max-w-4xl mx-auto mt-10">
+        <h1 class="text-5xl md:text-7xl font-black tracking-tighter text-white mb-6 drop-shadow-lg">
+          The independent standard for <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">open-weight AI</span>
+        </h1>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">Objective composite scoring and rankings for {len(models)} models across benchmarks, efficiency, and community usage.</p>
+        
+        <div class="flex flex-wrap justify-center gap-4 text-sm font-medium text-gray-300">
+          <div class="px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+            {len(models)} Models Ranked
+          </div>
+          <div class="px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+            15 Benchmarks
+          </div>
+          <div class="px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+            5 Dimensions
+          </div>
+          <div class="px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+            Free Forever
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 max-w-7xl -mt-8 relative z-20 mb-32">
+    
+    <!-- Filter Bar (Sticky) -->
+    <div class="glass-card rounded-2xl p-4 mb-8 shadow-2xl sticky top-4 z-30 flex flex-col md:flex-row gap-4 items-center justify-between animate-fade-in">
+      <div class="relative w-full md:w-72">
+        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <input type="text" id="searchInput" placeholder="Search models..." class="w-full bg-surface border border-white/10 rounded-xl pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors">
+      </div>
+      
+      <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 hide-scrollbar" id="tierFilters">
+        <button class="tier-btn active px-4 py-1.5 rounded-lg text-sm font-bold bg-white/10 text-white transition-colors" data-tier="all">ALL</button>
+        <button class="tier-btn px-4 py-1.5 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="S">S</button>
+        <button class="tier-btn px-4 py-1.5 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="A">A</button>
+        <button class="tier-btn px-4 py-1.5 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="B">B</button>
+        <button class="tier-btn px-4 py-1.5 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="C">C</button>
+        <button class="tier-btn px-4 py-1.5 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="D">D</button>
+      </div>
+      
+      <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+        <button id="compareBtn" class="px-4 py-2 rounded-xl text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white transition-colors opacity-50 cursor-not-allowed" disabled>
+          Compare (0/2)
+        </button>
       </div>
     </div>
     
-    <div class="stats stats-vertical lg:stats-horizontal shadow bg-base-100 w-full mb-8 border border-base-200">
-      <div class="stat place-items-center">
-        <div class="stat-title text-xs font-bold uppercase tracking-wider">Models Ranked</div>
-        <div class="stat-value text-primary">{len(models)}</div>
-      </div>
-      <div class="stat place-items-center">
-        <div class="stat-title text-xs font-bold uppercase tracking-wider">Dimensions</div>
-        <div class="stat-value text-secondary">5</div>
-      </div>
-      <div class="stat place-items-center">
-        <div class="stat-title text-xs font-bold uppercase tracking-wider">Benchmarks</div>
-        <div class="stat-value text-accent">13</div>
-      </div>
-      <div class="stat place-items-center">
-        <div class="stat-title text-xs font-bold uppercase tracking-wider">Always</div>
-        <div class="stat-value text-success">Free</div>
+    <!-- Leaderboard Table -->
+    <div class="glass-card rounded-2xl overflow-hidden shadow-2xl animate-fade-in" style="animation-delay: 0.1s">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left whitespace-nowrap">
+          <thead class="bg-white/5 border-b border-white/5 text-xs uppercase tracking-wider font-semibold text-gray-400">
+            <tr>
+              <th class="px-4 py-4 text-center">Rank</th>
+              <th class="px-4 py-4">Model</th>
+              <th class="px-4 py-4 text-center">Score</th>
+              <th class="px-4 py-4 text-center">Tier</th>
+              <th class="px-4 py-4 text-center hidden md:table-cell">Profile</th>
+              <th class="px-4 py-4 hidden md:table-cell">Benchmarks</th>
+              <th class="px-4 py-4 hidden md:table-cell">Efficiency</th>
+              <th class="px-4 py-4 hidden lg:table-cell">Community</th>
+              <th class="px-4 py-4 text-center">Embed</th>
+              <th class="px-4 py-4 text-center">Change</th>
+              <th class="px-4 py-4 text-center">Compare</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboardBody" class="divide-y divide-white/5 text-sm">
+            {rows}
+          </tbody>
+        </table>
       </div>
     </div>
     
-    <div class="alert alert-info shadow-sm mb-12 flex-col sm:flex-row bg-base-100 border border-base-200 text-base-content">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-      <div>
-        <h3 class="font-bold">Embed a badge in your README</h3>
-        <code class="text-xs mt-2 block bg-base-300 p-2 rounded">![ModelRank]({base_url}/badges/ORG/MODEL/score.svg)</code>
+    <!-- Methodology Section -->
+    <div id="methodology" class="mt-32 mb-16 animate-fade-in" style="animation-delay: 0.2s">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-black text-white mb-4">Methodology</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">A transparent, reproducible scoring system that looks beyond simple benchmarks to capture the full picture of a model's utility.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="text-2xl mb-2">🧠</div>
+          <h3 class="font-bold text-white mb-1">Benchmarks</h3>
+          <div class="text-xs text-blue-400 font-bold mb-3">40% WEIGHT</div>
+          <p class="text-sm text-gray-400 leading-relaxed">Aggregated scores from MMLU, HumanEval, GSM8K, and TruthfulQA. Adjusted for model contamination.</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="text-2xl mb-2">⚡</div>
+          <h3 class="font-bold text-white mb-1">Efficiency</h3>
+          <div class="text-xs text-green-400 font-bold mb-3">20% WEIGHT</div>
+          <p class="text-sm text-gray-400 leading-relaxed">Throughput (tokens/sec), memory footprint, and param-to-performance ratio on standard hardware.</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="text-2xl mb-2">🔥</div>
+          <h3 class="font-bold text-white mb-1">Community</h3>
+          <div class="text-xs text-purple-400 font-bold mb-3">20% WEIGHT</div>
+          <p class="text-sm text-gray-400 leading-relaxed">Downloads, GitHub stars, and community integrations across the HuggingFace ecosystem.</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="text-2xl mb-2">🕐</div>
+          <h3 class="font-bold text-white mb-1">Freshness</h3>
+          <div class="text-xs text-yellow-400 font-bold mb-3">10% WEIGHT</div>
+          <p class="text-sm text-gray-400 leading-relaxed">Time since last update or release. Penalizes abandoned models and rewards actively maintained ones.</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="text-2xl mb-2">✅</div>
+          <h3 class="font-bold text-white mb-1">Verified</h3>
+          <div class="text-xs text-red-400 font-bold mb-3">10% WEIGHT</div>
+          <p class="text-sm text-gray-400 leading-relaxed">Open weights, reproducible evaluation code, and clear licensing (MIT/Apache preferred).</p>
+        </div>
       </div>
     </div>
     
-    <div class="bg-base-100 rounded-xl shadow border border-base-200 overflow-x-auto">
-      <table class="table table-zebra table-pin-rows">
-        <thead class="bg-base-200 text-base-content/70">
-          <tr>
-            <th>#</th>
-            <th>Model</th>
-            <th class="text-center">Score</th>
-            <th class="text-center">Tier</th>
-            <th class="text-center hidden md:table-cell">Bench</th>
-            <th class="text-center hidden md:table-cell">Effic</th>
-            <th class="text-center hidden lg:table-cell">Comm</th>
-            <th>Badge</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows}
-        </tbody>
-      </table>
+    <!-- Trust & Embed Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-16">
+      <div class="glass-card p-8 rounded-2xl">
+        <h3 class="text-2xl font-black text-white mb-6">Why trust ModelRank?</h3>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div>
+              <h4 class="font-bold text-gray-200">Open Source</h4>
+              <p class="text-sm text-gray-400">MIT licensed and fully auditable methodology.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div>
+              <h4 class="font-bold text-gray-200">No Conflicts of Interest</h4>
+              <p class="text-sm text-gray-400">We don't train or host models. Independent evaluation only.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div>
+              <h4 class="font-bold text-gray-200">Reproducible</h4>
+              <p class="text-sm text-gray-400">All evaluation data is sourced from public HuggingFace APIs.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div>
+              <h4 class="font-bold text-gray-200">Updated Daily</h4>
+              <p class="text-sm text-gray-400">Fully automated via GitHub Actions cron jobs.</p>
+            </div>
+          </li>
+        </ul>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#methodology" class="text-sm text-blue-400 hover:text-blue-300 transition-colors">View methodology &rarr;</a>
+          <a href="https://github.com/rankmodel/rankmodel1" class="text-sm text-blue-400 hover:text-blue-300 transition-colors">View source code &rarr;</a>
+          <a href="#" class="text-sm text-blue-400 hover:text-blue-300 transition-colors">API docs &rarr;</a>
+        </div>
+      </div>
+      
+      <div class="glass-card p-8 rounded-2xl">
+        <h3 class="text-2xl font-black text-white mb-6">Embed Badges</h3>
+        <p class="text-gray-400 text-sm mb-6">Showcase your model's rank anywhere with markdown.</p>
+        
+        <div class="space-y-6">
+          <div>
+            <div class="text-xs font-bold text-gray-500 uppercase mb-2">Score Badge</div>
+            <div class="bg-surface p-3 rounded-lg border border-white/5 font-mono text-xs text-gray-300 overflow-x-auto whitespace-nowrap">
+              ![ModelRank]({base_url}/badges/ORG/MODEL/score.svg)
+            </div>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-gray-500 uppercase mb-2">Shields.io (Works anywhere)</div>
+            <div class="bg-surface p-3 rounded-lg border border-white/5 font-mono text-xs text-gray-300 overflow-x-auto whitespace-nowrap">
+              ![ModelRank](https://img.shields.io/endpoint?url={base_url}/badges/ORG/MODEL/shields.json)
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     
-    <div class="text-center mt-12 text-xs text-base-content/50">
-      <p>Last updated: {updated} · Auto-updated daily by GitHub Actions</p>
+  </main>
+  
+  <!-- Compare Modal -->
+  <div id="compareModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center opacity-0 transition-opacity">
+    <div class="glass-card w-full max-w-4xl mx-4 rounded-3xl p-8 transform scale-95 transition-transform" id="compareModalContent">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-2xl font-black text-white">Model Comparison</h2>
+        <button id="closeCompare" class="text-gray-400 hover:text-white">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="grid grid-cols-2 gap-8" id="compareGrid">
+        <!-- Content injected via JS -->
+      </div>
     </div>
-    
   </div>
+  
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-4 right-4 bg-blue-600 text-white px-6 py-3 rounded-xl shadow-2xl font-medium transform translate-y-20 opacity-0 transition-all z-50">
+    Copied to clipboard!
+  </div>
+
+  <footer class="border-t border-white/10 bg-surface/50 mt-12 py-12">
+    <div class="container mx-auto px-4 max-w-7xl flex flex-col md:flex-row justify-between items-center gap-6">
+      <div>
+        <div class="text-xl font-black text-white mb-2">ModelRank</div>
+        <p class="text-sm text-gray-500 max-w-md">ModelRank is an independent project and has no affiliation with Hugging Face. Data updated daily via GitHub Actions.</p>
+        <p class="text-xs text-gray-600 mt-2">Last updated: {updated}</p>
+      </div>
+      <div class="flex flex-wrap gap-6 text-sm font-medium">
+        <a href="https://github.com/rankmodel/rankmodel1" class="text-gray-400 hover:text-white transition-colors">GitHub</a>
+        <a href="pricing.html" class="text-gray-400 hover:text-white transition-colors">Pricing</a>
+        <a href="#" class="text-gray-400 hover:text-white transition-colors">API</a>
+        <a href="#methodology" class="text-gray-400 hover:text-white transition-colors">Methodology</a>
+        <a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // --- Vanilla JS Interactions ---
+    
+    // Copy badge code
+    function copyBadge(btn, code) {{
+      navigator.clipboard.writeText(code).then(() => {{
+        const toast = document.getElementById('toast');
+        toast.style.transform = 'translateY(0)';
+        toast.style.opacity = '1';
+        setTimeout(() => {{
+          toast.style.transform = 'translateY(20px)';
+          toast.style.opacity = '0';
+        }}, 2000);
+      }});
+    }}
+    
+    document.addEventListener('DOMContentLoaded', () => {{
+      const searchInput = document.getElementById('searchInput');
+      const tierBtns = document.querySelectorAll('.tier-btn');
+      const rows = document.querySelectorAll('.model-row');
+      const checkboxes = document.querySelectorAll('.compare-checkbox');
+      const compareBtn = document.getElementById('compareBtn');
+      const compareModal = document.getElementById('compareModal');
+      const compareModalContent = document.getElementById('compareModalContent');
+      const closeCompare = document.getElementById('closeCompare');
+      const compareGrid = document.getElementById('compareGrid');
+      
+      let currentTier = 'all';
+      let selectedModels = [];
+      
+      // Filter function
+      function filterTable() {{
+        const query = searchInput.value.toLowerCase();
+        rows.forEach(row => {{
+          const name = row.getAttribute('data-name');
+          const tier = row.getAttribute('data-tier');
+          
+          const matchesSearch = name.includes(query);
+          const matchesTier = currentTier === 'all' || tier === currentTier;
+          
+          if (matchesSearch && matchesTier) {{
+            row.classList.remove('hidden-row');
+          }} else {{
+            row.classList.add('hidden-row');
+          }}
+        }});
+      }}
+      
+      // Search event
+      if(searchInput) {{ searchInput.addEventListener('input', filterTable); }}
+      
+      // Tier filter events
+      tierBtns.forEach(btn => {{
+        btn.addEventListener('click', (e) => {{
+          // Update active states
+          tierBtns.forEach(b => {{
+            b.classList.remove('bg-white/10', 'text-white');
+            b.classList.add('text-gray-400');
+          }});
+          e.target.classList.remove('text-gray-400');
+          e.target.classList.add('bg-white/10', 'text-white');
+          
+          currentTier = e.target.getAttribute('data-tier');
+          filterTable();
+        }});
+      }});
+      
+      // Compare checkboxes
+      checkboxes.forEach(cb => {{
+        cb.addEventListener('change', (e) => {{
+          if (e.target.checked) {{
+            if (selectedModels.length >= 2) {{
+              e.target.checked = false; // Max 2
+              return;
+            }}
+            selectedModels.push({{
+              id: e.target.getAttribute('data-model'),
+              score: e.target.getAttribute('data-score'),
+              bench: e.target.getAttribute('data-bench'),
+              effic: e.target.getAttribute('data-effic'),
+              comm: e.target.getAttribute('data-comm')
+            }});
+          }} else {{
+            selectedModels = selectedModels.filter(m => m.id !== e.target.getAttribute('data-model'));
+          }}
+          
+          // Update button
+          compareBtn.textContent = `Compare (${{selectedModels.length}}/2)`;
+          if (selectedModels.length === 2) {{
+            compareBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            compareBtn.removeAttribute('disabled');
+          }} else {{
+            compareBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            compareBtn.setAttribute('disabled', 'true');
+          }}
+        }});
+      }});
+      
+      // Open compare modal
+      if(compareBtn) {{
+        compareBtn.addEventListener('click', () => {{
+          if (selectedModels.length !== 2) return;
+          
+          const m1 = selectedModels[0];
+          const m2 = selectedModels[1];
+          
+          const renderModel = (m) => `
+            <div class="bg-surface p-6 rounded-2xl border border-white/5">
+              <div class="text-sm text-gray-500 mb-1">${{m.id.split('/')[0] || ''}}</div>
+              <div class="text-xl font-bold text-white mb-6 truncate" title="${{m.id}}">${{m.id.split('/')[1] || m.id}}</div>
+              
+              <div class="text-4xl font-black font-mono text-center mb-8">${{parseFloat(m.score).toFixed(1)}}</div>
+              
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-xs mb-1"><span class="text-gray-400">Benchmarks</span><span class="font-mono text-white">${{m.bench}}</span></div>
+                  <div class="w-full bg-gray-800 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full" style="width: ${{m.bench}}%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-xs mb-1"><span class="text-gray-400">Efficiency</span><span class="font-mono text-white">${{m.effic}}</span></div>
+                  <div class="w-full bg-gray-800 rounded-full h-2"><div class="bg-green-500 h-2 rounded-full" style="width: ${{m.effic}}%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-xs mb-1"><span class="text-gray-400">Community</span><span class="font-mono text-white">${{m.comm}}</span></div>
+                  <div class="w-full bg-gray-800 rounded-full h-2"><div class="bg-purple-500 h-2 rounded-full" style="width: ${{m.comm}}%"></div></div>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          compareGrid.innerHTML = renderModel(m1) + renderModel(m2);
+          
+          compareModal.classList.remove('hidden');
+          // Trigger reflow
+          void compareModal.offsetWidth;
+          compareModal.classList.remove('opacity-0');
+          compareModalContent.classList.remove('scale-95');
+        }});
+      }}
+      
+      // Close compare modal
+      function closeModal() {{
+        compareModal.classList.add('opacity-0');
+        compareModalContent.classList.add('scale-95');
+        setTimeout(() => compareModal.classList.add('hidden'), 300);
+      }}
+      
+      if(closeCompare) closeCompare.addEventListener('click', closeModal);
+      if(compareModal) {{
+        compareModal.addEventListener('click', (e) => {{
+          if (e.target === compareModal) closeModal();
+        }});
+      }}
+    }});
+  </script>
 </body>
 </html>'''
 
@@ -676,6 +1123,256 @@ def generate_pricing_html() -> str:
 </body>
 </html>'''
 
+def generate_methodology_html() -> str:
+    """Generate the methodology page."""
+    return """<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ModelRank Scoring Methodology — How We Evaluate Open-Weight AI Models</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>body { font-family: 'Inter', system-ui, sans-serif; }</style>
+</head>
+<body class="min-h-screen bg-base-300 text-base-content">
+  <div class="container mx-auto px-4 py-12 max-w-4xl">
+    <div class="mb-8"><a href="index.html" class="btn btn-outline btn-sm">← Back to Leaderboard</a></div>
+    <h1 class="text-4xl md:text-5xl font-black mb-6 tracking-tight">ModelRank Scoring Methodology — How We Evaluate Open-Weight AI Models</h1>
+    <p class="text-xl text-base-content/70 mb-12">Built for developers, not marketing teams. Every score is reproducible, open-source, and conflict-of-interest-free.</p>
+    
+    <div class="space-y-12">
+      <section>
+        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 1 — The 5 Dimensions</h2>
+        <p class="text-base-content/80">Our composite score combines 5 key areas: Benchmarks (accuracy), Efficiency (speed/VRAM), Community (momentum/stars), Architecture (context length, types), and Freshness (recency).</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 2 — Benchmark Coverage</h2>
+        <div class="overflow-x-auto">
+          <table class="table table-zebra table-sm">
+            <thead><tr><th>Benchmark</th><th>Focus</th></tr></thead>
+            <tbody>
+              <tr><td>MMLU-Pro</td><td>General Knowledge</td></tr>
+              <tr><td>GPQA Diamond</td><td>Expert Reasoning</td></tr>
+              <tr><td>HLE, GSM8K</td><td>Math & Logic</td></tr>
+              <tr><td>HumanEval, MBPP</td><td>Coding</td></tr>
+              <tr><td>ARC-C, HellaSwag</td><td>Common Sense</td></tr>
+              <tr><td>WinoGrande, TruthfulQA, BBQ, BoolQ, PIQA</td><td>Factuality & Bias</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 3 — Normalization</h2>
+        <p class="text-base-content/80">Raw benchmark scores (0-1) are converted to a 0-100 scale using confidence weighting and coverage bonuses for multi-domain models.</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 4 — Tier System</h2>
+        <ul class="list-disc pl-5 text-base-content/80">
+          <li><span class="text-secondary font-bold">S Tier (90-100)</span>: State-of-the-art models (e.g., Llama 3 70B, Qwen 2 72B)</li>
+          <li><span class="text-primary font-bold">A Tier (80-89)</span>: Excellent general-purpose models</li>
+          <li><span class="text-success font-bold">B Tier (70-79)</span>: Solid performance, often smaller efficient models</li>
+          <li><span class="text-warning font-bold">C Tier (60-69)</span>: Usable for specific basic tasks</li>
+          <li><span class="text-error font-bold">D Tier (0-59)</span>: Legacy or specialized niche models</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 5 — ELO Comparison</h2>
+        <p class="text-base-content/80">We use the Bradley-Terry model for head-to-head win rates. <code>P(A beats B) = 1/(1+10^((ELO_B-ELO_A)/400))</code>.</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 6 — What We DON'T measure</h2>
+        <p class="text-base-content/80">Currently excluding: human preference (LMSYS), API latency, API cost, and alignment safety scoring (see future roadmap).</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 7 — Data Sources</h2>
+        <p class="text-base-content/80">Metrics sourced daily from HuggingFace Hub API, Open LLM Leaderboard V2 eval results, and live community momentum tracking.</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 8 — Limitations & Known Issues</h2>
+        <p class="text-base-content/80">Be aware of potential benchmark contamination risk, HF download gaming via automated bots, and assumptions in our freshness decay formula.</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 9 — Changelog</h2>
+        <p class="text-base-content/80">v1.0 (Initial release), v2.0 (10-parameter extended metadata release).</p>
+      </section>
+    </div>
+  </div>
+</body>
+</html>"""
+
+def generate_api_html() -> str:
+    """Generate the API reference page."""
+    return """<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ModelRank API Reference</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>body { font-family: 'Inter', system-ui, sans-serif; }</style>
+</head>
+<body class="min-h-screen bg-base-300 text-base-content">
+  <div class="container mx-auto px-4 py-12 max-w-5xl">
+    <div class="mb-8"><a href="index.html" class="btn btn-outline btn-sm">← Back to Leaderboard</a></div>
+    
+    <div class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-black mb-4">ModelRank API Reference</h1>
+      <p class="text-xl text-base-content/70">Integrate objective AI scoring into your apps.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div class="col-span-2 card bg-base-100 shadow border border-base-200 p-6">
+        <h2 class="text-xl font-bold mb-4">Authentication & Base URL</h2>
+        <p class="mb-2 text-sm text-base-content/70">Base URL:</p>
+        <code class="block bg-base-300 p-3 rounded-lg mb-4 text-primary font-mono text-sm">https://your-api.com</code>
+        <p class="mb-2 text-sm text-base-content/70">Auth Header (Pro only):</p>
+        <code class="block bg-base-300 p-3 rounded-lg font-mono text-sm">X-API-Key: mr_xxxxxx</code>
+      </div>
+      <div class="card bg-base-100 shadow border border-base-200 p-6">
+        <h2 class="text-xl font-bold mb-4">Rate Limits</h2>
+        <ul class="space-y-3">
+          <li class="flex justify-between items-center text-sm border-b border-base-200 pb-2">
+            <span class="font-bold text-success">Free</span>
+            <span class="font-mono">100 req/hr</span>
+          </li>
+          <li class="flex justify-between items-center text-sm">
+            <span class="font-bold text-primary">Pro API Key</span>
+            <span class="font-mono">5,000 req/hr</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="space-y-12">
+      
+      <!-- Endpoint 1 -->
+      <div class="card bg-base-100 shadow border border-base-200 p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="badge badge-success font-mono font-bold">GET</span>
+          <h3 class="text-xl font-bold font-mono">/score/{model_id}</h3>
+        </div>
+        <p class="text-base-content/80 mb-6">Returns the full composite score and basic tier info for a model.</p>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div>
+            <h4 class="text-xs uppercase font-bold text-base-content/50 mb-2">Example Request</h4>
+            <div class="mockup-code text-sm">
+              <pre data-prefix="$"><code>curl https://your-api.com/score/mistralai/Mistral-7B-v0.1</code></pre>
+            </div>
+            <button class="btn btn-xs mt-2" onclick="navigator.clipboard.writeText('curl https://your-api.com/score/mistralai/Mistral-7B-v0.1')">Copy</button>
+          </div>
+          <div>
+            <h4 class="text-xs uppercase font-bold text-base-content/50 mb-2">Example Response</h4>
+            <div class="mockup-code text-sm bg-base-300">
+              <pre><code>{
+  "model_id": "mistralai/Mistral-7B-v0.1",
+  "composite": 85.4,
+  "tier": "A",
+  "rank": 14
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Endpoint 2 -->
+      <div class="card bg-base-100 shadow border border-base-200 p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="badge badge-success font-mono font-bold">GET</span>
+          <h3 class="text-xl font-bold font-mono">/score/{model_id}/extended</h3>
+        </div>
+        <p class="text-base-content/80 mb-6">Score + 10 extended metadata signals (context window, vram tier, license score, etc).</p>
+      </div>
+
+      <!-- Endpoint 3 -->
+      <div class="card bg-base-100 shadow border border-base-200 p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="badge badge-success font-mono font-bold">GET</span>
+          <h3 class="text-xl font-bold font-mono">/shields/{model_id}</h3>
+        </div>
+        <p class="text-base-content/80 mb-6">Shields.io JSON endpoint for dynamic README badges.</p>
+      </div>
+
+      <!-- Endpoint 4 -->
+      <div class="card bg-base-100 shadow border border-base-200 p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="badge badge-success font-mono font-bold">GET</span>
+          <h3 class="text-xl font-bold font-mono">/badge/{model_id}</h3>
+        </div>
+        <p class="text-base-content/80 mb-6">Returns an SVG badge. Supports query params: <code>?type=score|tier|rank</code></p>
+      </div>
+
+      <!-- Endpoint 5 -->
+      <div class="card bg-base-100 shadow border border-base-200 p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="badge badge-success font-mono font-bold">GET</span>
+          <h3 class="text-xl font-bold font-mono">/leaderboard</h3>
+        </div>
+        <p class="text-base-content/80 mb-6">Paginated leaderboard list. Supports: <code>?limit=50&amp;offset=0&amp;tier=A&amp;task=text-generation</code></p>
+      </div>
+
+      <!-- Endpoint 6 -->
+      <div class="card bg-base-100 shadow border border-base-200 p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="badge badge-success font-mono font-bold">GET</span>
+          <h3 class="text-xl font-bold font-mono">/compare</h3>
+        </div>
+        <p class="text-base-content/80 mb-6">ELO comparison head-to-head. Supports: <code>?model_a=X&amp;model_b=Y</code></p>
+      </div>
+
+      <!-- Endpoint 7 -->
+      <div class="card bg-base-100 shadow border border-base-200 p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="badge badge-success font-mono font-bold">GET</span>
+          <h3 class="text-xl font-bold font-mono">/achievements/{model_id}</h3>
+        </div>
+        <p class="text-base-content/80 mb-6">Fetch unlockable achievement badges for a specific model.</p>
+      </div>
+
+      <!-- Endpoint 8 -->
+      <div class="card bg-base-100 shadow border border-base-200 p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="badge badge-warning font-mono font-bold text-black">POST</span>
+          <h3 class="text-xl font-bold font-mono">/score/batch</h3>
+        </div>
+        <p class="text-base-content/80 mb-6">Score up to 20 models simultaneously.</p>
+      </div>
+
+      <!-- Endpoint 9 -->
+      <div class="card bg-base-100 shadow border border-base-200 p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="badge badge-success font-mono font-bold">GET</span>
+          <h3 class="text-xl font-bold font-mono">/health</h3>
+        </div>
+        <p class="text-base-content/80 mb-6">API health check.</p>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>"""
+
+def generate_changelog_json() -> str:
+    """Generate the machine-readable changelog JSON."""
+    return """{
+  "version": "2.0.0",
+  "released": "2026-08-13",
+  "entries": [
+    {"version": "2.0.0", "date": "2026-08-13", "type": "major", "changes": ["10 extended metadata scoring parameters", "Shields.io endpoint", "Premium pricing page", "NotebookLM integration", "Outreach engine"]},
+    {"version": "1.1.0", "date": "2026-08-13", "type": "minor", "changes": ["GitHub Pages CDN for badges", "66 models seeded", "HuggingFace Space"]},
+    {"version": "1.0.0", "date": "2026-08-13", "type": "major", "changes": ["Initial release", "5-dimension composite scoring", "ELO comparison", "SVG badges", "Gradio UI", "FastAPI", "27 tests"]}
+  ]
+}"""
 
 
 def main(limit: int = 200):
@@ -771,6 +1468,14 @@ def main(limit: int = 200):
 
     # Write .nojekyll so GitHub Pages serves files as-is
     (OUTPUT_DIR / '.nojekyll').write_text('')
+
+    # Trust Building Pages
+    (OUTPUT_DIR / 'methodology.html').write_text(generate_methodology_html(), encoding='utf-8')
+    logger.info('   methodology.html trust page')
+    (OUTPUT_DIR / 'api.html').write_text(generate_api_html(), encoding='utf-8')
+    logger.info('   api.html reference page')
+    (OUTPUT_DIR / 'changelog.json').write_text(generate_changelog_json(), encoding='utf-8')
+    logger.info('   changelog.json')
 
     logger.info(f'\n✅ Static assets generated in {OUTPUT_DIR}/')
     logger.info(f'   {total} score.svg badges')

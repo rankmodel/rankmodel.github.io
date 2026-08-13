@@ -6,11 +6,11 @@ try:
     from config.settings import SCORING_WEIGHTS, TIERS, ACHIEVEMENT_TYPES
 except ImportError:
     SCORING_WEIGHTS = {
-        'benchmarks': 0.4,
-        'efficiency': 0.2,
-        'community': 0.2,
-        'recency': 0.1,
-        'reproducibility': 0.1
+        'benchmarks': 0.70,
+        'efficiency': 0.05,
+        'community': 0.10,
+        'recency': 0.15,
+        'reproducibility': 0.00
     }
     TIERS = {90: 'S', 80: 'A', 70: 'B', 60: 'C', 0: 'D'}
     ACHIEVEMENT_TYPES = {}
@@ -188,6 +188,7 @@ def compute_composite_score(model_data: dict, eval_results: list, all_models_sta
         return {
             'model_id': model_id,
             'composite': round(composite, 2),
+            'rank_percentile': None,
             'extended': extended_meta,
             'extended_composite': round(sum(extended_meta.values()) / len(extended_meta), 2) if extended_meta else 0.0,
             'breakdown': {
@@ -212,6 +213,7 @@ def compute_composite_score(model_data: dict, eval_results: list, all_models_sta
         return {
             'model_id': model_data.get('id', 'unknown'),
             'composite': 0.0,
+            'rank_percentile': None,
             'extended': {},
             'extended_composite': 0.0,
             'breakdown': {'benchmarks': 0.0, 'efficiency': 0.0, 'community': 0.0, 'recency': 0.0, 'reproducibility': 0.0},
@@ -250,8 +252,13 @@ def batch_score_models(models: list, cache=None) -> list[dict]:
         
     scored_models.sort(key=lambda x: x['composite'], reverse=True)
     
+    total = len(scored_models)
     for rank, score_data in enumerate(scored_models, 1):
         score_data['rank'] = rank
+        if total > 0:
+            score_data['rank_percentile'] = round((1 - rank/total) * 100, 1)
+        else:
+            score_data['rank_percentile'] = 0.0
         
     if cache:
         pass

@@ -17,12 +17,15 @@ BENCHMARK_META = {
     'ifeval':    {'name': 'IFEval',    'weight': 0.07, 'higher_is_better': True, 'max_possible': 100},
     'musr':      {'name': 'MuSR',      'weight': 0.05, 'higher_is_better': True, 'max_possible': 100},
     'math':      {'name': 'MATH',      'weight': 0.05, 'higher_is_better': True, 'max_possible': 100},
-    # Classic benchmarks (lower weight, widely available)
-    'arc':       {'name': 'ARC',       'weight': 0.00, 'higher_is_better': True, 'max_possible': 100},
-    'hellaswag': {'name': 'HellaSwag', 'weight': 0.00, 'higher_is_better': True, 'max_possible': 100},
-    'truthfulqa':{'name': 'TruthfulQA','weight': 0.00, 'higher_is_better': True, 'max_possible': 100},
-    'winogrande':{'name': 'WinoGrande','weight': 0.00, 'higher_is_better': True, 'max_possible': 100},
+    # Classic benchmarks that are only used as fallback
+    'arc':       {'name': 'ARC',        'weight': 0.0, 'fallback_weight': 0.25, 'higher_is_better': True, 'max_possible': 100},
+    'hellaswag': {'name': 'HellaSwag',  'weight': 0.0, 'fallback_weight': 0.25, 'higher_is_better': True, 'max_possible': 100},
+    'truthfulqa':{'name': 'TruthfulQA', 'weight': 0.0, 'fallback_weight': 0.25, 'higher_is_better': True, 'max_possible': 100},
+    'winogrande':{'name': 'WinoGrande', 'weight': 0.0, 'fallback_weight': 0.25, 'higher_is_better': True, 'max_possible': 100},
 }
+
+CLASSIC_BENCHMARKS = {'arc', 'hellaswag', 'truthfulqa', 'winogrande'}
+FRONTIER_BENCHMARKS = {'mmlu-pro', 'gpqa', 'hle', 'gsm8k', 'humaneval', 'bbh', 'ifeval', 'musr', 'math'}
 
 ALIAS_MAP = {
     # MMLU-Pro
@@ -98,6 +101,12 @@ def normalize_benchmark_scores(eval_results: list, leaderboard_bounds: dict = No
     total_score = 0.0
     total_weight = 0.0
     
+    # First pass: check if any frontier benchmarks are present
+    found_frontier = any(
+        _resolve_benchmark_id(r.get('dataset_id', '')) in FRONTIER_BENCHMARKS
+        for r in eval_results
+    )
+    
     for result in eval_results:
         raw_id = result.get('dataset_id', '')
         b_id = _resolve_benchmark_id(raw_id)
@@ -106,22 +115,35 @@ def normalize_benchmark_scores(eval_results: list, leaderboard_bounds: dict = No
             
         meta = BENCHMARK_META[b_id]
         score = result.get('value', result.get('score', 0.0))
-        
+        if 0 < score <= 1.0:
+            score *= 100.0
+            
         if leaderboard_bounds and b_id in leaderboard_bounds:
             b_min = leaderboard_bounds[b_id].get('min', 0.0)
             b_max = leaderboard_bounds[b_id].get('max', 100.0)
             if b_max > b_min:
                 norm_score = (score - b_min) / (b_max - b_min) * 100
             else:
-                norm_score = 0.0
+                norm_score = score
         else:
             norm_score = score
+        
+        # Use frontier weight if frontier benchmarks exist; otherwise use fallback_weight
+        if found_frontier:
+            w = meta['weight']
+        else:
+            w = meta.get('fallback_weight', meta['weight'])
             
-        total_score += norm_score * meta['weight']
-        total_weight += meta['weight']
+        total_score += norm_score * w
+        total_weight += w
         
     if total_weight > 0:
-        return max(0.0, min(100.0, total_score / total_weight))
+        # Apply a confidence penalty when only classic benchmarks found (classic benchmarks are easier, inflate scores)
+        raw = total_score / total_weight
+        if not found_frontier:
+            # Classic-only: cap at 75 and apply 0.85 confidence factor
+            raw = min(raw * 0.85, 75.0)
+        return max(0.0, min(100.0, raw))
     return 0.0
 
 def get_benchmark_score_for_model(model_id: str, eval_results: list, bounds_fetcher=None) -> dict:
@@ -138,7 +160,10 @@ def get_benchmark_score_for_model(model_id: str, eval_results: list, bounds_fetc
         if b_id in BENCHMARK_META:
             found_ids.add(b_id)
             found.append(b_id)
-            details[b_id] = result.get('value', result.get('score', 0.0))
+            val = result.get('value', result.get('score', 0.0))
+            if 0 < val <= 1.0:
+                val *= 100.0
+            details[b_id] = val
             
     for b_id in BENCHMARK_META:
         if b_id not in found_ids:

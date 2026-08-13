@@ -75,7 +75,28 @@ async def health_check():
     return {
         "status": "ok",
         "version": app.version,
-        "cache_size": cache_size
+        "cache_size": cache_size,
+        "leaderboard_stats": {
+            "total_models": cache_size,
+            "tier_distribution": {"S": 0, "A": 0, "B": 0, "C": 0, "D": 0},
+            "last_seeded": None
+        }
+    }
+
+@app.get("/meta")
+async def get_meta():
+    """Returns leaderboard metadata: version, stats, tier distribution."""
+    try:
+        cache_size = cache.get_size() if hasattr(cache, 'get_size') else "unknown"
+    except Exception:
+        cache_size = "error"
+    return {
+        'version': '2.0.0',
+        'total_models': cache_size,
+        'methodology_url': 'https://rankmodel.github.io/rankmodel1/methodology.html',
+        'api_docs_url': 'https://rankmodel.github.io/rankmodel1/api.html',
+        'changelog_url': 'https://rankmodel.github.io/rankmodel1/changelog.json',
+        'github_url': 'https://github.com/rankmodel/rankmodel1',
     }
 
 @app.get("/score/{model_id:path}", response_model=ModelScore)

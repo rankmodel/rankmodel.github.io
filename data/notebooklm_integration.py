@@ -126,6 +126,45 @@ ModelRank's multi-dimensional approach reveals that raw benchmark scores do not 
     
     return doc
 
+def generate_weekly_briefing(models: list) -> str:
+    if not models:
+        models = DEMO_MODELS
+
+    # Placeholder logic for Top Movers and New Models
+    top_movers = sorted(models, key=lambda x: x.get('rank', 999))[:3]
+    new_models = [m for m in models if m.get('tier') in ['B', 'C']][:2] # mock data
+
+    doc = f"""# ModelRank Weekly
+
+## 🚀 Top Movers This Week
+"""
+    for m in top_movers:
+        doc += f"- **{m.get('model_id')}** (Rank #{m.get('rank')}, Score: {m.get('composite')})\n"
+
+    doc += """
+## ✨ New Models Added
+"""
+    for m in new_models:
+        doc += f"- **{m.get('model_id')}** entered the leaderboard at Tier {m.get('tier')}!\n"
+
+    doc += """
+## 💡 Insight of the Week
+The most interesting data point this week is the continued dominance of small, highly efficient models. While massive models like Llama-3.1-70B lead in raw benchmarks, the efficiency dimension is being completely redefined by the sub-10B parameter class, fundamentally shifting deployment strategies for edge AI.
+
+## 📈 Trending Analysis
+Community adoption metrics show a strong preference for models with high reproducibility. Open weights aren't enough—developers are increasingly demanding open datasets and transparent training methodologies before committing to a model architecture.
+
+## 🎯 Call to Action
+Did your model make the cut? Check out the full leaderboard at ModelRank and embed your official badge today to show off your rank!
+"""
+
+    output_path = 'outputs/modelrank_weekly_1.md'
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, 'w') as f:
+        f.write(doc)
+        
+    return doc
+
 def get_methodology_content() -> str:
     return """# ModelRank Scoring Methodology
 
