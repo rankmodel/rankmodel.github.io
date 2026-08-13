@@ -322,6 +322,33 @@ async def get_score_extended(model_id: str):
         raise HTTPException(status_code=404, detail=f"Model {model_id} not yet scored. Use GET /score/{model_id} to score it first.")
     return score
 
+@app.get('/trending')
+async def get_trending(limit: int = 10):
+    """
+    Returns trending models based on community momentum + recency score.
+    Updated daily by the static asset generator.
+    """
+    models = cache.get_leaderboard(limit=200)
+    trending = []
+    for rank, m in enumerate(models, 1):
+        s = m.get('score', {})
+        b = s.get('breakdown', {})
+        comm = b.get('community', 0)
+        rec = b.get('recency', b.get('freshness', 0))
+        trend_score = comm * 0.6 + rec * 0.4
+        if trend_score > 50:
+            trending.append({
+                'model_id': m['model_id'],
+                'composite': s.get('composite', 0),
+                'tier': s.get('tier', 'D'),
+                'trend_score': round(trend_score, 1),
+                'community_score': comm,
+                'recency_score': rec,
+                'global_rank': rank
+            })
+    trending.sort(key=lambda x: x['trend_score'], reverse=True)
+    return {'trending': trending[:limit], 'total': len(trending)}
+
 if __name__ == '__main__':
     uvicorn.run(app, host=API_HOST, port=API_PORT)
 

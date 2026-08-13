@@ -102,6 +102,8 @@ class HFDataFetcher:
 
     def fetch_model_list(self, task: Optional[str] = None, sort: str = 'downloads', limit: int = 100, search: Optional[str] = None) -> List[Dict[str, Any]]:
         url = f"{self.base_url}/models"
+        if sort == 'trending':
+            sort = 'trendingScore'
         params = {
             "sort": sort,
             "limit": limit
@@ -264,7 +266,7 @@ class HFDataFetcher:
 
     def fetch_trending_models(self, limit: int = 20) -> List[str]:
         url = f"{self.base_url}/models"
-        params = {"sort": "trending", "limit": limit}
+        params = {"sort": "trendingScore", "limit": limit}
         data = self._make_request(url, params=params)
         return [model.get("id", "") for model in data if "id" in model]
 

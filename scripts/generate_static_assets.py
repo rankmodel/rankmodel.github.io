@@ -310,7 +310,9 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
         </div>
         <div class="flex items-center gap-6 text-sm font-medium text-gray-400">
           <a href="#" class="text-white">Leaderboard</a>
-          <a href="#methodology" class="hover:text-white transition-colors">Methodology</a>
+          <a href="methodology.html" class="hover:text-white transition-colors">Methodology</a>
+          <a href="quiz.html" class="hover:text-white transition-colors">Quiz</a>
+          <a href="collections.html" class="hover:text-white transition-colors">Collections</a>
           <a href="pricing.html" class="hover:text-white transition-colors">Pricing</a>
           <a href="https://github.com/rankmodel/rankmodel1" class="hover:text-white transition-colors flex items-center gap-2">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
@@ -699,6 +701,468 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
 </body>
 </html>'''
 
+
+
+def generate_quiz_html() -> str:
+    """Generate the interactive recommendation quiz."""
+    return """<!DOCTYPE html>
+<html lang="en" class="dark" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ModelRank — Best Model for Your Use Case</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.0/dist/full.css" rel="stylesheet" type="text/css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { base: '#0a0a0f', surface: '#13131a', border: '#232330' },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    body { background-color: #0a0a0f; color: #f1f5f9; font-family: 'Inter', sans-serif; }
+    .glass-card { background: rgba(19, 19, 26, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+    .step-panel { display: none; opacity: 0; transform: translateX(20px); transition: all 0.4s ease-out; }
+    .step-panel.active { display: block; opacity: 1; transform: translateX(0); }
+    .card-option { cursor: pointer; transition: all 0.2s; border: 2px solid transparent; }
+    .card-option:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+    .card-option.selected { border-color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
+  </style>
+</head>
+<body class="min-h-screen text-gray-200">
+  <header class="pt-8 pb-4 border-b border-white/5">
+    <div class="container mx-auto px-4 max-w-4xl flex justify-between items-center">
+      <a href="index.html" class="text-xl font-black flex items-center gap-2 text-white">🏆 ModelRank</a>
+      <div class="text-sm font-medium text-gray-400">
+        <a href="index.html" class="hover:text-white mr-4">Leaderboard</a>
+        <a href="collections.html" class="hover:text-white">Collections</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <div class="mb-8">
+      <div class="flex justify-between text-xs font-bold text-gray-500 mb-2">
+        <span>Step <span id="step-counter">1</span> of 3</span>
+      </div>
+      <div class="w-full bg-gray-800 rounded-full h-1.5">
+        <div id="progress-bar" class="bg-blue-500 h-1.5 rounded-full transition-all duration-300" style="width: 33%"></div>
+      </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div id="step-1" class="step-panel active">
+      <h1 class="text-3xl font-black text-white mb-2">What is your primary use case?</h1>
+      <p class="text-gray-400 mb-8">Select the task that represents 80%+ of what you'll use the model for.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="use-case-options">
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="chat">
+          <div class="text-3xl mb-3">💬</div>
+          <h3 class="text-lg font-bold text-white mb-1">Chat / Assistant</h3>
+          <p class="text-sm text-gray-400">Conversational AI, customer support, general Q&A</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="code">
+          <div class="text-3xl mb-3">💻</div>
+          <h3 class="text-lg font-bold text-white mb-1">Code Generation</h3>
+          <p class="text-sm text-gray-400">Write, explain, debug code — Python, JS, Go</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="rag">
+          <div class="text-3xl mb-3">📖</div>
+          <h3 class="text-lg font-bold text-white mb-1">RAG / Knowledge Base</h3>
+          <p class="text-sm text-gray-400">Retrieve and summarize long documents</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="research">
+          <div class="text-3xl mb-3">🔬</div>
+          <h3 class="text-lg font-bold text-white mb-1">Research / Reasoning</h3>
+          <p class="text-sm text-gray-400">Complex multi-step reasoning, PhD-level questions</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="multilingual">
+          <div class="text-3xl mb-3">🌍</div>
+          <h3 class="text-lg font-bold text-white mb-1">Multilingual</h3>
+          <p class="text-sm text-gray-400">Support for non-English languages</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="edge">
+          <div class="text-3xl mb-3">🏎️</div>
+          <h3 class="text-lg font-bold text-white mb-1">Edge / On-device</h3>
+          <p class="text-sm text-gray-400">Must run on laptop/mobile without cloud</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="step-2" class="step-panel">
+      <button class="text-sm text-gray-400 hover:text-white flex items-center gap-1 mb-4" onclick="goToStep(1)">
+        ← Back
+      </button>
+      <h1 class="text-3xl font-black text-white mb-2">What hardware will you run it on?</h1>
+      <p class="text-gray-400 mb-8">This helps us filter out models that won't fit in your memory.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="hardware-options">
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="cloud">
+          <div class="text-3xl mb-3">☁️</div>
+          <h3 class="text-lg font-bold text-white mb-1">Cloud / API</h3>
+          <p class="text-sm text-gray-400">Use via API, no local hardware constraints</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="high">
+          <div class="text-3xl mb-3">🖥️</div>
+          <h3 class="text-lg font-bold text-white mb-1">High-end GPU</h3>
+          <p class="text-sm text-gray-400">RTX 4090, A100, 80GB+ VRAM</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="mid">
+          <div class="text-3xl mb-3">💻</div>
+          <h3 class="text-lg font-bold text-white mb-1">Mid-range GPU</h3>
+          <p class="text-sm text-gray-400">RTX 3080/4070, 16-24GB VRAM</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="potato">
+          <div class="text-3xl mb-3">🥔</div>
+          <h3 class="text-lg font-bold text-white mb-1">Potato</h3>
+          <p class="text-sm text-gray-400">CPU only or 8GB RAM — must be tiny</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div id="step-3" class="step-panel">
+      <button class="text-sm text-gray-400 hover:text-white flex items-center gap-1 mb-4" onclick="goToStep(2)">
+        ← Back
+      </button>
+      <h1 class="text-3xl font-black text-white mb-2">What's your priority?</h1>
+      <p class="text-gray-400 mb-8">Trade-off between quality and speed.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="priority-options">
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="quality">
+          <div class="text-3xl mb-3">🏆</div>
+          <h3 class="text-lg font-bold text-white mb-1">Best quality</h3>
+          <p class="text-sm text-gray-400">Highest possible score, I don't care about speed</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="balanced">
+          <div class="text-3xl mb-3">⚡</div>
+          <h3 class="text-lg font-bold text-white mb-1">Balanced</h3>
+          <p class="text-sm text-gray-400">Good quality + reasonable speed</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="speed">
+          <div class="text-3xl mb-3">🚀</div>
+          <h3 class="text-lg font-bold text-white mb-1">Speed first</h3>
+          <p class="text-sm text-gray-400">Fastest inference, good enough quality</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div id="results" class="step-panel">
+      <button class="text-sm text-gray-400 hover:text-white flex items-center gap-1 mb-4" onclick="goToStep(1); resetSelections();">
+        ← Start Over
+      </button>
+      <h1 class="text-3xl font-black text-white mb-2">Top Recommendations</h1>
+      <p class="text-gray-400 mb-8">Based on your selections: <span id="summary-text" class="text-blue-400 font-bold"></span></p>
+      
+      <div id="loading" class="text-center py-12">
+        <span class="loading loading-spinner loading-lg text-primary"></span>
+        <p class="mt-4 text-gray-400">Analyzing models...</p>
+      </div>
+
+      <div id="recommendations-container" class="space-y-4 hidden"></div>
+
+      <div class="mt-8 flex gap-4 hidden" id="action-buttons">
+        <a href="index.html" class="btn btn-outline">Compare all models</a>
+        <button onclick="shareResults()" class="btn btn-primary">Share Results</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let selections = { useCase: '', hardware: '', priority: '' };
+    const LEADERBOARD_URL = 'leaderboard.json';
+    let leaderboardData = null;
+
+    function resetSelections() {
+      selections = { useCase: '', hardware: '', priority: '' };
+      document.querySelectorAll('.card-option').forEach(el => el.classList.remove('selected'));
+    }
+
+    function goToStep(step) {
+      document.querySelectorAll('.step-panel').forEach(el => el.classList.remove('active'));
+      document.getElementById(`step-${step}`)?.classList.add('active');
+      document.getElementById('step-counter').innerText = step;
+      document.getElementById('progress-bar').style.width = `${(step/3)*100}%`;
+    }
+
+    function handleSelection(step, key, value, el) {
+      selections[key] = value;
+      const parent = el.closest('.grid');
+      parent.querySelectorAll('.card-option').forEach(card => card.classList.remove('selected'));
+      el.classList.add('selected');
+      
+      setTimeout(() => {
+        if (step < 3) {
+          goToStep(step + 1);
+        } else {
+          showResults();
+        }
+      }, 300);
+    }
+
+    document.getElementById('use-case-options').addEventListener('click', e => {
+      const card = e.target.closest('.card-option');
+      if(card) handleSelection(1, 'useCase', card.dataset.value, card);
+    });
+    document.getElementById('hardware-options').addEventListener('click', e => {
+      const card = e.target.closest('.card-option');
+      if(card) handleSelection(2, 'hardware', card.dataset.value, card);
+    });
+    document.getElementById('priority-options').addEventListener('click', e => {
+      const card = e.target.closest('.card-option');
+      if(card) handleSelection(3, 'priority', card.dataset.value, card);
+    });
+
+    function calcFit(model, useCase, hardware, priority) {
+      let score = model.composite;
+      const b = model.breakdown || {};
+      
+      // Use case adjustments
+      if (useCase === 'code') score += (b.benchmarks || 0) * 0.3;
+      if (useCase === 'edge') score += (b.efficiency || 0) * 0.5 - (model.composite * 0.2);
+      if (useCase === 'multilingual') score += (b.community || 0) * 0.2;
+      if (useCase === 'research') score += (b.benchmarks || 0) * 0.4;
+      
+      // Hardware filter
+      const eff = b.efficiency || 0;
+      if (hardware === 'potato') { if (eff < 70) score -= 40; else score += 20; }
+      if (hardware === 'mid') { if (eff < 40) score -= 20; }
+      
+      // Priority
+      if (priority === 'speed') score += (b.efficiency || 0) * 0.3;
+      if (priority === 'quality') score += (b.benchmarks || 0) * 0.2;
+      
+      return score;
+    }
+
+    async function fetchLeaderboard() {
+      if (leaderboardData) return leaderboardData;
+      try {
+        const res = await fetch(LEADERBOARD_URL);
+        leaderboardData = await res.json();
+        return leaderboardData;
+      } catch (err) {
+        console.error(err);
+        return { models: [] };
+      }
+    }
+
+    async function showResults() {
+      document.querySelectorAll('.step-panel').forEach(el => el.classList.remove('active'));
+      document.getElementById('results').classList.add('active');
+      document.getElementById('progress-bar').style.width = '100%';
+      
+      const labels = {
+        chat: 'Chat', code: 'Code', rag: 'RAG', research: 'Research', multilingual: 'Multilingual', edge: 'Edge',
+        cloud: 'Cloud', high: 'High-end GPU', mid: 'Mid-range GPU', potato: 'Potato PC',
+        quality: 'Quality', balanced: 'Balanced', speed: 'Speed'
+      };
+      document.getElementById('summary-text').innerText = `${labels[selections.useCase]} on ${labels[selections.hardware]} (${labels[selections.priority]})`;
+      
+      const data = await fetchLeaderboard();
+      document.getElementById('loading').classList.add('hidden');
+      
+      const scored = data.models.map(m => ({
+        ...m,
+        fit: calcFit(m, selections.useCase, selections.hardware, selections.priority)
+      })).sort((a, b) => b.fit - a.fit).slice(0, 3);
+      
+      const container = document.getElementById('recommendations-container');
+      container.innerHTML = '';
+      container.classList.remove('hidden');
+      document.getElementById('action-buttons').classList.remove('hidden');
+
+      scored.forEach((m, idx) => {
+        const parts = m.model_id.split('/');
+        const name = parts.length > 1 ? parts[1] : m.model_id;
+        const org = parts.length > 1 ? parts[0] : '';
+        const html = `
+          <div class="glass-card p-6 rounded-2xl flex flex-col md:flex-row gap-6 items-center border-l-4 ${idx===0 ? 'border-l-blue-500' : 'border-l-gray-600'}">
+            <div class="text-4xl font-black text-gray-500">#${idx+1}</div>
+            <div class="flex-1">
+              <div class="text-xs text-gray-500">${org}</div>
+              <h3 class="text-xl font-bold text-white"><a href="https://huggingface.co/${m.model_id}" target="_blank" class="hover:underline">${name}</a></h3>
+              <p class="text-sm text-gray-400 mt-1">Score: <span class="text-blue-400 font-bold">${m.composite.toFixed(1)}</span> • Tier: <span class="badge badge-sm badge-outline">${m.tier}</span> • Efficiency: ${m.breakdown?.efficiency?.toFixed(1)||'N/A'}</p>
+              <p class="text-sm text-gray-300 mt-2 bg-white/5 p-2 rounded italic">"Best fit due to high ${selections.priority==='speed'||selections.hardware==='potato'?'efficiency':'benchmark performance'} for this hardware."</p>
+            </div>
+            <div>
+              <img src="${m.badge_url}" alt="Score Badge" class="h-8">
+            </div>
+          </div>
+        `;
+        container.innerHTML += html;
+      });
+      
+      window.shareText = `ModelRank recommends ${scored[0]?.model_id || 'these models'} for ${labels[selections.useCase]} on ${labels[selections.hardware]}. Check it out at ModelRank!`;
+    }
+    
+    function shareResults() {
+      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(window.shareText)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>"""
+
+
+def generate_collections_html() -> str:
+    """Generate the curated collections page."""
+    return """<!DOCTYPE html>
+<html lang="en" class="dark" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ModelRank — Model Collections</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.0/dist/full.css" rel="stylesheet" type="text/css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { base: '#0a0a0f', surface: '#13131a', border: '#232330' },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    body { background-color: #0a0a0f; color: #f1f5f9; font-family: 'Inter', sans-serif; }
+    .glass-card { background: rgba(19, 19, 26, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+  </style>
+</head>
+<body class="min-h-screen text-gray-200">
+  <header class="pt-16 pb-12 border-b border-white/5 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="container mx-auto px-4 max-w-6xl relative z-10">
+      <nav class="flex items-center justify-between mb-12">
+        <a href="index.html" class="text-2xl font-black tracking-tight flex items-center gap-2 text-white">🏆 ModelRank</a>
+        <div class="flex items-center gap-6 text-sm font-medium text-gray-400">
+          <a href="index.html" class="hover:text-white">Leaderboard</a>
+          <a href="quiz.html" class="hover:text-white">Quiz</a>
+        </div>
+      </nav>
+      <h1 class="text-4xl md:text-5xl font-black text-white mb-4">Model Collections</h1>
+      <p class="text-xl text-gray-400">Curated lists of top performers by category</p>
+      <p class="text-sm text-gray-500 mt-2" id="last-updated">Last updated: fetching...</p>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-12 max-w-6xl">
+    <div class="grid grid-cols-1 gap-6" id="collections-container">
+      <div class="text-center py-12"><span class="loading loading-spinner loading-lg text-primary"></span></div>
+    </div>
+  </main>
+
+  <script>
+    async function loadCollections() {
+      try {
+        const res = await fetch('leaderboard.json');
+        const data = await res.json();
+        document.getElementById('last-updated').innerText = 'Last updated: ' + (data.updated_at || new Date().toISOString());
+        
+        const models = data.models || [];
+        
+        const collections = [
+          {
+            id: 'top-overall',
+            title: '🏆 Top Overall',
+            desc: 'Top 10 models by composite score',
+            models: [...models].sort((a,b) => b.composite - a.composite).slice(0, 10)
+          },
+          {
+            id: 'efficiency',
+            title: '⚡ Efficiency Champions',
+            desc: 'Top 10 by efficiency score (best for edge/CPU)',
+            models: [...models].sort((a,b) => (b.breakdown?.efficiency||0) - (a.breakdown?.efficiency||0)).slice(0, 10)
+          },
+          {
+            id: 'code',
+            title: '💻 Best for Code',
+            desc: 'Models excelling in coding benchmarks (simulated)',
+            models: [...models].filter(m => m.model_id.toLowerCase().includes('coder') || m.model_id.toLowerCase().includes('code') || m.composite > 75).slice(0, 10)
+          },
+          {
+            id: 'trending',
+            title: '🔥 Trending Right Now',
+            desc: 'Top 10 by community score',
+            models: [...models].sort((a,b) => (b.breakdown?.community||0) - (a.breakdown?.community||0)).slice(0, 10)
+          },
+          {
+            id: 'fresh',
+            title: '🆕 Freshest Models',
+            desc: 'Top 10 by recency score',
+            models: [...models].sort((a,b) => (b.breakdown?.recency||0) - (a.breakdown?.recency||0)).slice(0, 10)
+          },
+          {
+            id: 'sa-tier',
+            title: '💜 S & A Tier Only',
+            desc: 'Elite models scoring 80+',
+            models: [...models].filter(m => m.tier === 'S' || m.tier === 'A').sort((a,b) => b.composite - a.composite)
+          }
+        ];
+
+        const container = document.getElementById('collections-container');
+        container.innerHTML = '';
+        
+        collections.forEach(col => {
+          let rowsHtml = '';
+          col.models.forEach(m => {
+            const parts = m.model_id.split('/');
+            const name = parts.length > 1 ? parts[1] : m.model_id;
+            rowsHtml += `
+              <div class="flex items-center justify-between p-3 border-b border-white/5 hover:bg-white/5">
+                <div class="flex items-center gap-3">
+                  <span class="text-gray-500 font-mono text-sm">#${m.rank}</span>
+                  <a href="https://huggingface.co/${m.model_id}" class="text-white font-bold hover:underline">${name}</a>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span class="text-blue-400 font-mono font-bold">${m.composite.toFixed(1)}</span>
+                  <span class="badge badge-sm badge-outline">${m.tier}</span>
+                  <button onclick="navigator.clipboard.writeText('![ModelRank](${m.badge_url})')" class="btn btn-xs btn-ghost text-gray-400">Copy Badge</button>
+                </div>
+              </div>
+            `;
+          });
+
+          const html = `
+            <details class="glass-card rounded-2xl group" ${col.id === 'top-overall' ? 'open' : ''}>
+              <summary class="p-6 cursor-pointer flex justify-between items-center">
+                <div>
+                  <h2 class="text-2xl font-black text-white">${col.title}</h2>
+                  <p class="text-gray-400 text-sm mt-1">${col.desc} — ${col.models.length} models</p>
+                </div>
+                <div class="text-gray-500 transition-transform group-open:rotate-180">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+              </summary>
+              <div class="px-6 pb-6 pt-2 border-t border-white/5">
+                ${rowsHtml}
+              </div>
+            </details>
+          `;
+          container.innerHTML += html;
+        });
+
+      } catch (err) {
+        document.getElementById('collections-container').innerHTML = '<p class="text-red-500">Failed to load collections.</p>';
+      }
+    }
+    loadCollections();
+  </script>
+</body>
+</html>"""
 
 def generate_pricing_html() -> str:
     """Generate the premium pricing landing page for ModelRank Pro."""
@@ -1123,6 +1587,7 @@ def generate_pricing_html() -> str:
 </body>
 </html>'''
 
+
 def generate_methodology_html() -> str:
     """Generate the methodology page."""
     return """<!DOCTYPE html>
@@ -1131,78 +1596,161 @@ def generate_methodology_html() -> str:
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank Scoring Methodology — How We Evaluate Open-Weight AI Models</title>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.0/dist/full.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>body { font-family: 'Inter', system-ui, sans-serif; }</style>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { base: '#0a0a0f', surface: '#13131a', border: '#232330' },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }
+        }
+      }
+    }
+  </script>
+  <style>body { background-color: #0a0a0f; color: #f1f5f9; font-family: 'Inter', sans-serif; } .glass-card { background: rgba(19, 19, 26, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }</style>
 </head>
-<body class="min-h-screen bg-base-300 text-base-content">
+<body class="min-h-screen text-gray-200">
   <div class="container mx-auto px-4 py-12 max-w-4xl">
-    <div class="mb-8"><a href="index.html" class="btn btn-outline btn-sm">← Back to Leaderboard</a></div>
-    <h1 class="text-4xl md:text-5xl font-black mb-6 tracking-tight">ModelRank Scoring Methodology — How We Evaluate Open-Weight AI Models</h1>
-    <p class="text-xl text-base-content/70 mb-12">Built for developers, not marketing teams. Every score is reproducible, open-source, and conflict-of-interest-free.</p>
+    <div class="mb-8"><a href="index.html" class="btn btn-outline btn-sm border-white/20 text-gray-300 hover:bg-white/10 hover:border-white/30">← Back to Leaderboard</a></div>
+    <h1 class="text-4xl md:text-5xl font-black mb-6 tracking-tight text-white">ModelRank Scoring Methodology</h1>
+    <p class="text-xl text-gray-400 mb-12">Built for developers, not marketing teams. Every score is reproducible, open-source, and conflict-of-interest-free.</p>
     
     <div class="space-y-12">
       <section>
-        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 1 — The 5 Dimensions</h2>
-        <p class="text-base-content/80">Our composite score combines 5 key areas: Benchmarks (accuracy), Efficiency (speed/VRAM), Community (momentum/stars), Architecture (context length, types), and Freshness (recency).</p>
+        <h2 class="text-3xl font-bold mb-6 text-white">1. The Five Dimensions</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="glass-card p-6 rounded-2xl border-t-4 border-blue-500">
+            <h3 class="font-bold text-xl mb-1 text-white">Benchmarks (40%)</h3>
+            <p class="text-sm text-gray-400 mb-2">Evaluates logical reasoning, coding, math, and knowledge.</p>
+            <p class="text-xs text-gray-500">Sources: HuggingFace Evals, Open LLM Leaderboard V2. A 90/100 means top-tier reasoning. Limitation: Does not capture creative writing preference.</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl border-t-4 border-green-500">
+            <h3 class="font-bold text-xl mb-1 text-white">Efficiency (20%)</h3>
+            <p class="text-sm text-gray-400 mb-2">Throughput, VRAM usage, and parameter-to-performance ratio.</p>
+            <p class="text-xs text-gray-500">Sources: Context length metadata, param count. A 90/100 means runs fast on consumer GPUs. Limitation: Static estimates, not real-time profiling.</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl border-t-4 border-purple-500">
+            <h3 class="font-bold text-xl mb-1 text-white">Community (20%)</h3>
+            <p class="text-sm text-gray-400 mb-2">Usage, momentum, and mindshare.</p>
+            <p class="text-xs text-gray-500">Sources: HF Downloads, likes. A 90/100 means mass adoption. Limitation: Can be skewed by early hype or bots.</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl border-t-4 border-yellow-500">
+            <h3 class="font-bold text-xl mb-1 text-white">Freshness (10%)</h3>
+            <p class="text-sm text-gray-400 mb-2">Time since release and update frequency.</p>
+            <p class="text-xs text-gray-500">Sources: Last modified dates. A 90/100 means updated this week. Limitation: Penalizes stable, completed models over time.</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl border-t-4 border-red-500">
+            <h3 class="font-bold text-xl mb-1 text-white">Reproducibility (10%)</h3>
+            <p class="text-sm text-gray-400 mb-2">Open weights, clear license, verified origin.</p>
+            <p class="text-xs text-gray-500">Sources: Hub metadata, safetensors presence. A 90/100 means fully open (MIT/Apache) and safe.</p>
+          </div>
+        </div>
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 2 — Benchmark Coverage</h2>
-        <div class="overflow-x-auto">
-          <table class="table table-zebra table-sm">
-            <thead><tr><th>Benchmark</th><th>Focus</th></tr></thead>
-            <tbody>
-              <tr><td>MMLU-Pro</td><td>General Knowledge</td></tr>
-              <tr><td>GPQA Diamond</td><td>Expert Reasoning</td></tr>
-              <tr><td>HLE, GSM8K</td><td>Math & Logic</td></tr>
-              <tr><td>HumanEval, MBPP</td><td>Coding</td></tr>
-              <tr><td>ARC-C, HellaSwag</td><td>Common Sense</td></tr>
-              <tr><td>WinoGrande, TruthfulQA, BBQ, BoolQ, PIQA</td><td>Factuality & Bias</td></tr>
+        <h2 class="text-3xl font-bold mb-6 text-white">2. Benchmark Coverage Table</h2>
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <table class="table w-full">
+            <thead class="bg-white/5 text-gray-300">
+              <tr><th>Benchmark</th><th>Domain</th><th>Source</th><th>Weight</th><th>Notes</th></tr>
+            </thead>
+            <tbody class="text-sm text-gray-400">
+              <tr class="border-b border-white/5"><td>MMLU-Pro</td><td>General knowledge</td><td>HuggingFace Evals</td><td>20%</td><td>...</td></tr>
+              <tr class="border-b border-white/5"><td>GPQA Diamond</td><td>PhD-level reasoning</td><td>idavidrein/gpqa</td><td>20%</td><td>...</td></tr>
+              <tr class="border-b border-white/5"><td>HLE</td><td>Expert-level</td><td>...</td><td>15%</td><td>Humanity's Last Exam</td></tr>
+              <tr class="border-b border-white/5"><td>GSM8K</td><td>Math word problems</td><td>...</td><td>10%</td><td></td></tr>
+              <tr class="border-b border-white/5"><td>HumanEval</td><td>Code generation</td><td>openai/...</td><td>10%</td><td></td></tr>
+              <tr class="border-b border-white/5"><td>BBH</td><td>Big-Bench Hard</td><td>...</td><td>8%</td><td></td></tr>
+              <tr class="border-b border-white/5"><td>IFEval</td><td>Instruction following</td><td>...</td><td>7%</td><td></td></tr>
+              <tr class="border-b border-white/5"><td>MuSR</td><td>Multi-step reasoning</td><td>...</td><td>5%</td><td></td></tr>
+              <tr class="border-b border-white/5"><td>MATH</td><td>Advanced math</td><td>...</td><td>5%</td><td></td></tr>
+              <tr class="border-b border-white/5"><td>ARC-Challenge</td><td>Science reasoning</td><td>...</td><td>fallback</td><td></td></tr>
+              <tr class="border-b border-white/5"><td>HellaSwag</td><td>Commonsense NLI</td><td>...</td><td>fallback</td><td></td></tr>
+              <tr class="border-b border-white/5"><td>TruthfulQA</td><td>Factual accuracy</td><td>...</td><td>fallback</td><td></td></tr>
+              <tr><td>WinoGrande</td><td>Winograd schema</td><td>...</td><td>fallback</td><td></td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 3 — Normalization</h2>
-        <p class="text-base-content/80">Raw benchmark scores (0-1) are converted to a 0-100 scale using confidence weighting and coverage bonuses for multi-domain models.</p>
+        <h2 class="text-3xl font-bold mb-4 text-white">3. Normalization & Confidence</h2>
+        <p class="text-gray-400">Raw benchmark values from HF are 0.0-1.0, we multiply by 100. Frontier benchmarks (MMLU-Pro, GPQA etc.) take priority. When only classic benchmarks found: 0.85x confidence penalty, capped at 75/100. Coverage confidence: high/medium/low based on how many benchmarks found.</p>
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 4 — Tier System</h2>
-        <ul class="list-disc pl-5 text-base-content/80">
-          <li><span class="text-secondary font-bold">S Tier (90-100)</span>: State-of-the-art models (e.g., Llama 3 70B, Qwen 2 72B)</li>
-          <li><span class="text-primary font-bold">A Tier (80-89)</span>: Excellent general-purpose models</li>
-          <li><span class="text-success font-bold">B Tier (70-79)</span>: Solid performance, often smaller efficient models</li>
-          <li><span class="text-warning font-bold">C Tier (60-69)</span>: Usable for specific basic tasks</li>
-          <li><span class="text-error font-bold">D Tier (0-59)</span>: Legacy or specialized niche models</li>
+        <h2 class="text-3xl font-bold mb-6 text-white">4. Tier System</h2>
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <table class="table w-full">
+            <thead class="bg-white/5 text-gray-300">
+              <tr><th>Tier</th><th>Score Range</th><th>Current Examples</th></tr>
+            </thead>
+            <tbody class="text-sm text-gray-400">
+              <tr class="border-b border-white/5"><td><span class="text-purple-400 font-bold">S</span></td><td>90-100</td><td>(none yet — GPT-4 class)</td></tr>
+              <tr class="border-b border-white/5"><td><span class="text-blue-400 font-bold">A</span></td><td>80-89</td><td>gemma-4-31B-it (82.97), Qwen3.5-9B (81.52)</td></tr>
+              <tr class="border-b border-white/5"><td><span class="text-green-400 font-bold">B</span></td><td>70-79</td><td>DeepSeek-R1 (78.3), phi-4 (72.89)</td></tr>
+              <tr class="border-b border-white/5"><td><span class="text-yellow-400 font-bold">C</span></td><td>60-69</td><td>gpt-oss-20b (69.81)</td></tr>
+              <tr><td><span class="text-red-400 font-bold">D</span></td><td>&lt;60</td><td>Legacy models</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-3xl font-bold mb-4 text-white">5. ELO Comparison Formula</h2>
+        <div class="glass-card p-6 rounded-2xl mb-4">
+          <p class="font-mono text-blue-400 text-center text-lg">P(A beats B) = 1 / (1 + 10^((ELO_B - ELO_A) / 400))</p>
+        </div>
+        <p class="text-gray-400">Example: Qwen3.5-9B (81.52) vs DeepSeek-R1 (78.3)<br>
+        • ELO_A = 800 + 81.52*8 = 1452, ELO_B = 800 + 78.3*8 = 1426<br>
+        • P(Qwen beats DeepSeek) = 1 / (1 + 10^((1426 - 1452) / 400)) = 0.537 = 53.7% win probability</p>
+      </section>
+
+      <section>
+        <h2 class="text-3xl font-bold mb-4 text-white">6. Extended Metadata (10 signals)</h2>
+        <p class="text-gray-400">context_window, vram_tier, license_score, finetune_friendly, multilingual, safety_score, update_velocity, inference_coverage, community_momentum, hub_completeness.</p>
+      </section>
+
+      <section>
+        <h2 class="text-3xl font-bold mb-4 text-white">7. What We Don't Measure (Honest Limitations)</h2>
+        <ul class="list-disc pl-5 text-gray-400 space-y-2">
+          <li>Human preference (requires live inference infrastructure)</li>
+          <li>API latency and cost per token</li>
+          <li>Alignment and safety (beyond TruthfulQA)</li>
+          <li>Benchmark contamination (we can't verify if models saw test data)</li>
+          <li>Dialect/regional language performance</li>
         </ul>
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 5 — ELO Comparison</h2>
-        <p class="text-base-content/80">We use the Bradley-Terry model for head-to-head win rates. <code>P(A beats B) = 1/(1+10^((ELO_B-ELO_A)/400))</code>.</p>
+        <h2 class="text-3xl font-bold mb-6 text-white">8. Changelog</h2>
+        <div class="glass-card rounded-2xl overflow-hidden">
+          <table class="table w-full">
+            <thead class="bg-white/5 text-gray-300">
+              <tr><th>Version</th><th>Date</th><th>Changes</th></tr>
+            </thead>
+            <tbody class="text-sm text-gray-400">
+              <tr class="border-b border-white/5"><td>2.0.0</td><td>2026-08-13</td><td>10 extended metadata signals, Shields.io endpoint, pricing page</td></tr>
+              <tr class="border-b border-white/5"><td>1.1.0</td><td>2026-08-13</td><td>GitHub Pages CDN, 71 models, HuggingFace Space</td></tr>
+              <tr><td>1.0.0</td><td>2026-08-13</td><td>Initial: 5D scoring, ELO, SVG badges, 27 tests</td></tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 6 — What We DON'T measure</h2>
-        <p class="text-base-content/80">Currently excluding: human preference (LMSYS), API latency, API cost, and alignment safety scoring (see future roadmap).</p>
-      </section>
-
-      <section>
-        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 7 — Data Sources</h2>
-        <p class="text-base-content/80">Metrics sourced daily from HuggingFace Hub API, Open LLM Leaderboard V2 eval results, and live community momentum tracking.</p>
-      </section>
-
-      <section>
-        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 8 — Limitations & Known Issues</h2>
-        <p class="text-base-content/80">Be aware of potential benchmark contamination risk, HF download gaming via automated bots, and assumptions in our freshness decay formula.</p>
-      </section>
-
-      <section>
-        <h2 class="text-2xl font-bold mb-4 border-b border-base-200 pb-2">Section 9 — Changelog</h2>
-        <p class="text-base-content/80">v1.0 (Initial release), v2.0 (10-parameter extended metadata release).</p>
+        <h2 class="text-3xl font-bold mb-4 text-white">9. Cite ModelRank</h2>
+        <div class="mockup-code bg-base-300 text-sm">
+          <pre><code>@software{modelrank2026,
+  author = {ModelRank Team},
+  title = {ModelRank: Composite Scoring and Embeddable Badges for Open-Weight AI Models},
+  year = {2026},
+  url = {https://github.com/rankmodel/rankmodel1},
+  license = {MIT}
+}</code></pre>
+        </div>
       </section>
     </div>
   </div>
@@ -1212,155 +1760,749 @@ def generate_methodology_html() -> str:
 def generate_api_html() -> str:
     """Generate the API reference page."""
     return """<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank API Reference</title>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>body { font-family: 'Inter', system-ui, sans-serif; }</style>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            base: '#0a0a0f',
+            surface: '#13131a',
+            border: '#232330'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    body { background-color: #0a0a0f; color: #f1f5f9; font-family: 'Inter', sans-serif; }
+    .sidebar { background: rgba(19, 19, 26, 0.7); backdrop-filter: blur(12px); border-right: 1px solid rgba(255, 255, 255, 0.05); }
+    .glass-card { background: rgba(19, 19, 26, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+    
+    pre { margin: 0; }
+    .method-get { color: #10b981; background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2); }
+    .method-post { color: #3b82f6; background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.2); }
+    
+    .code-dark { background: #000 !important; border: 1px solid #333; }
+    .string { color: #a5d6ff; }
+    .number { color: #79c0ff; }
+    .boolean { color: #ff7b72; }
+    .key { color: #7ee787; }
+  </style>
+  <script>
+    function copyText(button, text) {
+      navigator.clipboard.writeText(text);
+      const orig = button.innerText;
+      button.innerText = 'Copied!';
+      setTimeout(() => button.innerText = orig, 2000);
+    }
+  </script>
 </head>
-<body class="min-h-screen bg-base-300 text-base-content">
-  <div class="container mx-auto px-4 py-12 max-w-5xl">
-    <div class="mb-8"><a href="index.html" class="btn btn-outline btn-sm">← Back to Leaderboard</a></div>
-    
-    <div class="mb-12">
-      <h1 class="text-4xl md:text-5xl font-black mb-4">ModelRank API Reference</h1>
-      <p class="text-xl text-base-content/70">Integrate objective AI scoring into your apps.</p>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-      <div class="col-span-2 card bg-base-100 shadow border border-base-200 p-6">
-        <h2 class="text-xl font-bold mb-4">Authentication & Base URL</h2>
-        <p class="mb-2 text-sm text-base-content/70">Base URL:</p>
-        <code class="block bg-base-300 p-3 rounded-lg mb-4 text-primary font-mono text-sm">https://your-api.com</code>
-        <p class="mb-2 text-sm text-base-content/70">Auth Header (Pro only):</p>
-        <code class="block bg-base-300 p-3 rounded-lg font-mono text-sm">X-API-Key: mr_xxxxxx</code>
-      </div>
-      <div class="card bg-base-100 shadow border border-base-200 p-6">
-        <h2 class="text-xl font-bold mb-4">Rate Limits</h2>
-        <ul class="space-y-3">
-          <li class="flex justify-between items-center text-sm border-b border-base-200 pb-2">
-            <span class="font-bold text-success">Free</span>
-            <span class="font-mono">100 req/hr</span>
-          </li>
-          <li class="flex justify-between items-center text-sm">
-            <span class="font-bold text-primary">Pro API Key</span>
-            <span class="font-mono">5,000 req/hr</span>
-          </li>
-        </ul>
-      </div>
-    </div>
+<body class="min-h-screen text-gray-200" data-theme="dark">
 
-    <div class="space-y-12">
-      
-      <!-- Endpoint 1 -->
-      <div class="card bg-base-100 shadow border border-base-200 p-6">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="badge badge-success font-mono font-bold">GET</span>
-          <h3 class="text-xl font-bold font-mono">/score/{model_id}</h3>
-        </div>
-        <p class="text-base-content/80 mb-6">Returns the full composite score and basic tier info for a model.</p>
+  <div class="flex flex-col md:flex-row min-h-screen">
+    
+    <!-- Sidebar -->
+    <aside class="w-full md:w-64 lg:w-72 sidebar md:h-screen md:sticky top-0 z-20 flex-shrink-0">
+      <div class="p-6">
+        <a href="index.html" class="text-2xl font-black flex items-center gap-2 mb-8 text-white hover:text-gray-300 transition-colors">
+          🏆 ModelRank
+        </a>
         
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <nav class="space-y-8">
           <div>
-            <h4 class="text-xs uppercase font-bold text-base-content/50 mb-2">Example Request</h4>
-            <div class="mockup-code text-sm">
-              <pre data-prefix="$"><code>curl https://your-api.com/score/mistralai/Mistral-7B-v0.1</code></pre>
-            </div>
-            <button class="btn btn-xs mt-2" onclick="navigator.clipboard.writeText('curl https://your-api.com/score/mistralai/Mistral-7B-v0.1')">Copy</button>
+            <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Getting Started</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#overview" class="text-gray-300 hover:text-white block py-1">Overview & Auth</a></li>
+              <li><a href="#rate-limits" class="text-gray-300 hover:text-white block py-1">Rate Limits</a></li>
+            </ul>
           </div>
+          
           <div>
-            <h4 class="text-xs uppercase font-bold text-base-content/50 mb-2">Example Response</h4>
-            <div class="mockup-code text-sm bg-base-300">
-              <pre><code>{
-  "model_id": "mistralai/Mistral-7B-v0.1",
-  "composite": 85.4,
-  "tier": "A",
-  "rank": 14
-}</code></pre>
+            <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Leaderboard & Scoring</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#get-health" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Health</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+              <li><a href="#get-meta" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Metadata</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+              <li><a href="#get-score" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Score</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+              <li><a href="#get-score-ext" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Extended Score</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+              <li><a href="#post-score-batch" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Batch Score</span> <span class="text-[10px] bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded">POST</span></a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Badges & Embedding</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#get-badge" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>SVG Badge</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+              <li><a href="#get-shields" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Shields.io JSON</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+              <li><a href="#get-embed" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>HTML Embed</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Leaderboard Data</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#get-leaderboard" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Leaderboard</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+              <li><a href="#get-trending" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Trending</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Comparison</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#get-compare" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Head-to-head</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+              <li><a href="#get-achievements" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Achievements</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Premium</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#get-premium-plans" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Plans</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+              <li><a href="#get-premium-pitch" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Investor Pitch</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto">
+      <div class="max-w-6xl mx-auto p-6 md:p-12 lg:p-16">
+        
+        <header class="mb-16">
+          <h1 class="text-4xl md:text-5xl font-black mb-4 text-white">API Reference</h1>
+          <p class="text-xl text-gray-400 max-w-2xl">Integrate objective AI scoring and rankings into your applications.</p>
+        </header>
+        
+        <!-- Overview -->
+        <section id="overview" class="mb-20 scroll-mt-24">
+          <h2 class="text-2xl font-bold mb-6 text-white border-b border-white/10 pb-4">Overview</h2>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="glass-card rounded-2xl p-6">
+              <h3 class="text-lg font-bold mb-4 text-white">Base URL</h3>
+              <p class="text-sm text-gray-400 mb-4">All API requests should be prefixed with this base URL.</p>
+              <div class="bg-black/50 border border-white/10 rounded-xl p-4 flex justify-between items-center">
+                <code class="font-mono text-blue-400 text-sm">https://your-deployment.com</code>
+                <button onclick="copyText(this, 'https://your-deployment.com')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors">Copy</button>
+              </div>
+            </div>
+            
+            <div class="glass-card rounded-2xl p-6">
+              <h3 class="text-lg font-bold mb-4 text-white">Authentication</h3>
+              <p class="text-sm text-gray-400 mb-4">Free tier doesn't require auth. Pro tier requires an API key passed in the headers.</p>
+              <div class="bg-black/50 border border-white/10 rounded-xl p-4 flex justify-between items-center">
+                <code class="font-mono text-purple-400 text-sm">X-API-Key: mr_xxxxxxxx</code>
+                <button onclick="copyText(this, 'X-API-Key: mr_xxxxxxxx')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors">Copy</button>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+        
+        <!-- Rate Limits -->
+        <section id="rate-limits" class="mb-20 scroll-mt-24">
+          <h2 class="text-2xl font-bold mb-6 text-white border-b border-white/10 pb-4">Rate Limits & Info</h2>
+          
+          <div class="glass-card rounded-2xl overflow-hidden mb-8">
+            <table class="w-full text-left">
+              <thead class="bg-white/5 border-b border-white/10 text-xs uppercase tracking-wider text-gray-400">
+                <tr>
+                  <th class="p-4">Plan</th>
+                  <th class="p-4">Rate Limit</th>
+                  <th class="p-4">Auth Required</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-white/5 text-sm">
+                <tr class="hover:bg-white/5">
+                  <td class="p-4 font-bold text-white">Free</td>
+                  <td class="p-4 font-mono text-gray-400">100 req/hr</td>
+                  <td class="p-4 text-gray-400">No</td>
+                </tr>
+                <tr class="hover:bg-white/5">
+                  <td class="p-4 font-bold text-blue-400">Pro</td>
+                  <td class="p-4 font-mono text-gray-400">5,000 req/hr</td>
+                  <td class="p-4 text-gray-400">Yes</td>
+                </tr>
+                <tr class="hover:bg-white/5">
+                  <td class="p-4 font-bold text-purple-400">Enterprise</td>
+                  <td class="p-4 font-mono text-gray-400">Unlimited</td>
+                  <td class="p-4 text-gray-400">Yes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="flex flex-col sm:flex-row gap-6">
+            <div class="glass-card rounded-xl p-5 flex-1 border-blue-500/30 bg-blue-500/5">
+              <h4 class="font-bold text-blue-400 mb-2 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                SDKs
+              </h4>
+              <p class="text-sm text-gray-400">Coming soon: Python SDK, JavaScript SDK</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 flex-1 border-purple-500/30 bg-purple-500/5">
+              <h4 class="font-bold text-purple-400 mb-2 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                Versioning
+              </h4>
+              <p class="text-sm text-gray-400">Current API version is <code class="bg-black/50 px-1.5 py-0.5 rounded text-white font-mono">v2.0.0</code></p>
+            </div>
+          </div>
+        </section>
 
-      <!-- Endpoint 2 -->
-      <div class="card bg-base-100 shadow border border-base-200 p-6">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="badge badge-success font-mono font-bold">GET</span>
-          <h3 class="text-xl font-bold font-mono">/score/{model_id}/extended</h3>
-        </div>
-        <p class="text-base-content/80 mb-6">Score + 10 extended metadata signals (context window, vram tier, license score, etc).</p>
-      </div>
+        <!-- Divider -->
+        <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-16"></div>
 
-      <!-- Endpoint 3 -->
-      <div class="card bg-base-100 shadow border border-base-200 p-6">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="badge badge-success font-mono font-bold">GET</span>
-          <h3 class="text-xl font-bold font-mono">/shields/{model_id}</h3>
-        </div>
-        <p class="text-base-content/80 mb-6">Shields.io JSON endpoint for dynamic README badges.</p>
-      </div>
+        <!-- Endpoints Block Generator -->
+        
+        <!-- GET /health -->
+        <section id="get-health" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/health</h2>
+          </div>
+          <p class="text-gray-400 mb-8">System health and leaderboard stats.</p>
+          
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Parameters</h4>
+              <div class="glass-card rounded-xl p-6 text-sm text-gray-400 text-center italic">
+                No parameters required.
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Request</h4>
+                  <button onclick="copyText(this, 'curl https://your-deployment.com/health')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto"><span class="text-gray-400">$</span> curl https://your-deployment.com/health</pre>
+              </div>
+              
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Response</h4>
+                  <button onclick="copyText(this, '{&quot;status&quot;:&quot;ok&quot;,&quot;uptime_seconds&quot;:86400}')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto text-gray-300">{
+  <span class="key">"status"</span>: <span class="string">"ok"</span>,
+  <span class="key">"uptime_seconds"</span>: <span class="number">86400</span>
+}</pre>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <!-- Endpoint 4 -->
-      <div class="card bg-base-100 shadow border border-base-200 p-6">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="badge badge-success font-mono font-bold">GET</span>
-          <h3 class="text-xl font-bold font-mono">/badge/{model_id}</h3>
-        </div>
-        <p class="text-base-content/80 mb-6">Returns an SVG badge. Supports query params: <code>?type=score|tier|rank</code></p>
-      </div>
+        <!-- GET /meta -->
+        <section id="get-meta" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/meta</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Version, links, and leaderboard metadata.</p>
+          
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Parameters</h4>
+              <div class="glass-card rounded-xl p-6 text-sm text-gray-400 text-center italic">
+                No parameters required.
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Request</h4>
+                  <button onclick="copyText(this, 'curl https://your-deployment.com/meta')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto"><span class="text-gray-400">$</span> curl https://your-deployment.com/meta</pre>
+              </div>
+              
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Response</h4>
+                  <button onclick="copyText(this, '{...}')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto text-gray-300">{
+  <span class="key">"version"</span>: <span class="string">"2.0.0"</span>,
+  <span class="key">"total_models"</span>: <span class="number">71</span>,
+  <span class="key">"last_updated"</span>: <span class="string">"2026-08-13T15:25:01Z"</span>
+}</pre>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <!-- Endpoint 5 -->
-      <div class="card bg-base-100 shadow border border-base-200 p-6">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="badge badge-success font-mono font-bold">GET</span>
-          <h3 class="text-xl font-bold font-mono">/leaderboard</h3>
-        </div>
-        <p class="text-base-content/80 mb-6">Paginated leaderboard list. Supports: <code>?limit=50&amp;offset=0&amp;tier=A&amp;task=text-generation</code></p>
-      </div>
+        <!-- GET /score/{model_id} -->
+        <section id="get-score" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/score/{model_id}</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Get the full composite score and basic tier details for a specific model.</p>
+          
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Parameters</h4>
+              <div class="glass-card rounded-xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                  <thead class="bg-white/5 border-b border-white/10 text-gray-400">
+                    <tr><th class="p-3">Name</th><th class="p-3">Type</th><th class="p-3">Description</th></tr>
+                  </thead>
+                  <tbody class="divide-y divide-white/5 text-gray-300">
+                    <tr>
+                      <td class="p-3 font-mono text-blue-400">model_id</td>
+                      <td class="p-3 text-gray-500">path</td>
+                      <td class="p-3">HuggingFace model ID (e.g. <code>Qwen/Qwen3.5-9B</code>)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Request</h4>
+                  <button onclick="copyText(this, 'curl https://your-deployment.com/score/Qwen/Qwen3.5-9B')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto"><span class="text-gray-400">$</span> curl https://your-deployment.com/score/Qwen/Qwen3.5-9B</pre>
+              </div>
+              
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Response</h4>
+                  <button onclick="copyText(this, 'JSON response')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto text-gray-300">{
+  <span class="key">"model_id"</span>: <span class="string">"Qwen/Qwen3.5-9B"</span>,
+  <span class="key">"composite"</span>: <span class="number">81.52</span>,
+  <span class="key">"tier"</span>: <span class="string">"A"</span>,
+  <span class="key">"breakdown"</span>: {
+    <span class="key">"benchmarks"</span>: <span class="number">82.0</span>,
+    <span class="key">"efficiency"</span>: <span class="number">46.3</span>,
+    <span class="key">"community"</span>: <span class="number">67.7</span>,
+    <span class="key">"recency"</span>: <span class="number">74.2</span>,
+    <span class="key">"reproducibility"</span>: <span class="number">55.0</span>
+  },
+  <span class="key">"computed_at"</span>: <span class="string">"2026-08-13T15:25:01Z"</span>,
+  <span class="key">"confidence"</span>: <span class="string">"high"</span>,
+  <span class="key">"coverage"</span>: {
+    <span class="key">"found_benchmarks"</span>: <span class="number">8</span>,
+    <span class="key">"total_benchmarks"</span>: <span class="number">13</span>,
+    <span class="key">"coverage_percent"</span>: <span class="number">61.5</span>
+  }
+}</pre>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <!-- Endpoint 6 -->
-      <div class="card bg-base-100 shadow border border-base-200 p-6">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="badge badge-success font-mono font-bold">GET</span>
-          <h3 class="text-xl font-bold font-mono">/compare</h3>
-        </div>
-        <p class="text-base-content/80 mb-6">ELO comparison head-to-head. Supports: <code>?model_a=X&amp;model_b=Y</code></p>
-      </div>
+        <!-- GET /score/{model_id}/extended -->
+        <section id="get-score-ext" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/score/{model_id}/extended</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Score + 10 extended metadata signals (context window, vram tier, license score, etc).</p>
+          
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Parameters</h4>
+              <div class="glass-card rounded-xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                  <thead class="bg-white/5 border-b border-white/10 text-gray-400">
+                    <tr><th class="p-3">Name</th><th class="p-3">Type</th><th class="p-3">Description</th></tr>
+                  </thead>
+                  <tbody class="divide-y divide-white/5 text-gray-300">
+                    <tr>
+                      <td class="p-3 font-mono text-blue-400">model_id</td>
+                      <td class="p-3 text-gray-500">path</td>
+                      <td class="p-3">HuggingFace model ID</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Request</h4>
+                  <button onclick="copyText(this, 'curl https://your-deployment.com/score/Qwen/Qwen3.5-9B/extended')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto"><span class="text-gray-400">$</span> curl https://your-deployment.com/score/Qwen/Qwen3.5-9B/extended</pre>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <!-- Endpoint 7 -->
-      <div class="card bg-base-100 shadow border border-base-200 p-6">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="badge badge-success font-mono font-bold">GET</span>
-          <h3 class="text-xl font-bold font-mono">/achievements/{model_id}</h3>
-        </div>
-        <p class="text-base-content/80 mb-6">Fetch unlockable achievement badges for a specific model.</p>
-      </div>
+        <!-- POST /score/batch -->
+        <section id="post-score-batch" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-post px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">POST</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/score/batch</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Score multiple models at once (up to 20).</p>
+          
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Parameters</h4>
+              <div class="glass-card rounded-xl p-6 text-sm text-gray-300">
+                <p class="mb-2">Accepts a JSON body with an array of model IDs.</p>
+                <pre class="bg-black/50 p-3 rounded font-mono text-xs">{ "models": ["Qwen/Qwen3.5-9B", "google/gemma-4-31B-it"] }</pre>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Request</h4>
+                  <button onclick="copyText(this, 'curl -X POST ...')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto"><span class="text-gray-400">$</span> curl -X POST https://your-deployment.com/score/batch \
+  -H "Content-Type: application/json" \
+  -d '{"models": ["Qwen/Qwen3.5-9B"]}'</pre>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <!-- Endpoint 8 -->
-      <div class="card bg-base-100 shadow border border-base-200 p-6">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="badge badge-warning font-mono font-bold text-black">POST</span>
-          <h3 class="text-xl font-bold font-mono">/score/batch</h3>
-        </div>
-        <p class="text-base-content/80 mb-6">Score up to 20 models simultaneously.</p>
-      </div>
+        <!-- GET /badge/{model_id} -->
+        <section id="get-badge" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/badge/{model_id}</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Get an SVG badge for your model's README.</p>
+          
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Parameters</h4>
+              <div class="glass-card rounded-xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                  <thead class="bg-white/5 border-b border-white/10 text-gray-400">
+                    <tr><th class="p-3">Name</th><th class="p-3">Type</th><th class="p-3">Description</th></tr>
+                  </thead>
+                  <tbody class="divide-y divide-white/5 text-gray-300">
+                    <tr>
+                      <td class="p-3 font-mono text-blue-400">model_id</td>
+                      <td class="p-3 text-gray-500">path</td>
+                      <td class="p-3">HuggingFace model ID</td>
+                    </tr>
+                    <tr>
+                      <td class="p-3 font-mono text-purple-400">type</td>
+                      <td class="p-3 text-gray-500">query</td>
+                      <td class="p-3"><code>score</code> (default), <code>tier</code>, or <code>rank</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Request</h4>
+                  <button onclick="copyText(this, 'curl https://your-deployment.com/badge/Qwen/Qwen3.5-9B?type=score')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto"><span class="text-gray-400">$</span> curl https://your-deployment.com/badge/Qwen/Qwen3.5-9B?type=score</pre>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <!-- Endpoint 9 -->
-      <div class="card bg-base-100 shadow border border-base-200 p-6">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="badge badge-success font-mono font-bold">GET</span>
-          <h3 class="text-xl font-bold font-mono">/health</h3>
-        </div>
-        <p class="text-base-content/80 mb-6">API health check.</p>
-      </div>
+        <!-- GET /shields/{model_id} -->
+        <section id="get-shields" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/shields/{model_id}</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Shields.io JSON endpoint for dynamic README badges.</p>
+          
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Parameters</h4>
+              <div class="glass-card rounded-xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                  <thead class="bg-white/5 border-b border-white/10 text-gray-400">
+                    <tr><th class="p-3">Name</th><th class="p-3">Type</th><th class="p-3">Description</th></tr>
+                  </thead>
+                  <tbody class="divide-y divide-white/5 text-gray-300">
+                    <tr>
+                      <td class="p-3 font-mono text-blue-400">model_id</td>
+                      <td class="p-3 text-gray-500">path</td>
+                      <td class="p-3">HuggingFace model ID</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Request</h4>
+                  <button onclick="copyText(this, 'curl https://your-deployment.com/shields/Qwen/Qwen3.5-9B')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto"><span class="text-gray-400">$</span> curl https://your-deployment.com/shields/Qwen/Qwen3.5-9B</pre>
+              </div>
+              
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Response</h4>
+                  <button onclick="copyText(this, 'JSON response')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto text-gray-300">{
+  <span class="key">"schemaVersion"</span>: <span class="number">1</span>,
+  <span class="key">"label"</span>: <span class="string">"ModelRank"</span>,
+  <span class="key">"message"</span>: <span class="string">"82 (A)"</span>,
+  <span class="key">"color"</span>: <span class="string">"blue"</span>,
+  <span class="key">"namedLogo"</span>: <span class="string">"huggingface"</span>
+}</pre>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    </div>
+        <!-- GET /embed/{model_id} -->
+        <section id="get-embed" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/embed/{model_id}</h2>
+          </div>
+          <p class="text-gray-400 mb-8">HTML embed snippet.</p>
+        </section>
+
+        <!-- GET /leaderboard -->
+        <section id="get-leaderboard" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/leaderboard</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Get the paginated ranked leaderboard.</p>
+          
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Parameters</h4>
+              <div class="glass-card rounded-xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                  <thead class="bg-white/5 border-b border-white/10 text-gray-400">
+                    <tr><th class="p-3">Name</th><th class="p-3">Type</th><th class="p-3">Description</th></tr>
+                  </thead>
+                  <tbody class="divide-y divide-white/5 text-gray-300">
+                    <tr>
+                      <td class="p-3 font-mono text-purple-400">limit</td>
+                      <td class="p-3 text-gray-500">query</td>
+                      <td class="p-3">Max results (default: 50, max: 100)</td>
+                    </tr>
+                    <tr>
+                      <td class="p-3 font-mono text-purple-400">offset</td>
+                      <td class="p-3 text-gray-500">query</td>
+                      <td class="p-3">Pagination offset (default: 0)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Request</h4>
+                  <button onclick="copyText(this, 'curl https://your-deployment.com/leaderboard?limit=3')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto"><span class="text-gray-400">$</span> curl "https://your-deployment.com/leaderboard?limit=3"</pre>
+              </div>
+              
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Response</h4>
+                  <button onclick="copyText(this, 'JSON response')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto text-gray-300">{
+  <span class="key">"models"</span>: [
+    {<span class="key">"rank"</span>: <span class="number">1</span>, <span class="key">"model_id"</span>: <span class="string">"google/gemma-4-31B-it"</span>, <span class="key">"composite"</span>: <span class="number">82.97</span>, <span class="key">"tier"</span>: <span class="string">"A"</span>},
+    {<span class="key">"rank"</span>: <span class="number">2</span>, <span class="key">"model_id"</span>: <span class="string">"Qwen/Qwen3.5-9B"</span>, <span class="key">"composite"</span>: <span class="number">81.52</span>, <span class="key">"tier"</span>: <span class="string">"A"</span>},
+    {<span class="key">"rank"</span>: <span class="number">3</span>, <span class="key">"model_id"</span>: <span class="string">"deepseek-ai/DeepSeek-R1"</span>, <span class="key">"composite"</span>: <span class="number">78.3</span>, <span class="key">"tier"</span>: <span class="string">"B"</span>}
+  ],
+  <span class="key">"total"</span>: <span class="number">71</span>,
+  <span class="key">"limit"</span>: <span class="number">3</span>,
+  <span class="key">"offset"</span>: <span class="number">0</span>
+}</pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- GET /trending -->
+        <section id="get-trending" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/trending</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Trending models by momentum.</p>
+        </section>
+
+        <!-- GET /compare -->
+        <section id="get-compare" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/compare</h2>
+          </div>
+          <p class="text-gray-400 mb-8">ELO head-to-head win probability.</p>
+          
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Parameters</h4>
+              <div class="glass-card rounded-xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                  <thead class="bg-white/5 border-b border-white/10 text-gray-400">
+                    <tr><th class="p-3">Name</th><th class="p-3">Type</th><th class="p-3">Description</th></tr>
+                  </thead>
+                  <tbody class="divide-y divide-white/5 text-gray-300">
+                    <tr>
+                      <td class="p-3 font-mono text-purple-400">model_a</td>
+                      <td class="p-3 text-gray-500">query</td>
+                      <td class="p-3">First HuggingFace model ID</td>
+                    </tr>
+                    <tr>
+                      <td class="p-3 font-mono text-purple-400">model_b</td>
+                      <td class="p-3 text-gray-500">query</td>
+                      <td class="p-3">Second HuggingFace model ID</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Request</h4>
+                  <button onclick="copyText(this, 'curl \"https://your-deployment.com/compare?model_a=Qwen/Qwen3.5-9B&model_b=deepseek-ai/DeepSeek-R1\"')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto"><span class="text-gray-400">$</span> curl "https://your-deployment.com/compare?model_a=Qwen/Qwen3.5-9B&model_b=deepseek-ai/DeepSeek-R1"</pre>
+              </div>
+              
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Response</h4>
+                  <button onclick="copyText(this, 'JSON response')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto text-gray-300">{
+  <span class="key">"win_probability_a"</span>: <span class="number">0.5672</span>,
+  <span class="key">"win_probability_b"</span>: <span class="number">0.4328</span>,
+  <span class="key">"elo_a"</span>: <span class="number">1452</span>,
+  <span class="key">"elo_b"</span>: <span class="number">1426</span>,
+  <span class="key">"overall_winner"</span>: <span class="string">"A"</span>,
+  <span class="key">"dimension_winners"</span>: {
+    <span class="key">"benchmarks"</span>: <span class="string">"A"</span>,
+    <span class="key">"efficiency"</span>: <span class="string">"A"</span>,
+    <span class="key">"community"</span>: <span class="string">"B"</span>,
+    <span class="key">"recency"</span>: <span class="string">"A"</span>,
+    <span class="key">"reproducibility"</span>: <span class="string">"tie"</span>
+  }
+}</pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- GET /achievements/{model_id} -->
+        <section id="get-achievements" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/achievements/{model_id}</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Fetch unlockable achievement badges for a model.</p>
+        </section>
+
+        <!-- Premium Endpoints -->
+        <section id="get-premium-plans" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/premium/plans</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Pricing tiers for API access.</p>
+        </section>
+
+        <section id="get-premium-pitch" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/premium/pitch</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Investor pitch data (Pro only).</p>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="border-t border-white/10 pt-12 pb-24 mt-24">
+          <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex gap-6 text-sm font-medium">
+              <a href="https://github.com/rankmodel/rankmodel1" class="text-gray-400 hover:text-white transition-colors">GitHub</a>
+              <a href="index.html#methodology" class="text-gray-400 hover:text-white transition-colors">Methodology</a>
+              <a href="pricing.html" class="text-gray-400 hover:text-white transition-colors">Pricing</a>
+              <a href="index.html" class="text-gray-400 hover:text-white transition-colors">Leaderboard</a>
+            </div>
+            <div class="text-right">
+              <p class="text-green-400 text-sm flex items-center gap-2 justify-end">
+                <span class="w-2 h-2 rounded-full bg-green-500 inline-block animate-pulse"></span>
+                API status: All systems operational
+              </p>
+              <p class="text-gray-500 text-xs mt-2">Questions? Open an issue on <a href="https://github.com/rankmodel/rankmodel1/issues" class="text-blue-400 hover:underline">GitHub</a></p>
+            </div>
+          </div>
+        </footer>
+        
+      </div>
+    </main>
   </div>
 </body>
 </html>"""
+
+def generate_trending_data(models: list) -> dict:
+    """
+    Compute trending models. Since we don't have historical data yet,
+    use a proxy: high community score + high recency score = trending.
+    Models with community > 70 and recency > 60 are "trending".
+    Returns top 5 trending with a reason string.
+    """
+    trending = []
+    for rank, item in enumerate(models, 1):
+        s = item.get('score', {})
+        b = s.get('breakdown', {})
+        comm = b.get('community', 0)
+        rec = b.get('recency', b.get('freshness', 0))
+        trend_score = comm * 0.6 + rec * 0.4
+        if trend_score > 55:
+            reason = []
+            if comm > 75: reason.append(f"{comm:.0f}/100 community")
+            if rec > 65: reason.append(f"{rec:.0f}/100 freshness")
+            trending.append({
+                'model_id': item['model_id'],
+                'composite': s.get('composite', 0),
+                'tier': s.get('tier', 'D'),
+                'trend_score': round(trend_score, 1),
+                'reason': ' · '.join(reason) or 'Rising fast',
+                'rank': rank
+            })
+    trending.sort(key=lambda x: x['trend_score'], reverse=True)
+    return {'trending': trending[:8], 'generated_at': __import__('datetime').datetime.utcnow().isoformat() + 'Z'}
+
 
 def generate_changelog_json() -> str:
     """Generate the machine-readable changelog JSON."""
@@ -1471,11 +2613,19 @@ def main(limit: int = 200):
 
     # Trust Building Pages
     (OUTPUT_DIR / 'methodology.html').write_text(generate_methodology_html(), encoding='utf-8')
-    logger.info('   methodology.html trust page')
+    logger.info('   methodology.html — FULL VERSION')
+    (OUTPUT_DIR / 'quiz.html').write_text(generate_quiz_html(), encoding='utf-8')
+    logger.info('   quiz.html — model recommendation quiz')
+    (OUTPUT_DIR / 'collections.html').write_text(generate_collections_html(), encoding='utf-8')
+    logger.info('   collections.html — curated collections')
     (OUTPUT_DIR / 'api.html').write_text(generate_api_html(), encoding='utf-8')
     logger.info('   api.html reference page')
     (OUTPUT_DIR / 'changelog.json').write_text(generate_changelog_json(), encoding='utf-8')
     logger.info('   changelog.json')
+    
+    (OUTPUT_DIR / 'trending.json').write_text(
+        json.dumps(generate_trending_data(models), indent=2), encoding='utf-8')
+    logger.info('   trending.json')
 
     logger.info(f'\n✅ Static assets generated in {OUTPUT_DIR}/')
     logger.info(f'   {total} score.svg badges')
