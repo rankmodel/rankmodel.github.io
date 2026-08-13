@@ -1,0 +1,12 @@
+# NotebookLM podcast generation (requires Chrome browser)
+notebooklm-py[browser]>=0.8.0
+
+# SVG to PNG conversion
+cairosvg>=2.7.0
+
+# Development tools
+pytest>=8.0
+pytest-asyncio>=0.23
+black>=24.0
+ruff>=0.3.0
+mypy>=1.8.0
