@@ -30,7 +30,7 @@ ModelRank evaluates HuggingFace models across 5 dimensions and produces a compos
 
 ```bash
 # Clone and install
-git clone https://github.com/yourusername/modelrank.git
+git clone https://github.com/rankmodel/rankmodel1.git
 cd modelrank
 pip install -r requirements.txt
 
