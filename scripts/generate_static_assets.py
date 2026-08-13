@@ -194,13 +194,34 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
         
         copy_code = f'![ModelRank]({badge_url})'
         
+        ext = s.get('extended', {})
+        param_score = ext.get('vram_tier', 50)
+        if param_score >= 100: size_tier = 'edge'
+        elif param_score >= 65: size_tier = 'consumer'
+        elif param_score >= 25: size_tier = 'prosumer'
+        else: size_tier = 'datacenter'
+
+        is_uncensored = 'true' if ext.get('safety_score', 0) >= 80 else 'false'
+        is_multilingual = 'true' if ext.get('multilingual', 0) >= 50 else 'false'
+        is_code = 'true' if 'code' in mid.lower() or 'coder' in mid.lower() else 'false'
+        
+        tags_html = ''
+        if is_code == 'true': tags_html += '<span class="text-[9px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase font-bold">Code</span> '
+        if is_multilingual == 'true': tags_html += '<span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20 uppercase font-bold">Multi</span> '
+        if is_uncensored == 'true': tags_html += '<span class="text-[9px] px-1.5 py-0.5 rounded bg-red-500/10 text-red-400 border border-red-500/20 uppercase font-bold">Uncensored</span> '
+        if size_tier == 'edge': tags_html += '<span class="text-[9px] px-1.5 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/20 uppercase font-bold">&lt;3B Edge</span> '
+        elif size_tier == 'consumer': tags_html += '<span class="text-[9px] px-1.5 py-0.5 rounded bg-teal-500/10 text-teal-400 border border-teal-500/20 uppercase font-bold">3-13B</span> '
+        
         rows += f'''
-        <tr class="hover:bg-white/5 transition-colors border-b border-white/5 group model-row" data-name="{mid.lower()}" data-tier="{tier}">
+        <tr class="hover:bg-white/5 transition-colors border-b border-white/5 group model-row" 
+            data-name="{mid.lower()}" data-tier="{tier}" data-size="{size_tier}" 
+            data-uncensored="{is_uncensored}" data-multilingual="{is_multilingual}" data-code="{is_code}">
           <td class="px-4 py-4 text-center font-mono text-gray-400">{medal}</td>
           <td class="px-4 py-4">
             <a href="{hf_url}" target="_blank" class="block hover:opacity-80 transition-opacity">
               <div class="text-xs text-gray-500 font-medium mb-1">{org}</div>
               <div class="text-base font-bold text-gray-100">{model_name}</div>
+              <div class="flex flex-wrap gap-1 mt-1.5">{tags_html}</div>
             </a>
           </td>
           <td class="px-4 py-4 text-center">
@@ -352,24 +373,43 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
   <!-- Main Content -->
   <main class="container mx-auto px-4 max-w-7xl -mt-8 relative z-20 mb-32">
     
-    <!-- Filter Bar (Sticky) -->
-    <div class="glass-card rounded-2xl p-4 mb-8 shadow-2xl sticky top-4 z-30 flex flex-col md:flex-row gap-4 items-center justify-between animate-fade-in">
-      <div class="relative w-full md:w-72">
-        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        <input type="text" id="searchInput" placeholder="Search models..." class="w-full bg-surface border border-white/10 rounded-xl pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors">
+    <!-- Advanced Filter Bar (Sticky) -->
+    <div class="glass-card rounded-2xl p-4 mb-8 shadow-2xl sticky top-4 z-30 flex flex-col gap-4 animate-fade-in">
+      <div class="flex flex-col md:flex-row gap-4 items-center justify-between w-full">
+        <div class="relative w-full md:w-80">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input type="text" id="searchInput" placeholder="Search 1000+ models..." class="w-full bg-surface border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors">
+        </div>
+        
+        <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 hide-scrollbar" id="tierFilters">
+          <button class="tier-btn active px-4 py-2 rounded-lg text-sm font-bold bg-white/10 text-white transition-colors" data-tier="all">ALL TIERS</button>
+          <button class="tier-btn px-4 py-2 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="S">S</button>
+          <button class="tier-btn px-4 py-2 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="A">A</button>
+          <button class="tier-btn px-4 py-2 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="B">B</button>
+          <button class="tier-btn px-4 py-2 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="C">C</button>
+          <button class="tier-btn px-4 py-2 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="D">D</button>
+        </div>
       </div>
       
-      <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 hide-scrollbar" id="tierFilters">
-        <button class="tier-btn active px-4 py-1.5 rounded-lg text-sm font-bold bg-white/10 text-white transition-colors" data-tier="all">ALL</button>
-        <button class="tier-btn px-4 py-1.5 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="S">S</button>
-        <button class="tier-btn px-4 py-1.5 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="A">A</button>
-        <button class="tier-btn px-4 py-1.5 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="B">B</button>
-        <button class="tier-btn px-4 py-1.5 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="C">C</button>
-        <button class="tier-btn px-4 py-1.5 rounded-lg text-sm font-bold text-gray-400 hover:bg-white/5 transition-colors" data-tier="D">D</button>
-      </div>
-      
-      <div class="flex items-center gap-3 w-full md:w-auto justify-end">
-        <button id="compareBtn" class="px-4 py-2 rounded-xl text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white transition-colors opacity-50 cursor-not-allowed" disabled>
+      <div class="flex flex-wrap items-center gap-3 pt-3 border-t border-white/5">
+        <select id="sizeFilter" class="bg-surface border border-white/10 rounded-lg px-3 py-1.5 text-xs text-gray-300 font-semibold focus:outline-none focus:border-blue-500">
+          <option value="all">Any Size</option>
+          <option value="edge">&lt;3B (Edge/Mobile)</option>
+          <option value="consumer">3B - 13B (Consumer GPU)</option>
+          <option value="prosumer">14B - 34B (Prosumer)</option>
+          <option value="datacenter">35B+ (Datacenter)</option>
+        </select>
+        
+        <select id="categoryFilter" class="bg-surface border border-white/10 rounded-lg px-3 py-1.5 text-xs text-gray-300 font-semibold focus:outline-none focus:border-blue-500">
+          <option value="all">Any Category</option>
+          <option value="code">Code Generation</option>
+          <option value="multilingual">Multilingual</option>
+          <option value="uncensored">Uncensored / Abliterated</option>
+        </select>
+        
+        <div class="flex-grow"></div>
+        
+        <button id="compareBtn" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white transition-colors opacity-50 cursor-not-allowed" disabled>
           Compare (0/2)
         </button>
       </div>
@@ -572,18 +612,33 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
       
       let currentTier = 'all';
       let selectedModels = [];
+      const sizeFilter = document.getElementById('sizeFilter');
+      const categoryFilter = document.getElementById('categoryFilter');
       
       // Filter function
       function filterTable() {{
         const query = searchInput.value.toLowerCase();
+        const selectedSize = sizeFilter ? sizeFilter.value : 'all';
+        const selectedCat = categoryFilter ? categoryFilter.value : 'all';
+        
         rows.forEach(row => {{
           const name = row.getAttribute('data-name');
           const tier = row.getAttribute('data-tier');
+          const size = row.getAttribute('data-size');
+          const isCode = row.getAttribute('data-code') === 'true';
+          const isMulti = row.getAttribute('data-multilingual') === 'true';
+          const isUncensored = row.getAttribute('data-uncensored') === 'true';
           
           const matchesSearch = name.includes(query);
           const matchesTier = currentTier === 'all' || tier === currentTier;
+          const matchesSize = selectedSize === 'all' || size === selectedSize;
           
-          if (matchesSearch && matchesTier) {{
+          let matchesCat = true;
+          if (selectedCat === 'code' && !isCode) matchesCat = false;
+          if (selectedCat === 'multilingual' && !isMulti) matchesCat = false;
+          if (selectedCat === 'uncensored' && !isUncensored) matchesCat = false;
+          
+          if (matchesSearch && matchesTier && matchesSize && matchesCat) {{
             row.classList.remove('hidden-row');
           }} else {{
             row.classList.add('hidden-row');
@@ -593,6 +648,8 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
       
       // Search event
       if(searchInput) {{ searchInput.addEventListener('input', filterTable); }}
+      if(sizeFilter) {{ sizeFilter.addEventListener('change', filterTable); }}
+      if(categoryFilter) {{ categoryFilter.addEventListener('change', filterTable); }}
       
       // Tier filter events
       tierBtns.forEach(btn => {{
