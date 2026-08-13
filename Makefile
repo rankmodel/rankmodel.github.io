@@ -50,3 +50,18 @@ format:
 static-pages:
 	python scripts/generate_static_assets.py
 	@echo "✅ Static assets in static_output/ — deploy to gh-pages or open static_output/index.html"
+
+context-status:
+	python3 ai-services/agent_cli.py status
+
+context-reindex:
+	python3 ai-services/agent_cli.py reindex
+
+context-watch:
+	python3 ai-services/monitor.py
+
+context-feed:
+	python3 ai-services/agent_cli.py feed -v
+
+context-mcp:
+	python3 ai-services/codebase-memory-mcp/server.py

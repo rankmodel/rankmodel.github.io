@@ -1,35 +1,28 @@
 #!/usr/bin/env bash
-# run.sh
-# Starts AI services on demand
+# run.sh - Starts AI services on demand
+cd "$(dirname "$0")"
 
 SERVICE=$1
+shift
 
 if [ -z "$SERVICE" ]; then
-    echo "Usage: ./run.sh <service_name>"
-    echo "Available services:"
-    echo "  - ponytail"
-    echo "  - notebooklm-py"
-    echo "  - prompt-master"
-    echo "  - codebase-memory-mcp"
-    echo "  - caveman"
-    echo "  - ai-specs"
-    echo "  - guide"
-    echo "  - agent-rules"
-    echo "  - prompt-optimizer"
-    echo "  - textgrad"
-    echo "  - Trace"
-    echo "  - awesome-ai-agents-2026"
-    echo "  - junior-to-senior"
-    echo "  - grill-me"
-    echo "  - interface-kit"
+    echo "Usage: ./run.sh <service_name|command> [args...]"
+    echo "Available commands:"
+    echo "  - status       Show Context DB metrics and active locks"
+    echo "  - watch        Start continuous codebase watcher daemon"
+    echo "  - mcp          Run JSON-RPC MCP server over stdio"
+    echo "  - search <q>   Fast FTS5 search across codebase"
+    echo "  - symbol <s>   Lookup AST symbol info"
+    echo "  - feed         View inter-agent message feed"
+    echo "  - broadcast    Broadcast message to all agents"
+    echo "  - memories     View architectural decisions"
     exit 1
 fi
 
-if [ -d "$SERVICE" ]; then
-    echo "Starting $SERVICE..."
-    # Mock startup script
-    echo "$SERVICE is now running (mock)."
+if [ "$SERVICE" = "mcp" ]; then
+    exec python3 codebase-memory-mcp/server.py
+elif [ "$SERVICE" = "watch" ]; then
+    exec python3 monitor.py "$@"
 else
-    echo "Service '$SERVICE' not found."
-    exit 1
+    exec python3 agent_cli.py "$SERVICE" "$@"
 fi
