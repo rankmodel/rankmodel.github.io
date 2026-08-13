@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "open-seo": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@every-app/open-seo-mcp"
+      ],
+      "env": {
+        "DATAFORSEO_API_KEY": ""
+      }
+    }
+  }
+}
