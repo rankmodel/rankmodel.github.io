@@ -148,6 +148,149 @@ def generate_mini_radar_svg(scores: dict) -> str:
 </svg>'''
 
 
+def generate_model_dna_svg(model_id: str, composite: float, tier: str, rank: int, breakdown: dict) -> str:
+    """Generate a shareable 'Model DNA' card (radar + score + tier + bars)."""
+    dims = [
+        ('Benchmarks', breakdown.get('benchmarks', 50), '#3b82f6'),
+        ('Efficiency', breakdown.get('efficiency', 50), '#22c55e'),
+        ('Community', breakdown.get('community', 50), '#a855f7'),
+        ('Freshness', breakdown.get('recency', breakdown.get('freshness', 50)), '#eab308'),
+        ('Verified', breakdown.get('reproducibility', 50), '#ef4444'),
+    ]
+    cx, cy, r = 210, 215, 110
+    n = len(dims)
+
+    def _ang(i):
+        return math.pi * 2 * i / n - math.pi / 2
+
+    bg_pts = ' '.join(f'{cx + r * math.cos(_ang(i)):.1f},{cy + r * math.sin(_ang(i)):.1f}' for i in range(n))
+    data_pts = ' '.join(f'{cx + (d[1] / 100 * r) * math.cos(_ang(i)):.1f},{cy + (d[1] / 100 * r) * math.sin(_ang(i)):.1f}' for i, d in enumerate(dims))
+
+    axis_lines = ''
+    labels = ''
+    for i, (name, val, color) in enumerate(dims):
+        ax, ay = cx + r * math.cos(_ang(i)), cy + r * math.sin(_ang(i))
+        axis_lines += f'<line x1="{cx}" y1="{cy}" x2="{ax:.1f}" y2="{ay:.1f}" stroke="#ffffff18" stroke-width="1"/>'
+        lx, ly = cx + (r + 22) * math.cos(_ang(i)), cy + (r + 22) * math.sin(_ang(i))
+        labels += f'<text x="{lx:.1f}" y="{ly:.1f}" font-family="system-ui,sans-serif" font-size="10" fill="{color}" font-weight="700" text-anchor="middle">{name}</text>'
+
+    bars = ''
+    for i, (name, val, color) in enumerate(dims):
+        y = 408 + i * 20
+        bars += f'<text x="24" y="{y + 10}" font-family="system-ui,sans-serif" font-size="10" fill="{color}" font-weight="700">{name}</text>'
+        bars += f'<rect x="100" y="{y}" width="{(val / 100 * 270):.0f}" height="9" rx="4" fill="{color}"/>'
+        bars += f'<text x="378" y="{y + 10}" font-family="system-ui,sans-serif" font-size="10" fill="#cbd5e1" text-anchor="end">{val:.0f}</text>'
+
+    tier_color = TIER_COLORS.get(tier, '#6366f1')
+    parts = model_id.split('/', 1)
+    org = parts[0] if len(parts) == 2 else ''
+    name = parts[1] if len(parts) == 2 else model_id
+
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="420" height="520" viewBox="0 0 420 520">
+  <defs>
+    <linearGradient id="bgdna" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f0f23"/>
+      <stop offset="100%" stop-color="#171732"/>
+    </linearGradient>
+    <filter id="dneglow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="420" height="520" rx="20" fill="url(#bgdna)" stroke="{tier_color}" stroke-width="2"/>
+  <text x="210" y="34" font-family="system-ui,sans-serif" font-size="16" fill="#f1f5f9" font-weight="900" text-anchor="middle" letter-spacing="1">🧬 MODEL DNA</text>
+  <text x="210" y="52" font-family="system-ui,sans-serif" font-size="9" fill="#64748b" text-anchor="middle" letter-spacing="2">MODELRANK · INDEPENDENT AI SCORE</text>
+  <text x="210" y="80" font-family="system-ui,sans-serif" font-size="13" fill="#94a3b8" text-anchor="middle">{org}</text>
+  <text x="210" y="100" font-family="system-ui,sans-serif" font-size="20" fill="#fff" font-weight="800" text-anchor="middle">{name}</text>
+  {axis_lines}
+  <polygon points="{bg_pts}" fill="none" stroke="#ffffff22" stroke-width="1"/>
+  <polygon points="{data_pts}" fill="#3b82f655" stroke="{tier_color}" stroke-width="2"/>
+  {labels}
+  <text x="210" y="372" font-family="system-ui,sans-serif" font-size="46" fill="{tier_color}" font-weight="900" text-anchor="middle" filter="url(#dneglow)">{composite:.1f}</text>
+  <text x="210" y="392" font-family="system-ui,sans-serif" font-size="11" fill="#64748b" text-anchor="middle">COMPOSITE · TIER {tier} · RANK #{rank}</text>
+  {bars}
+  <text x="210" y="510" font-family="system-ui,sans-serif" font-size="8" fill="#475569" text-anchor="middle">modelrank.github.io/rankmodel1</text>
+</svg>'''
+
+
+def generate_dna_html(base_url: str) -> str:
+    """Generate the interactive 'Model DNA' share page."""
+    return f'''<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ModelRank — Model DNA Cards</title>
+  <meta name="description" content="Your model's personality, scored. Get a shareable Model DNA card showing the 5-dimension breakdown."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {{ darkMode: 'class', theme: {{ extend: {{ colors: {{ base: '#0a0a0f', surface: '#13131a' }}, fontFamily: {{ sans: ['Inter','system-ui','sans-serif'] }} }} }} }};
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>body {{ background-color:#0a0a0f; color:#f1f5f9; font-family:'Inter',sans-serif; }} .glass-card {{ background:rgba(19,19,26,0.7); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.05); }}</style>
+</head>
+<body class="min-h-screen">
+  <header class="pt-16 pb-12 border-b border-white/5 relative overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="container mx-auto px-4 max-w-4xl relative z-10 text-center">
+      <a href="index.html" class="text-xl font-black flex items-center gap-2 text-white absolute left-0 top-0">🏆 ModelRank</a>
+      <h1 class="text-4xl md:text-5xl font-black text-white mb-3">🧬 Model DNA</h1>
+      <p class="text-lg text-gray-400">Your model's personality, scored. Pick a model, grab a shareable card.</p>
+    </div>
+  </header>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <div class="glass-card rounded-2xl p-6 mb-8 flex flex-col md:flex-row gap-4 items-center">
+      <input id="search" placeholder="Search a model (e.g. Llama, Qwen, gemma)..." class="flex-1 bg-surface border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500"/>
+      <select id="picker" class="bg-surface border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500"></select>
+    </div>
+    <div id="card" class="flex justify-center"></div>
+    <div id="actions" class="flex flex-wrap justify-center gap-4 mt-8 hidden">
+      <button id="copyBtn" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold transition-colors">Copy markdown</button>
+      <button id="shareBtn" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold transition-colors">Share on X</button>
+      <a id="dlBtn" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold transition-colors" download>Download SVG</a>
+    </div>
+  </main>
+  <script>
+    const BASE = '{base_url}';
+    let models = [];
+    async function load() {{
+      const res = await fetch('leaderboard.json');
+      const data = await res.json();
+      models = (data.models || []).sort((a,b)=>a.rank-b.rank);
+      const sel = document.getElementById('picker');
+      models.forEach(m => {{
+        const o = document.createElement('option');
+        o.value = m.model_id; o.textContent = `#${{m.rank}}  ${{m.model_id}}  (${{m.composite.toFixed(1)}})`;
+        sel.appendChild(o);
+      }});
+      if (models[0]) render(models[0].model_id);
+    }}
+    function render(mid) {{
+      const card = document.getElementById('card');
+      const img = `${{BASE}}/dna/${{encodeURIComponent(mid)}}.svg`;
+      card.innerHTML = `<img src="${{img}}" alt="Model DNA for ${{mid}}" class="rounded-2xl shadow-2xl max-w-full" style="width:420px"/>`;
+      document.getElementById('actions').classList.remove('hidden');
+      window._mid = mid; window._img = img;
+      document.getElementById('dlBtn').href = img;
+    }}
+    document.getElementById('picker').addEventListener('change', e => render(e.target.value));
+    document.getElementById('search').addEventListener('input', e => {{
+      const q = e.target.value.toLowerCase();
+      const m = models.find(x => x.model_id.toLowerCase().includes(q));
+      if (m) render(m.model_id);
+    }});
+    document.getElementById('copyBtn').addEventListener('click', () => {{
+      const md = `![ModelRank Model DNA](${{window._img}})\\n\\nScored by @ModelRank — independent AI leaderboard`;
+      navigator.clipboard.writeText(md);
+      const b = document.getElementById('copyBtn'); b.textContent='Copied!'; setTimeout(()=>b.textContent='Copy markdown',1500);
+    }});
+    document.getElementById('shareBtn').addEventListener('click', () => {{
+      const url = `https://twitter.com/intent/tweet?text=${{encodeURIComponent('My model '${{window._mid}}' just got its Model DNA from @ModelRank 🧬 '${{window._img}})}}`;
+      window.open(url, '_blank');
+    }});
+    load();
+  </script>
+</body>
+</html>'''
+
+
 def generate_sitemap(models: list, base_url: str) -> str:
     """Generate sitemap.xml for SEO."""
     today = __import__('datetime').datetime.now().strftime('%Y-%m-%d')
@@ -169,11 +312,17 @@ def generate_sitemap(models: list, base_url: str) -> str:
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
+   <url>
     <loc>{base_url}/collections.html</loc>
     <lastmod>{today}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>{base_url}/dna.html</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>{base_url}/pricing.html</loc>
@@ -397,6 +546,7 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
           <a href="methodology.html" class="hover:text-white transition-colors">Methodology</a>
           <a href="quiz.html" class="hover:text-white transition-colors">Quiz</a>
           <a href="collections.html" class="hover:text-white transition-colors">Collections</a>
+          <a href="dna.html" class="hover:text-white transition-colors">Model DNA</a>
           <a href="pricing.html" class="hover:text-white transition-colors">Pricing</a>
           <a href="https://github.com/rankmodel/rankmodel1" class="hover:text-white transition-colors flex items-center gap-2">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
@@ -1196,6 +1346,7 @@ def generate_collections_html() -> str:
         <a href="index.html" class="text-2xl font-black tracking-tight flex items-center gap-2 text-white">🏆 ModelRank</a>
         <div class="flex items-center gap-6 text-sm font-medium text-gray-400">
           <a href="index.html" class="hover:text-white">Leaderboard</a>
+          <a href="dna.html" class="hover:text-white">Model DNA</a>
           <a href="quiz.html" class="hover:text-white">Quiz</a>
         </div>
       </nav>
@@ -2715,9 +2866,17 @@ def main(limit: int = 200):
         # Write per-model JSON
         model_json = {**s, 'model_id': mid, 'rank': rank,
                       'badge_url': f'{base_url}/badges/{mid}/score.svg',
-                      'shields_url': f'{base_url}/badges/{mid}/shields.json'}
+                      'shields_url': f'{base_url}/badges/{mid}/shields.json',
+                      'dna_url': f'{base_url}/dna/{mid}.svg'}
         (OUTPUT_DIR / 'models' / f'{org}__{model_name}.json').write_text(
             json.dumps(model_json, indent=2), encoding='utf-8')
+
+        # Write shareable "Model DNA" card
+        dna_path = OUTPUT_DIR / 'dna' / f'{mid}.svg'
+        dna_path.parent.mkdir(parents=True, exist_ok=True)
+        dna_path.write_text(
+            generate_model_dna_svg(mid, composite, tier, rank, s.get('breakdown', {})),
+            encoding='utf-8')
 
         leaderboard_data.append({
             'rank': rank, 'model_id': mid,
@@ -2747,6 +2906,11 @@ def main(limit: int = 200):
     (OUTPUT_DIR / 'index.html').write_text(
         generate_leaderboard_html(models, base_url), encoding='utf-8')
     logger.info('   index.html leaderboard page')
+
+    # Write Model DNA share page
+    (OUTPUT_DIR / 'dna.html').write_text(
+        generate_dna_html(base_url), encoding='utf-8')
+    logger.info('   dna.html — shareable Model DNA cards')
     
     (OUTPUT_DIR / 'sitemap.xml').write_text(generate_sitemap(models, base_url), encoding='utf-8')
     logger.info('   sitemap.xml generated')

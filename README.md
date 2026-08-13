@@ -109,6 +109,15 @@ See [Pricing](https://rankmodel.github.io/rankmodel1/pricing.html). Free core dr
     min_tier: 'B'
 ```
 
+## 🤖 The ModelRank Agency
+
+ModelRank also ships as a **Paperclip-style company of AI agents** that grows itself
+— modeled on [paperclipai/paperclip](https://github.com/paperclipai/paperclip). A
+CEO, CMO, DevRel, Platform Eng, Outreach, and Analytics agent run daily/weekly
+heartbeats (regenerate assets, draft posts, publish the newsletter, recruit
+creators) under approval gates and a budget hard-stop. See
+[`agency/`](agency/) — `python agency/agency.py --list`.
+
 ## 🗂️ Project structure
 
 ```
@@ -119,15 +128,17 @@ data/                   # HF fetcher, SQLite cache, NotebookLM integration
 badges/                 # SVG + premium (glow/featured) generators
 config/                 # settings + pricing tiers
 scripts/                # static asset + outreach generators
+agency/                 # Paperclip-style autonomous growth company (agents + routines)
 static_output/          # GitHub Pages CDN (leaderboard, badges, pages)
 ui/app.py               # Gradio leaderboard
-tests/                  # 27 passing unit tests
+tests/                  # 34 passing unit tests
 ```
 
 ## 🗺️ Roadmap
 
 - [x] 150+ seeded models, 5D scoring, ELO, badges, pricing
-- [ ] Shareable **"Model DNA"** cards (Spotify-Wrapped for models)
+- [x] Shareable **"Model DNA"** cards (Spotify-Wrapped for models)
+- [x] **ModelRank Agency** — Paperclip-style autonomous growth company
 - [ ] Interactive **"Best model for my use case"** quiz
 - [ ] VS Code extension (hover a model name → see its score)
 - [ ] LangChain / LlamaIndex integration

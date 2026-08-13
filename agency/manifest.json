@@ -1,0 +1,167 @@
+{
+  "company": "ModelRank Agency",
+  "mission": "Make ModelRank the #1 independent open-weight model leaderboard and convert reach into dev-paid badge revenue, without ever charging for the score.",
+  "currency": "USD",
+  "budget_hard_stop": true,
+  "agents": [
+    {
+      "id": "ceo",
+      "title": "Chief Executive Agent",
+      "role": "Sets strategy, approves spend, reviews north-star metrics, hires/retires other agents.",
+      "reports_to": null,
+      "model": "reasoning-frontier",
+      "budget_usd_per_month": 0,
+      "permissions": ["approve", "strategy_review", "read_metrics"],
+      "description": "Owns the mission in GOAL.md. Only agent that can clear approval gates."
+    },
+    {
+      "id": "cmo",
+      "title": "Growth & Distribution Agent",
+      "role": "Runs the viral flywheel: daily social drafts, badge backlink campaigns, paid boosts.",
+      "reports_to": "ceo",
+      "model": "fast-frontier",
+      "budget_usd_per_month": 500,
+      "permissions": ["social_draft", "paid_boost", "read_metrics"],
+      "description": "Turns ranked models into backlinks and conversations."
+    },
+    {
+      "id": "devrel",
+      "title": "Developer Relations Agent",
+      "role": "Weekly newsletter, docs, onboarding copy, Model DNA card copy.",
+      "reports_to": "ceo",
+      "model": "fast-frontier",
+      "budget_usd_per_month": 0,
+      "permissions": ["newsletter", "docs", "read_metrics"],
+      "description": "Keeps developers informed and converts them to badge users."
+    },
+    {
+      "id": "eng",
+      "title": "Platform Engineering Agent",
+      "role": "Regenerates static assets/badges/DNA cards, syncs leaderboard, deploys.",
+      "reports_to": "ceo",
+      "model": "coding-frontier",
+      "budget_usd_per_month": 0,
+      "permissions": ["regenerate_assets", "sync_badges", "deploy"],
+      "description": "Keeps the public leaderboard and badges fresh and correct."
+    },
+    {
+      "id": "outreach",
+      "title": "Creator Outreach Agent",
+      "role": "Personalized messages to top model creators inviting them to claim a free badge.",
+      "reports_to": "cmo",
+      "model": "fast-frontier",
+      "budget_usd_per_month": 100,
+      "permissions": ["email_draft", "dm_draft", "read_metrics"],
+      "description": "Drives the backlink flywheel by recruiting creators."
+    },
+    {
+      "id": "analyst",
+      "title": "Revenue & Analytics Agent",
+      "role": "Tracks badge backlinks, plan conversions, and north-star metrics.",
+      "reports_to": "ceo",
+      "model": "reasoning-frontier",
+      "budget_usd_per_month": 0,
+      "permissions": ["read_metrics", "revenue_report"],
+      "description": "Makes the company's numbers inspectable to the CEO."
+    }
+  ],
+  "routines": [
+    {
+      "id": "hourly_badge_sync",
+      "agent_id": "eng",
+      "name": "Sync badge availability",
+      "action": "sync_badges",
+      "schedule": "0 * * * *",
+      "description": "Cheap heartbeat that confirms badge endpoints are live.",
+      "approval_required": false,
+      "enabled": true,
+      "cost_usd": 0
+    },
+    {
+      "id": "daily_asset_refresh",
+      "agent_id": "eng",
+      "name": "Regenerate leaderboard, badges & DNA cards",
+      "action": "regenerate_assets",
+      "schedule": "0 3 * * *",
+      "description": "Rebuilds static_output (badges, leaderboard, 200 DNA cards).",
+      "approval_required": false,
+      "enabled": true,
+      "cost_usd": 0
+    },
+    {
+      "id": "daily_social_draft",
+      "agent_id": "cmo",
+      "name": "Draft daily social post",
+      "action": "social_draft",
+      "schedule": "0 9 * * *",
+      "description": "Drafts a shareable post about the day's biggest mover (no auto-post).",
+      "approval_required": false,
+      "enabled": true,
+      "cost_usd": 0
+    },
+    {
+      "id": "weekly_newsletter",
+      "agent_id": "devrel",
+      "name": "Publish ModelRank Weekly",
+      "action": "publish_weekly",
+      "schedule": "0 8 * * MON",
+      "description": "Generates the weekly newsletter; public posting requires CEO approval.",
+      "approval_required": true,
+      "enabled": true,
+      "cost_usd": 0
+    },
+    {
+      "id": "weekly_outreach",
+      "agent_id": "outreach",
+      "name": "Creator outreach campaign",
+      "action": "outreach",
+      "schedule": "0 10 * * MON",
+      "description": "Generates personalized outreach to top creators; send requires approval.",
+      "approval_required": true,
+      "enabled": true,
+      "cost_usd": 0
+    },
+    {
+      "id": "weekly_revenue_review",
+      "agent_id": "analyst",
+      "name": "Revenue & backlink review",
+      "action": "revenue_report",
+      "schedule": "0 12 * * MON",
+      "description": "Summarizes badge backlinks, plan mix, and north-star progress.",
+      "approval_required": false,
+      "enabled": true,
+      "cost_usd": 0
+    },
+    {
+      "id": "monthly_strategy",
+      "agent_id": "ceo",
+      "name": "Monthly strategy review",
+      "action": "strategy_review",
+      "schedule": "0 9 1 * *",
+      "description": "Re-reads GOAL.md, proposes org-chart changes for the next month.",
+      "approval_required": false,
+      "enabled": true,
+      "cost_usd": 0
+    }
+  ],
+  "approval_gates": [
+    {
+      "action": "publish_weekly",
+      "gate": "public_posting",
+      "approver": "ceo",
+      "note": "Newsletter may only be posted after CEO review."
+    },
+    {
+      "action": "outreach",
+      "gate": "external_send",
+      "approver": "ceo",
+      "note": "Outbound creator messages require CEO approval before send."
+    },
+    {
+      "action": "paid_boost",
+      "gate": "spend",
+      "approver": "ceo",
+      "note": "Any paid promotion draws from the CMO budget and needs approval."
+    }
+  ]
+}
