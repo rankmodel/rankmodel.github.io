@@ -408,10 +408,13 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
         if size_tier == 'edge': tags_html += '<span class="text-[9px] px-1.5 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/20 uppercase font-bold">&lt;3B Edge</span> '
         elif size_tier == 'consumer': tags_html += '<span class="text-[9px] px-1.5 py-0.5 rounded bg-teal-500/10 text-teal-400 border border-teal-500/20 uppercase font-bold">3-13B</span> '
         
+        import json
+        bd_json = json.dumps(bd).replace('"', '&quot;')
+        
         rows += f'''
-        <tr class="hover:bg-white/5 transition-colors border-b border-white/5 group model-row" 
-            data-name="{mid.lower()}" data-tier="{tier}" data-size="{size_tier}" 
-            data-uncensored="{is_uncensored}" data-multilingual="{is_multilingual}" data-code="{is_code}">
+        <tr class="hover:bg-white/5 transition-colors border-b border-white/5 group model-row cursor-pointer" 
+            data-name="{mid.lower()}" data-tier="{tier}" data-size="{size_tier}" data-composite="{composite:.1f}"
+            data-uncensored="{is_uncensored}" data-multilingual="{is_multilingual}" data-code="{is_code}" data-breakdown="{bd_json}">
           <td class="px-4 py-4 text-center font-mono text-gray-400">{medal}</td>
           <td class="px-4 py-4">
             <a href="{hf_url}" target="_blank" class="block hover:opacity-80 transition-opacity">
@@ -527,8 +530,36 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
     }}
   }}
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="min-h-screen text-gray-200">
+<body class="min-h-screen text-gray-200 relative">
+  <!-- DNA Modal -->
+  <div id="dnaModal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+    <div id="dnaModalBg" class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer"></div>
+    <div id="dnaModalContent" class="relative glass-card border border-white/10 rounded-2xl w-full max-w-2xl mx-4 p-8 transform scale-95 transition-all duration-300 shadow-2xl overflow-hidden">
+      <button id="closeDnaBtn" class="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors bg-white/5 hover:bg-white/10 p-2 rounded-full z-10">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+      <div class="flex flex-col md:flex-row gap-8 items-center">
+        <div class="flex-1 w-full max-w-[300px] aspect-square relative">
+          <canvas id="dnaChartCanvas"></canvas>
+        </div>
+        <div class="flex-1 w-full">
+          <h2 id="dnaModalTitle" class="text-3xl font-black text-white mb-2 break-all">Model</h2>
+          <div class="flex items-center gap-2 mb-6">
+            <span id="dnaModalTier" class="px-3 py-1 rounded-full text-sm font-bold border">A</span>
+            <span id="dnaModalScore" class="text-xl font-mono text-gray-400">0.0</span>
+          </div>
+          <div class="space-y-4 text-sm font-mono text-gray-400" id="dnaModalStats">
+            <!-- Stats injected via JS -->
+          </div>
+          <a id="dnaModalLink" href="#" target="_blank" class="mt-8 flex items-center justify-center gap-2 w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3 px-6 rounded-xl transition-colors">
+            View on HuggingFace <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
   
   <!-- Hero Section -->
   <header class="relative overflow-hidden pt-16 pb-24 border-b border-white/5">
@@ -992,6 +1023,108 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
             }});
         }});
       }}
+    }});
+    
+    // --- DNA Modal Logic ---
+    const dnaModal = document.getElementById('dnaModal');
+    const dnaModalBg = document.getElementById('dnaModalBg');
+    const closeDnaBtn = document.getElementById('closeDnaBtn');
+    let dnaChart = null;
+
+    function openDnaModal(name, tier, composite, breakdown) {{
+      document.getElementById('dnaModalTitle').textContent = name;
+      document.getElementById('dnaModalTier').textContent = tier;
+      document.getElementById('dnaModalScore').textContent = composite;
+      
+      const tierColors = {{
+        'S': {{ bg: 'bg-purple-400/10', text: 'text-purple-400', border: 'border-purple-400', hex: '#c084fc' }},
+        'A': {{ bg: 'bg-blue-400/10', text: 'text-blue-400', border: 'border-blue-400', hex: '#60a5fa' }},
+        'B': {{ bg: 'bg-green-400/10', text: 'text-green-400', border: 'border-green-400', hex: '#4ade80' }},
+        'C': {{ bg: 'bg-yellow-400/10', text: 'text-yellow-400', border: 'border-yellow-400', hex: '#facc15' }},
+        'D': {{ bg: 'bg-red-400/10', text: 'text-red-400', border: 'border-red-400', hex: '#f87171' }}
+      }};
+      const color = tierColors[tier] || tierColors['C'];
+      
+      const tierEl = document.getElementById('dnaModalTier');
+      tierEl.className = `px-3 py-1 rounded-full text-sm font-bold border ${{color.bg}} ${{color.text}} ${{color.border}}`;
+      
+      document.getElementById('dnaModalLink').href = `https://huggingface.co/${{name}}`;
+      
+      const statsHtml = Object.entries(breakdown).map(([k, v]) => `
+        <div class="flex justify-between items-center mb-2">
+          <span class="capitalize text-gray-300">${{k}}</span>
+          <span class="font-bold text-white">${{Number(v).toFixed(1)}}</span>
+        </div>
+        <div class="w-full bg-white/5 rounded-full h-1.5 mb-4">
+          <div class="h-1.5 rounded-full" style="width: ${{v}}%; background-color: ${{color.hex}};"></div>
+        </div>
+      `).join('');
+      document.getElementById('dnaModalStats').innerHTML = statsHtml;
+      
+      // Render Radar Chart
+      const ctx = document.getElementById('dnaChartCanvas').getContext('2d');
+      if (dnaChart) dnaChart.destroy();
+      
+      Chart.defaults.color = 'rgba(255, 255, 255, 0.6)';
+      dnaChart = new Chart(ctx, {{
+        type: 'radar',
+        data: {{
+          labels: ['Benchmarks', 'Efficiency', 'Community', 'Recency', 'Reproducibility'],
+          datasets: [{{
+            label: 'DNA',
+            data: [
+              breakdown.benchmarks || 0,
+              breakdown.efficiency || 0,
+              breakdown.community || 0,
+              breakdown.recency || 0,
+              breakdown.reproducibility || 0
+            ],
+            backgroundColor: `${{color.hex}}33`,
+            borderColor: color.hex,
+            pointBackgroundColor: color.hex,
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: color.hex,
+            borderWidth: 2,
+          }}]
+        }},
+        options: {{
+          scales: {{
+            r: {{
+              angleLines: {{ color: 'rgba(255, 255, 255, 0.1)' }},
+              grid: {{ color: 'rgba(255, 255, 255, 0.1)' }},
+              pointLabels: {{ font: {{ family: 'Inter', size: 10, weight: 'bold' }} }},
+              ticks: {{ display: false, min: 0, max: 100 }}
+            }}
+          }},
+          plugins: {{ legend: {{ display: false }} }}
+        }}
+      }});
+      
+      dnaModal.classList.remove('hidden');
+      setTimeout(() => dnaModal.classList.remove('opacity-0'), 10);
+    }}
+    
+    function closeDna() {{
+      dnaModal.classList.add('opacity-0');
+      setTimeout(() => dnaModal.classList.add('hidden'), 300);
+    }}
+    
+    closeDnaBtn.addEventListener('click', closeDna);
+    dnaModalBg.addEventListener('click', closeDna);
+    
+    // Attach click events to rows
+    document.querySelectorAll('.model-row').forEach(row => {{
+      row.addEventListener('click', (e) => {{
+        // Prevent if clicking on link or copy button
+        if (e.target.closest('a') || e.target.closest('button')) return;
+        
+        const name = row.getAttribute('data-name');
+        const tier = row.getAttribute('data-tier');
+        const composite = row.getAttribute('data-composite');
+        const breakdown = JSON.parse(row.getAttribute('data-breakdown'));
+        openDnaModal(name, tier, composite, breakdown);
+      }});
     }});
   </script>
 </body>
