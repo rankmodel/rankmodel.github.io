@@ -30,7 +30,9 @@ def estimate_param_count_from_name(model_id: str) -> Optional[int]:
     return None
 
 def compute_efficiency_score(model_data: dict, benchmark_score: float, all_models_stats: dict = None) -> float:
-    param_count = model_data.get('param_count')
+    param_count = model_data.get('safetensors', {}).get('total')
+    if param_count is None:
+        param_count = model_data.get('param_count')
     if param_count is None:
         return 50.0
         

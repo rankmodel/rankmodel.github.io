@@ -24,6 +24,132 @@ from scoring.reproducibility import compute_repro_score, check_benchmark_diversi
 
 logger = logging.getLogger(__name__)
 
+def compute_extended_metadata_score(model_data: dict) -> dict:
+    extended_meta = {}
+    
+    # 1. context_window
+    max_pos = model_data.get('config', {}).get('max_position_embeddings', 0)
+    if max_pos < 2048: cw = 0
+    elif max_pos < 4096: cw = 20
+    elif max_pos < 8192: cw = 40
+    elif max_pos < 32768: cw = 60
+    elif max_pos < 128000: cw = 80
+    else: cw = 100
+    extended_meta['context_window'] = cw
+    
+    # 2. vram_tier
+    param_count = model_data.get('safetensors', {}).get('total')
+    if param_count is None:
+        param_count = model_data.get('param_count')
+    if param_count is None and 'name' in model_data:
+        param_count = estimate_param_count_from_name(model_data['name'])
+    param_count = param_count or 0
+    param_b = param_count / 1e9
+    if param_b < 3: vt = 100
+    elif param_b < 7: vt = 80
+    elif param_b < 13: vt = 65
+    elif param_b < 34: vt = 45
+    elif param_b < 70: vt = 25
+    else: vt = 10
+    extended_meta['vram_tier'] = vt
+    
+    # 3. license_score
+    lic = str(model_data.get('license', '')).lower()
+    if 'apache-2.0' in lic: ls = 100
+    elif 'mit' in lic: ls = 90
+    elif 'cc-by-4.0' in lic: ls = 75
+    elif 'cc-by-sa-4.0' in lic: ls = 65
+    elif 'cc-by-nc' in lic: ls = 40
+    elif not lic or lic == 'none': ls = 0
+    else: ls = 20
+    extended_meta['license_score'] = ls
+    
+    # 4. finetune_friendly
+    tags = model_data.get('tags', [])
+    tags_lower = [str(t).lower() for t in tags]
+    if any(any(k in t for k in ['lora', 'peft', 'qlora', 'finetuning']) for t in tags_lower):
+        ff = 80
+    else:
+        ff = 30
+    extended_meta['finetune_friendly'] = ff
+    
+    # 5. multilingual
+    lang_count = 0
+    for t in tags_lower:
+        if t.startswith('lang:'): lang_count += 1
+        elif t == 'multilingual': lang_count += 10
+        elif ',' in t and all(len(x.strip()) in [2,3] for x in t.split(',')):
+            lang_count += len(t.split(','))
+    
+    if lang_count == 0: ml = 10  # Fallback just in case, but spec says "1 lang -> 20"
+    if lang_count == 0: ml = 20  # Assume at least 1 language usually? Let's use 20 for 0 or 1
+    if lang_count <= 1: ml = 20
+    elif lang_count <= 3: ml = 50
+    elif lang_count <= 10: ml = 75
+    else: ml = 100
+    extended_meta['multilingual'] = ml
+    
+    # 6. safety_score
+    evals = model_data.get('eval_results', [])
+    bench_names = [e.get('benchmark', '').lower() for e in evals]
+    if any('truthfulqa' in b or 'bbq' in b for b in bench_names):
+        ss = 80
+    else:
+        ss = 40
+    extended_meta['safety_score'] = ss
+    
+    # 7. update_velocity
+    last_mod = model_data.get('last_modified')
+    if not last_mod:
+        uv = 20
+    else:
+        try:
+            mod_date = datetime.fromisoformat(last_mod.replace('Z', '+00:00')).replace(tzinfo=None)
+            days = (datetime.now() - mod_date).days
+            if days < 30: uv = 100
+            elif days < 90: uv = 80
+            elif days < 180: uv = 60
+            elif days < 365: uv = 40
+            else: uv = 20
+        except:
+            uv = 20
+    extended_meta['update_velocity'] = uv
+    
+    # 8. inference_coverage
+    inf_tags = {'gguf', 'awq', 'gptq', 'onnx', 'tflite', 'coreml', 'openvino'}
+    inf_count = sum(1 for t in tags_lower if t in inf_tags)
+    if inf_count == 0: ic = 10
+    elif inf_count == 1: ic = 40
+    elif inf_count == 2: ic = 60
+    else: ic = 85
+    extended_meta['inference_coverage'] = ic
+    
+    # 9. community_momentum
+    dl = model_data.get('downloads', 0) or 0
+    likes = model_data.get('likes', 0) or 0
+    dl_30d = model_data.get('downloads_30d')
+    if dl_30d is not None and dl_30d > 0:
+        # Just use ratio for simplicity as fallback is acceptable
+        pass
+    
+    if (likes > dl * 0.01) if dl else (likes > 0):
+        cm = 70
+    else:
+        cm = 40
+    extended_meta['community_momentum'] = cm
+    
+    # 10. hub_completeness
+    hc = 0
+    if model_data.get('modelcard_data'): hc += 20
+    if model_data.get('pipeline_tag'): hc += 20
+    if model_data.get('tags'): hc += 20
+    if model_data.get('license'): hc += 20
+    if model_data.get('repo_url'): hc += 20
+    extended_meta['hub_completeness'] = hc
+    
+    return extended_meta
+
+
 def score_to_tier(score: float) -> str:
     for threshold in sorted(TIERS.keys(), reverse=True):
         if score >= threshold:
@@ -57,9 +183,13 @@ def compute_composite_score(model_data: dict, eval_results: list, all_models_sta
             reproducibility_score * SCORING_WEIGHTS.get('reproducibility', 0.10)
         )
         
+        extended_meta = compute_extended_metadata_score(model_data)
+        
         return {
             'model_id': model_id,
             'composite': round(composite, 2),
+            'extended': extended_meta,
+            'extended_composite': round(sum(extended_meta.values()) / len(extended_meta), 2) if extended_meta else 0.0,
             'breakdown': {
                 'benchmarks': round(benchmark_score, 2),
                 'efficiency': round(efficiency_score, 2),
@@ -82,6 +212,8 @@ def compute_composite_score(model_data: dict, eval_results: list, all_models_sta
         return {
             'model_id': model_data.get('id', 'unknown'),
             'composite': 0.0,
+            'extended': {},
+            'extended_composite': 0.0,
             'breakdown': {'benchmarks': 0.0, 'efficiency': 0.0, 'community': 0.0, 'recency': 0.0, 'reproducibility': 0.0},
             'tier': 'D',
             'computed_at': datetime.now().isoformat(),

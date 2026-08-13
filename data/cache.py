@@ -141,45 +141,54 @@ class ModelCache:
         with self.lock:
             with sqlite3.connect(self.db_path) as conn:
                 cursor = conn.cursor()
-                cursor.execute("SELECT s.score_data, m.data FROM scores s JOIN models m ON s.model_id = m.model_id")
-                rows = cursor.fetchall()
-                count = 0
-                for score_data_str, model_data_str in rows:
-                    score_data = json.loads(score_data_str)
-                    model_data = json.loads(model_data_str)
-                    if tier and score_data.get('tier') != tier:
-                        continue
-                    if task and model_data.get('pipeline_tag') != task:
-                        continue
-                    count += 1
-                return count
+                query = "SELECT COUNT(*) FROM scores s JOIN models m ON s.model_id = m.model_id"
+                conditions = []
+                params = []
+                if tier:
+                    conditions.append("json_extract(s.score_data, '$.tier') = ?")
+                    params.append(tier)
+                if task:
+                    conditions.append("json_extract(m.data, '$.pipeline_tag') = ?")
+                    params.append(task)
+                if conditions:
+                    query += " WHERE " + " AND ".join(conditions)
+                
+                cursor.execute(query, params)
+                row = cursor.fetchone()
+                return row[0] if row else 0
 
     def get_leaderboard(self, limit: int = 100, offset: int = 0, tier: Optional[str] = None, task: Optional[str] = None) -> List[Dict[str, Any]]:
         with self.lock:
             with sqlite3.connect(self.db_path) as conn:
                 cursor = conn.cursor()
-                cursor.execute("SELECT s.model_id, s.score_data, m.data FROM scores s JOIN models m ON s.model_id = m.model_id")
+                query = "SELECT s.model_id, s.score_data, m.data FROM scores s JOIN models m ON s.model_id = m.model_id"
+                conditions = []
+                params = []
+                if tier:
+                    conditions.append("json_extract(s.score_data, '$.tier') = ?")
+                    params.append(tier)
+                if task:
+                    conditions.append("json_extract(m.data, '$.pipeline_tag') = ?")
+                    params.append(task)
+                if conditions:
+                    query += " WHERE " + " AND ".join(conditions)
+                
+                # Sort by composite score descending
+                query += " ORDER BY CAST(json_extract(s.score_data, '$.composite') AS REAL) DESC"
+                query += " LIMIT ? OFFSET ?"
+                params.extend([limit, offset])
+                
+                cursor.execute(query, params)
                 rows = cursor.fetchall()
                 
                 results = []
                 for model_id, score_data_str, model_data_str in rows:
-                    score_data = json.loads(score_data_str)
-                    model_data = json.loads(model_data_str)
-                    
-                    if tier and score_data.get('tier') != tier:
-                        continue
-                        
-                    if task and model_data.get('pipeline_tag') != task:
-                        continue
-                        
                     results.append({
                         "model_id": model_id,
-                        "score": score_data,
-                        "model": model_data
+                        "score": json.loads(score_data_str),
+                        "model": json.loads(model_data_str)
                     })
-                    
-                results.sort(key=lambda x: x['score'].get('composite', 0), reverse=True)
-                return results[offset:offset + limit]
+                return results
 
     def get_leaderboard_bounds(self, benchmark_id: str) -> Optional[Dict[str, float]]:
         with self.lock:

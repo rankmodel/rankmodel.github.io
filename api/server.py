@@ -266,5 +266,41 @@ async def compare_models_endpoint(
         logging.error(f"Error comparing {model_a} vs {model_b}: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/shields/{model_id:path}", include_in_schema=True)
+async def shields_endpoint(model_id: str):
+    """
+    Shields.io-compatible JSON endpoint.
+    Embed in any README with:
+      ![ModelRank](https://img.shields.io/endpoint?url=https://YOUR_URL/shields/org/model)
+    """
+    score = cache.get_score(model_id)
+    if not score:
+        return {"schemaVersion": 1, "label": "ModelRank", "message": "unscored", "color": "lightgrey", "namedLogo": "huggingface"}
+    tier = score.get("tier", "C")
+    composite = score.get("composite", 0)
+    color_map = {"S": "blueviolet", "A": "blue", "B": "brightgreen", "C": "yellow", "D": "red"}
+    return {
+        "schemaVersion": 1,
+        "label": "ModelRank",
+        "message": f"{composite:.0f} ({tier})",
+        "color": color_map.get(tier, "grey"),
+        "namedLogo": "huggingface",
+        "logoColor": "white",
+        "style": "flat-square",
+    }
+
+@app.get("/score/{model_id:path}/extended")
+async def get_score_extended(model_id: str):
+    """
+    Returns the composite score plus the 10 extended metadata signals
+    (context_window, vram_tier, license_score, finetune_friendly, multilingual,
+     safety_score, update_velocity, inference_coverage, community_momentum, hub_completeness).
+    """
+    score = cache.get_score(model_id)
+    if not score:
+        raise HTTPException(status_code=404, detail=f"Model {model_id} not yet scored. Use GET /score/{model_id} to score it first.")
+    return score
+
 if __name__ == '__main__':
     uvicorn.run(app, host=API_HOST, port=API_PORT)
+
