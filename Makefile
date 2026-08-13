@@ -1,4 +1,4 @@
-.PHONY: help dev api ui test lint install install-dev clean
+.PHONY: help dev api ui test lint install install-dev clean static-pages spaces
 
 help:
 	@echo "ModelRank - Available Commands"
@@ -10,6 +10,7 @@ help:
 	@echo "  make dev          Start both API and UI concurrently"
 	@echo "  make test         Run all tests"
 	@echo "  make lint         Run linter (ruff)"
+	@echo "  make static-pages Generate GitHub Pages badge + leaderboard assets"
 	@echo "  make clean        Remove cache files"
 
 install:
@@ -45,3 +46,7 @@ seed:
 
 format:
 	black . --line-length 100
+
+static-pages:
+	python scripts/generate_static_assets.py
+	@echo "✅ Static assets in static_output/ — deploy to gh-pages or open static_output/index.html"

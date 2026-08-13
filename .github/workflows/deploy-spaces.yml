@@ -1,0 +1,67 @@
+name: 🤗 Deploy to HuggingFace Spaces
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ui/**'
+      - 'scoring/**'
+      - 'badges/**'
+      - 'config/**'
+      - 'data/**'
+      - 'requirements.txt'
+  workflow_dispatch:
+
+jobs:
+  deploy-to-spaces:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Push to HuggingFace Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE: ${{ secrets.HF_SPACE_ID }}   # e.g. rankmodel/modelrank
+        run: |
+          # Install git-lfs and huggingface_hub CLI
+          pip install huggingface_hub
+
+          # Configure git for HF push
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+          # Clone the Space, overlay our files, push
+          git clone https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE} hf_space
+
+          # Copy all app files (excluding venv, db, .env, .git)
+          rsync -av --exclude='.git' --exclude='venv' \
+            --exclude='data/modelrank.db' --exclude='.env' \
+            --exclude='.github' --exclude='static_output' \
+            --exclude='__pycache__' --exclude='*.pyc' \
+            ./ hf_space/
+
+          # Ensure the Space README has correct metadata
+          cat > hf_space/README.md << 'SPACEMETA'
+          ---
+          title: ModelRank
+          emoji: 🏆
+          colorFrom: indigo
+          colorTo: purple
+          sdk: gradio
+          sdk_version: 5.0.0
+          app_file: ui/app.py
+          pinned: true
+          license: mit
+          short_description: Composite scoring & badges for HuggingFace models
+          ---
+          SPACEMETA
+
+          # Push to HF Spaces
+          cd hf_space
+          git add -A
+          git diff --cached --quiet || git commit -m "🤖 Auto-deploy from GitHub Actions [${GITHUB_SHA::7}]"
+          git push
+          echo "✅ Deployed to https://huggingface.co/spaces/${HF_SPACE}"
