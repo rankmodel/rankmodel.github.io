@@ -8,8 +8,13 @@
 </p>
 
 <p align="center">
-  <b>The Rotten Tomatoes for open-weight AI models.</b><br>
-  Independent, conflict-of-interest-free scoring that sits <i>on top of</i> HuggingFace, Ollama, and every hub.
+  <b>The independent standard for open-weight AI.</b><br>
+  A conflict-of-interest-free leaderboard that sits <i>on top of</i> HuggingFace, Ollama & every hub —
+  transparent 5D scoring, head-to-head ELO, and free embeddable badges.
+</p>
+
+<p align="center">
+  <img src="https://rankmodel.github.io/rankmodel1/badges/meta-llama/Llama-3.1-8B/score.svg" alt="Live ModelRank badge example" width="320">
 </p>
 
 <p align="center">
@@ -20,7 +25,23 @@
   🎙️ <a href="https://notebooklm.google.com">Weekly Podcast</a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/rankmodel/rankmodel1/stargazers"><img src="https://img.shields.io/github/stars/rankmodel/rankmodel1?style=social" alt="Stars"></a>
+  <a href="https://star-history.com/#rankmodel/rankmodel1&Date"><img src="https://api.star-history.com/svg?repos=rankmodel/rankmodel1&type=Date" alt="Star History" width="420"></a>
+</p>
+
+> ⭐ **If ModelRank helps you cut through AI-model hype, star the repo** — it's free, and stars are how an independent project like this grows.
+
 ---
+
+## 🎯 Mission
+
+**Make "which AI model should I actually use?" a solved question** — with scoring that no model vendor can buy, rig, or own.
+
+- 🔍 **Independence first.** Zero conflict of interest: we don't train or host models, so we have no incentive to rank our own higher.
+- 📊 **Transparency by default.** Every score is reproducible from public signals — benchmarks, efficiency, community, freshness, provenance.
+- 🌍 **Free for everyone, forever.** The badge — our growth engine — is free; we monetize *visibility & trust*, never the score.
+- 🤖 **Self-improving.** An autonomous agent "company" keeps the data fresh, the content flowing, and the community growing.
 
 ## ✨ Why ModelRank exists
 
@@ -147,7 +168,7 @@ tests/                  # 34 passing unit tests
 ## 🧪 Tests
 
 ```bash
-make test   # 27 passed
+make test   # 39 passed
 ```
 
 ## 📄 License
