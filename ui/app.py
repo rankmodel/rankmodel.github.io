@@ -370,6 +370,77 @@ async def generate_ui_podcast(model_id: str):
     except Exception as e:
         return None, f'<div style="color:#ef4444;padding:12px;">❌ Error: {str(e)}</div>'
 
+# ---- Use-case recommendation + head-to-head judge UI ----
+
+def recommend_ui(use_case: str) -> str:
+    try:
+        from scoring.recommend import recommend
+
+        rows = recommend(use_case or "general", cache, limit=20)
+        if not rows:
+            return "<div style='color:#64748b;padding:12px;'>No scored models yet — score some models first.</div>"
+        items = "".join(
+            f"<div style='display:flex;justify-content:space-between;padding:8px 12px;border-bottom:1px solid #2d2d50;'>"
+            f"<span style='color:#e2e8f0;'>{i+1}. {r['model_id']}</span>"
+            f"<span style='color:#22c55e;font-weight:700;'>{r['use_case_score']:.2f}</span></div>"
+            for i, r in enumerate(rows)
+        )
+        return f"<div style='font-family:sans-serif;background:#0f0f23;border-radius:12px;padding:8px;'>{items}</div>"
+    except Exception as e:
+        return f"<div style='color:#ef4444;padding:12px;'>Error: {e}</div>"
+
+
+def judge_human_ui(model_a: str, model_b: str, verdict: str) -> str:
+    if not model_a or not model_b:
+        return "<div style='color:#f59e0b;padding:12px;'>Enter both model IDs.</div>"
+    v = {"A wins": "A", "B wins": "B", "Tie": "tie"}.get(verdict, "tie")
+    import uuid
+
+    rid = f"human-ui-{uuid.uuid4().hex[:10]}"
+    cache.record_head_to_head(rid, model_a.strip(), model_b.strip(), v, "human")
+    ea = cache.get_elo_rating(model_a.strip())
+    eb = cache.get_elo_rating(model_b.strip())
+    return (
+        f"<div style='padding:12px;background:#0f0f23;border-radius:8px;font-family:sans-serif;'>"
+        f"Recorded verdict <b>{verdict}</b> for <b>{model_a}</b> vs <b>{model_b}</b>.<br>"
+        f"ELO — {model_a}: <b style='color:#22c55e'>{ea:.1f}</b> | {model_b}: <b style='color:#22c55e'>{eb:.1f}</b></div>"
+    )
+
+
+def elo_ui(model_id: str) -> str:
+    if not model_id:
+        return "<div style='color:#f59e0b;padding:12px;'>Enter a model ID.</div>"
+    rec = cache.get_elo_record(model_id.strip())
+    if rec is None:
+        return f"<div style='padding:12px;'>No ELO record for <b>{model_id}</b> yet (rating defaults to 1500).</div>"
+    return (
+        f"<div style='padding:12px;background:#0f0f23;border-radius:8px;font-family:sans-serif;'>"
+        f"ELO for <b>{model_id}</b>: <span style='color:#a855f7;font-weight:700;'>{rec['rating']:.1f}</span><br>"
+        f"W/L/D: {rec['wins']}/{rec['losses']}/{rec['draws']} · matches: {rec['matches']}</div>"
+    )
+
+
+def judge_llm_ui(model_a: str, model_b: str) -> str:
+    if not model_a or not model_b:
+        return "<div style='color:#f59e0b;padding:12px;'>Enter both model IDs.</div>"
+    try:
+        from scoring.judge import run_llm_judge
+
+        res = run_llm_judge(model_a.strip(), model_b.strip(), cache=cache)
+        if res is None:
+            return "<div style='color:#ef4444;padding:12px;'>One or both models are not cached.</div>"
+        ea = cache.get_elo_rating(model_a.strip())
+        eb = cache.get_elo_rating(model_b.strip())
+        return (
+            f"<div style='padding:12px;background:#0f0f23;border-radius:8px;font-family:sans-serif;'>"
+            f"LLM verdict: <b>{res['verdict']}</b><br>"
+            f"<details><summary>Rationale</summary><pre style='white-space:pre-wrap;color:#94a3b8;'>{res['rationale']}</pre></details>"
+            f"ELO — {model_a}: <b style='color:#22c55e'>{ea:.1f}</b> | {model_b}: <b style='color:#22c55e'>{eb:.1f}</b></div>"
+        )
+    except Exception as e:
+        return f"<div style='color:#ef4444;padding:12px;'>LLM judge unavailable: {e}</div>"
+
+
 # ---- Theme ----
 theme = gr.themes.Soft(
     primary_hue='indigo',
@@ -492,6 +563,33 @@ with gr.Blocks(title='ModelRank — HuggingFace Model Leaderboard') as demo:
             podcast_status = gr.HTML()
             podcast_audio = gr.Audio(label='Generated Podcast', interactive=False)
             generate_podcast_btn.click(fn=generate_ui_podcast, inputs=[podcast_model_id], outputs=[podcast_audio, podcast_status])
+
+        with gr.Tab('🎯 Best for Use Case'):
+            use_case_dd = gr.Dropdown(
+                choices=['general', 'coding', 'chat', 'research', 'local', 'multilingual'],
+                value='general', label='Use case'
+            )
+            rec_btn = gr.Button('🎯 Recommend', variant='primary')
+            rec_out = gr.HTML()
+            rec_btn.click(fn=recommend_ui, inputs=[use_case_dd], outputs=[rec_out])
+
+        with gr.Tab('⚖️ Judge & ELO'):
+            with gr.Row():
+                j_model_a = gr.Textbox(label='Model A', placeholder='mistralai/Mistral-7B-v0.1', scale=4)
+                j_model_b = gr.Textbox(label='Model B', placeholder='meta-llama/Llama-3-8B', scale=4)
+            with gr.Row():
+                j_verdict = gr.Dropdown(choices=['A wins', 'B wins', 'Tie'], value='A wins', label='Human verdict')
+                j_human_btn = gr.Button('✍️ Record Human Verdict', variant='primary')
+                j_llm_btn = gr.Button('🤖 Run LLM Judge')
+            j_out = gr.HTML()
+            j_llm_out = gr.HTML()
+            j_human_btn.click(fn=judge_human_ui, inputs=[j_model_a, j_model_b, j_verdict], outputs=[j_out])
+            j_llm_btn.click(fn=judge_llm_ui, inputs=[j_model_a, j_model_b], outputs=[j_llm_out])
+            with gr.Row():
+                elo_model = gr.Textbox(label='ELO lookup', placeholder='model id', scale=4)
+                elo_btn = gr.Button('📊 Show ELO')
+            elo_out = gr.HTML()
+            elo_btn.click(fn=elo_ui, inputs=[elo_model], outputs=[elo_out])
 
         with gr.Tab('ℹ️ About'):
             gr.Markdown('''
