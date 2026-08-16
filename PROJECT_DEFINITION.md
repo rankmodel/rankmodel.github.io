@@ -315,7 +315,7 @@ required to *use* ModelRank; `HF_TOKEN` only raises rate limits.
 - [x] 150+ seeded models, 5D scoring, ELO, badges, pricing
 - [x] Shareable "Model DNA" cards (Spotify-Wrapped for models)
 - [x] ModelRank Agency (Paperclip-style autonomous company)
-- [ ] Interactive "Best model for my use case" quiz
+- [~] Interactive "Best model for my use case" quiz — **recommendation engine built** (`scoring/recommend.py` + `GET /recommend` + `python main.py recommend`); UI quiz shell still pending
 - [ ] VS Code extension (hover a model name → see its score)
 - [ ] LangChain / LlamaIndex integration
 - [ ] Weekly automated newsletter + podcast

@@ -358,6 +358,28 @@ async def elo_rating(model_id: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/recommend")
+async def recommend_endpoint(
+    use_case: str = Query("general", description="coding|chat|research|local|multilingual|general"),
+    limit: int = Query(10, le=50),
+):
+    """Re-rank the leaderboard for a use case (Find-My-Model / H2H recommend)."""
+    try:
+        from scoring.recommend import recommend as recommend_models, available_use_cases
+
+        if use_case not in available_use_cases():
+            raise HTTPException(
+                status_code=400,
+                detail=f"Unknown use-case '{use_case}'. Available: {', '.join(available_use_cases())}",
+            )
+        results = recommend_models(use_case, cache, limit=limit)
+        return {"use_case": use_case, "results": results}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/shields/{model_id:path}", include_in_schema=True)
 async def shields_endpoint(model_id: str):
     """

@@ -67,6 +67,33 @@ def score_model(model_id: str):
             
     console.print(f"\n[dim]Markdown Badge: [![ModelRank](https://api.modelrank.com/badge/{model_id}?type=score)](https://modelrank.com)[/dim]")
 
+def run_recommend(use_case: str, limit: int = 10):
+    try:
+        from data.cache import ModelCache
+        from scoring.recommend import recommend, available_use_cases
+        from rich.table import Table
+        from rich.console import Console
+    except ImportError as e:
+        print(f"Missing dependency: {e}")
+        sys.exit(1)
+
+    if use_case not in available_use_cases():
+        print(f"Unknown use-case '{use_case}'. Available: {', '.join(available_use_cases())}")
+        sys.exit(1)
+
+    cache = ModelCache()
+    rows = recommend(use_case, cache, limit=limit)
+    console = Console()
+    table = Table(title=f"ModelRank — best for: {use_case}")
+    table.add_column("Rank", justify="right", style="cyan")
+    table.add_column("Model", style="white")
+    table.add_column("Use-case score", justify="right", style="green")
+    table.add_column("Tier", justify="center", style="magenta")
+    for i, r in enumerate(rows, 1):
+        table.add_row(str(i), r["model_id"], f"{r['use_case_score']:.2f}", r.get("tier") or "?")
+    console.print(table)
+
+
 def run_leaderboard(limit: int = 20, tier: str = None):
     try:
         from data.cache import ModelCache
@@ -98,10 +125,11 @@ def run_leaderboard(limit: int = 20, tier: str = None):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='ModelRank CLI')
-    parser.add_argument('command', choices=['api', 'ui', 'score', 'leaderboard'], help='Command to run')
+    parser.add_argument('command', choices=['api', 'ui', 'score', 'leaderboard', 'recommend'], help='Command to run')
     parser.add_argument('--model', '-m', help='Model ID for score command')
     parser.add_argument('--limit', '-n', type=int, default=20, help='Number of models for leaderboard')
     parser.add_argument('--tier', '-t', help='Filter by tier')
+    parser.add_argument('--use-case', '-u', default='general', help='Use case for recommend (coding|chat|research|local|multilingual|general)')
     args = parser.parse_args()
     
     if args.command == 'api': run_api()
@@ -110,3 +138,4 @@ if __name__ == '__main__':
         if not args.model: parser.error('--model required for score command')
         score_model(args.model)
     elif args.command == 'leaderboard': run_leaderboard(args.limit, args.tier)
+    elif args.command == 'recommend': run_recommend(args.use_case, args.limit)
