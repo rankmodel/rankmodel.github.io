@@ -1,0 +1,22 @@
+name: 🤖 Request Model Evaluation
+description: Request a new HuggingFace open-weight model to be scored on ModelRank
+labels: ["model-request"]
+body:
+  - type: markdown
+    attributes:
+      value: Request an open-weight model to be fetched, evaluated, and given a ModelRank badge.
+  - type: input
+    id: model_id
+    attributes:
+      label: HuggingFace Model ID
+      description: Exact HuggingFace repository ID.
+      placeholder: e.g. meta-llama/Llama-3.1-8B-Instruct
+    validations:
+      required: true
+  - type: textarea
+    id: model_details
+    attributes:
+      label: Model Details & Architecture
+      description: Context length, parameter size, license, and published benchmark results if available.
+    validations:
+      required: false

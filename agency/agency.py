@@ -128,6 +128,31 @@ def load_manifest() -> dict:
 def log_activity(entry: dict) -> None:
     with ACTIVITY_LOG.open("a", encoding="utf-8") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    try:
+        services_path = str(PROJECT_ROOT / "ai-services")
+        if services_path not in sys.path:
+            sys.path.insert(0, services_path)
+        from context_engine import get_context_db
+        db = get_context_db()
+        agent_name = entry.get("agent", "agent")
+        routine_name = entry.get("routine", "routine")
+        db.update_presence(
+            agent_id=f"agency-{agent_name}",
+            client_type="agency-worker",
+            current_task=f"Routine {routine_name}: {entry.get('action')}",
+            status="active" if entry.get("mode") == "exec" else "planning"
+        )
+        db.send_message(
+            sender=f"agency-{agent_name}",
+            recipient="all",
+            channel="tasks",
+            message_type="routine_run",
+            subject=f"[AGENCY] Routine {routine_name} ({entry.get('mode')})",
+            content=str(entry.get("result", "")),
+            payload=entry
+        )
+    except Exception:
+        pass
 
 
 def monthly_spend(agent_id: str, manifest: dict) -> float:

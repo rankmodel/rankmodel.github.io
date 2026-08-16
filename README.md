@@ -84,18 +84,25 @@ Paste this into **your** model's README and you're on the leaderboard:
 Replace `ORG/MODEL` with your HuggingFace path (e.g. `meta-llama/Llama-3.1-8B`).
 Every badge is a backlink to the leaderboard — that's how we grow.
 
-## 📐 How models are scored (5D composite, 0–100)
+## 📐 How models are scored (composite, 0–100)
+
+> **Weights live in `config/settings.py` (`SCORING_WEIGHTS`) — that file is the single
+> source of truth**, not this README. The composite is currently a **4 active-dimension**
+> blend: `reproducibility` is reserved in the schema but weighted `0.00` until its
+> signals are wired in (so "5D" today means 4 weighted dimensions + 1 reserved).
 
 | Dimension | Weight | Measures |
 |-----------|--------|----------|
-| 🧠 **Benchmarks** | 40% | MMLU-Pro, GPQA, HLE, GSM8K, HumanEval + 8 more |
-| ⚡ **Efficiency** | 20% | Score per billion params (rewards small models) |
-| 🔥 **Community** | 20% | Downloads + likes + trending rank |
-| 🕐 **Freshness** | 10% | 180-day half-life decay |
-| ✅ **Verified** | 10% | Source credibility + benchmark diversity |
+| 🧠 **Benchmarks** | 70% | MMLU-Pro (0.25), GPQA (0.20), HLE (0.20), GSM8K (0.20), HumanEval (0.15) |
+| 🕐 **Recency** | 15% | 180-day half-life decay (formerly "Freshness") |
+| 🔥 **Community** | 10% | Downloads + likes + trending rank |
+| ⚡ **Efficiency** | 5% | Score per billion params (rewards small models) |
+| ✅ **Reproducibility** | 0% | Source credibility + benchmark diversity (reserved) |
 
-Plus **ELO head-to-head** (`P(A>B) = 1 / (1 + 10^((ELO_B-ELO_A)/400))`) and 10 extended signals
-(context window, VRAM tier, license, multilingual, safety, momentum, …).
+Plus **ELO head-to-head** (`P(A>B) = 1 / (1 + 10^((ELO_B-ELO_A)/400))`) and extended
+signals (context window, VRAM tier, license, multilingual, safety, momentum, …).
+Benchmarks are normalized against population bounds (`leaderboard_bounds`) so the
+score is comparable across the whole catalog.
 
 ## ⚖️ How we compare
 

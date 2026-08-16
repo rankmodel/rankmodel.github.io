@@ -7,6 +7,7 @@ from typing import Optional, Dict, Any, List
 import time
 
 from config.settings import CACHE_DB_PATH
+from scoring.elo import DEFAULT_RATING, update_ratings
 
 logger = logging.getLogger(__name__)
 
@@ -225,6 +226,179 @@ class ModelCache:
                 (model_id, achievement_type, int(time.time()))
             )
             self.conn.commit()
+
+    # ---- Head-to-head ELO + comparison history (open-question #6 / #2) ----
+
+    def get_elo_rating(self, model_id: str) -> float:
+        """Return the current ELO rating for a model (defaults to 1500)."""
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute("SELECT rating FROM elo_ratings WHERE model_id = ?", (model_id,))
+            row = cursor.fetchone()
+            return row[0] if row else DEFAULT_RATING
+
+    def get_elo_record(self, model_id: str) -> Optional[Dict[str, Any]]:
+        """Return the full ELO record (rating + W/L/D + match count) for a model."""
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute(
+                "SELECT model_id, rating, wins, losses, draws, matches, updated_at "
+                "FROM elo_ratings WHERE model_id = ?",
+                (model_id,),
+            )
+            row = cursor.fetchone()
+            if not row:
+                return None
+            return {
+                "model_id": row[0],
+                "rating": row[1],
+                "wins": row[2],
+                "losses": row[3],
+                "draws": row[4],
+                "matches": row[5],
+                "updated_at": row[6],
+            }
+
+    def record_head_to_head(
+        self,
+        review_id: str,
+        model_a: str,
+        model_b: str,
+        verdict: str,            # 'A' | 'B' | 'tie'
+        judge_type: str,         # 'human' | 'llm'
+        judge_id: str = None,
+    ):
+        """Log a head-to-head comparison and update both models' ELO ratings.
+
+        Idempotent on ``review_id`` (INSERT OR IGNORE) so replays are safe.
+        """
+        outcome = {"A": 1.0, "B": 0.0, "tie": 0.5}.get(verdict, 0.5)
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute(
+                "INSERT OR IGNORE INTO reviews "
+                "(review_id, model_a, model_b, verdict, judge_type, judge_id, created_at) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (review_id, model_a, model_b, verdict, judge_type, judge_id, int(time.time())),
+            )
+            cursor.execute("SELECT rating FROM elo_ratings WHERE model_id = ?", (model_a,))
+            row = cursor.fetchone()
+            ra = row[0] if row else DEFAULT_RATING
+            cursor.execute("SELECT rating FROM elo_ratings WHERE model_id = ?", (model_b,))
+            row = cursor.fetchone()
+            rb = row[0] if row else DEFAULT_RATING
+            new_a, new_b = update_ratings(ra, rb, outcome)
+            deltas = {
+                "A": ((1, 0, 0), (0, 1, 0)),
+                "B": ((0, 1, 0), (1, 0, 0)),
+                "tie": ((0, 0, 1), (0, 0, 1)),
+            }[verdict]
+            for mid, old, new, inc in (
+                (model_a, ra, new_a, deltas[0]),
+                (model_b, rb, new_b, deltas[1]),
+            ):
+                w, l, d = inc
+                cursor.execute(
+                    "INSERT INTO elo_ratings (model_id, rating, wins, losses, draws, matches, updated_at) "
+                    "VALUES (?, ?, ?, ?, ?, 1, ?) "
+                    "ON CONFLICT(model_id) DO UPDATE SET "
+                    "rating=excluded.rating, "
+                    "wins=wins+excluded.wins, losses=losses+excluded.losses, "
+                    "draws=draws+excluded.draws, matches=matches+1, updated_at=excluded.updated_at",
+                    (mid, new, w, l, d, int(time.time())),
+                )
+            self.conn.commit()
+
+    # ---- Monetization entities (open-question #4) ----
+
+    def create_user(self, user_id: str, email: str = None, plan_key: str = "free",
+                    stripe_customer_id: str = None) -> None:
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute(
+                "INSERT OR IGNORE INTO users (user_id, email, plan_key, stripe_customer_id, created_at) "
+                "VALUES (?, ?, ?, ?, ?)",
+                (user_id, email, plan_key, stripe_customer_id, int(time.time())),
+            )
+            self.conn.commit()
+
+    def get_user(self, user_id: str) -> Optional[Dict[str, Any]]:
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute(
+                "SELECT user_id, email, plan_key, stripe_customer_id, created_at FROM users WHERE user_id = ?",
+                (user_id,),
+            )
+            row = cursor.fetchone()
+            if not row:
+                return None
+            return {
+                "user_id": row[0], "email": row[1], "plan_key": row[2],
+                "stripe_customer_id": row[3], "created_at": row[4],
+            }
+
+    def create_api_key(self, key: str, user_id: str, plan_key: str) -> None:
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute(
+                "INSERT OR IGNORE INTO api_keys (key, user_id, plan_key, created_at, revoked_at) "
+                "VALUES (?, ?, ?, ?, NULL)",
+                (key, user_id, plan_key, int(time.time())),
+            )
+            self.conn.commit()
+
+    def get_api_key_plan(self, key: str) -> Optional[str]:
+        """Return the plan_key for a valid (non-revoked) API key, else None."""
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute(
+                "SELECT plan_key FROM api_keys WHERE key = ? AND revoked_at IS NULL",
+                (key,),
+            )
+            row = cursor.fetchone()
+            return row[0] if row else None
+
+    def revoke_api_key(self, key: str) -> None:
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute(
+                "UPDATE api_keys SET revoked_at = ? WHERE key = ?",
+                (int(time.time()), key),
+            )
+            self.conn.commit()
+
+    def create_organization(self, org_id: str, name: str = None,
+                            certified_until: int = None) -> None:
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute(
+                "INSERT OR IGNORE INTO organizations (org_id, name, certified_until, created_at) "
+                "VALUES (?, ?, ?, ?)",
+                (org_id, name, certified_until, int(time.time())),
+            )
+            self.conn.commit()
+
+    def certify_organization(self, org_id: str, certified_until: int) -> None:
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute(
+                "UPDATE organizations SET certified_until = ? WHERE org_id = ?",
+                (certified_until, org_id),
+            )
+            self.conn.commit()
+
+    def get_organization(self, org_id: str) -> Optional[Dict[str, Any]]:
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute(
+                "SELECT org_id, name, certified_until, created_at FROM organizations WHERE org_id = ?",
+                (org_id,),
+            )
+            row = cursor.fetchone()
+            if not row:
+                return None
+            return {"org_id": row[0], "name": row[1],
+                    "certified_until": row[2], "created_at": row[3]}
 
     def clear_expired(self):
         now = int(time.time())

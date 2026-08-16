@@ -1,4 +1,5 @@
 import logging
+import uuid
 import uvicorn
 from fastapi import FastAPI, HTTPException, Query, Response, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,6 +15,7 @@ from badges.generator import BadgeGenerator, generate_badge
 from data.models import ModelScore, LeaderboardEntry
 from contextlib import asynccontextmanager
 from api.premium import router as premium_router
+from scoring.judge import run_llm_judge
 
 # Global variables for instances
 cache = None
@@ -60,6 +62,11 @@ async def global_exception_handler(request: Request, exc: Exception):
 
 class BatchScoreRequest(BaseModel):
     model_ids: List[str]
+
+class JudgeRequest(BaseModel):
+    model_a: str
+    model_b: str
+    verdict: Optional[str] = None  # human verdict: 'A' | 'B' | 'tie'
 
 @app.get("/", include_in_schema=False)
 async def docs_redirect():
@@ -286,6 +293,70 @@ async def compare_models_endpoint(
     except Exception as e:
         logging.error(f"Error comparing {model_a} vs {model_b}: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/judge/human")
+async def judge_human(request: JudgeRequest):
+    """Record a human head-to-head verdict (no LLM call); updates ELO."""
+    try:
+        if request.verdict not in ("A", "B", "tie"):
+            raise HTTPException(status_code=400, detail="verdict must be one of: A, B, tie")
+        review_id = f"human-{uuid.uuid4().hex[:12]}"
+        cache.record_head_to_head(
+            review_id, request.model_a, request.model_b, request.verdict, "human"
+        )
+        return {
+            "review_id": review_id,
+            "verdict": request.verdict,
+            "model_a": request.model_a,
+            "model_b": request.model_b,
+            "elo": {
+                "a": cache.get_elo_rating(request.model_a),
+                "b": cache.get_elo_rating(request.model_b),
+            },
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/judge/{model_a:path}/{model_b:path}")
+async def judge_llm(model_a: str, model_b: str):
+    """Run the LLM-judge vibe-check and persist the result (updates ELO)."""
+    try:
+        result = run_llm_judge(model_a, model_b, cache=cache)
+        if result is None:
+            raise HTTPException(status_code=404, detail="One or both models are not cached")
+        result["elo"] = {
+            "a": cache.get_elo_rating(model_a),
+            "b": cache.get_elo_rating(model_b),
+        }
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"LLM judge failed for {model_a} vs {model_b}: {e}")
+        raise HTTPException(status_code=502, detail=f"LLM judge unavailable: {e}")
+
+
+@app.get("/elo/{model_id:path}")
+async def elo_rating(model_id: str):
+    """Current ELO rating + win/loss/draw record for a model."""
+    try:
+        rec = cache.get_elo_record(model_id)
+        if rec is None:
+            return {
+                "model_id": model_id,
+                "rating": cache.get_elo_rating(model_id),
+                "wins": 0,
+                "losses": 0,
+                "draws": 0,
+                "matches": 0,
+            }
+        return rec
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @app.get("/shields/{model_id:path}", include_in_schema=True)
 async def shields_endpoint(model_id: str):

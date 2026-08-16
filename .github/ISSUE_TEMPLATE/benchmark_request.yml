@@ -1,0 +1,21 @@
+name: 📊 Request Benchmark Addition
+description: Propose adding a new evaluation dataset or benchmark to the composite engine
+labels: ["benchmark"]
+body:
+  - type: markdown
+    attributes:
+      value: Propose integrating a standard LLM benchmark (e.g., GPQA, SWE-bench, Math-500) into ModelRank's scoring engine.
+  - type: input
+    id: benchmark_name
+    attributes:
+      label: Benchmark Name
+      placeholder: e.g. SWE-bench Verified
+    validations:
+      required: true
+  - type: textarea
+    id: benchmark_info
+    attributes:
+      label: Paper / Dataset URL & Description
+      description: Link to dataset, paper, and methodology.
+    validations:
+      required: true

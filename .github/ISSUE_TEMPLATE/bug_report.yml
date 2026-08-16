@@ -1,0 +1,32 @@
+name: 🐛 Bug Report
+description: Report an issue or unexpected behavior in ModelRank
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for helping improve ModelRank! Please provide details to reproduce the issue.
+  - type: input
+    id: version
+    attributes:
+      label: Python / ModelRank Version
+      description: What Python version are you using?
+      placeholder: e.g. Python 3.11 / main branch
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the bug and include any traceback or error output.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Exact commands or API calls executed.
+      placeholder: |
+        1. Run `python main.py score --model ...`
+        2. Hit endpoint `/v1/score/...`
+    validations:
+      required: true
