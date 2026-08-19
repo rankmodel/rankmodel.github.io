@@ -54,3 +54,39 @@ def test_judge_llm_endpoint(client, monkeypatch):
     r = client.get("/judge/A/B")
     assert r.status_code == 200
     assert r.json()["verdict"] == "A"
+
+
+def test_reviews_feed_endpoint(client):
+    client.post("/judge/human", json={"model_a": "A", "model_b": "B", "verdict": "A"})
+    r = client.get("/reviews")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["total"] == 1
+    assert body["reviews"][0]["model_a"] == "A"
+    assert body["reviews"][0]["verdict"] == "A"
+
+
+def test_reviews_feed_filters_by_model(client):
+    client.post("/judge/human", json={"model_a": "A", "model_b": "B", "verdict": "A"})
+    r = client.get("/reviews", params={"model_id": "B"})
+    assert r.status_code == 200
+    assert r.json()["total"] == 1
+    r = client.get("/reviews", params={"model_id": "Z"})
+    assert r.json()["total"] == 0
+
+
+def test_reviews_feed_invalid_judge_type(client):
+    r = client.get("/reviews", params={"judge_type": "bogus"})
+    assert r.status_code == 400
+
+
+def test_elo_leaderboard_endpoint(client):
+    client.post("/judge/human", json={"model_a": "A", "model_b": "B", "verdict": "A"})
+    client.post("/judge/human", json={"model_a": "A", "model_b": "B", "verdict": "A"})
+    r = client.get("/elo-leaderboard")
+    assert r.status_code == 200
+    standings = r.json()["standings"]
+    assert len(standings) == 2
+    # A won twice -> should outrank B
+    assert standings[0]["model_id"] == "A"
+    assert standings[0]["rating"] > standings[1]["rating"]

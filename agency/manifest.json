@@ -63,6 +63,16 @@
       "budget_usd_per_month": 0,
       "permissions": ["read_metrics", "revenue_report"],
       "description": "Makes the company's numbers inspectable to the CEO."
+    },
+    {
+      "id": "h2h_researcher",
+      "title": "Head-to-Head UX Researcher",
+      "role": "Researches and designs the community scoring + LLM-judge vibe-check experience; owns the H2H verdict feed, ELO standings board, and review UX.",
+      "reports_to": "ceo",
+      "model": "reasoning-frontier",
+      "budget_usd_per_month": 0,
+      "permissions": ["research", "read_metrics", "docs"],
+      "description": "Closes PALA-7 / H2H open question #3 — turns the raw reviews + ELO data layer into a usable community surface. (Corresponds to the live Paperclip agent 726a7993.)"
     }
   ],
   "routines": [

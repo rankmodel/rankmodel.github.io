@@ -81,3 +81,35 @@ def test_run_llm_judge_records_and_updates_elo(cache):
 def test_run_llm_judge_missing_model(cache):
     _seed(cache, "modelA")
     assert run_llm_judge("modelA", "ghost", cache=cache, llm_call=lambda p: "A") is None
+
+
+def test_get_reviews_lists_most_recent_first(cache):
+    _seed(cache, "modelA")
+    _seed(cache, "modelB")
+    cache.record_head_to_head("r1", "modelA", "modelB", "A", "human")
+    cache.record_head_to_head("r2", "modelA", "modelB", "B", "llm")
+    reviews = cache.get_reviews(limit=10)
+    assert len(reviews) == 2
+    assert reviews[0]["review_id"] == "r2"  # newest first
+
+
+def test_get_reviews_filters_by_model_and_type(cache):
+    _seed(cache, "modelA")
+    _seed(cache, "modelB")
+    _seed(cache, "modelC")
+    cache.record_head_to_head("r1", "modelA", "modelB", "A", "human")
+    cache.record_head_to_head("r2", "modelA", "modelC", "B", "llm")
+    assert len(cache.get_reviews(model_id="modelC")) == 1
+    assert len(cache.get_reviews(judge_type="llm")) == 1
+    assert len(cache.get_reviews(model_id="modelC", judge_type="human")) == 0
+
+
+def test_get_elo_leaderboard_ranked_desc(cache):
+    _seed(cache, "modelA")
+    _seed(cache, "modelB")
+    cache.record_head_to_head("r1", "modelA", "modelB", "A", "human")
+    cache.record_head_to_head("r2", "modelA", "modelB", "A", "human")
+    board = cache.get_elo_leaderboard(limit=10)
+    assert len(board) == 2
+    assert board[0]["model_id"] == "modelA"  # won twice -> highest
+    assert board[0]["rating"] > board[1]["rating"]

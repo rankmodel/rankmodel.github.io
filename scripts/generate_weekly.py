@@ -2,123 +2,223 @@
 """
 scripts/generate_weekly.py
 
-Generates the ModelRank Weekly newsletter.
-Run every Monday: python scripts/generate_weekly.py
-Outputs: outputs/modelrank_weekly_latest.md
+Generates the "ModelRank Weekly" newsletter from live leaderboard data.
+Run from the agency (weekly_newsletter routine) or manually:
+
+    python scripts/generate_weekly.py
+
+Outputs:
+  outputs/modelrank_weekly_latest.md     - newsletter (Markdown)
+  outputs/modelrank_twitter_thread.md    - shareable X thread
+  static_output/weekly.html              - public newsletter page
+  static_output/weekly.json              - machine-readable newsletter
 """
 
-import os
 import json
 import datetime
+import sys
 from pathlib import Path
 
-# Adjust paths assuming script runs from project root
+# Allow running as a script from the project root (mirrors generate_static_assets.py)
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 OUTPUT_DIR = Path('outputs')
-OUTPUT_DIR.mkdir(exist_ok=True)
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 STATIC_DIR = Path('static_output')
+BASE_URL = 'https://rankmodel.github.io/rankmodel1'
+
+
+def _short(mid: str) -> str:
+    return mid.split('/')[-1]
+
 
 def main():
     from data.cache import ModelCache
-    
+
     cache = ModelCache()
-    models = cache.get_leaderboard(limit=10)
-    
+    models = cache.get_leaderboard(limit=50)
+
     trending_data = {}
     trending_file = STATIC_DIR / 'trending.json'
     if trending_file.exists():
-        with open(trending_file, 'r') as f:
-            trending_data = json.load(f)
-            
+        trending_data = json.loads(trending_file.read_text())
+
     trending_models = trending_data.get('trending', [])
-    
-    today = datetime.datetime.now().strftime("%B %d, %Y")
-    
-    newsletter = f"""# ModelRank Weekly - {today}
+    today = datetime.datetime.now().strftime('%B %d, %Y')
 
-## This Week's Highlights
-* **Shifting Ranks**: The leaderboard saw massive movement as new community favorites emerged.
-* **Open Source Efficiency**: Smaller models (<10B) are dominating the value-per-parameter metric.
-* **Community Engagement**: Model developers are embedding ModelRank badges to showcase their scores!
+    # --- data-driven spotlights ---
+    top10 = models[:10]
+    # Efficiency king: highest efficiency score among all ranked models.
+    efficiency_king = max(
+        models,
+        key=lambda m: m.get('score', {}).get('breakdown', {}).get('efficiency', 0),
+        default=None,
+    )
+    # Newcomer: highest recency score (most recently updated).
+    newcomer = max(
+        models,
+        key=lambda m: m.get('score', {}).get('breakdown', {}).get('recency', 0),
+        default=None,
+    )
+    # Smallest model in the top 10 (value-per-parameter story).
+    small_top = min(
+        top10,
+        key=lambda m: (m.get('score', {}).get('extended', {}).get('vram_tier', 50)),
+        default=None,
+    )
 
-## Top 10 Leaderboard
-| Rank | Model | Composite Score | Tier |
-|------|-------|-----------------|------|
-"""
-    for rank, model in enumerate(models, 1):
-        mid = model.get('model_id', 'Unknown')
-        s = model.get('score', {})
-        score = s.get('composite', 0)
-        tier = s.get('tier', 'D')
-        newsletter += f"| {rank} | `{mid}` | {score:.2f} | {tier} |\n"
+    ek = efficiency_king.get('score', {}).get('breakdown', {}).get('efficiency', 0) if efficiency_king else 0
+    nk = newcomer.get('score', {}).get('breakdown', {}).get('recency', 0) if newcomer else 0
 
-    newsletter += """
-## Trending This Week
-"""
+    # --- Markdown newsletter ---
+    newsletter = f"# ModelRank Weekly — {today}\n\n"
+    newsletter += "## This Week's Highlights\n"
+    if efficiency_king:
+        newsletter += (
+            f"* **Efficiency king:** `{efficiency_king['model_id']}` leads on "
+            f"score-per-parameter ({ek:.0f}/100 efficiency).\n"
+        )
+    if newcomer:
+        newsletter += (
+            f"* **Fresh arrival:** `{newcomer['model_id']}` is the most recently "
+            f"updated model on the board (recency {nk:.0f}/100).\n"
+        )
+    if small_top:
+        newsletter += (
+            f"* **Best value:** `{small_top['model_id']}` ranks in the top 10 while "
+            f"staying small and deployable.\n"
+        )
+    newsletter += "* **Community:** developers keep embedding ModelRank badges to showcase their scores.\n\n"
+
+    newsletter += "## Top 10 Leaderboard\n"
+    newsletter += "| Rank | Model | Composite | Tier |\n|------|-------|----------|------|\n"
+    for rank, m in enumerate(top10, 1):
+        s = m.get('score', {})
+        newsletter += f"| {rank} | `{m.get('model_id','?')}` | {s.get('composite',0):.2f} | {s.get('tier','D')} |\n"
+
+    newsletter += "\n## Trending This Week\n"
     if trending_models:
         for t in trending_models[:5]:
-            newsletter += f"- **{t['model_id']}** (Tier {t['tier']}) - Trend Score: {t['trend_score']} | *Why: {t['reason']}*\n"
+            newsletter += f"- **{t['model_id']}** (Tier {t['tier']}) — trend {t['trend_score']} · *{t['reason']}*\n"
     else:
-        newsletter += "No trending models this week.\n"
+        newsletter += "_No standout trending models this week._\n"
 
-    newsletter += """
-## Efficiency Spotlight
-The most efficient model < 10B params this week is crushing the benchmarks while being deployable on edge devices. Stay tuned as we build more granular hardware efficiency tracking!
+    newsletter += "\n## Efficiency Spotlight\n"
+    if efficiency_king:
+        newsletter += (
+            f"`{efficiency_king['model_id']}` posts the best efficiency score "
+            f"({ek:.0f}/100) — proof that small, well-trained models still punch above their weight.\n"
+        )
+    else:
+        newsletter += "_Not enough data yet — score more models to populate this.\n"
 
-## New Arrivals
-*(Placeholder for tracking weekly additions)*
+    newsletter += "\n## New Arrivals\n"
+    if newcomer:
+        newsletter += (
+            f"`{newcomer['model_id']}` is the freshest model this week (recency {nk:.0f}/100). "
+            f"Freshness rewards actively maintained releases.\n"
+        )
+    else:
+        newsletter += "_Tracked once historical data accumulates._\n"
 
-## Insight of the Week
-"Phi-4 achieves 72.89 score with only 14B params, beating models 5x its size." Parameter count isn't everything when training data quality is exceptional.
+    newsletter += (
+        "\n## Community Corner\n"
+        "- **Embed your badge:** grab your model's SVG from `static_output/badges/`.\n"
+        "- **Star the repo:** if ModelRank helps you cut through hype, give it a star.\n"
+        "- **Share your tier:** post your model's score on X.\n\n"
+        f"---\n*Generated by ModelRank — independent AI leaderboard · {BASE_URL}*\n"
+    )
 
-## Community Corner
-- **Embed your badge**: Check out `static_output/badges/` for your model's SVG badge!
-- **Star the repo**: Love ModelRank? Give us a star on GitHub.
-- **DM your score**: Show off your model's tier on Twitter/X!
+    (OUTPUT_DIR / 'modelrank_weekly_latest.md').write_text(newsletter)
+    print(f"Generated {OUTPUT_DIR / 'modelrank_weekly_latest.md'}")
 
----
-*Generated by ModelRank Generator*
-"""
-
-    out_file = OUTPUT_DIR / 'modelrank_weekly_latest.md'
-    out_file.write_text(newsletter)
-    print(f"Generated {out_file}")
-    
-    thread = f"""🧵 ModelRank Weekly - {today}
-
-1/ The ModelRank Weekly is out! Let's dive into this week's AI model landscape changes. 📊
-
-2/ Top 3 Models this week:
-"""
-    for rank, model in enumerate(models[:3], 1):
-        mid = model.get('model_id', 'Unknown')
-        score = model.get('score', {}).get('composite', 0)
-        thread += f"  #{rank} {mid} ({score:.1f})\n"
-
-    thread += """
-3/ Trending Alert! 🚀
-"""
+    # --- X thread ---
+    thread = f"🧵 ModelRank Weekly — {today}\n\n1/ The ModelRank Weekly is out! Here's the AI model landscape this week. 📊\n\n2/ Top 3:\n"
+    for rank, m in enumerate(top10[:3], 1):
+        thread += f"  #{rank} {m.get('model_id')} ({m.get('score',{}).get('composite',0):.1f})\n"
+    thread += "\n3/ 🔥 Trending:\n"
     if trending_models:
         for t in trending_models[:2]:
-            thread += f"  🔥 {t['model_id']} is trending ({t['reason']})\n"
-            
-    thread += """
-4/ Insight of the week 🧠
-Phi-4 achieves 72.89 score with only 14B params, beating models 5x its size. Parameter count isn't everything!
+            thread += f"  • {t['model_id']} — {t['reason']}\n"
+    if efficiency_king:
+        thread += f"\n4/ ⚡ Efficiency king: {efficiency_king['model_id']} ({ek:.0f}/100).\n"
+    if newcomer:
+        thread += f"\n5/ 🆕 Freshest model: {newcomer['model_id']} (recency {nk:.0f}/100).\n"
+    thread += (
+        f"\n6/ Full leaderboard + free badge: {BASE_URL}\n\n"
+        "7/ Star the repo if this helped! 🌟 (end)\n"
+    )
+    (OUTPUT_DIR / 'modelrank_twitter_thread.md').write_text(thread)
+    print(f"Generated {OUTPUT_DIR / 'modelrank_twitter_thread.md'}")
 
-5/ Efficiency Spotlight 💡
-Smaller models (<10B) continue to push the boundaries of what's possible on edge devices.
+    # --- public HTML page + JSON ---
+    rows = ''.join(
+        f"<tr><td class='px-4 py-2 border-b border-white/5'>{i}</td>"
+        f"<td class='px-4 py-2 border-b border-white/5 font-mono'>{m.get('model_id','?')}</td>"
+        f"<td class='px-4 py-2 border-b border-white/5 text-center'>{m.get('score',{}).get('composite',0):.1f}</td>"
+        f"<td class='px-4 py-2 border-b border-white/5 text-center'>{m.get('score',{}).get('tier','D')}</td></tr>"
+        for i, m in enumerate(top10, 1)
+    )
+    trend_rows = ''.join(
+        f"<li class='py-1'>{t['model_id']} <span class='text-gray-500'>— {t['reason']}</span></li>"
+        for t in trending_models[:5]
+    ) or "<li class='py-1 text-gray-500'>No standout trending models this week.</li>"
 
-6/ Community updates 🌐
-Developers are embedding their ModelRank badges in READMEs. Get yours now!
+    html = f"""<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ModelRank Weekly — {today}</title>
+  <meta name="description" content="The independent open-weight AI leaderboard, weekly."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet"/>
+  <style>body {{ background-color:#0a0a0f; color:#f1f5f9; font-family:'Inter',sans-serif; }} .glass-card {{ background:rgba(19,19,26,0.7); border:1px solid rgba(255,255,255,0.05); }}</style>
+</head>
+<body class="min-h-screen">
+  <header class="pt-10 pb-6 border-b border-white/5">
+    <div class="container mx-auto px-4 max-w-3xl flex justify-between items-center">
+      <a href="index.html" class="text-xl font-black text-white">🏆 ModelRank</a>
+      <a href="index.html" class="text-sm text-gray-400 hover:text-white">Leaderboard</a>
+    </div>
+  </header>
+  <main class="container mx-auto px-4 py-10 max-w-3xl">
+    <h1 class="text-3xl font-black text-white mb-1">ModelRank Weekly</h1>
+    <p class="text-gray-400 mb-8">{today}</p>
 
-7/ See the full leaderboard and get your badge at rankmodel.github.io/rankmodel1
+    <div class="glass-card rounded-2xl p-6 mb-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+      <div><div class="text-xs text-gray-500 uppercase">Efficiency King</div><div class="text-sm font-bold text-green-400 mt-1">{'—' if not efficiency_king else _short(efficiency_king['model_id'])}</div></div>
+      <div><div class="text-xs text-gray-500 uppercase">Freshest</div><div class="text-sm font-bold text-yellow-400 mt-1">{'—' if not newcomer else _short(newcomer['model_id'])}</div></div>
+      <div><div class="text-xs text-gray-500 uppercase">Ranked</div><div class="text-sm font-bold text-blue-400 mt-1">{len(models)} models</div></div>
+    </div>
 
-8/ Star the repo if you found this useful! 🌟 (End of thread)
-"""
-    
-    thread_file = OUTPUT_DIR / 'modelrank_twitter_thread.md'
-    thread_file.write_text(thread)
-    print(f"Generated {thread_file}")
+    <h2 class="text-xl font-bold text-white mb-3">Top 10 Leaderboard</h2>
+    <div class="glass-card rounded-2xl overflow-hidden mb-8">
+      <table class="w-full text-left text-sm">
+        <thead class="bg-white/5 text-gray-400"><tr><th class="px-4 py-2">#</th><th class="px-4 py-2">Model</th><th class="px-4 py-2 text-center">Score</th><th class="px-4 py-2 text-center">Tier</th></tr></thead>
+        <tbody>{rows}</tbody>
+      </table>
+    </div>
+
+    <h2 class="text-xl font-bold text-white mb-3">Trending</h2>
+    <ul class="glass-card rounded-2xl p-6 mb-8 list-disc list-inside text-gray-300">{trend_rows}</ul>
+
+    <p class="text-center text-sm text-gray-500">Independent AI leaderboard · <a href="{BASE_URL}" class="text-blue-400 hover:underline">rankmodel.github.io/rankmodel1</a></p>
+  </main>
+</body>
+</html>"""
+    STATIC_DIR.mkdir(parents=True, exist_ok=True)
+    (STATIC_DIR / 'weekly.html').write_text(html)
+    (STATIC_DIR / 'weekly.json').write_text(json.dumps({
+        'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00', 'Z'),
+        'date': today,
+        'top10': [{'rank': i, 'model_id': m.get('model_id'), 'composite': m.get('score', {}).get('composite', 0), 'tier': m.get('score', {}).get('tier', 'D')} for i, m in enumerate(top10, 1)],
+        'trending': trending_models[:5],
+        'efficiency_king': efficiency_king['model_id'] if efficiency_king else None,
+        'newcomer': newcomer['model_id'] if newcomer else None,
+    }, indent=2))
+    print(f"Generated {STATIC_DIR / 'weekly.html'} and weekly.json")
+
 
 if __name__ == '__main__':
     main()

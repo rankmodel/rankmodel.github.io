@@ -420,6 +420,56 @@ def elo_ui(model_id: str) -> str:
     )
 
 
+def verdict_label(verdict: str, model_a: str, model_b: str) -> str:
+    short_a = model_a.split('/')[-1]
+    short_b = model_b.split('/')[-1]
+    if verdict == 'A':
+        return f"<b style='color:#22c55e'>{short_a}</b> beat <b>{short_b}</b>"
+    if verdict == 'B':
+        return f"<b>{short_a}</b> lost to <b style='color:#22c55e'>{short_b}</b>"
+    return f"<b>{short_a}</b> tied <b>{short_b}</b>"
+
+
+def reviews_feed_ui(model_id: str = '', judge_type: str = 'all', limit: int = 50) -> str:
+    try:
+        mid = model_id.strip() if model_id else None
+        jt = judge_type if judge_type in ('human', 'llm') else None
+        reviews = cache.get_reviews(limit=limit, model_id=mid, judge_type=jt)
+        if not reviews:
+            return "<div style='color:#64748b;padding:12px;font-family:sans-serif;'>No head-to-head verdicts yet — run the LLM judge or record a human verdict above.</div>"
+        rows = ""
+        for r in reviews:
+            badge = "🤖" if r['judge_type'] == 'llm' else "✍️"
+            rows += (
+                f"<div style='display:flex;justify-content:space-between;align-items:center;padding:8px 12px;"
+                f"border-bottom:1px solid #2d2d50;font-family:sans-serif;'>"
+                f"<span style='color:#e2e8f0;font-size:13px;'>{badge} {verdict_label(r['verdict'], r['model_a'], r['model_b'])}</span>"
+                f"<span style='color:#64748b;font-size:11px;'>{r['judge_type']}</span></div>"
+            )
+        return f"<div style='background:#0f0f23;border-radius:12px;padding:8px;max-height:360px;overflow:auto;'>{rows}</div>"
+    except Exception as e:
+        return f"<div style='color:#ef4444;padding:12px;'>Error: {e}</div>"
+
+
+def elo_leaderboard_ui(limit: int = 25) -> str:
+    try:
+        standings = cache.get_elo_leaderboard(limit=limit)
+        if not standings:
+            return "<div style='color:#64748b;padding:12px;font-family:sans-serif;'>No ELO ratings yet — head-to-head comparisons populate this standings board.</div>"
+        rows = ""
+        for i, s in enumerate(standings, 1):
+            medal = {1: '🥇', 2: '🥈', 3: '🥉'}.get(i, f"{i}.")
+            rows += (
+                f"<div style='display:flex;justify-content:space-between;align-items:center;padding:7px 12px;"
+                f"border-bottom:1px solid #2d2d50;font-family:sans-serif;'>"
+                f"<span style='color:#e2e8f0;'>{medal} {s['model_id'].split('/')[-1]}</span>"
+                f"<span style='color:#a855f7;font-weight:700;'>{s['rating']:.0f}</span></div>"
+            )
+        return f"<div style='background:#0f0f23;border-radius:12px;padding:8px;max-height:360px;overflow:auto;'>{rows}</div>"
+    except Exception as e:
+        return f"<div style='color:#ef4444;padding:12px;'>Error: {e}</div>"
+
+
 def judge_llm_ui(model_a: str, model_b: str) -> str:
     if not model_a or not model_b:
         return "<div style='color:#f59e0b;padding:12px;'>Enter both model IDs.</div>"
@@ -583,13 +633,33 @@ with gr.Blocks(title='ModelRank — HuggingFace Model Leaderboard') as demo:
                 j_llm_btn = gr.Button('🤖 Run LLM Judge')
             j_out = gr.HTML()
             j_llm_out = gr.HTML()
-            j_human_btn.click(fn=judge_human_ui, inputs=[j_model_a, j_model_b, j_verdict], outputs=[j_out])
-            j_llm_btn.click(fn=judge_llm_ui, inputs=[j_model_a, j_model_b], outputs=[j_llm_out])
+
             with gr.Row():
                 elo_model = gr.Textbox(label='ELO lookup', placeholder='model id', scale=4)
                 elo_btn = gr.Button('📊 Show ELO')
             elo_out = gr.HTML()
+
+            gr.HTML("<div style='font-size:14px;font-weight:700;color:#e2e8f0;margin:18px 0 6px;font-family:sans-serif;'>🏅 Head-to-Head ELO Standings</div>")
+            j_board_limit = gr.Slider(minimum=10, maximum=100, step=5, value=25, label='Top N')
+            j_elo_board = gr.HTML(value=lambda: elo_leaderboard_ui(25))
+            j_refresh_board = gr.Button('🔄 Refresh Standings')
+
+            gr.HTML("<div style='font-size:14px;font-weight:700;color:#e2e8f0;margin:18px 0 6px;font-family:sans-serif;'>💬 Community Verdict Feed</div>")
+            with gr.Row():
+                j_judge_filter = gr.Dropdown(choices=['all', 'human', 'llm'], value='all', label='Judge')
+                j_feed_limit = gr.Slider(minimum=10, maximum=100, step=10, value=50, label='Rows')
+            j_reviews_feed = gr.HTML(value=lambda: reviews_feed_ui('', 'all', 50))
+            j_refresh_feed = gr.Button('🔄 Refresh Feed')
+
+            j_human_btn.click(fn=judge_human_ui, inputs=[j_model_a, j_model_b, j_verdict], outputs=[j_out]).then(
+                fn=reviews_feed_ui, inputs=[j_model_a, j_judge_filter, j_feed_limit], outputs=[j_reviews_feed]
+            )
+            j_llm_btn.click(fn=judge_llm_ui, inputs=[j_model_a, j_model_b], outputs=[j_llm_out]).then(
+                fn=reviews_feed_ui, inputs=[j_model_a, j_judge_filter, j_feed_limit], outputs=[j_reviews_feed]
+            )
             elo_btn.click(fn=elo_ui, inputs=[elo_model], outputs=[elo_out])
+            j_refresh_board.click(fn=elo_leaderboard_ui, inputs=[j_board_limit], outputs=[j_elo_board])
+            j_refresh_feed.click(fn=reviews_feed_ui, inputs=[j_model_a, j_judge_filter, j_feed_limit], outputs=[j_reviews_feed])
 
         with gr.Tab('ℹ️ About'):
             gr.Markdown('''
@@ -600,11 +670,11 @@ ModelRank uses a composite scoring methodology to evaluate HuggingFace models ac
 ### Scoring Formula
 | Dimension | Weight | Description |
 |-----------|--------|-------------|
-| 🧠 Benchmarks | 40% | Aggregated performance on MMLU-Pro, GPQA, HLE, GSM8K, HumanEval |
-| ⚡ Efficiency | 20% | Benchmark performance relative to parameter count |
-| 🔥 Community | 20% | Downloads, likes, and trending score |
-| 🕐 Freshness | 10% | Exponential decay based on days since last update |
-| ✅ Verified | 10% | Source quality and benchmark diversity |
+| 🧠 Benchmarks | 70% | Aggregated performance on MMLU-Pro, GPQA, HLE, GSM8K, HumanEval |
+| 🕐 Recency | 15% | 180-day half-life decay since last update |
+| 🔥 Community | 10% | Downloads, likes, and trending score |
+| ⚡ Efficiency | 5% | Benchmark performance relative to parameter count |
+| ✅ Reproducibility | 0% | Source quality and benchmark diversity (reserved) |
 
 ### Tier System
 | Tier | Score Range | Description |

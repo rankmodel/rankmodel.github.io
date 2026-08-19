@@ -358,6 +358,33 @@ async def elo_rating(model_id: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/elo-leaderboard")
+async def elo_leaderboard(limit: int = Query(50, le=200)):
+    """Head-to-head community standings — models ranked by ELO rating."""
+    try:
+        return {"total": len(cache.get_elo_leaderboard(limit)), "standings": cache.get_elo_leaderboard(limit)}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/reviews")
+async def list_reviews(
+    limit: int = Query(50, le=200),
+    model_id: Optional[str] = Query(None, description="Filter to reviews involving this model"),
+    judge_type: Optional[str] = Query(None, description="human | llm"),
+):
+    """Community + LLM-judge head-to-head verdict feed."""
+    try:
+        if judge_type not in (None, "human", "llm"):
+            raise HTTPException(status_code=400, detail="judge_type must be 'human' or 'llm'")
+        reviews = cache.get_reviews(limit=limit, model_id=model_id, judge_type=judge_type)
+        return {"total": len(reviews), "reviews": reviews}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/recommend")
 async def recommend_endpoint(
     use_case: str = Query("general", description="coding|chat|research|local|multilingual|general"),

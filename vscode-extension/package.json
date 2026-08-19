@@ -1,0 +1,35 @@
+{
+  "name": "modelrank",
+  "displayName": "ModelRank",
+  "description": "Hover a HuggingFace model id to see its independent ModelRank score, tier, and breakdown.",
+  "version": "0.1.0",
+  "publisher": "modelrank",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "ModelRank",
+      "properties": {
+        "modelrank.baseUrl": {
+          "type": "string",
+          "default": "https://api.modelrank.com",
+          "description": "ModelRank API base URL (use http://localhost:8000 for a local server)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -watch -p ."
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.4.0"
+  }
+}

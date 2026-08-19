@@ -324,10 +324,22 @@ def generate_sitemap(models: list, base_url: str) -> str:
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
+   <url>
     <loc>{base_url}/pricing.html</loc>
     <lastmod>{today}</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+   <url>
+    <loc>{base_url}/head-to-head.html</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+   <url>
+    <loc>{base_url}/weekly.html</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>'''
     
@@ -576,8 +588,10 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
           <a href="#" class="text-white">Leaderboard</a>
           <a href="methodology.html" class="hover:text-white transition-colors">Methodology</a>
           <a href="quiz.html" class="hover:text-white transition-colors">Quiz</a>
-          <a href="collections.html" class="hover:text-white transition-colors">Collections</a>
-          <a href="dna.html" class="hover:text-white transition-colors">Model DNA</a>
+           <a href="collections.html" class="hover:text-white transition-colors">Collections</a>
+           <a href="dna.html" class="hover:text-white transition-colors">Model DNA</a>
+           <a href="head-to-head.html" class="hover:text-white transition-colors">Head-to-Head</a>
+           <a href="weekly.html" class="hover:text-white transition-colors">Weekly</a>
           <a href="pricing.html" class="hover:text-white transition-colors">Pricing</a>
           <a href="https://github.com/rankmodel/rankmodel1" class="hover:text-white transition-colors flex items-center gap-2">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
@@ -599,7 +613,7 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
           </div>
           <div class="px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-green-500"></span>
-            15 Benchmarks
+            5 Benchmarks
           </div>
           <div class="px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-purple-500"></span>
@@ -698,36 +712,36 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
         <p class="text-gray-400 max-w-2xl mx-auto">A transparent, reproducible scoring system that looks beyond simple benchmarks to capture the full picture of a model's utility.</p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-        <div class="glass-card p-6 rounded-2xl">
-          <div class="text-2xl mb-2">🧠</div>
-          <h3 class="font-bold text-white mb-1">Benchmarks</h3>
-          <div class="text-xs text-blue-400 font-bold mb-3">40% WEIGHT</div>
-          <p class="text-sm text-gray-400 leading-relaxed">Aggregated scores from MMLU, HumanEval, GSM8K, and TruthfulQA. Adjusted for model contamination.</p>
-        </div>
-        <div class="glass-card p-6 rounded-2xl">
-          <div class="text-2xl mb-2">⚡</div>
-          <h3 class="font-bold text-white mb-1">Efficiency</h3>
-          <div class="text-xs text-green-400 font-bold mb-3">20% WEIGHT</div>
-          <p class="text-sm text-gray-400 leading-relaxed">Throughput (tokens/sec), memory footprint, and param-to-performance ratio on standard hardware.</p>
-        </div>
-        <div class="glass-card p-6 rounded-2xl">
-          <div class="text-2xl mb-2">🔥</div>
-          <h3 class="font-bold text-white mb-1">Community</h3>
-          <div class="text-xs text-purple-400 font-bold mb-3">20% WEIGHT</div>
-          <p class="text-sm text-gray-400 leading-relaxed">Downloads, GitHub stars, and community integrations across the HuggingFace ecosystem.</p>
-        </div>
-        <div class="glass-card p-6 rounded-2xl">
-          <div class="text-2xl mb-2">🕐</div>
-          <h3 class="font-bold text-white mb-1">Freshness</h3>
-          <div class="text-xs text-yellow-400 font-bold mb-3">10% WEIGHT</div>
-          <p class="text-sm text-gray-400 leading-relaxed">Time since last update or release. Penalizes abandoned models and rewards actively maintained ones.</p>
-        </div>
-        <div class="glass-card p-6 rounded-2xl">
-          <div class="text-2xl mb-2">✅</div>
-          <h3 class="font-bold text-white mb-1">Verified</h3>
-          <div class="text-xs text-red-400 font-bold mb-3">10% WEIGHT</div>
-          <p class="text-sm text-gray-400 leading-relaxed">Open weights, reproducible evaluation code, and clear licensing (MIT/Apache preferred).</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div class="glass-card p-6 rounded-2xl">
+            <div class="text-2xl mb-2">🧠</div>
+            <h3 class="font-bold text-white mb-1">Benchmarks</h3>
+            <div class="text-xs text-blue-400 font-bold mb-3">70% WEIGHT</div>
+            <p class="text-sm text-gray-400 leading-relaxed">Aggregated scores from MMLU-Pro, GPQA, HLE, GSM8K, and HumanEval. Adjusted for model contamination.</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl">
+            <div class="text-2xl mb-2">⚡</div>
+            <h3 class="font-bold text-white mb-1">Efficiency</h3>
+            <div class="text-xs text-green-400 font-bold mb-3">5% WEIGHT</div>
+            <p class="text-sm text-gray-400 leading-relaxed">Throughput (tokens/sec), memory footprint, and param-to-performance ratio on standard hardware.</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl">
+            <div class="text-2xl mb-2">🔥</div>
+            <h3 class="font-bold text-white mb-1">Community</h3>
+            <div class="text-xs text-purple-400 font-bold mb-3">10% WEIGHT</div>
+            <p class="text-sm text-gray-400 leading-relaxed">Downloads, likes, and trending rank across the HuggingFace ecosystem.</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl">
+            <div class="text-2xl mb-2">🕐</div>
+            <h3 class="font-bold text-white mb-1">Recency</h3>
+            <div class="text-xs text-yellow-400 font-bold mb-3">15% WEIGHT</div>
+            <p class="text-sm text-gray-400 leading-relaxed">180-day half-life decay since last update. Rewards actively maintained models.</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl">
+            <div class="text-2xl mb-2">✅</div>
+            <h3 class="font-bold text-white mb-1">Reproducibility</h3>
+            <div class="text-xs text-red-400 font-bold mb-3">0% WEIGHT</div>
+            <p class="text-sm text-gray-400 leading-relaxed">Open weights, reproducible evaluation code, and clear licensing (MIT/Apache preferred). Reserved for future weighting.</p>
         </div>
       </div>
     </div>
@@ -2052,28 +2066,28 @@ def generate_methodology_html() -> str:
         <h2 class="text-3xl font-bold mb-6 text-white">1. The Five Dimensions</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div class="glass-card p-6 rounded-2xl border-t-4 border-blue-500">
-            <h3 class="font-bold text-xl mb-1 text-white">Benchmarks (40%)</h3>
+            <h3 class="font-bold text-xl mb-1 text-white">Benchmarks (70%)</h3>
             <p class="text-sm text-gray-400 mb-2">Evaluates logical reasoning, coding, math, and knowledge.</p>
             <p class="text-xs text-gray-500">Sources: HuggingFace Evals, Open LLM Leaderboard V2. A 90/100 means top-tier reasoning. Limitation: Does not capture creative writing preference.</p>
           </div>
           <div class="glass-card p-6 rounded-2xl border-t-4 border-green-500">
-            <h3 class="font-bold text-xl mb-1 text-white">Efficiency (20%)</h3>
+            <h3 class="font-bold text-xl mb-1 text-white">Efficiency (5%)</h3>
             <p class="text-sm text-gray-400 mb-2">Throughput, VRAM usage, and parameter-to-performance ratio.</p>
             <p class="text-xs text-gray-500">Sources: Context length metadata, param count. A 90/100 means runs fast on consumer GPUs. Limitation: Static estimates, not real-time profiling.</p>
           </div>
           <div class="glass-card p-6 rounded-2xl border-t-4 border-purple-500">
-            <h3 class="font-bold text-xl mb-1 text-white">Community (20%)</h3>
+            <h3 class="font-bold text-xl mb-1 text-white">Community (10%)</h3>
             <p class="text-sm text-gray-400 mb-2">Usage, momentum, and mindshare.</p>
             <p class="text-xs text-gray-500">Sources: HF Downloads, likes. A 90/100 means mass adoption. Limitation: Can be skewed by early hype or bots.</p>
           </div>
           <div class="glass-card p-6 rounded-2xl border-t-4 border-yellow-500">
-            <h3 class="font-bold text-xl mb-1 text-white">Freshness (10%)</h3>
-            <p class="text-sm text-gray-400 mb-2">Time since release and update frequency.</p>
-            <p class="text-xs text-gray-500">Sources: Last modified dates. A 90/100 means updated this week. Limitation: Penalizes stable, completed models over time.</p>
+            <h3 class="font-bold text-xl mb-1 text-white">Recency (15%)</h3>
+            <p class="text-sm text-gray-400 mb-2">Time since release and update frequency (180-day half-life).</p>
+            <p class="text-xs text-gray-500">Sources: Last modified dates. A 90/100 means updated recently. Limitation: Penalizes stable, completed models over time.</p>
           </div>
           <div class="glass-card p-6 rounded-2xl border-t-4 border-red-500">
-            <h3 class="font-bold text-xl mb-1 text-white">Reproducibility (10%)</h3>
-            <p class="text-sm text-gray-400 mb-2">Open weights, clear license, verified origin.</p>
+            <h3 class="font-bold text-xl mb-1 text-white">Reproducibility (0%)</h3>
+            <p class="text-sm text-gray-400 mb-2">Open weights, clear license, verified origin. Reserved for future weighting.</p>
             <p class="text-xs text-gray-500">Sources: Hub metadata, safetensors presence. A 90/100 means fully open (MIT/Apache) and safe.</p>
           </div>
         </div>
@@ -2293,6 +2307,10 @@ def generate_api_html() -> str:
             <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Comparison</h4>
             <ul class="space-y-2 text-sm">
               <li><a href="#get-compare" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Head-to-head</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+              <li><a href="#post-judge-human" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Record Verdict</span> <span class="text-[10px] bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded">POST</span></a></li>
+              <li><a href="#get-judge" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>LLM Judge</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+              <li><a href="#get-elo-leaderboard" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>ELO Standings</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
+              <li><a href="#get-reviews" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Verdict Feed</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
               <li><a href="#get-achievements" class="text-gray-300 hover:text-white block py-1 flex items-center justify-between"><span>Achievements</span> <span class="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded">GET</span></a></li>
             </ul>
           </div>
@@ -2853,6 +2871,196 @@ def generate_api_html() -> str:
           </div>
         </section>
 
+        <!-- POST /judge/human -->
+        <section id="post-judge-human" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-post px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">POST</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/judge/human</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Record a human head-to-head verdict. Updates both models' ELO ratings. No LLM call.</p>
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Request Body</h4>
+              <div class="glass-card rounded-xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                  <thead class="bg-white/5 border-b border-white/10 text-gray-400">
+                    <tr><th class="p-3">Field</th><th class="p-3">Type</th><th class="p-3">Description</th></tr>
+                  </thead>
+                  <tbody class="divide-y divide-white/5 text-gray-300">
+                    <tr><td class="p-3 font-mono text-purple-400">model_a</td><td class="p-3 text-gray-500">string</td><td class="p-3">First HuggingFace model ID</td></tr>
+                    <tr><td class="p-3 font-mono text-purple-400">model_b</td><td class="p-3 text-gray-500">string</td><td class="p-3">Second HuggingFace model ID</td></tr>
+                    <tr><td class="p-3 font-mono text-purple-400">verdict</td><td class="p-3 text-gray-500">string</td><td class="p-3">One of: <code class="text-gray-300">A</code>, <code class="text-gray-300">B</code>, <code class="text-gray-300">tie</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Request</h4>
+                  <button onclick="copyText(this, 'curl -X POST https://your-deployment.com/judge/human -H \\\"Content-Type: application/json\\\" -d {\\\\\\\"model_a\\\\\\\":\\\\\\\"Qwen/Qwen3.5-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"deepseek-ai/DeepSeek-R1\\\\\\\",\\\\\\\"verdict\\\\\\\":\\\\\\\"A\\\\\\\"}')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto"><span class="text-gray-400">$</span> curl -X POST "https://your-deployment.com/judge/human" \\
+  -H "Content-Type: application/json" \\
+  -d '{"model_a":"Qwen/Qwen3.5-9B","model_b":"deepseek-ai/DeepSeek-R1","verdict":"A"}'</pre>
+              </div>
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Response</h4>
+                  <button onclick="copyText(this, 'JSON response')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto text-gray-300">{
+  <span class="key">"review_id"</span>: <span class="string">"human-a1b2c3d4e5f6"</span>,
+  <span class="key">"verdict"</span>: <span class="string">"A"</span>,
+  <span class="key">"model_a"</span>: <span class="string">"Qwen/Qwen3.5-9B"</span>,
+  <span class="key">"model_b"</span>: <span class="string">"deepseek-ai/DeepSeek-R1"</span>,
+  <span class="key">"elo"</span>: { <span class="key">"a"</span>: <span class="number">1512</span>, <span class="key">"b"</span>: <span class="number">1488</span> }
+}</pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- GET /judge/{model_a}/{model_b} -->
+        <section id="get-judge" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/judge/{model_a}/{model_b}</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Run the LLM-judge vibe-check on two cached models and persist the verdict (updates ELO). Configure the judge via <code class="text-gray-300">JUDGE_API_BASE</code> / <code class="text-gray-300">JUDGE_API_KEY</code> / <code class="text-gray-300">JUDGE_MODEL</code>.</p>
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Parameters</h4>
+              <div class="glass-card rounded-xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                  <thead class="bg-white/5 border-b border-white/10 text-gray-400">
+                    <tr><th class="p-3">Name</th><th class="p-3">Type</th><th class="p-3">Description</th></tr>
+                  </thead>
+                  <tbody class="divide-y divide-white/5 text-gray-300">
+                    <tr><td class="p-3 font-mono text-purple-400">model_a</td><td class="p-3 text-gray-500">path</td><td class="p-3">First HuggingFace model ID</td></tr>
+                    <tr><td class="p-3 font-mono text-purple-400">model_b</td><td class="p-3 text-gray-500">path</td><td class="p-3">Second HuggingFace model ID</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Request</h4>
+                  <button onclick="copyText(this, 'curl https://your-deployment.com/judge/Qwen/Qwen3.5-9B/deepseek-ai/DeepSeek-R1')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto"><span class="text-gray-400">$</span> curl "https://your-deployment.com/judge/Qwen/Qwen3.5-9B/deepseek-ai/DeepSeek-R1"</pre>
+              </div>
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Response</h4>
+                  <button onclick="copyText(this, 'JSON response')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto text-gray-300">{
+  <span class="key">"review_id"</span>: <span class="string">"llm-9f8e7d6c5b4a"</span>,
+  <span class="key">"verdict"</span>: <span class="string">"B"</span>,
+  <span class="key">"rationale"</span>: <span class="string">"DeepSeek-R1 reasons more reliably on hard prompts."</span>,
+  <span class="key">"model_a"</span>: <span class="string">"Qwen/Qwen3.5-9B"</span>,
+  <span class="key">"model_b"</span>: <span class="string">"deepseek-ai/DeepSeek-R1"</span>,
+  <span class="key">"elo"</span>: { <span class="key">"a"</span>: <span class="number">1490</span>, <span class="key">"b"</span>: <span class="number">1510</span> }
+}</pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- GET /elo-leaderboard -->
+        <section id="get-elo-leaderboard" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/elo-leaderboard</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Head-to-head community standings — all models ranked by ELO rating.</p>
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Query Parameters</h4>
+              <div class="glass-card rounded-xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                  <thead class="bg-white/5 border-b border-white/10 text-gray-400">
+                    <tr><th class="p-3">Name</th><th class="p-3">Type</th><th class="p-3">Description</th></tr>
+                  </thead>
+                  <tbody class="divide-y divide-white/5 text-gray-300">
+                    <tr><td class="p-3 font-mono text-purple-400">limit</td><td class="p-3 text-gray-500">int</td><td class="p-3">Max rows (default 50, max 200)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Request</h4>
+                  <button onclick="copyText(this, 'curl https://your-deployment.com/elo-leaderboard?limit=10')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto"><span class="text-gray-400">$</span> curl "https://your-deployment.com/elo-leaderboard?limit=10"</pre>
+              </div>
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Response</h4>
+                  <button onclick="copyText(this, 'JSON response')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto text-gray-300">{
+  <span class="key">"total"</span>: <span class="number">42</span>,
+  <span class="key">"standings"</span>: [
+    { <span class="key">"model_id"</span>: <span class="string">"meta-llama/Llama-3.1-8B"</span>, <span class="key">"rating"</span>: <span class="number">1542.3</span>, <span class="key">"wins"</span>: <span class="number">5</span>, <span class="key">"losses"</span>: <span class="number">2</span>, <span class="key">"draws"</span>: <span class="number">1</span>, <span class="key">"matches"</span>: <span class="number">8</span> }
+  ]
+}</pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- GET /reviews -->
+        <section id="get-reviews" class="mb-24 scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="method-get px-2.5 py-1 rounded border text-xs font-bold tracking-widest font-mono">GET</span>
+            <h2 class="text-2xl font-bold font-mono text-white">/reviews</h2>
+          </div>
+          <p class="text-gray-400 mb-8">Community + LLM-judge head-to-head verdict feed, most-recent first.</p>
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Query Parameters</h4>
+              <div class="glass-card rounded-xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                  <thead class="bg-white/5 border-b border-white/10 text-gray-400">
+                    <tr><th class="p-3">Name</th><th class="p-3">Type</th><th class="p-3">Description</th></tr>
+                  </thead>
+                  <tbody class="divide-y divide-white/5 text-gray-300">
+                    <tr><td class="p-3 font-mono text-purple-400">limit</td><td class="p-3 text-gray-500">int</td><td class="p-3">Max rows (default 50, max 200)</td></tr>
+                    <tr><td class="p-3 font-mono text-purple-400">model_id</td><td class="p-3 text-gray-500">string</td><td class="p-3">Filter to reviews involving this model</td></tr>
+                    <tr><td class="p-3 font-mono text-purple-400">judge_type</td><td class="p-3 text-gray-500">string</td><td class="p-3"><code class="text-gray-300">human</code> or <code class="text-gray-300">llm</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Request</h4>
+                  <button onclick="copyText(this, 'curl https://your-deployment.com/reviews?judge_type=llm')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto"><span class="text-gray-400">$</span> curl "https://your-deployment.com/reviews?judge_type=llm"</pre>
+              </div>
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Example Response</h4>
+                  <button onclick="copyText(this, 'JSON response')" class="text-xs text-gray-400 hover:text-white">Copy</button>
+                </div>
+                <pre class="code-dark rounded-xl p-4 text-sm font-mono overflow-x-auto text-gray-300">{
+  <span class="key">"total"</span>: <span class="number">1</span>,
+  <span class="key">"reviews"</span>: [
+    { <span class="key">"review_id"</span>: <span class="string">"llm-9f8e7d6c5b4a"</span>, <span class="key">"model_a"</span>: <span class="string">"Qwen/Qwen3.5-9B"</span>, <span class="key">"model_b"</span>: <span class="string">"deepseek-ai/DeepSeek-R1"</span>, <span class="key">"verdict"</span>: <span class="string">"B"</span>, <span class="key">"judge_type"</span>: <span class="string">"llm"</span> }
+  ]
+}</pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- GET /achievements/{model_id} -->
         <section id="get-achievements" class="mb-24 scroll-mt-24">
           <div class="flex items-center gap-3 mb-4">
@@ -2945,6 +3153,136 @@ def generate_changelog_json() -> str:
     {"version": "1.0.0", "date": "2026-08-13", "type": "major", "changes": ["Initial release", "5-dimension composite scoring", "ELO comparison", "SVG badges", "Gradio UI", "FastAPI", "27 tests"]}
   ]
 }"""
+
+
+def generate_head_to_head_html(standings: list, reviews: list, base_url: str) -> str:
+    """Generate the community head-to-head page: ELO standings + verdict feed."""
+    def short(mid: str) -> str:
+        return mid.split('/')[-1]
+
+    rows = ''
+    for i, s in enumerate(standings, 1):
+        medal = {1: '🥇', 2: '🥈', 3: '🥉'}.get(i, f'#{i}')
+        rating = s.get('rating', 1500)
+        bar = max(2, min(100, (rating - 1400) / 2))  # ~1400→2%, 1500→50%, 1600→100%
+        rows += f'''
+        <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+          <td class="px-4 py-3 text-center font-mono text-gray-400">{medal}</td>
+          <td class="px-4 py-3">
+            <div class="text-base font-bold text-gray-100">{short(s['model_id'])}</div>
+            <div class="text-xs text-gray-500 font-mono">{s['model_id']}</div>
+          </td>
+          <td class="px-4 py-3 text-center"><span class="font-black text-xl font-mono text-purple-400">{rating:.0f}</span></td>
+          <td class="px-4 py-3 text-center text-gray-300 font-mono text-sm">{s['wins']}/{s['losses']}/{s['draws']}</td>
+          <td class="px-4 py-3">
+            <div class="w-full bg-gray-800 rounded-full h-1.5 max-w-[160px] mx-auto">
+              <div class="bg-purple-500 h-1.5 rounded-full" style="width: {bar:.0f}%"></div>
+            </div>
+          </td>
+        </tr>'''
+
+    if not rows:
+        rows = '<tr><td colspan="5" class="px-4 py-8 text-center text-gray-500">No head-to-head matches yet — run the LLM judge or record a verdict in the Gradio UI.</td></tr>'
+
+    feed = ''
+    for r in reviews:
+        badge = '🤖' if r['judge_type'] == 'llm' else '✍️'
+        if r['verdict'] == 'A':
+            result = f'<b class="text-green-400">{short(r["model_a"])}</b> beat <b>{short(r["model_b"])}</b>'
+        elif r['verdict'] == 'B':
+            result = f'<b>{short(r["model_a"])}</b> lost to <b class="text-green-400">{short(r["model_b"])}</b>'
+        else:
+            result = f'<b>{short(r["model_a"])}</b> tied <b>{short(r["model_b"])}</b>'
+        feed += f'''
+        <div class="flex items-center justify-between py-3 border-b border-white/5">
+          <span class="text-gray-200 text-sm">{badge} {result}</span>
+          <span class="text-xs text-gray-500 uppercase tracking-wider">{r['judge_type']}</span>
+        </div>'''
+
+    if not feed:
+        feed = '<div class="py-8 text-center text-gray-500">No verdicts recorded yet.</div>'
+
+    total_matches = sum(s.get('matches', 0) for s in standings)
+
+    return f'''<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ModelRank — Head-to-Head Community Rankings</title>
+  <meta name="description" content="Community + LLM-judge head-to-head rankings. See which open-weight models win, lose, and tie in direct comparison."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {{ darkMode: 'class', theme: {{ extend: {{ colors: {{ base: '#0a0a0f', surface: '#13131a' }} }} }} }};
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>body {{ background-color:#0a0a0f; color:#f1f5f9; font-family:'Inter',sans-serif; }} .glass-card {{ background:rgba(19,19,26,0.7); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.05); }}</style>
+</head>
+<body class="min-h-screen">
+  <header class="pt-8 pb-4 border-b border-white/5">
+    <div class="container mx-auto px-4 max-w-5xl flex justify-between items-center">
+      <a href="index.html" class="text-xl font-black flex items-center gap-2 text-white">🏆 ModelRank</a>
+          <div class="text-sm font-medium text-gray-400 flex gap-4">
+        <a href="index.html" class="hover:text-white">Leaderboard</a>
+        <a href="quiz.html" class="hover:text-white">Quiz</a>
+        <a href="dna.html" class="hover:text-white">DNA</a>
+        <a href="head-to-head.html" class="hover:text-white">Head-to-Head</a>
+        <a href="weekly.html" class="hover:text-white">Weekly</a>
+        <a href="pricing.html" class="hover:text-white">Pricing</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-12 max-w-5xl">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-black text-white mb-3">⚔️ Head-to-Head</h1>
+      <p class="text-lg text-gray-400 max-w-2xl mx-auto">Community + LLM-judge verdicts. {total_matches} matches across {len(standings)} ranked models — decided by direct comparison, not just benchmarks.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+      <div class="lg:col-span-3">
+        <div class="glass-card rounded-2xl p-6 mb-8">
+          <h2 class="text-xl font-bold text-white mb-4">🏅 ELO Standings</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="text-xs uppercase tracking-wider font-semibold text-gray-400 border-b border-white/10">
+                <tr>
+                  <th class="px-4 py-3 text-center">#</th>
+                  <th class="px-4 py-3">Model</th>
+                  <th class="px-4 py-3 text-center">ELO</th>
+                  <th class="px-4 py-3 text-center">W/L/D</th>
+                  <th class="px-4 py-3">Form</th>
+                </tr>
+              </thead>
+              <tbody>{rows}</tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="glass-card rounded-2xl p-6">
+          <h2 class="text-xl font-bold text-white mb-4">💬 Community Verdict Feed</h2>
+          <div class="max-h-[520px] overflow-auto">{feed}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center text-sm text-gray-500">
+      Want to contribute? Run the LLM judge or record a human verdict in the
+      <a href="https://github.com/rankmodel/rankmodel1" class="text-blue-400 hover:underline">Gradio UI</a>,
+      or hit <code class="text-gray-300">POST /judge/human</code> and <code class="text-gray-300">GET /judge/{{a}}/{{b}}</code> on the API.
+    </div>
+  </main>
+
+  <footer class="border-t border-white/10 mt-12 py-8">
+    <div class="container mx-auto px-4 max-w-5xl text-center text-sm text-gray-500">
+      ModelRank — independent, open-weight AI leaderboard.
+      <a href="https://github.com/rankmodel/rankmodel1" class="text-blue-400 hover:underline ml-2">GitHub</a>
+    </div>
+  </footer>
+</body>
+</html>'''
 
 
 def main(limit: int = 200):
@@ -3083,6 +3421,19 @@ def main(limit: int = 200):
     (OUTPUT_DIR / 'trending.json').write_text(
         json.dumps(generate_trending_data(models), indent=2), encoding='utf-8')
     logger.info('   trending.json')
+
+    # Head-to-head community page (ELO standings + verdict feed)
+    h2h_standings = cache.get_elo_leaderboard(limit=100)
+    h2h_reviews = cache.get_reviews(limit=100)
+    (OUTPUT_DIR / 'head-to-head.json').write_text(
+        json.dumps({
+            'updated_at': __import__('datetime').datetime.utcnow().isoformat() + 'Z',
+            'standings': h2h_standings,
+            'reviews': h2h_reviews,
+        }, indent=2), encoding='utf-8')
+    (OUTPUT_DIR / 'head-to-head.html').write_text(
+        generate_head_to_head_html(h2h_standings, h2h_reviews, base_url), encoding='utf-8')
+    logger.info('   head-to-head.html — community ELO standings + verdict feed')
 
     logger.info(f'\n✅ Static assets generated in {OUTPUT_DIR}/')
     logger.info(f'   {total} score.svg badges')

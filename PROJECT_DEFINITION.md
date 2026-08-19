@@ -306,7 +306,9 @@ assigned task yet.
 `GET /score/{model_id}`, `GET /leaderboard`, `GET /badge/{model_id}`,
 `GET /models`, `POST /compare`, premium endpoints in `api/premium.py`
 (`/subscribe`, `/verify`, `/featured`, research-report, webhook alerts). No API key
-required to *use* ModelRank; `HF_TOKEN` only raises rate limits.
+required to *use* ModelRank; `HF_TOKEN` only raises rate limits. A zero-dependency
+Python SDK (`api/client.py` → `ModelRankClient`) wraps every endpoint for reuse by
+integrations (LangChain/LlamaIndex tool, VS Code hover provider).
 
 ---
 
@@ -316,9 +318,11 @@ required to *use* ModelRank; `HF_TOKEN` only raises rate limits.
 - [x] Shareable "Model DNA" cards (Spotify-Wrapped for models)
 - [x] ModelRank Agency (Paperclip-style autonomous company)
 - [~] Interactive "Best model for my use case" quiz — **recommendation engine built** (`scoring/recommend.py` + `GET /recommend` + `python main.py recommend`); UI quiz shell still pending
-- [ ] VS Code extension (hover a model name → see its score)
-- [ ] LangChain / LlamaIndex integration
-- [ ] Weekly automated newsletter + podcast
+- [x] Community scoring + LLM-judge vibe-check (PALA-7 / H2H) — `scoring/judge.py` + `reviews`/`elo_ratings` data layer; Gradio verdict feed + ELO standings board; `GET /reviews` + `GET /elo-leaderboard` endpoints; `static_output/head-to-head.html` community page + `head-to-head.json`
+- [x] VS Code extension (hover a model name → see its score) — `vscode-extension/` hover provider built on `ModelRankClient` (`GET /score/{model_id}`)
+- [x] LangChain / LlamaIndex integration — `integrations/` exposes agent tools (`modelrank_score`, `modelrank_compare`, `modelrank_recommend`, `modelrank_head_to_head`) wrapping `ModelRankClient`; adapters build LangChain `Tool` / LlamaIndex `FunctionTool` objects lazily (optional deps)
+- [x] Weekly automated newsletter (`scripts/generate_weekly.py`, wired to the `weekly_newsletter` agency routine; emits `static_output/weekly.html` + `weekly.json`)
+- [ ] Weekly podcast episode (audio) — optional
 - [ ] Community scoring + LLM-judge vibe-check (PALA-7 / H2H)
 
 ---
@@ -338,24 +342,31 @@ required to *use* ModelRank; `HF_TOKEN` only raises rate limits.
 
 ## 11. Open Questions / Inconsistencies
 
-1. **Scoring weights disagree.** `README.md` documents 40/20/20/10/10 across
-   Benchmarks/Efficiency/Community/Freshness/Verified, while `config/settings.py`
-   implements 0.70/0.05/0.10/0.15/0.00 and renames Freshness→Recency,
-   Verified→Reproducibility. **Reconcile and update the README.**
+1. **Scoring weights — reconciled.** `README.md` now documents 70/15/10/5/0 across
+    Benchmarks/Recency/Community/Efficiency/Reproducibility (matching
+    `config/settings.py`). The Gradio About tab (`ui/app.py`) and the static
+    methodology cards (`index.html` + `methodology.html`) were updated to the same
+    values; the stale "40/20/20/10/10" displays are gone.
 2. **Community scoring & H2H — implemented.** `scoring/judge.py` adds
    `run_llm_judge()`, which fetches two cached models, asks an impartial LLM judge
    (OpenAI-compatible `/chat/completions`, endpoint configurable via
    `JUDGE_API_BASE`/`JUDGE_API_KEY`/`JUDGE_MODEL`; the LLM call is injectable for
    tests), parses the `A`/`B`/`tie` verdict, and persists it through
    `ModelCache.record_head_to_head` (feeding ELO). 6 new tests; 45/45 pass.
-3. **H2H UX Researcher has no task.** Agent `726a7993` is defined but unassigned —
-   create its PALA issue.
+3. **H2H UX Researcher — now assigned.** The `h2h_researcher` agent is registered in
+    `agency/manifest.json` (corresponds to the live Paperclip agent `726a7993`),
+    owning the community scoring + LLM-judge vibe-check surface. Implemented in code:
+    `cache.get_reviews()` / `cache.get_elo_leaderboard()` + `GET /reviews` +
+    `GET /elo-leaderboard` + the "⚖️ Judge & ELO" tab's verdict feed and ELO standings
+    board in `ui/app.py`.
 4. **User/Account/APIKey/Organization — data layer implemented.** `data/schema.sql`
    now has `users`, `api_keys`, `organizations`; `ModelCache` adds
    `create/get_user`, API-key create/validate/revoke (`get_api_key_plan`), and
    org create/certify/get. 3 new tests; 48/48 pass. Remaining: the surrounding
    auth flows + Stripe webhooks that consume these tables are not yet wired.
-5. **Benchmark count.** README claims "12+ benchmarks"; `BENCHMARK_WEIGHTS` lists 5.
+5. **Benchmark count — reconciled.** The hero stat in `index.html` said "15 Benchmarks";
+    corrected to "5 Benchmarks" to match `BENCHMARK_WEIGHTS` (MMLU-Pro, GPQA, HLE,
+    GSM8K, HumanEval). The README's methodology table already lists these 5.
 6. **ELO storage — implemented.** `data/schema.sql` now has `elo_ratings`
    (rating + W/L/D + match count) and `reviews` (match history); `scoring/elo.py`
    holds the pure ELO math (`expected_score`, `update_ratings`) and

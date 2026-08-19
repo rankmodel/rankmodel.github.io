@@ -115,6 +115,33 @@ score is comparable across the whole catalog.
 | Community signals | ✅ | ❌ | ❌ | ❌ |
 | **Independent / no COI** | ✅ | ⚠️ | ⚠️ | ❌ |
 
+## ⚔️ Community head-to-head (ELO + LLM judge)
+
+Beyond the composite score, ModelRank runs **direct comparisons** between models
+and tracks them with an ELO rating. Anyone can judge a pair — a human verdict or
+an impartial LLM "vibe-check" — and every verdict feeds the community standings.
+
+- `GET /reviews` — the community + LLM-judge verdict feed (filter by `model_id` / `judge_type=human|llm`).
+- `GET /elo-leaderboard` — all models ranked by ELO.
+- `POST /judge/human` — record a human verdict (`A` / `B` / `tie`); updates ELO.
+- `GET /judge/{model_a}/{model_b}` — run the LLM judge and persist the result.
+
+```bash
+# Record a human verdict
+curl -X POST http://localhost:8000/judge/human \
+  -H "Content-Type: application/json" \
+  -d '{"model_a":"Qwen/Qwen3.5-9B","model_b":"deepseek-ai/DeepSeek-R1","verdict":"A"}'
+
+# See the community standings
+curl "http://localhost:8000/elo-leaderboard?limit=10"
+
+# Run the LLM-judge vibe-check (set JUDGE_API_BASE / JUDGE_API_KEY / JUDGE_MODEL)
+curl "http://localhost:8000/judge/Qwen/Qwen3.5-9B/deepseek-ai/DeepSeek-R1"
+```
+
+The same data powers the public **[Head-to-Head](https://rankmodel.github.io/rankmodel1/head-to-head.html)**
+page (ELO standings + verdict feed) and the `⚖️ Judge & ELO` tab in the Gradio UI.
+
 ## 💸 Revenue model (open-core hybrid)
 
 The **free badge is the growth engine** — it stays free, forever. Devs pay for **visibility & trust**, never for the score:
@@ -150,7 +177,7 @@ creators) under approval gates and a budget hard-stop. See
 
 ```
 main.py                 # CLI: api | ui | score | leaderboard
-api/                    # FastAPI REST (10 endpoints) + premium
+api/                    # FastAPI REST (scoring, badges, leaderboard, compare, judge/H2H, reviews) + premium
 scoring/                # composite engine, ELO, benchmarks, efficiency, community, recency
 data/                   # HF fetcher, SQLite cache, NotebookLM integration
 badges/                 # SVG + premium (glow/featured) generators
@@ -167,15 +194,18 @@ tests/                  # 34 passing unit tests
 - [x] 150+ seeded models, 5D scoring, ELO, badges, pricing
 - [x] Shareable **"Model DNA"** cards (Spotify-Wrapped for models)
 - [x] **ModelRank Agency** — Paperclip-style autonomous growth company
-- [ ] Interactive **"Best model for my use case"** quiz
-- [ ] VS Code extension (hover a model name → see its score)
-- [ ] LangChain / LlamaIndex integration
-- [ ] Weekly automated **ModelRank** newsletter + podcast
+- [x] **Community head-to-head** — LLM-judge vibe-check, ELO standings, verdict feed (`/reviews`, `/elo-leaderboard`, `head-to-head.html`)
+- [x] **Python API client** (`api/client.py`) — zero-dep SDK wrapping every endpoint (foundation for the integrations below)
+- [~] Interactive **"Best model for my use case"** quiz — recommendation engine built; UI quiz shell still pending
+- [x] VS Code extension (hover a model name → see its score) — `vscode-extension/` hover provider built on `ModelRankClient`
+- [x] **LangChain / LlamaIndex tools** — `integrations/` wraps every endpoint as agent tools (`modelrank_score`, `compare`, `recommend`, `head_to_head`)
+- [x] Weekly automated **ModelRank** newsletter (`scripts/generate_weekly.py` → `outputs/*.md`, `static_output/weekly.html` + `weekly.json`; runs via the agency `weekly_newsletter` routine)
+- [ ] Weekly podcast episode (audio) — optional; build on the newsletter script if desired
 
 ## 🧪 Tests
 
 ```bash
-make test   # 39 passed
+make test   # 79 passed
 ```
 
 ## 📄 License

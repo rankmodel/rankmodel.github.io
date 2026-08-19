@@ -307,7 +307,71 @@ class ModelCache:
                     "draws=draws+excluded.draws, matches=matches+1, updated_at=excluded.updated_at",
                     (mid, new, w, l, d, int(time.time())),
                 )
-            self.conn.commit()
+                self.conn.commit()
+
+    def get_reviews(
+        self,
+        limit: int = 50,
+        model_id: Optional[str] = None,
+        judge_type: Optional[str] = None,
+    ) -> List[Dict[str, Any]]:
+        """Return recent head-to-head verdicts (community + LLM judge feed).
+
+        ``model_id`` filters to reviews where the model appears as A or B.
+        ``judge_type`` filters by 'human' | 'llm'. Most-recent first.
+        """
+        with self.lock:
+            cursor = self.conn.cursor()
+            clauses = []
+            params: List[Any] = []
+            if model_id:
+                clauses.append("(model_a = ? OR model_b = ?)")
+                params.extend([model_id, model_id])
+            if judge_type:
+                clauses.append("judge_type = ?")
+                params.append(judge_type)
+            where = (" WHERE " + " AND ".join(clauses)) if clauses else ""
+            cursor.execute(
+                f"SELECT review_id, model_a, model_b, verdict, judge_type, judge_id, created_at "
+                f"FROM reviews{where} ORDER BY created_at DESC LIMIT ?",
+                params + [limit],
+            )
+            rows = cursor.fetchall()
+        return [
+            {
+                "review_id": r[0],
+                "model_a": r[1],
+                "model_b": r[2],
+                "verdict": r[3],
+                "judge_type": r[4],
+                "judge_id": r[5],
+                "created_at": r[6],
+            }
+            for r in rows
+        ]
+
+    def get_elo_leaderboard(self, limit: int = 50) -> List[Dict[str, Any]]:
+        """Return models ranked by ELO rating (head-to-head community standings)."""
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute(
+                "SELECT model_id, rating, wins, losses, draws, matches, updated_at "
+                "FROM elo_ratings ORDER BY rating DESC LIMIT ?",
+                (limit,),
+            )
+            rows = cursor.fetchall()
+        return [
+            {
+                "model_id": r[0],
+                "rating": r[1],
+                "wins": r[2],
+                "losses": r[3],
+                "draws": r[4],
+                "matches": r[5],
+                "updated_at": r[6],
+            }
+            for r in rows
+        ]
 
     # ---- Monetization entities (open-question #4) ----
 
