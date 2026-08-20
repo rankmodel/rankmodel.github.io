@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-20T16:50:59.816305",
+  "computed_at": "2026-08-20T17:04:36.260982",
   "details": {
     "benchmark_details": {
       "score": 87.25000000000001,
@@ -52,15 +52,15 @@
     "diversity_details": {
       "count": 9,
       "datasets": [
-        "mmlu-pro",
-        "benchflow/skillsbench",
-        "intelligencelab/long-horizon-terminal-bench",
-        "claw-eval/claw-eval",
-        "gpqa",
         "cais/hle",
-        "swe-bench/swe-bench_multilingual",
+        "mmlu-pro",
         "swe-bench/swe-bench_verified",
-        "harborframework/terminal-bench-2.0"
+        "gpqa",
+        "claw-eval/claw-eval",
+        "swe-bench/swe-bench_multilingual",
+        "intelligencelab/long-horizon-terminal-bench",
+        "harborframework/terminal-bench-2.0",
+        "benchflow/skillsbench"
       ],
       "diversity_bonus": 10.0
     },

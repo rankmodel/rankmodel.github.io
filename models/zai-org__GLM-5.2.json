@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-20T16:50:49.851322",
+  "computed_at": "2026-08-20T17:04:30.683900",
   "details": {
     "benchmark_details": {
       "score": 91.2,
@@ -52,13 +52,13 @@
     "diversity_details": {
       "count": 8,
       "datasets": [
-        "scaleai/swe-bench_pro",
-        "crosbylegal/redlinebench",
         "arc",
         "cais/hle",
+        "crosbylegal/redlinebench",
         "internlm/wildclawbench",
         "gpqa",
         "intelligencelab/long-horizon-terminal-bench",
+        "scaleai/swe-bench_pro",
         "datacurve/deep-swe"
       ],
       "diversity_bonus": 10.0
