@@ -789,6 +789,9 @@ def _build_readme_section(model_id: str, badge_lines: list[str], fmt: str) -> st
 
         client = ModelRankClient()
         data = client.score("{model_id}")
+        print(data)
+        ```
+
         📊 [View {short_name} on the Leaderboard]({BASE_URL}/models/{urllib.parse.quote(model_id)})
         🏆 [Full Leaderboard]({BASE_URL})
         ⭐ [Star us on GitHub](https://github.com/rankmodel/rankmodel.github.io)
