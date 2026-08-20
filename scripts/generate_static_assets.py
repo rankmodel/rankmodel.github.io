@@ -3418,6 +3418,11 @@ def main(limit: int = 10000):
         if _src.exists():
             shutil.copy(_src, OUTPUT_DIR / _a)
 
+    # Copy raw ranking CSVs into the output so they are publicly downloadable
+    _data_dir = pathlib.Path(__file__).resolve().parent.parent / 'data'
+    for _csv in _data_dir.glob('*.csv'):
+        shutil.copy(_csv, OUTPUT_DIR / _csv.name)
+
     logger.info(f'Generating static assets for {total} models → {OUTPUT_DIR}/')
 
     leaderboard_data = []

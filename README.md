@@ -114,6 +114,10 @@ python scripts/generate_badge.py --model meta-llama/Llama-3.1-8B --format md
 
 Every badge is a statement: *my model's score is public, auditable, and earned.*
 
+Prefer the raw numbers? Download the full ranking as CSV
+([`full_rankings_2026-08-20.csv`](https://rankmodel.github.io/full_rankings_2026-08-20.csv))
+or JSON (`leaderboard.json`). Every claim on this page is reproducible from that data.
+
 ---
 
 ## 🧮 How Models Are Scored (Composite, 0–100)
@@ -261,6 +265,11 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide. The short version: *
 Not a coder? We have contributions for everyone — documentation, model submissions, and spreading the word. Open source is a team sport and we keep score of every player.
 
 ---
+
+## 🏅 Projects That Trust ModelRank
+
+Add our badge to your model card and tell us — we'll feature you here. Open an issue with
+your model + repo and we'll add it to the wall. No entries yet; be the first.
 
 ## 📄 License
 
