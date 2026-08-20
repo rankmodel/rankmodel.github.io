@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-20T17:04:35.709802",
+  "computed_at": "2026-08-20T17:05:21.417197",
   "details": {
     "benchmark_details": {
       "score": 75.2,
@@ -51,9 +51,9 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
+        "swe-bench/swe-bench_verified",
         "gpqa",
-        "cais/hle",
-        "swe-bench/swe-bench_verified"
+        "cais/hle"
       ],
       "diversity_bonus": 10.0
     },

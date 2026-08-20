@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-20T17:04:26.346268",
+  "computed_at": "2026-08-20T17:05:11.936774",
   "details": {
     "benchmark_details": {
       "score": 77.75,
@@ -52,9 +52,9 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
+        "mmlu-pro",
         "gpqa",
-        "lexam-benchmark/lexam",
-        "mmlu-pro"
+        "lexam-benchmark/lexam"
       ],
       "diversity_bonus": 10.0
     },
