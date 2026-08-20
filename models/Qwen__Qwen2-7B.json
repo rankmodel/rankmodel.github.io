@@ -1,0 +1,86 @@
+{
+  "model_id": "Qwen/Qwen2-7B",
+  "composite": 60.2,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 65,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 22.5,
+  "breakdown": {
+    "benchmarks": 53.79,
+    "efficiency": 42.71,
+    "community": 54.14,
+    "recency": 100.0,
+    "reproducibility": 20.0
+  },
+  "tier": "C",
+  "computed_at": "2026-08-20T13:32:18.484744",
+  "details": {
+    "benchmark_details": {
+      "score": 53.786666666666655,
+      "benchmarks_found": [
+        "gsm8k",
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "gpqa",
+        "hle",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gsm8k": 79.9,
+        "mmlu-pro": 40.73
+      }
+    },
+    "diversity_details": {
+      "count": 2,
+      "datasets": [
+        "gsm8k",
+        "mmlu-pro"
+      ],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 2,
+    "missing_benchmarks": [
+      "gpqa",
+      "hle",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 15.4,
+    "confidence": "low"
+  },
+  "rank": 69,
+  "badge_url": "https://rankmodel.github.io/badges/Qwen/Qwen2-7B/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/Qwen/Qwen2-7B/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/Qwen/Qwen2-7B.svg"
+}

@@ -1,0 +1,89 @@
+{
+  "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+  "composite": 68.96,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 17.0,
+  "breakdown": {
+    "benchmarks": 65.94,
+    "efficiency": 23.77,
+    "community": 66.14,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "C",
+  "computed_at": "2026-08-20T13:31:31.625352",
+  "details": {
+    "benchmark_details": {
+      "score": 65.94297645142001,
+      "benchmarks_found": [
+        "gpqa",
+        "gsm8k",
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "hle",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 51.5151515152,
+        "gsm8k": 94.8445792267,
+        "mmlu-pro": 65.92
+      }
+    },
+    "diversity_details": {
+      "count": 5,
+      "datasets": [
+        "thamilvendhan/signalbench",
+        "gpqa",
+        "gsm8k",
+        "mmlu-pro",
+        "lexam-benchmark/lexam"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 3,
+    "missing_benchmarks": [
+      "hle",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 23.1,
+    "confidence": "low"
+  },
+  "rank": 54,
+  "badge_url": "https://rankmodel.github.io/badges/meta-llama/Llama-3.3-70B-Instruct/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/meta-llama/Llama-3.3-70B-Instruct/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/meta-llama/Llama-3.3-70B-Instruct.svg"
+}

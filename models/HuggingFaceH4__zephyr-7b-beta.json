@@ -1,0 +1,85 @@
+{
+  "model_id": "HuggingFaceH4/zephyr-7b-beta",
+  "composite": 46.09,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 65,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 70,
+    "hub_completeness": 0
+  },
+  "extended_composite": 25.5,
+  "breakdown": {
+    "benchmarks": 32.97,
+    "efficiency": 36.71,
+    "community": 61.79,
+    "recency": 100.0,
+    "reproducibility": 20.0
+  },
+  "tier": "D",
+  "computed_at": "2026-08-20T13:36:02.326800",
+  "details": {
+    "benchmark_details": {
+      "score": 32.97,
+      "benchmarks_found": [
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "gpqa",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "mmlu-pro": 32.97
+      }
+    },
+    "diversity_details": {
+      "count": 1,
+      "datasets": [
+        "mmlu-pro"
+      ],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "gpqa",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 92,
+  "badge_url": "https://rankmodel.github.io/badges/HuggingFaceH4/zephyr-7b-beta/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/HuggingFaceH4/zephyr-7b-beta/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/HuggingFaceH4/zephyr-7b-beta.svg"
+}

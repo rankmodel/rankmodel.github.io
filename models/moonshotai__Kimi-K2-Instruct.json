@@ -1,0 +1,90 @@
+{
+  "model_id": "moonshotai/Kimi-K2-Instruct",
+  "composite": 79.44,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 70,
+    "hub_completeness": 0
+  },
+  "extended_composite": 20.0,
+  "breakdown": {
+    "benchmarks": 81.0,
+    "efficiency": 27.05,
+    "community": 63.83,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "B",
+  "computed_at": "2026-08-20T13:32:16.437248",
+  "details": {
+    "benchmark_details": {
+      "score": 80.99999999999999,
+      "benchmarks_found": [
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "gpqa",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "mmlu-pro": 81.0
+      }
+    },
+    "diversity_details": {
+      "count": 6,
+      "datasets": [
+        "mmlu-pro",
+        "harborframework/terminal-bench-2.0",
+        "mercor/apex-swe",
+        "scaleai/swe-bench_pro",
+        "swe-bench/swe-bench_multilingual",
+        "mercor/apex-agents"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "gpqa",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 31,
+  "badge_url": "https://rankmodel.github.io/badges/moonshotai/Kimi-K2-Instruct/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/moonshotai/Kimi-K2-Instruct/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/moonshotai/Kimi-K2-Instruct.svg"
+}

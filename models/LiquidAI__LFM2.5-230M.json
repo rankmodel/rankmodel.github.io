@@ -1,0 +1,86 @@
+{
+  "model_id": "LiquidAI/LFM2.5-230M",
+  "composite": 41.21,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 100,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 26.0,
+  "breakdown": {
+    "benchmarks": 22.83,
+    "efficiency": 99.99,
+    "community": 52.3,
+    "recency": 100.0,
+    "reproducibility": 20.0
+  },
+  "tier": "D",
+  "computed_at": "2026-08-20T13:37:38.726196",
+  "details": {
+    "benchmark_details": {
+      "score": 22.830000000000002,
+      "benchmarks_found": [
+        "gpqa",
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 25.41,
+        "mmlu-pro": 20.25
+      }
+    },
+    "diversity_details": {
+      "count": 2,
+      "datasets": [
+        "mmlu-pro",
+        "gpqa"
+      ],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 2,
+    "missing_benchmarks": [
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 15.4,
+    "confidence": "low"
+  },
+  "rank": 96,
+  "badge_url": "https://rankmodel.github.io/badges/LiquidAI/LFM2.5-230M/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/LiquidAI/LFM2.5-230M/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/LiquidAI/LFM2.5-230M.svg"
+}

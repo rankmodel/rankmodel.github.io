@@ -1,0 +1,88 @@
+{
+  "model_id": "moonshotai/Kimi-K2-Thinking",
+  "composite": 81.41,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 70,
+    "hub_completeness": 0
+  },
+  "extended_composite": 20.0,
+  "breakdown": {
+    "benchmarks": 84.5,
+    "efficiency": 27.05,
+    "community": 59.05,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "A",
+  "computed_at": "2026-08-20T13:37:38.464826",
+  "details": {
+    "benchmark_details": {
+      "score": 84.5,
+      "benchmarks_found": [
+        "gpqa"
+      ],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 84.5
+      }
+    },
+    "diversity_details": {
+      "count": 4,
+      "datasets": [
+        "harborframework/terminal-bench-2.0",
+        "gpqa",
+        "swe-bench/swe-bench_verified",
+        "cais/hle"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 21,
+  "badge_url": "https://rankmodel.github.io/badges/moonshotai/Kimi-K2-Thinking/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/moonshotai/Kimi-K2-Thinking/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/moonshotai/Kimi-K2-Thinking.svg"
+}

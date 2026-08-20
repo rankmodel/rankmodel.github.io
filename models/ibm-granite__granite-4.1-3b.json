@@ -1,0 +1,87 @@
+{
+  "model_id": "ibm-granite/granite-4.1-3b",
+  "composite": 58.28,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 80,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 24.0,
+  "breakdown": {
+    "benchmarks": 49.99,
+    "efficiency": 61.51,
+    "community": 52.16,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "D",
+  "computed_at": "2026-08-20T13:32:36.134557",
+  "details": {
+    "benchmark_details": {
+      "score": 49.98800000000001,
+      "benchmarks_found": [
+        "gsm8k",
+        "mmlu-pro",
+        "gpqa"
+      ],
+      "benchmarks_missing": [
+        "hle",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gsm8k": 86.88,
+        "mmlu-pro": 49.83,
+        "gpqa": 31.7
+      }
+    },
+    "diversity_details": {
+      "count": 3,
+      "datasets": [
+        "gsm8k",
+        "gpqa",
+        "mmlu-pro"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 3,
+    "missing_benchmarks": [
+      "hle",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 23.1,
+    "confidence": "low"
+  },
+  "rank": 71,
+  "badge_url": "https://rankmodel.github.io/badges/ibm-granite/granite-4.1-3b/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/ibm-granite/granite-4.1-3b/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/ibm-granite/granite-4.1-3b.svg"
+}

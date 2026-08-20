@@ -1,0 +1,89 @@
+{
+  "model_id": "nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+  "composite": 83.09,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 17.0,
+  "breakdown": {
+    "benchmarks": 86.9,
+    "efficiency": 27.2,
+    "community": 59.03,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "A",
+  "computed_at": "2026-08-20T13:31:11.317027",
+  "details": {
+    "benchmark_details": {
+      "score": 86.9,
+      "benchmarks_found": [
+        "gpqa",
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 87.0,
+        "mmlu-pro": 86.8
+      }
+    },
+    "diversity_details": {
+      "count": 5,
+      "datasets": [
+        "gpqa",
+        "mmlu-pro",
+        "swe-bench/swe-bench_multilingual",
+        "swe-bench/swe-bench_verified",
+        "cais/hle"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 2,
+    "missing_benchmarks": [
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 15.4,
+    "confidence": "low"
+  },
+  "rank": 12,
+  "badge_url": "https://rankmodel.github.io/badges/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16.svg"
+}

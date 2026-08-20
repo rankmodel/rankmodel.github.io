@@ -1,0 +1,86 @@
+{
+  "model_id": "microsoft/Phi-3.5-mini-instruct",
+  "composite": 67.23,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 80,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 24.0,
+  "breakdown": {
+    "benchmarks": 60.65,
+    "efficiency": 64.27,
+    "community": 65.67,
+    "recency": 100.0,
+    "reproducibility": 20.0
+  },
+  "tier": "C",
+  "computed_at": "2026-08-20T13:30:37.769545",
+  "details": {
+    "benchmark_details": {
+      "score": 60.64666666666667,
+      "benchmarks_found": [
+        "gsm8k",
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "gpqa",
+        "hle",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gsm8k": 86.2,
+        "mmlu-pro": 47.87
+      }
+    },
+    "diversity_details": {
+      "count": 2,
+      "datasets": [
+        "gsm8k",
+        "mmlu-pro"
+      ],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 2,
+    "missing_benchmarks": [
+      "gpqa",
+      "hle",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 15.4,
+    "confidence": "low"
+  },
+  "rank": 57,
+  "badge_url": "https://rankmodel.github.io/badges/microsoft/Phi-3.5-mini-instruct/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/microsoft/Phi-3.5-mini-instruct/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/microsoft/Phi-3.5-mini-instruct.svg"
+}

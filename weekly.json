@@ -1,66 +1,66 @@
 {
-  "generated_at": "2026-08-20T13:21:56.684275Z",
+  "generated_at": "2026-08-20T13:41:38.325245Z",
   "date": "August 20, 2026",
   "top10": [
     {
       "rank": 1,
+      "model_id": "prism-ml/Ternary-Bonsai-27B-gguf",
+      "composite": 88.39,
+      "tier": "A"
+    },
+    {
+      "rank": 2,
       "model_id": "zai-org/GLM-5.2",
       "composite": 87.35,
       "tier": "A"
     },
     {
-      "rank": 2,
+      "rank": 3,
       "model_id": "prism-ml/Bonsai-27B-gguf",
-      "composite": 86.78,
+      "composite": 86.79,
       "tier": "A"
     },
     {
-      "rank": 3,
+      "rank": 4,
+      "model_id": "prism-ml/Ternary-Bonsai-8B-gguf",
+      "composite": 86.75,
+      "tier": "A"
+    },
+    {
+      "rank": 5,
+      "model_id": "deepseek-ai/DeepSeek-V4-Pro",
+      "composite": 86.22,
+      "tier": "A"
+    },
+    {
+      "rank": 6,
+      "model_id": "prism-ml/Bonsai-8B-gguf",
+      "composite": 84.97,
+      "tier": "A"
+    },
+    {
+      "rank": 7,
+      "model_id": "Nanbeige/Nanbeige4.2-3B",
+      "composite": 84.82,
+      "tier": "A"
+    },
+    {
+      "rank": 8,
       "model_id": "deepseek-ai/DeepSeek-V4-Flash",
       "composite": 84.28,
       "tier": "A"
     },
     {
-      "rank": 4,
-      "model_id": "deepseek-ai/DeepSeek-R1",
-      "composite": 78.3,
-      "tier": "B"
-    },
-    {
-      "rank": 5,
-      "model_id": "openai/gpt-oss-120b",
-      "composite": 76.45,
-      "tier": "B"
-    },
-    {
-      "rank": 6,
-      "model_id": "zai-org/GLM-4.7-Flash",
-      "composite": 76.01,
-      "tier": "B"
-    },
-    {
-      "rank": 7,
-      "model_id": "Qwen/Qwen3-4B-Instruct-2507",
-      "composite": 70.85,
-      "tier": "B"
-    },
-    {
-      "rank": 8,
-      "model_id": "openai/gpt-oss-20b",
-      "composite": 69.82,
-      "tier": "C"
-    },
-    {
       "rank": 9,
-      "model_id": "ibm-granite/granite-4.1-8b",
-      "composite": 63.49,
-      "tier": "C"
+      "model_id": "zai-org/GLM-5",
+      "composite": 83.5,
+      "tier": "A"
     },
     {
       "rank": 10,
-      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
-      "composite": 58.17,
-      "tier": "D"
+      "model_id": "zai-org/GLM-5.1",
+      "composite": 83.38,
+      "tier": "A"
     }
   ],
   "trending": [
@@ -70,7 +70,7 @@
       "tier": "B",
       "trend_score": 85.1,
       "reason": "75/100 community \u00b7 100/100 freshness",
-      "rank": 4
+      "rank": 32
     },
     {
       "model_id": "meta-llama/Llama-3.1-8B-Instruct",
@@ -78,7 +78,23 @@
       "tier": "D",
       "trend_score": 83.5,
       "reason": "100/100 freshness",
-      "rank": 10
+      "rank": 73
+    },
+    {
+      "model_id": "meta-llama/Meta-Llama-3-8B",
+      "composite": 48.82,
+      "tier": "D",
+      "trend_score": 83.5,
+      "reason": "100/100 freshness",
+      "rank": 88
+    },
+    {
+      "model_id": "deepseek-ai/DeepSeek-V4-Pro",
+      "composite": 86.22,
+      "tier": "A",
+      "trend_score": 83.1,
+      "reason": "100/100 freshness",
+      "rank": 5
     },
     {
       "model_id": "zai-org/GLM-5.2",
@@ -86,25 +102,9 @@
       "tier": "A",
       "trend_score": 82.9,
       "reason": "100/100 freshness",
-      "rank": 1
-    },
-    {
-      "model_id": "openai/gpt-oss-120b",
-      "composite": 76.45,
-      "tier": "B",
-      "trend_score": 82.9,
-      "reason": "100/100 freshness",
-      "rank": 5
-    },
-    {
-      "model_id": "openai/gpt-oss-20b",
-      "composite": 69.82,
-      "tier": "C",
-      "trend_score": 82.9,
-      "reason": "100/100 freshness",
-      "rank": 8
+      "rank": 2
     }
   ],
-  "efficiency_king": "HuggingFaceTB/SmolLM2-135M",
-  "newcomer": "zai-org/GLM-5.2"
+  "efficiency_king": "prism-ml/Bonsai-1.7B-gguf",
+  "newcomer": "prism-ml/Ternary-Bonsai-27B-gguf"
 }

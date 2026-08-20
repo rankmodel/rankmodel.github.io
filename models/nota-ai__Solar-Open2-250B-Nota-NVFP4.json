@@ -1,0 +1,81 @@
+{
+  "model_id": "nota-ai/Solar-Open2-250B-Nota-NVFP4",
+  "composite": 21.25,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 17.0,
+  "breakdown": {
+    "benchmarks": 0.0,
+    "efficiency": 21.89,
+    "community": 51.51,
+    "recency": 100.0,
+    "reproducibility": 0.0
+  },
+  "tier": "D",
+  "computed_at": "2026-08-20T13:37:01.882268",
+  "details": {
+    "benchmark_details": {
+      "score": 0.0,
+      "benchmarks_found": [],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "gpqa",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {}
+    },
+    "diversity_details": {
+      "count": 0,
+      "datasets": [],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 0,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "gpqa",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 0.0,
+    "confidence": "low"
+  },
+  "rank": 495,
+  "badge_url": "https://rankmodel.github.io/badges/nota-ai/Solar-Open2-250B-Nota-NVFP4/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/nota-ai/Solar-Open2-250B-Nota-NVFP4/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/nota-ai/Solar-Open2-250B-Nota-NVFP4.svg"
+}

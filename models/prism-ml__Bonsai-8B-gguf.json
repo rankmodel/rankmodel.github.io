@@ -1,0 +1,85 @@
+{
+  "model_id": "prism-ml/Bonsai-8B-gguf",
+  "composite": 84.97,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 65,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 22.5,
+  "breakdown": {
+    "benchmarks": 88.0,
+    "efficiency": 52.5,
+    "community": 57.46,
+    "recency": 100.0,
+    "reproducibility": 20.0
+  },
+  "tier": "A",
+  "computed_at": "2026-08-20T13:36:41.430230",
+  "details": {
+    "benchmark_details": {
+      "score": 88.0,
+      "benchmarks_found": [
+        "gsm8k"
+      ],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "gpqa",
+        "hle",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gsm8k": 88.0
+      }
+    },
+    "diversity_details": {
+      "count": 1,
+      "datasets": [
+        "gsm8k"
+      ],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "gpqa",
+      "hle",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 6,
+  "badge_url": "https://rankmodel.github.io/badges/prism-ml/Bonsai-8B-gguf/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/prism-ml/Bonsai-8B-gguf/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/prism-ml/Bonsai-8B-gguf.svg"
+}

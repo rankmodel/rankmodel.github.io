@@ -1,0 +1,86 @@
+{
+  "model_id": "XiaomiMiMo/MiMo-V2-Flash",
+  "composite": 80.47,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 17.0,
+  "breakdown": {
+    "benchmarks": 83.33,
+    "efficiency": 27.43,
+    "community": 57.64,
+    "recency": 100.0,
+    "reproducibility": 20.0
+  },
+  "tier": "A",
+  "computed_at": "2026-08-20T13:36:28.820330",
+  "details": {
+    "benchmark_details": {
+      "score": 83.3333333333,
+      "benchmarks_found": [
+        "gpqa"
+      ],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 83.3333333333
+      }
+    },
+    "diversity_details": {
+      "count": 2,
+      "datasets": [
+        "cais/hle",
+        "gpqa"
+      ],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 24,
+  "badge_url": "https://rankmodel.github.io/badges/XiaomiMiMo/MiMo-V2-Flash/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/XiaomiMiMo/MiMo-V2-Flash/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/XiaomiMiMo/MiMo-V2-Flash.svg"
+}

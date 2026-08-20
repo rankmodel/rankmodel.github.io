@@ -1,0 +1,85 @@
+{
+  "model_id": "meta-llama/Llama-3.1-8B",
+  "composite": 49.33,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 65,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 22.5,
+  "breakdown": {
+    "benchmarks": 36.6,
+    "efficiency": 36.72,
+    "community": 68.71,
+    "recency": 100.0,
+    "reproducibility": 20.0
+  },
+  "tier": "D",
+  "computed_at": "2026-08-20T13:30:36.820367",
+  "details": {
+    "benchmark_details": {
+      "score": 36.6,
+      "benchmarks_found": [
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "gpqa",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "mmlu-pro": 36.6
+      }
+    },
+    "diversity_details": {
+      "count": 1,
+      "datasets": [
+        "mmlu-pro"
+      ],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "gpqa",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 87,
+  "badge_url": "https://rankmodel.github.io/badges/meta-llama/Llama-3.1-8B/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/meta-llama/Llama-3.1-8B/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/meta-llama/Llama-3.1-8B.svg"
+}

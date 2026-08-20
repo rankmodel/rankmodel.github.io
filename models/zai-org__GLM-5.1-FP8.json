@@ -1,0 +1,85 @@
+{
+  "model_id": "zai-org/GLM-5.1-FP8",
+  "composite": 80.24,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 17.0,
+  "breakdown": {
+    "benchmarks": 83.33,
+    "efficiency": 27.11,
+    "community": 55.51,
+    "recency": 100.0,
+    "reproducibility": 20.0
+  },
+  "tier": "A",
+  "computed_at": "2026-08-20T13:31:06.720787",
+  "details": {
+    "benchmark_details": {
+      "score": 83.3333333333,
+      "benchmarks_found": [
+        "gpqa"
+      ],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 83.3333333333
+      }
+    },
+    "diversity_details": {
+      "count": 1,
+      "datasets": [
+        "gpqa"
+      ],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 25,
+  "badge_url": "https://rankmodel.github.io/badges/zai-org/GLM-5.1-FP8/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/zai-org/GLM-5.1-FP8/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/zai-org/GLM-5.1-FP8.svg"
+}

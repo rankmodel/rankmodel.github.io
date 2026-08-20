@@ -1,0 +1,90 @@
+{
+  "model_id": "upstage/Solar-Open2-250B",
+  "composite": 82.99,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 70,
+    "hub_completeness": 0
+  },
+  "extended_composite": 20.0,
+  "breakdown": {
+    "benchmarks": 87.3,
+    "efficiency": 27.59,
+    "community": 55.05,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "A",
+  "computed_at": "2026-08-20T13:41:18.227163",
+  "details": {
+    "benchmark_details": {
+      "score": 87.30000000000001,
+      "benchmarks_found": [
+        "math",
+        "gpqa",
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "math": 95.7,
+        "gpqa": 86.3,
+        "mmlu-pro": 86.2
+      }
+    },
+    "diversity_details": {
+      "count": 6,
+      "datasets": [
+        "gpqa",
+        "mmlu-pro",
+        "swe-bench/swe-bench_verified",
+        "math",
+        "cais/hle",
+        "mercor/apex-agents"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 3,
+    "missing_benchmarks": [
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 23.1,
+    "confidence": "low"
+  },
+  "rank": 14,
+  "badge_url": "https://rankmodel.github.io/badges/upstage/Solar-Open2-250B/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/upstage/Solar-Open2-250B/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/upstage/Solar-Open2-250B.svg"
+}

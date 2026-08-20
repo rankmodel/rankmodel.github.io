@@ -1,0 +1,85 @@
+{
+  "model_id": "Qwen/Qwen3-Coder-Next",
+  "composite": 22.63,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 17.0,
+  "breakdown": {
+    "benchmarks": 0.0,
+    "efficiency": 21.89,
+    "community": 65.4,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "D",
+  "computed_at": "2026-08-20T13:31:01.129933",
+  "details": {
+    "benchmark_details": {
+      "score": 0.0,
+      "benchmarks_found": [],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "gpqa",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {}
+    },
+    "diversity_details": {
+      "count": 3,
+      "datasets": [
+        "harborframework/terminal-bench-2.0",
+        "scaleai/swe-bench_pro",
+        "swe-bench/swe-bench_verified"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 0,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "gpqa",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 0.0,
+    "confidence": "low"
+  },
+  "rank": 183,
+  "badge_url": "https://rankmodel.github.io/badges/Qwen/Qwen3-Coder-Next/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/Qwen/Qwen3-Coder-Next/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/Qwen/Qwen3-Coder-Next.svg"
+}

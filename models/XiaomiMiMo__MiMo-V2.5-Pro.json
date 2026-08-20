@@ -1,0 +1,93 @@
+{
+  "model_id": "XiaomiMiMo/MiMo-V2.5-Pro",
+  "composite": 73.77,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 70,
+    "hub_completeness": 0
+  },
+  "extended_composite": 20.0,
+  "breakdown": {
+    "benchmarks": 74.0,
+    "efficiency": 27.04,
+    "community": 56.16,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "B",
+  "computed_at": "2026-08-20T13:37:26.937683",
+  "details": {
+    "benchmark_details": {
+      "score": 74.00000000000001,
+      "benchmarks_found": [
+        "gpqa",
+        "gsm8k",
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "hle",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 66.7,
+        "gsm8k": 99.6,
+        "mmlu-pro": 68.5
+      }
+    },
+    "diversity_details": {
+      "count": 9,
+      "datasets": [
+        "gpqa",
+        "gsm8k",
+        "mmlu-pro",
+        "internlm/wildclawbench",
+        "harborframework/terminal-bench-2.0",
+        "scaleai/swe-bench_pro",
+        "swe-bench/swe-bench_verified",
+        "cais/hle",
+        "claw-eval/claw-eval"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 3,
+    "missing_benchmarks": [
+      "hle",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 23.1,
+    "confidence": "low"
+  },
+  "rank": 41,
+  "badge_url": "https://rankmodel.github.io/badges/XiaomiMiMo/MiMo-V2.5-Pro/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/XiaomiMiMo/MiMo-V2.5-Pro/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/XiaomiMiMo/MiMo-V2.5-Pro.svg"
+}

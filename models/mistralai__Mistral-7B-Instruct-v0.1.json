@@ -1,0 +1,85 @@
+{
+  "model_id": "mistralai/Mistral-7B-Instruct-v0.1",
+  "composite": 41.05,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 65,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 22.5,
+  "breakdown": {
+    "benchmarks": 25.75,
+    "efficiency": 34.42,
+    "community": 62.99,
+    "recency": 100.0,
+    "reproducibility": 20.0
+  },
+  "tier": "D",
+  "computed_at": "2026-08-20T13:32:10.689856",
+  "details": {
+    "benchmark_details": {
+      "score": 25.75,
+      "benchmarks_found": [
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "gpqa",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "mmlu-pro": 25.75
+      }
+    },
+    "diversity_details": {
+      "count": 1,
+      "datasets": [
+        "mmlu-pro"
+      ],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "gpqa",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 97,
+  "badge_url": "https://rankmodel.github.io/badges/mistralai/Mistral-7B-Instruct-v0.1/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/mistralai/Mistral-7B-Instruct-v0.1/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/mistralai/Mistral-7B-Instruct-v0.1.svg"
+}

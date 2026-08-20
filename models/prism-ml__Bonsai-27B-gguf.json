@@ -1,6 +1,6 @@
 {
   "model_id": "prism-ml/Bonsai-27B-gguf",
-  "composite": 86.78,
+  "composite": 86.79,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 90.89,
     "efficiency": 34.0,
-    "community": 64.59,
+    "community": 64.66,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-15T02:42:09.250455",
+  "computed_at": "2026-08-20T13:30:31.351056",
   "details": {
     "benchmark_details": {
       "score": 90.89333333333332,
@@ -52,9 +52,9 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
+        "math",
         "mmmu/mmmu_pro",
-        "gsm8k",
-        "math"
+        "gsm8k"
       ],
       "diversity_bonus": 10.0
     },
@@ -80,7 +80,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 2,
+  "rank": 3,
   "badge_url": "https://rankmodel.github.io/badges/prism-ml/Bonsai-27B-gguf/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/prism-ml/Bonsai-27B-gguf/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/prism-ml/Bonsai-27B-gguf.svg"
