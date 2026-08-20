@@ -65,84 +65,131 @@ def generate_score_badge(model_id: str, score: float, tier: str, rank: int) -> s
     color = score_color(score)
     tier_color = TIER_COLORS.get(tier, '#6366f1')
     name = model_id.split('/')[-1][:22]
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="230" height="36">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="240" height="32">
   <defs>
-    <linearGradient id="bg_{rank}" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#4c1d95"/>
-      <stop offset="100%" stop-color="#2563eb"/>
+    <linearGradient id="bg-left" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2d2d3a"/>
+      <stop offset="100%" stop-color="#1f1f2e"/>
     </linearGradient>
-    <clipPath id="clip_{rank}">
-      <rect width="230" height="36" rx="8"/>
+    <linearGradient id="bg-right" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f1f2e"/>
+      <stop offset="100%" stop-color="#161622"/>
+    </linearGradient>
+    <clipPath id="clip-main">
+      <rect width="240" height="32" rx="6"/>
     </clipPath>
+    <filter id="drop-shadow">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.3" />
+    </filter>
   </defs>
-  <g clip-path="url(#clip_{rank})">
-    <rect width="230" height="36" fill="url(#bg_{rank})"/>
-    <rect x="160" y="0" width="70" height="36" fill="#000000" fill-opacity="0.25"/>
+  <g clip-path="url(#clip-main)" filter="url(#drop-shadow)">
+    <rect width="160" height="32" fill="url(#bg-left)"/>
+    <rect x="160" width="80" height="32" fill="url(#bg-right)"/>
+    <line x1="160" y1="0" x2="160" y2="32" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
+    <rect width="240" height="32" rx="6" fill="none" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
   </g>
-  <rect width="230" height="36" rx="8" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
-  <path d="M 160 0 L 160 36" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
-  
-  <text x="12" y="23" font-family="system-ui, sans-serif" font-size="16" fill="#ffffff" font-weight="900" font-style="italic">MR</text>
-  <text x="42" y="14" font-family="system-ui, sans-serif" font-size="9" fill="#a5b4fc" font-weight="600" letter-spacing="0.5">MODELRANK</text>
-  <text x="42" y="27" font-family="system-ui, sans-serif" font-size="12" fill="#ffffff" font-weight="bold">{name}</text>
-  
-  <text x="170" y="24" font-family="system-ui, sans-serif" font-size="16" fill="{color}" font-weight="900">{score:.0f}</text>
-  <rect x="198" y="10" width="22" height="16" rx="4" fill="{tier_color}" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
-  <text x="209" y="22" font-family="system-ui, sans-serif" font-size="10" fill="#ffffff" font-weight="bold" text-anchor="middle">{tier}</text>
+  <g transform="translate(8, 6) scale(0.0390625)">
+    <linearGradient id="mr-gradient-logo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4c1d95" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <path d="M 256 32 C 256 32 100 80 100 80 L 100 240 C 100 360 256 480 256 480 C 256 480 412 360 412 240 L 412 80 C 412 80 256 32 256 32 Z" fill="url(#mr-gradient-logo)" />
+    <rect x="160" y="180" width="36" height="150" rx="8" fill="#ffffff" />
+    <rect x="210" y="210" width="36" height="120" rx="8" fill="#ffffff" />
+    <rect x="260" y="160" width="36" height="170" rx="8" fill="#ffffff" />
+    <rect x="310" y="240" width="36" height="90" rx="8" fill="#ffffff" />
+    <path d="M 296 160 H 316 C 344 160 360 176 360 200 C 360 224 344 240 316 240 H 296 V 160 Z" fill="none" stroke="#ffffff" stroke-width="28" stroke-linejoin="round" />
+  </g>
+  <text x="34" y="21" font-family="system-ui, sans-serif" font-size="12" fill="#ffffff" font-weight="600">{name}</text>
+  <text x="172" y="21" font-family="system-ui, sans-serif" font-size="13" fill="{color}" font-weight="800">{score:.0f}</text>
+  <rect x="202" y="7" width="30" height="18" rx="4" fill="{tier_color}" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="217" y="20" font-family="system-ui, sans-serif" font-size="11" fill="#ffffff" font-weight="bold" text-anchor="middle">{tier}</text>
 </svg>'''
 
 
 def generate_tier_badge(tier: str) -> str:
     tier_color = TIER_COLORS.get(tier, '#6366f1')
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="110" height="28">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="120" height="32">
   <defs>
-    <linearGradient id="tier_bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#4c1d95"/>
-      <stop offset="100%" stop-color="#2563eb"/>
+    <linearGradient id="bg-left-tier" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2d2d3a"/>
+      <stop offset="100%" stop-color="#1f1f2e"/>
     </linearGradient>
-    <clipPath id="clip_tier">
-      <rect width="110" height="28" rx="6"/>
+    <linearGradient id="bg-right-tier" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f1f2e"/>
+      <stop offset="100%" stop-color="#161622"/>
+    </linearGradient>
+    <clipPath id="clip-tier">
+      <rect width="120" height="32" rx="6"/>
     </clipPath>
+    <filter id="drop-shadow">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.3" />
+    </filter>
   </defs>
-  <g clip-path="url(#clip_tier)">
-    <rect width="110" height="28" fill="url(#tier_bg)"/>
-    <rect x="70" y="0" width="40" height="28" fill="#000000" fill-opacity="0.25"/>
+  <g clip-path="url(#clip-tier)" filter="url(#drop-shadow)">
+    <rect width="70" height="32" fill="url(#bg-left-tier)"/>
+    <rect x="70" width="50" height="32" fill="url(#bg-right-tier)"/>
+    <line x1="70" y1="0" x2="70" y2="32" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
+    <rect width="120" height="32" rx="6" fill="none" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
   </g>
-  <rect width="110" height="28" rx="6" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
-  <path d="M 70 0 L 70 28" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
-  
-  <text x="8" y="18" font-family="system-ui, sans-serif" font-size="12" fill="#ffffff" font-weight="900" font-style="italic">MR</text>
-  <text x="32" y="18" font-family="system-ui, sans-serif" font-size="10" fill="#a5b4fc" font-weight="bold">TIER</text>
-  
-  <rect x="78" y="5" width="24" height="18" rx="4" fill="{tier_color}" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
-  <text x="90" y="18" font-family="system-ui, sans-serif" font-size="11" fill="#ffffff" font-weight="900" text-anchor="middle">{tier}</text>
+  <g transform="translate(8, 6) scale(0.0390625)">
+    <linearGradient id="mr-gradient-logo2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4c1d95" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <path d="M 256 32 C 256 32 100 80 100 80 L 100 240 C 100 360 256 480 256 480 C 256 480 412 360 412 240 L 412 80 C 412 80 256 32 256 32 Z" fill="url(#mr-gradient-logo2)" />
+    <rect x="160" y="180" width="36" height="150" rx="8" fill="#ffffff" />
+    <rect x="210" y="210" width="36" height="120" rx="8" fill="#ffffff" />
+    <rect x="260" y="160" width="36" height="170" rx="8" fill="#ffffff" />
+    <rect x="310" y="240" width="36" height="90" rx="8" fill="#ffffff" />
+    <path d="M 296 160 H 316 C 344 160 360 176 360 200 C 360 224 344 240 316 240 H 296 V 160 Z" fill="none" stroke="#ffffff" stroke-width="28" stroke-linejoin="round" />
+  </g>
+  <text x="34" y="21" font-family="system-ui, sans-serif" font-size="12" fill="#a5b4fc" font-weight="600">TIER</text>
+  <rect x="78" y="7" width="34" height="18" rx="4" fill="{tier_color}" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="95" y="20" font-family="system-ui, sans-serif" font-size="11" fill="#ffffff" font-weight="bold" text-anchor="middle">{tier}</text>
 </svg>'''
 
 
 def generate_rank_badge(rank: int, total: int) -> str:
     color = '#22c55e' if rank <= 3 else ('#eab308' if rank <= 10 else '#94a3b8')
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="130" height="28">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="140" height="32">
   <defs>
-    <linearGradient id="rank_bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#4c1d95"/>
-      <stop offset="100%" stop-color="#2563eb"/>
+    <linearGradient id="bg-left-rank" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2d2d3a"/>
+      <stop offset="100%" stop-color="#1f1f2e"/>
     </linearGradient>
-    <clipPath id="clip_rank">
-      <rect width="130" height="28" rx="6"/>
+    <linearGradient id="bg-right-rank" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f1f2e"/>
+      <stop offset="100%" stop-color="#161622"/>
+    </linearGradient>
+    <clipPath id="clip-rank">
+      <rect width="140" height="32" rx="6"/>
     </clipPath>
+    <filter id="drop-shadow">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.3" />
+    </filter>
   </defs>
-  <g clip-path="url(#clip_rank)">
-    <rect width="130" height="28" fill="url(#rank_bg)"/>
-    <rect x="75" y="0" width="55" height="28" fill="#000000" fill-opacity="0.25"/>
+  <g clip-path="url(#clip-rank)" filter="url(#drop-shadow)">
+    <rect width="70" height="32" fill="url(#bg-left-rank)"/>
+    <rect x="70" width="70" height="32" fill="url(#bg-right-rank)"/>
+    <line x1="70" y1="0" x2="70" y2="32" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
+    <rect width="140" height="32" rx="6" fill="none" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
   </g>
-  <rect width="130" height="28" rx="6" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
-  <path d="M 75 0 L 75 28" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
-  
-  <text x="8" y="18" font-family="system-ui, sans-serif" font-size="12" fill="#ffffff" font-weight="900" font-style="italic">MR</text>
-  <text x="32" y="18" font-family="system-ui, sans-serif" font-size="10" fill="#a5b4fc" font-weight="bold">RANK</text>
-  
-  <text x="82" y="19" font-family="system-ui, sans-serif" font-size="13" fill="{color}" font-weight="900">#{rank}</text>
-  <text x="110" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#cbd5e1">/{total}</text>
+  <g transform="translate(8, 6) scale(0.0390625)">
+    <linearGradient id="mr-gradient-logo3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4c1d95" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <path d="M 256 32 C 256 32 100 80 100 80 L 100 240 C 100 360 256 480 256 480 C 256 480 412 360 412 240 L 412 80 C 412 80 256 32 256 32 Z" fill="url(#mr-gradient-logo3)" />
+    <rect x="160" y="180" width="36" height="150" rx="8" fill="#ffffff" />
+    <rect x="210" y="210" width="36" height="120" rx="8" fill="#ffffff" />
+    <rect x="260" y="160" width="36" height="170" rx="8" fill="#ffffff" />
+    <rect x="310" y="240" width="36" height="90" rx="8" fill="#ffffff" />
+    <path d="M 296 160 H 316 C 344 160 360 176 360 200 C 360 224 344 240 316 240 H 296 V 160 Z" fill="none" stroke="#ffffff" stroke-width="28" stroke-linejoin="round" />
+  </g>
+  <text x="34" y="21" font-family="system-ui, sans-serif" font-size="12" fill="#a5b4fc" font-weight="600">RANK</text>
+  <text x="78" y="21" font-family="system-ui, sans-serif" font-size="13" fill="{color}" font-weight="800">#{rank}</text>
+  <text x="110" y="21" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8" font-weight="500">/{total}</text>
 </svg>'''
 
 
