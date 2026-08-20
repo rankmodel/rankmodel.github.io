@@ -60,104 +60,97 @@ def score_color(score: float) -> str:
     return '#ef4444'
 
 
-def generate_score_badge(model_id: str, score: float, tier: str, rank: int) -> str:
-    """Generate a clean score SVG badge."""
-    color = score_color(score)
-    tier_color = TIER_COLORS.get(tier, '#6366f1')
-    name = model_id.split('/')[-1][:22]
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="240" height="32">
+# ── Brand mark: ranked bars + star (512-coordinate space) ─────────────────────
+_MR_BARS = [(150, 300, 64, 100), (234, 250, 64, 150), (318, 190, 64, 210)]
+def _mr_mark_path():
+    pts = []
+    for _i in range(10):
+        _a = math.radians(-90 + _i * 36)
+        _r = 46 if _i % 2 == 0 else 19
+        pts.append((350 + _r * math.cos(_a), 150 + _r * math.sin(_a)))
+    return "M " + " L ".join(f"{x:.1f},{y:.1f}" for x, y in pts) + " Z"
+_MR_MARK = ("".join(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="14"/>' for x, y, w, h in _MR_BARS)
+           + f'<path d="{_mr_mark_path()}"/>')
+
+def _embed_mark(x, y, size):
+    return f'<g transform="translate({x:.1f},{y:.1f}) scale({size/512:.5f})" fill="#ffffff">{_MR_MARK}</g>'
+
+def _tw(text, size):
+    return int(len(text) * size * 0.60) + 3
+
+def _frame(W, H, left_w):
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
   <defs>
-    <linearGradient id="bg-left" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2d2d3a"/>
-      <stop offset="100%" stop-color="#1f1f2e"/>
+    <linearGradient id="bl" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#262633"/><stop offset="100%" stop-color="#15151f"/>
     </linearGradient>
-    <linearGradient id="bg-right" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1f1f2e"/>
-      <stop offset="100%" stop-color="#161622"/>
-    </linearGradient>
-    <clipPath id="clip-main">
-      <rect width="240" height="32" rx="6"/>
-    </clipPath>
-    <filter id="drop-shadow">
-      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.3" />
+    <clipPath id="cp"><rect width="{W}" height="{H}" rx="7"/></clipPath>
+    <filter id="ds" x="-20%" y="-50%" width="140%" height="200%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.4" flood-color="#000000" flood-opacity="0.35"/>
     </filter>
   </defs>
-  <g clip-path="url(#clip-main)" filter="url(#drop-shadow)">
-    <rect width="160" height="32" fill="url(#bg-left)"/>
-    <rect x="160" width="80" height="32" fill="url(#bg-right)"/>
-    <line x1="160" y1="0" x2="160" y2="32" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
-    <rect width="240" height="32" rx="6" fill="none" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
-  </g>
-  <g transform="translate(6,4) scale(0.046875)" fill="#ffffff"><rect x="150" y="300" width="64" height="100" rx="14"/><rect x="234" y="250" width="64" height="150" rx="14"/><rect x="318" y="190" width="64" height="210" rx="14"/><path d="M 350.0,104.0 L 361.2,134.6 L 393.7,135.8 L 368.1,155.9 L 377.0,187.2 L 350.0,169.0 L 323.0,187.2 L 331.9,155.9 L 306.3,135.8 L 338.8,134.6 Z"/></g>
-  <text x="34" y="21" font-family="system-ui, sans-serif" font-size="12" fill="#ffffff" font-weight="600">{name}</text>
-  <text x="172" y="21" font-family="system-ui, sans-serif" font-size="13" fill="{color}" font-weight="800">{score:.0f}</text>
-  <rect x="202" y="7" width="30" height="18" rx="4" fill="{tier_color}" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1"/>
-  <text x="217" y="20" font-family="system-ui, sans-serif" font-size="11" fill="#ffffff" font-weight="bold" text-anchor="middle">{tier}</text>
-</svg>'''
+  <g clip-path="url(#cp)" filter="url(#ds)">
+    <rect width="{W}" height="{H}" fill="url(#bl)"/>
+    <rect width="{W}" height="{H}" rx="7" fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="1"/>
+    <line x1="{left_w}" y1="6" x2="{left_w}" y2="{H-6}" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1"/>
+  </g>'''
+
+def generate_score_badge(model_id: str, score: float, tier: str, rank: int) -> str:
+    """Premium, auto-sized score badge with the ModelRank mark."""
+    color = score_color(score)
+    tier_color = TIER_COLORS.get(tier, '#6366f1')
+    name = model_id.split('/')[-1]
+    if len(name) > 22:
+        name = name[:20] + '\u2026'
+    mark, pl, mgap, npad = 18, 8, 6, 12
+    name_w = _tw(name, 12)
+    left_w = pl + mark + mgap + name_w + npad
+    score_w = _tw(f"{score:.0f}", 15)
+    pill_w = 30
+    right_w = 12 + score_w + 8 + pill_w + 10
+    W = left_w + right_w
+    svg = _frame(W, 32, left_w)
+    svg += _embed_mark(pl, (32 - mark) / 2, mark)
+    svg += f'<text x="{pl+mark+mgap}" y="21" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#ffffff">{name}</text>'
+    svg += f'<text x="{left_w+12}" y="22" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="15" font-weight="800" fill="{color}">{score:.0f}</text>'
+    px = left_w + 12 + score_w + 8
+    svg += f'<rect x="{px}" y="7" width="{pill_w}" height="18" rx="4" fill="{tier_color}"/>'
+    svg += f'<text x="{px+pill_w/2:.0f}" y="20" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" font-weight="800" fill="#ffffff">{tier}</text>'
+    svg += '</svg>'
+    return svg
 
 
 def generate_tier_badge(tier: str) -> str:
+    """Premium, auto-sized tier badge with the ModelRank mark."""
     tier_color = TIER_COLORS.get(tier, '#6366f1')
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="120" height="32">
-  <defs>
-    <linearGradient id="bg-left-tier" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2d2d3a"/>
-      <stop offset="100%" stop-color="#1f1f2e"/>
-    </linearGradient>
-    <linearGradient id="bg-right-tier" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1f1f2e"/>
-      <stop offset="100%" stop-color="#161622"/>
-    </linearGradient>
-    <clipPath id="clip-tier">
-      <rect width="120" height="32" rx="6"/>
-    </clipPath>
-    <filter id="drop-shadow">
-      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.3" />
-    </filter>
-  </defs>
-  <g clip-path="url(#clip-tier)" filter="url(#drop-shadow)">
-    <rect width="70" height="32" fill="url(#bg-left-tier)"/>
-    <rect x="70" width="50" height="32" fill="url(#bg-right-tier)"/>
-    <line x1="70" y1="0" x2="70" y2="32" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
-    <rect width="120" height="32" rx="6" fill="none" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
-  </g>
-  <g transform="translate(6,4) scale(0.046875)" fill="#ffffff"><rect x="150" y="300" width="64" height="100" rx="14"/><rect x="234" y="250" width="64" height="150" rx="14"/><rect x="318" y="190" width="64" height="210" rx="14"/><path d="M 350.0,104.0 L 361.2,134.6 L 393.7,135.8 L 368.1,155.9 L 377.0,187.2 L 350.0,169.0 L 323.0,187.2 L 331.9,155.9 L 306.3,135.8 L 338.8,134.6 Z"/></g>
-  <text x="34" y="21" font-family="system-ui, sans-serif" font-size="12" fill="#a5b4fc" font-weight="600">TIER</text>
-  <rect x="78" y="7" width="34" height="18" rx="4" fill="{tier_color}" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1"/>
-  <text x="95" y="20" font-family="system-ui, sans-serif" font-size="11" fill="#ffffff" font-weight="bold" text-anchor="middle">{tier}</text>
-</svg>'''
+    mark, pl, mgap, npad = 18, 8, 6, 14
+    name_w = _tw("TIER", 12)
+    left_w = pl + mark + mgap + name_w + npad
+    right_w = 18 + _tw(tier, 16) + 18
+    W = left_w + right_w
+    svg = _frame(W, 32, left_w)
+    svg += _embed_mark(pl, (32 - mark) / 2, mark)
+    svg += f'<text x="{pl+mark+mgap}" y="21" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#ffffff">TIER</text>'
+    svg += f'<text x="{left_w+right_w/2:.0f}" y="22" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="16" font-weight="800" fill="{tier_color}">{tier}</text>'
+    svg += '</svg>'
+    return svg
 
 
 def generate_rank_badge(rank: int, total: int) -> str:
+    """Premium, auto-sized rank badge with the ModelRank mark."""
     color = '#22c55e' if rank <= 3 else ('#eab308' if rank <= 10 else '#94a3b8')
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="140" height="32">
-  <defs>
-    <linearGradient id="bg-left-rank" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2d2d3a"/>
-      <stop offset="100%" stop-color="#1f1f2e"/>
-    </linearGradient>
-    <linearGradient id="bg-right-rank" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1f1f2e"/>
-      <stop offset="100%" stop-color="#161622"/>
-    </linearGradient>
-    <clipPath id="clip-rank">
-      <rect width="140" height="32" rx="6"/>
-    </clipPath>
-    <filter id="drop-shadow">
-      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.3" />
-    </filter>
-  </defs>
-  <g clip-path="url(#clip-rank)" filter="url(#drop-shadow)">
-    <rect width="70" height="32" fill="url(#bg-left-rank)"/>
-    <rect x="70" width="70" height="32" fill="url(#bg-right-rank)"/>
-    <line x1="70" y1="0" x2="70" y2="32" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
-    <rect width="140" height="32" rx="6" fill="none" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
-  </g>
-  <g transform="translate(6,4) scale(0.046875)" fill="#ffffff"><rect x="150" y="300" width="64" height="100" rx="14"/><rect x="234" y="250" width="64" height="150" rx="14"/><rect x="318" y="190" width="64" height="210" rx="14"/><path d="M 350.0,104.0 L 361.2,134.6 L 393.7,135.8 L 368.1,155.9 L 377.0,187.2 L 350.0,169.0 L 323.0,187.2 L 331.9,155.9 L 306.3,135.8 L 338.8,134.6 Z"/></g>
-  <text x="34" y="21" font-family="system-ui, sans-serif" font-size="12" fill="#a5b4fc" font-weight="600">RANK</text>
-  <text x="78" y="21" font-family="system-ui, sans-serif" font-size="13" fill="{color}" font-weight="800">#{rank}</text>
-  <text x="110" y="21" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8" font-weight="500">/{total}</text>
-</svg>'''
+    mark, pl, mgap, npad = 18, 8, 6, 14
+    name_w = _tw("RANK", 12)
+    left_w = pl + mark + mgap + name_w + npad
+    rtext = f"#{rank} / {total}"
+    right_w = 14 + _tw(rtext, 13) + 14
+    W = left_w + right_w
+    svg = _frame(W, 32, left_w)
+    svg += _embed_mark(pl, (32 - mark) / 2, mark)
+    svg += f'<text x="{pl+mark+mgap}" y="21" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#ffffff">RANK</text>'
+    svg += f'<text x="{left_w+right_w/2:.0f}" y="21" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="800" fill="{color}">{rtext}</text>'
+    svg += '</svg>'
+    return svg
 
 
 def generate_shields_json(model_id: str, score: float, tier: str, rank: int) -> dict:

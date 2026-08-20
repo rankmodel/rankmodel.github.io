@@ -1,6 +1,4 @@
-<p align="center"><img src="assets/logo-wordmark.svg" alt="ModelRank" width="320"></p>
-
-# ModelRank
+<p align="center"><img src="assets/banner.png" alt="ModelRank"></p>
 
 > The AI benchmarking industry has a conflict-of-interest problem. The labs rating models are the same labs building them. We built ModelRank because you deserve an independent answer.
 
