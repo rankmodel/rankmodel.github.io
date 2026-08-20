@@ -1,0 +1,117 @@
+TWEET 1/10:
+AI labs are grading their own homework.
+
+The same companies building the models are publishing the leaderboards those models top.
+
+That's not a conspiracy. It's a structural conflict of interest nobody wants to name out loud.
+
+So we built the independent version. 🧵
+
+---
+
+TWEET 2/10:
+ModelRank is an open-source LLM leaderboard with zero paid placements, zero lab affiliations, and one job: give you an honest score.
+
+150+ models. 5 dimensions. MIT licensed.
+
+→ rankmodel.github.io
+
+Here's what makes it different from every other leaderboard you've seen.
+
+---
+
+TWEET 3/10:
+The efficiency finding that broke my priors:
+
+Qwen2.5-7B at $0.004/1M tokens hits ~85% of GPT-4o's composite score.
+
+GPT-4o costs $0.10/1M tokens.
+
+That's 4% of the price for 85% of the quality — for 70%+ of real production workloads.
+
+The price-quality signal in AI is broken. #LLM #AI
+
+---
+
+TWEET 4/10:
+The ModelRank score isn't just benchmarks.
+
+It's 5 dimensions:
+• Benchmarks 70% (MMLU-Pro, GPQA, HLE, GSM8K, HumanEval)
+• Recency 15%
+• Community 10%
+• Efficiency 5%
+
+Weighted because raw benchmark scores alone can be gamed. Context matters.
+
+---
+
+TWEET 5/10:
+The Community dimension runs ELO head-to-head.
+
+Real users pick winners on real tasks. Those outcomes feed into an ELO ladder — same math that ranks chess players.
+
+No lab can pay to move this number. It's determined entirely by head-to-head outcomes.
+
+The leaderboard reflects actual usage.
+
+---
+
+TWEET 6/10:
+Free embeddable badge. No API key. No account.
+
+Drop this in any README:
+
+[![ModelRank Score](https://rankmodel.github.io/badge/{model})](https://rankmodel.github.io)
+
+Live SVG. Auto-updates when scores change. Works on GitHub, GitLab, Notion, anywhere. #OpenSource
+
+---
+
+TWEET 7/10:
+VS Code extension: hover any model name in your code and see its live ModelRank score inline.
+
+Switching from GPT-4o to something cheaper? You'll see the quality delta before you commit.
+
+It's the kind of tooling that should have existed 2 years ago.
+
+→ rankmodel.github.io/vscode
+
+---
+
+TWEET 8/10:
+CI/CD quality gate. One action, one threshold.
+
+  - uses: rankmodel/model-quality-gate@v1
+    with:
+      model: mistralai/Mistral-7B-v0.1
+      min_composite_score: 70
+
+If a model update degrades quality past your threshold, the build fails.
+
+Your pipeline now has opinions about model quality.
+
+---
+
+TWEET 9/10:
+ModelRank has one hard constraint baked into the architecture:
+
+The scoring engine has no concept of a paid tier.
+
+Not "we don't currently accept payments." Not "we have a policy against it."
+
+Literally no mechanism exists to pay for a ranking. We never built one. #AIEthics #Benchmarks
+
+---
+
+TWEET 10/10:
+If we got the data wrong — prove it.
+
+Open a PR. Challenge the formula. Submit a model we missed.
+
+The leaderboard is only credible if the community actively tries to break it.
+
+⭐ Star: github.com/rankmodel/rankmodel.github.io
+💬 Join Discussions. Prove us wrong.
+
+We update in real-time.

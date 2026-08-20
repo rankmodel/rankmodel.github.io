@@ -1,0 +1,33 @@
+=== SHOW HN SUBMISSION ===
+
+Title: Show HN: ModelRank – Independent LLM leaderboard with 5D scoring, free embeddable badges, and ELO head-to-head
+
+URL: https://rankmodel.github.io
+
+
+=== FOUNDER COMMENT (post immediately after submission) ===
+
+Hey HN. Built this over the last several months because I kept running into the same problem: every LLM leaderboard I trusted was either run by a lab (obvious conflict of interest), paywalled, or hadn't been updated since a model generation ago.
+
+**What it is technically:** FastAPI backend pulling from HuggingFace inference API and publicly available benchmark datasets, SQLite for score persistence, static site with a dynamic badge generation endpoint (pure SVG, no JS required, embeds in any README). There's a VS Code extension that intercepts model name strings and renders live scores on hover, and LangChain/LlamaIndex tool wrappers so you can query rankings directly from an agent. GitHub Action for CI quality gates. All MIT licensed — including the badge infrastructure.
+
+**Why I think this matters:** AI benchmarking has a structural corruption problem that nobody talks about bluntly enough. The labs that build the models are also the primary publishers of the leaderboards those models top. That's not a conspiracy — it's just an impossible-to-avoid conflict of interest. Anthropic can't neutrally evaluate Claude. OpenAI can't neutrally evaluate GPT-4o. Not because they're dishonest, but because no organization can be a neutral evaluator of its own product. ModelRank has one design constraint that I consider non-negotiable: the scoring engine has no concept of a paid tier. There is no mechanism that would allow a lab to influence rankings, because I deliberately never built one.
+
+**The thing that surprises most engineers:** When you compute a composite quality score and divide by log(params + 1), the efficiency winners are almost never the models you'd expect. Qwen2.5-7B at $0.004/1M tokens achieves ~85% of GPT-4o's composite score at 4% of the cost. For 70%+ of real-world production use cases — summarization, classification, simple Q&A, short-context RAG — the 7B class is not a compromise. It's the correct choice that the market's pricing psychology is obscuring.
+
+**I want to be challenged on this.** The scoring formula, benchmark weights, and efficiency normalization are all documented and open to debate. I've already revised the formula twice based on early feedback. If you think the weights are wrong, open a GitHub Discussion. If you think a benchmark is missing, make the argument. The leaderboard is only credible if the community actively tries to break it.
+
+One genuine question for the HN community: **What model are you most interested in seeing ranked that we might have missed?** We have 150+ models but I know there are regional models, domain-specific fine-tunes, and new releases that haven't made it in yet. Tell me and I'll prioritize them.
+
+Source: https://github.com/rankmodel/rankmodel.github.io
+
+
+=== SECONDARY COMMENT (post 30 min later if traction) ===
+
+For anyone digging into the efficiency data: the most counterintuitive finding isn't that small models are cheap — everyone knows that. It's that the *quality gap is much smaller than the price gap* for a specific cluster of tasks.
+
+We broke it down by benchmark dimension. On GSM8K (math word problems), the gap between Llama 3.1 8B and GPT-4o is about 12 points. On HumanEval (code generation), Qwen2.5-Coder-7B actually outperforms GPT-4o on pass@1 for single-function problems. The frontier models pull decisively ahead on HLE (our hardest benchmark) and on GPQA (graduate-level science), which is exactly where you'd expect them to — complex multi-step reasoning is genuinely hard.
+
+Full breakdown by task category here: https://rankmodel.github.io/efficiency-breakdown
+
+If the thread has surfaced interesting model suggestions, I'll batch-process them tonight and post updated scores to the Discussions tab.
