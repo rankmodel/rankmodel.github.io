@@ -1,0 +1,92 @@
+{
+  "model_id": "deepseek-ai/DeepSeek-V4-Flash",
+  "composite": 84.28,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 17.0,
+  "breakdown": {
+    "benchmarks": 87.25,
+    "efficiency": 27.49,
+    "community": 68.29,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "A",
+  "computed_at": "2026-08-17T02:50:17.459980",
+  "details": {
+    "benchmark_details": {
+      "score": 87.25000000000001,
+      "benchmarks_found": [
+        "gpqa",
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 88.1,
+        "mmlu-pro": 86.4
+      }
+    },
+    "diversity_details": {
+      "count": 8,
+      "datasets": [
+        "harborframework/terminal-bench-2.0",
+        "swe-bench/swe-bench_multilingual",
+        "cais/hle",
+        "claw-eval/claw-eval",
+        "mmlu-pro",
+        "benchflow/skillsbench",
+        "swe-bench/swe-bench_verified",
+        "gpqa"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 2,
+    "missing_benchmarks": [
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 15.4,
+    "confidence": "low"
+  },
+  "rank": 3,
+  "badge_url": "https://rankmodel.github.io/badges/deepseek-ai/DeepSeek-V4-Flash/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/deepseek-ai/DeepSeek-V4-Flash/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/deepseek-ai/DeepSeek-V4-Flash.svg"
+}

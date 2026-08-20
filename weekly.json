@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T12:38:11.688999Z",
+  "generated_at": "2026-08-20T13:21:56.684275Z",
   "date": "August 20, 2026",
   "top10": [
     {
@@ -10,56 +10,56 @@
     },
     {
       "rank": 2,
+      "model_id": "prism-ml/Bonsai-27B-gguf",
+      "composite": 86.78,
+      "tier": "A"
+    },
+    {
+      "rank": 3,
+      "model_id": "deepseek-ai/DeepSeek-V4-Flash",
+      "composite": 84.28,
+      "tier": "A"
+    },
+    {
+      "rank": 4,
       "model_id": "deepseek-ai/DeepSeek-R1",
       "composite": 78.3,
       "tier": "B"
     },
     {
-      "rank": 3,
+      "rank": 5,
       "model_id": "openai/gpt-oss-120b",
       "composite": 76.45,
       "tier": "B"
     },
     {
-      "rank": 4,
+      "rank": 6,
       "model_id": "zai-org/GLM-4.7-Flash",
       "composite": 76.01,
       "tier": "B"
     },
     {
-      "rank": 5,
+      "rank": 7,
       "model_id": "Qwen/Qwen3-4B-Instruct-2507",
       "composite": 70.85,
       "tier": "B"
     },
     {
-      "rank": 6,
+      "rank": 8,
       "model_id": "openai/gpt-oss-20b",
       "composite": 69.82,
       "tier": "C"
     },
     {
-      "rank": 7,
+      "rank": 9,
       "model_id": "ibm-granite/granite-4.1-8b",
       "composite": 63.49,
       "tier": "C"
     },
     {
-      "rank": 8,
+      "rank": 10,
       "model_id": "meta-llama/Llama-3.1-8B-Instruct",
       "composite": 58.17,
-      "tier": "D"
-    },
-    {
-      "rank": 9,
-      "model_id": "google/gemma-3-1b-it",
-      "composite": 39.87,
-      "tier": "D"
-    },
-    {
-      "rank": 10,
-      "model_id": "meta-llama/Llama-3.2-1B-Instruct",
-      "composite": 37.93,
       "tier": "D"
     }
   ],
@@ -70,7 +70,7 @@
       "tier": "B",
       "trend_score": 85.1,
       "reason": "75/100 community \u00b7 100/100 freshness",
-      "rank": 2
+      "rank": 4
     },
     {
       "model_id": "meta-llama/Llama-3.1-8B-Instruct",
@@ -78,7 +78,7 @@
       "tier": "D",
       "trend_score": 83.5,
       "reason": "100/100 freshness",
-      "rank": 8
+      "rank": 10
     },
     {
       "model_id": "zai-org/GLM-5.2",
@@ -94,7 +94,7 @@
       "tier": "B",
       "trend_score": 82.9,
       "reason": "100/100 freshness",
-      "rank": 3
+      "rank": 5
     },
     {
       "model_id": "openai/gpt-oss-20b",
@@ -102,7 +102,7 @@
       "tier": "C",
       "trend_score": 82.9,
       "reason": "100/100 freshness",
-      "rank": 6
+      "rank": 8
     }
   ],
   "efficiency_king": "HuggingFaceTB/SmolLM2-135M",

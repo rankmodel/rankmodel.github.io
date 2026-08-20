@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-20T18:06:46.958831",
+  "computed_at": "2026-08-20T13:21:31.762036",
   "details": {
     "benchmark_details": {
       "score": 77.75,
@@ -53,8 +53,8 @@
       "count": 3,
       "datasets": [
         "lexam-benchmark/lexam",
-        "mmlu-pro",
-        "gpqa"
+        "gpqa",
+        "mmlu-pro"
       ],
       "diversity_bonus": 10.0
     },
@@ -80,7 +80,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 2,
+  "rank": 4,
   "badge_url": "https://rankmodel.github.io/badges/deepseek-ai/DeepSeek-R1/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/deepseek-ai/DeepSeek-R1/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/deepseek-ai/DeepSeek-R1.svg"
