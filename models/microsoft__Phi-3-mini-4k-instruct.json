@@ -23,7 +23,7 @@
     "reproducibility": 20.0
   },
   "tier": "C",
-  "computed_at": "2026-08-20T13:30:53.008196",
+  "computed_at": "2026-08-20T15:21:24.944154",
   "details": {
     "benchmark_details": {
       "score": 59.00666666666665,
@@ -52,8 +52,8 @@
     "diversity_details": {
       "count": 2,
       "datasets": [
-        "mmlu-pro",
-        "gsm8k"
+        "gsm8k",
+        "mmlu-pro"
       ],
       "diversity_bonus": 0.0
     },
@@ -79,7 +79,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 61,
+  "rank": 66,
   "badge_url": "https://rankmodel.github.io/badges/microsoft/Phi-3-mini-4k-instruct/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/microsoft/Phi-3-mini-4k-instruct/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/microsoft/Phi-3-mini-4k-instruct.svg"

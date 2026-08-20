@@ -1,0 +1,86 @@
+{
+  "model_id": "WeiboAI/VibeThinker-3B",
+  "composite": 77.48,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 80,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 24.0,
+  "breakdown": {
+    "benchmarks": 75.02,
+    "efficiency": 80.71,
+    "community": 59.33,
+    "recency": 100.0,
+    "reproducibility": 20.0
+  },
+  "tier": "B",
+  "computed_at": "2026-08-20T15:22:35.246793",
+  "details": {
+    "benchmark_details": {
+      "score": 75.02000000000001,
+      "benchmarks_found": [
+        "math",
+        "gpqa"
+      ],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "math": 94.3,
+        "gpqa": 70.2
+      }
+    },
+    "diversity_details": {
+      "count": 2,
+      "datasets": [
+        "gpqa",
+        "math"
+      ],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 2,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 15.4,
+    "confidence": "low"
+  },
+  "rank": 36,
+  "badge_url": "https://rankmodel.github.io/badges/WeiboAI/VibeThinker-3B/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/WeiboAI/VibeThinker-3B/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/WeiboAI/VibeThinker-3B.svg"
+}

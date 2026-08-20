@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-20T13:30:06.116319",
+  "computed_at": "2026-08-20T15:20:45.006846",
   "details": {
     "benchmark_details": {
       "score": 48.43333333333333,
@@ -53,9 +53,9 @@
       "count": 4,
       "datasets": [
         "gsm8k",
+        "lexam-benchmark/lexam",
         "thamilvendhan/signalbench",
-        "gpqa",
-        "lexam-benchmark/lexam"
+        "gpqa"
       ],
       "diversity_bonus": 10.0
     },
@@ -81,7 +81,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 73,
+  "rank": 78,
   "badge_url": "https://rankmodel.github.io/badges/meta-llama/Llama-3.1-8B-Instruct/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/meta-llama/Llama-3.1-8B-Instruct/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/meta-llama/Llama-3.1-8B-Instruct.svg"

@@ -1,0 +1,92 @@
+{
+  "model_id": "stepfun-ai/Step-3.5-Flash",
+  "composite": 82.17,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 17.0,
+  "breakdown": {
+    "benchmarks": 85.46,
+    "efficiency": 27.75,
+    "community": 59.57,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "A",
+  "computed_at": "2026-08-20T15:22:31.797554",
+  "details": {
+    "benchmark_details": {
+      "score": 85.463,
+      "benchmarks_found": [
+        "gpqa",
+        "mmlu-pro",
+        "math",
+        "math"
+      ],
+      "benchmarks_missing": [
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 83.5,
+        "mmlu-pro": 84.4,
+        "math": 96.67
+      }
+    },
+    "diversity_details": {
+      "count": 7,
+      "datasets": [
+        "cais/hle",
+        "mmlu-pro",
+        "swe-bench/swe-bench_verified",
+        "gpqa",
+        "internlm/wildclawbench",
+        "math",
+        "harborframework/terminal-bench-2.0"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 3,
+    "missing_benchmarks": [
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 23.1,
+    "confidence": "low"
+  },
+  "rank": 18,
+  "badge_url": "https://rankmodel.github.io/badges/stepfun-ai/Step-3.5-Flash/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/stepfun-ai/Step-3.5-Flash/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/stepfun-ai/Step-3.5-Flash.svg"
+}

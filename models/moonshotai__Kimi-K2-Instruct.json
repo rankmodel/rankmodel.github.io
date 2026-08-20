@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-20T13:32:16.437248",
+  "computed_at": "2026-08-20T15:22:16.531689",
   "details": {
     "benchmark_details": {
       "score": 80.99999999999999,
@@ -52,11 +52,11 @@
       "count": 6,
       "datasets": [
         "mmlu-pro",
-        "harborframework/terminal-bench-2.0",
-        "mercor/apex-swe",
         "scaleai/swe-bench_pro",
+        "mercor/apex-agents",
         "swe-bench/swe-bench_multilingual",
-        "mercor/apex-agents"
+        "mercor/apex-swe",
+        "harborframework/terminal-bench-2.0"
       ],
       "diversity_bonus": 10.0
     },
@@ -83,7 +83,7 @@
     "coverage_percent": 7.7,
     "confidence": "low"
   },
-  "rank": 31,
+  "rank": 33,
   "badge_url": "https://rankmodel.github.io/badges/moonshotai/Kimi-K2-Instruct/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/moonshotai/Kimi-K2-Instruct/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/moonshotai/Kimi-K2-Instruct.svg"

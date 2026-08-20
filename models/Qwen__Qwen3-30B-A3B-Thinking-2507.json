@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-20T13:37:02.152981",
+  "computed_at": "2026-08-20T15:26:10.564128",
   "details": {
     "benchmark_details": {
       "score": 77.87788888888001,
@@ -54,8 +54,8 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
-        "math",
         "gpqa",
+        "math",
         "mmlu-pro"
       ],
       "diversity_bonus": 10.0
@@ -81,7 +81,7 @@
     "coverage_percent": 23.1,
     "confidence": "low"
   },
-  "rank": 35,
+  "rank": 38,
   "badge_url": "https://rankmodel.github.io/badges/Qwen/Qwen3-30B-A3B-Thinking-2507/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/Qwen/Qwen3-30B-A3B-Thinking-2507/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/Qwen/Qwen3-30B-A3B-Thinking-2507.svg"

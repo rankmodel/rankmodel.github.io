@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-20T13:31:44.224313",
+  "computed_at": "2026-08-20T15:21:56.795381",
   "details": {
     "benchmark_details": {
       "score": 0.0,
@@ -48,10 +48,10 @@
     "diversity_details": {
       "count": 4,
       "datasets": [
+        "swe-bench/swe-bench_multilingual",
         "claw-eval/claw-eval",
         "scaleai/swe-bench_pro",
-        "swe-bench/swe-bench_verified",
-        "swe-bench/swe-bench_multilingual"
+        "swe-bench/swe-bench_verified"
       ],
       "diversity_bonus": 10.0
     },
@@ -79,7 +79,7 @@
     "coverage_percent": 0.0,
     "confidence": "low"
   },
-  "rank": 328,
+  "rank": 339,
   "badge_url": "https://rankmodel.github.io/badges/ornith-ai/Ornith-1.0-397B/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/ornith-ai/Ornith-1.0-397B/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/ornith-ai/Ornith-1.0-397B.svg"

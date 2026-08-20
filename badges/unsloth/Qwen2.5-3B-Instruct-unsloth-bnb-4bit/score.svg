@@ -1,20 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="36">
+<svg xmlns="http://www.w3.org/2000/svg" width="230" height="36">
   <defs>
-    <linearGradient id="bg758" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#0f0f23"/>
-      <stop offset="100%" stop-color="#1a1a36"/>
+    <linearGradient id="bg_793" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#2563eb"/>
     </linearGradient>
-    <filter id="glow758">
-      <feGaussianBlur stdDeviation="1.5" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    <clipPath id="clip_793">
+      <rect width="230" height="36" rx="8"/>
+    </clipPath>
   </defs>
-  <rect width="200" height="36" rx="7" fill="url(#bg758)" stroke="#ef4444" stroke-width="1.2"/>
-  <rect x="0" y="0" width="4" height="36" rx="3" fill="#ef4444"/>
-  <text x="12" y="13" font-family="-apple-system,system-ui,sans-serif" font-size="8" fill="#64748b" font-weight="600" letter-spacing="0.6">MODELRANK</text>
-  <text x="12" y="27" font-family="-apple-system,system-ui,sans-serif" font-size="12" fill="#f1f5f9" font-weight="600">Qwen2.5-3B-Instruct-un</text>
-  <text x="155" y="13" font-family="-apple-system,system-ui,sans-serif" font-size="8" fill="#64748b" text-anchor="middle">SCORE</text>
-  <text x="155" y="28" font-family="-apple-system,system-ui,sans-serif" font-size="15" fill="#ef4444" font-weight="900" text-anchor="middle" filter="url(#glow758)">21</text>
-  <rect x="178" y="8" width="18" height="20" rx="4" fill="#ef4444"/>
-  <text x="187" y="22" font-family="-apple-system,system-ui,sans-serif" font-size="11" fill="#000" font-weight="900" text-anchor="middle">D</text>
+  <g clip-path="url(#clip_793)">
+    <rect width="230" height="36" fill="url(#bg_793)"/>
+    <rect x="160" y="0" width="70" height="36" fill="#000000" fill-opacity="0.25"/>
+  </g>
+  <rect width="230" height="36" rx="8" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+  <path d="M 160 0 L 160 36" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+  
+  <text x="12" y="23" font-family="system-ui, sans-serif" font-size="16" fill="#ffffff" font-weight="900" font-style="italic">MR</text>
+  <text x="42" y="14" font-family="system-ui, sans-serif" font-size="9" fill="#a5b4fc" font-weight="600" letter-spacing="0.5">MODELRANK</text>
+  <text x="42" y="27" font-family="system-ui, sans-serif" font-size="12" fill="#ffffff" font-weight="bold">Qwen2.5-3B-Instruct-un</text>
+  
+  <text x="170" y="24" font-family="system-ui, sans-serif" font-size="16" fill="#ef4444" font-weight="900">21</text>
+  <rect x="198" y="10" width="22" height="16" rx="4" fill="#ef4444" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="209" y="22" font-family="system-ui, sans-serif" font-size="10" fill="#ffffff" font-weight="bold" text-anchor="middle">D</text>
 </svg>

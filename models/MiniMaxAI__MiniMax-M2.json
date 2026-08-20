@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-20T13:31:56.125843",
+  "computed_at": "2026-08-20T15:22:03.762084",
   "details": {
     "benchmark_details": {
       "score": 82.0,
@@ -51,10 +51,10 @@
     "diversity_details": {
       "count": 4,
       "datasets": [
+        "cais/hle",
         "mmlu-pro",
         "harborframework/terminal-bench-2.0",
-        "swe-bench/swe-bench_verified",
-        "cais/hle"
+        "swe-bench/swe-bench_verified"
       ],
       "diversity_bonus": 10.0
     },
@@ -81,7 +81,7 @@
     "coverage_percent": 7.7,
     "confidence": "low"
   },
-  "rank": 29,
+  "rank": 30,
   "badge_url": "https://rankmodel.github.io/badges/MiniMaxAI/MiniMax-M2/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/MiniMaxAI/MiniMax-M2/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/MiniMaxAI/MiniMax-M2.svg"

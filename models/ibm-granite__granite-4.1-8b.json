@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "C",
-  "computed_at": "2026-08-20T13:30:11.750342",
+  "computed_at": "2026-08-20T15:20:49.357687",
   "details": {
     "benchmark_details": {
       "score": 57.67800000000001,
@@ -54,8 +54,8 @@
       "count": 4,
       "datasets": [
         "gsm8k",
-        "liquidai/ifstruct-v1.0",
         "gpqa",
+        "liquidai/ifstruct-v1.0",
         "mmlu-pro"
       ],
       "diversity_bonus": 10.0
@@ -81,7 +81,7 @@
     "coverage_percent": 23.1,
     "confidence": "low"
   },
-  "rank": 64,
+  "rank": 69,
   "badge_url": "https://rankmodel.github.io/badges/ibm-granite/granite-4.1-8b/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/ibm-granite/granite-4.1-8b/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/ibm-granite/granite-4.1-8b.svg"

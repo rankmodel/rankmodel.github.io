@@ -1,6 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="28">
-  <rect width="110" height="28" rx="6" fill="#0f0f23" stroke="#94a3b8" stroke-width="1.2"/>
-  <text x="4" y="12" font-family="-apple-system,system-ui,sans-serif" font-size="7" fill="#64748b" letter-spacing="0.5">MODELRANK RANK</text>
-  <text x="4" y="24" font-family="-apple-system,system-ui,sans-serif" font-size="13" fill="#94a3b8" font-weight="800">#285</text>
-  <text x="50" y="24" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#64748b">/ 954</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="28">
+  <defs>
+    <linearGradient id="rank_bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <clipPath id="clip_rank">
+      <rect width="130" height="28" rx="6"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip_rank)">
+    <rect width="130" height="28" fill="url(#rank_bg)"/>
+    <rect x="75" y="0" width="55" height="28" fill="#000000" fill-opacity="0.25"/>
+  </g>
+  <rect width="130" height="28" rx="6" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+  <path d="M 75 0 L 75 28" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+  
+  <text x="8" y="18" font-family="system-ui, sans-serif" font-size="12" fill="#ffffff" font-weight="900" font-style="italic">MR</text>
+  <text x="32" y="18" font-family="system-ui, sans-serif" font-size="10" fill="#a5b4fc" font-weight="bold">RANK</text>
+  
+  <text x="82" y="19" font-family="system-ui, sans-serif" font-size="13" fill="#94a3b8" font-weight="900">#294</text>
+  <text x="110" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#cbd5e1">/1000</text>
 </svg>
