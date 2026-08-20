@@ -178,7 +178,7 @@ def main():
 <body class="min-h-screen">
   <header class="pt-10 pb-6 border-b border-white/5">
     <div class="container mx-auto px-4 max-w-3xl flex justify-between items-center">
-      <a href="index.html" class="text-xl font-black text-white">🏆 ModelRank</a>
+      <a href="index.html" class="text-xl font-black text-white"><img src="https://rankmodel.github.io/logo.svg" class="h-6 w-6 rounded-md align-middle" alt="ModelRank"> ModelRank</a>
       <a href="index.html" class="text-sm text-gray-400 hover:text-white">Leaderboard</a>
     </div>
   </header>

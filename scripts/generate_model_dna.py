@@ -24,6 +24,7 @@ import sys
 import textwrap
 from pathlib import Path
 from typing import Optional
+import math
 
 try:
     from PIL import Image, ImageDraw, ImageFont
@@ -200,10 +201,26 @@ def generate_png(score_data: dict, output_path: Path) -> None:
     for i, col in enumerate(gradient_colors):
         draw.rectangle([i * seg_w, 0, (i + 1) * seg_w, bar_h], fill=hex_to_rgb(col))
 
-    # ModelRank logo (top-left)
-    logo_font = load_font(18, bold=True)
-    draw.text((24, 20), "ModelRank", font=logo_font, fill=hex_to_rgb(ACCENT_PURPLE))
-    draw.text((24, 42), "Independent LLM Standard", font=load_font(11), fill=hex_to_rgb(TEXT_SECONDARY))
+    # ModelRank logo mark (top-left) — brand gradient chip + white bars/star
+    lx, ly, ls = 24, 16, 44
+    for yy in range(ls):
+        for xx in range(ls):
+            t = xx / ls * 0.6 + yy / ls * 0.4
+            draw.point((lx + xx, ly + yy), (
+                int(0x4c + (0x25 - 0x4c) * t),
+                int(0x1d + (0x63 - 0x1d) * t),
+                int(0x95 + (0xeb - 0x95) * t)))
+    s = ls / 512.0
+    for (bx, by, bw, bh) in [(150, 300, 64, 100), (234, 250, 64, 150), (318, 190, 64, 210)]:
+        draw.rectangle([lx + bx * s, ly + by * s, lx + (bx + bw) * s, ly + (by + bh) * s], fill=(255, 255, 255))
+    star = []
+    for i in range(10):
+        ang = math.radians(-90 + i * 36)
+        rad = 46 if i % 2 == 0 else 19
+        star.append((lx + (350 + rad * math.cos(ang)) * s, ly + (150 + rad * math.sin(ang)) * s))
+    draw.polygon(star, fill=(255, 255, 255))
+    draw.text((lx + ls + 12, 20), "ModelRank", font=load_font(18, bold=True), fill=hex_to_rgb(ACCENT_PURPLE))
+    draw.text((lx + ls + 12, 42), "Independent LLM Standard", font=load_font(11), fill=hex_to_rgb(TEXT_SECONDARY))
 
     # Model name (large, center-left)
     parts = model_id.split("/")

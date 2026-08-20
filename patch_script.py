@@ -51,7 +51,7 @@ def generate_quiz_html() -> str:
 <body class="min-h-screen text-gray-200">
   <header class="pt-8 pb-4 border-b border-white/5">
     <div class="container mx-auto px-4 max-w-4xl flex justify-between items-center">
-      <a href="index.html" class="text-xl font-black flex items-center gap-2 text-white">🏆 ModelRank</a>
+      <a href="index.html" class="text-xl font-black flex items-center gap-2 text-white"><img src="logo.svg" class="h-7 w-7 rounded-md" alt="ModelRank"> ModelRank</a>
       <div class="text-sm font-medium text-gray-400">
         <a href="index.html" class="hover:text-white mr-4">Leaderboard</a>
         <a href="collections.html" class="hover:text-white">Collections</a>
@@ -361,7 +361,7 @@ def generate_collections_html() -> str:
     <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none"></div>
     <div class="container mx-auto px-4 max-w-6xl relative z-10">
       <nav class="flex items-center justify-between mb-12">
-        <a href="index.html" class="text-2xl font-black tracking-tight flex items-center gap-2 text-white">🏆 ModelRank</a>
+        <a href="index.html" class="text-2xl font-black tracking-tight flex items-center gap-2 text-white"><img src="logo.svg" class="h-7 w-7 rounded-md" alt="ModelRank"> ModelRank</a>
         <div class="flex items-center gap-6 text-sm font-medium text-gray-400">
           <a href="index.html" class="hover:text-white">Leaderboard</a>
           <a href="quiz.html" class="hover:text-white">Quiz</a>

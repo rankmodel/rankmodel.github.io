@@ -1,115 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=1200">
-  <title>ModelRank Social Preview</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { width: 1200px; height: 630px; background: #0d1117;
-           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-           overflow: hidden; }
-    .bar { height: 8px;
-           background: linear-gradient(90deg, #a855f7, #3b82f6, #22c55e, #06b6d4); }
-    .card { margin: 30px 40px; padding: 28px 32px;
-            background: #161b22; border-radius: 16px;
-            height: calc(630px - 60px);
-            border: 1px solid #30363d; position: relative; }
-    .logo { color: #a855f7; font-size: 26px; font-weight: 700; }
-    .logo-sub { color: #8b949e; font-size: 13px; margin-top: 2px; }
-    .indie-pill { position: absolute; top: 28px; right: 32px;
-                  border: 1px solid #30363d; border-radius: 14px;
-                  padding: 6px 14px; color: #8b949e; font-size: 12px; }
-    .h1 { font-size: 88px; font-weight: 800; color: #f0f6fc;
-           line-height: 1; margin-top: 30px; letter-spacing: -2px; }
-    .h2 { font-size: 60px; font-weight: 800; color: #a855f7;
-           line-height: 1; margin-top: 8px; letter-spacing: -1px; }
-    .tagline { color: #8b949e; font-size: 18px; margin-top: 18px; }
-    .divider { height: 1px; background: #30363d; margin: 22px 0; }
-    .ticker { display: flex; gap: 12px; flex-wrap: wrap; }
-    .pill { display: flex; align-items: center; gap: 8px;
-            background: #1e2631; border: 1px solid #30363d;
-            border-radius: 10px; padding: 10px 14px; font-size: 14px; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-    .pill-name { color: #f0f6fc; font-weight: 600; }
-    .tier-badge { border-radius: 4px; padding: 2px 6px;
-                  font-weight: 700; font-size: 12px; color: #fff; }
-    .bottom { position: absolute; bottom: 28px; left: 32px; right: 32px;
-              display: flex; justify-content: space-between; align-items: center;
-              border-top: 1px solid #30363d; padding-top: 16px; }
-    .bottom-left { color: #8b949e; font-size: 13px; }
-    .bottom-right { color: #22c55e; font-size: 14px; font-weight: 600; }
-    .dims { position: absolute; right: 32px; top: 120px; width: 250px; }
-    .dim-row { margin-bottom: 20px; }
-    .dim-label { color: #8b949e; font-size: 12px; margin-bottom: 4px;
-                 display: flex; justify-content: space-between; }
-    .dim-track { background: #30363d; border-radius: 4px; height: 10px; }
-    .dim-fill { height: 10px; border-radius: 4px; }
-  </style>
-</head>
-<body>
-  <div class="bar"></div>
-  <div class="card">
-    <div class="logo">ModelRank</div>
-    <div class="logo-sub">rankmodel.github.io</div>
-    <div class="indie-pill">100% Independent &middot; Zero Paid Placements</div>
-
-    <div class="h1">STOP GUESSING.</div>
-    <div class="h2">START RANKING.</div>
-    <p class="tagline">The Independent LLM Standard. &nbsp;150+ Models. &nbsp;5 Dimensions. &nbsp;Zero Bias.</p>
-    <div class="divider"></div>
-
-    <div class="ticker">
-      <div class="pill">
-        <div class="dot" style="background:#3b82f6"></div>
-        <span class="pill-name">Mistral-7B &nbsp;82</span>
-        <span class="tier-badge" style="background:#3b82f6">A</span>
-      </div>
-      <div class="pill">
-        <div class="dot" style="background:#3b82f6"></div>
-        <span class="pill-name">Llama-3.1-8B &nbsp;80</span>
-        <span class="tier-badge" style="background:#3b82f6">A</span>
-      </div>
-      <div class="pill">
-        <div class="dot" style="background:#a855f7"></div>
-        <span class="pill-name">GPT-4o &nbsp;91</span>
-        <span class="tier-badge" style="background:#a855f7">S</span>
-      </div>
-      <div class="pill">
-        <div class="dot" style="background:#3b82f6"></div>
-        <span class="pill-name">Qwen2.5-7B &nbsp;84</span>
-        <span class="tier-badge" style="background:#3b82f6">A</span>
-      </div>
-      <div class="pill">
-        <div class="dot" style="background:#a855f7"></div>
-        <span class="pill-name">DeepSeek-R1 &nbsp;88</span>
-        <span class="tier-badge" style="background:#a855f7">S</span>
-      </div>
-    </div>
-
-    <div class="dims">
-      <div class="dim-row">
-        <div class="dim-label"><span>Benchmarks</span><span style="color:#f0f6fc">87</span></div>
-        <div class="dim-track"><div class="dim-fill" style="width:87%;background:#6366f1"></div></div>
-      </div>
-      <div class="dim-row">
-        <div class="dim-label"><span>Efficiency</span><span style="color:#f0f6fc">91</span></div>
-        <div class="dim-track"><div class="dim-fill" style="width:91%;background:#22c55e"></div></div>
-      </div>
-      <div class="dim-row">
-        <div class="dim-label"><span>Community</span><span style="color:#f0f6fc">74</span></div>
-        <div class="dim-track"><div class="dim-fill" style="width:74%;background:#f59e0b"></div></div>
-      </div>
-      <div class="dim-row">
-        <div class="dim-label"><span>Recency</span><span style="color:#f0f6fc">82</span></div>
-        <div class="dim-track"><div class="dim-fill" style="width:82%;background:#06b6d4"></div></div>
-      </div>
-    </div>
-
-    <div class="bottom">
-      <span class="bottom-left">⭐ github.com/rankmodel/rankmodel.github.io</span>
-      <span class="bottom-right">Free embeddable badges for your models &rarr;</span>
-    </div>
-  </div>
-</body>
-</html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>ModelRank Social Preview</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1200px; height:630px; background:#0a0b14; overflow:hidden;
+         font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color:#fff; }
+  .top { height:8px; background:linear-gradient(90deg,#4c1d95,#2563eb); }
+  .panel { position:absolute; right:44px; top:44px; width:470px; height:542px;
+           border-radius:28px; background:linear-gradient(135deg,#4c1d95,#2563eb); }
+  .panel-label { position:absolute; left:65px; top:84px; color:#e2e8f0; font-size:15px; letter-spacing:1px; }
+  .lockup { position:absolute; left:60px; top:56px; width:72px; height:72px; border-radius:16px;
+            background:linear-gradient(135deg,#4c1d95,#2563eb); }
+  .wm { position:absolute; left:152px; top:60px; font-size:38px; font-weight:800; }
+  .sub { position:absolute; left:152px; top:106px; color:#94a3b8; font-size:16px; }
+  .h1 { position:absolute; left:60px; top:232px; font-size:58px; font-weight:800; }
+  .h2 { position:absolute; left:60px; top:300px; font-size:58px; font-weight:800; color:#a5b4fc; }
+  .t1 { position:absolute; left:60px; top:402px; color:#94a3b8; font-size:21px; }
+  .t2 { position:absolute; left:60px; top:436px; color:#94a3b8; font-size:21px; }
+  .foot { position:absolute; left:60px; top:560px; color:#94a3b8; font-size:15px; }
+  .cta { position:absolute; left:730px; top:560px; color:#4ade80; font-size:17px; font-weight:600; }
+</style></head><body>
+  <div class="top"></div>
+  <div class="panel"></div>
+  <div class="panel-label">5-DIMENSION SCORE</div>
+  <div class="lockup"></div>
+  <div class="wm">ModelRank</div>
+  <div class="sub">rankmodel.github.io</div>
+  <div class="h1">The independent leaderboard</div>
+  <div class="h2">for open AI models.</div>
+  <div class="t1">Ranked across 5 dimensions. Zero paid placements.</div>
+  <div class="t2">Verifiable by anyone, anywhere.</div>
+  <div class="foot">github.com/rankmodel</div>
+  <div class="cta">Free badges for your README  →</div>
+</body></html>

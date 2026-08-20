@@ -293,7 +293,7 @@ def generate_dna_html(base_url: str) -> str:
   <header class="pt-16 pb-12 border-b border-white/5 relative overflow-hidden">
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none"></div>
     <div class="container mx-auto px-4 max-w-4xl relative z-10 text-center">
-      <a href="index.html" class="text-xl font-black flex items-center gap-2 text-white absolute left-0 top-0">🏆 ModelRank</a>
+      <a href="index.html" class="text-xl font-black flex items-center gap-2 text-white absolute left-0 top-0"><img src="logo.svg" class="h-7 w-7 rounded-md" alt="ModelRank"> ModelRank</a>
       <h1 class="text-4xl md:text-5xl font-black text-white mb-3">🧬 Model DNA</h1>
       <p class="text-lg text-gray-400">Your model's personality, scored. Pick a model, grab a shareable card.</p>
     </div>
@@ -655,7 +655,7 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
     <div class="container mx-auto px-4 max-w-7xl relative z-10">
       <nav class="flex items-center justify-between mb-16">
         <div class="text-2xl font-black tracking-tight flex items-center gap-2">
-          🏆 ModelRank
+          <img src="logo.svg" class="h-7 w-7 rounded-md" alt="ModelRank"> ModelRank
         </div>
         <div class="flex items-center gap-6 text-sm font-medium text-gray-400">
           <a href="#" class="text-white">Leaderboard</a>
@@ -1264,7 +1264,7 @@ def generate_quiz_html() -> str:
 <body class="min-h-screen text-gray-200">
   <header class="pt-8 pb-4 border-b border-white/5">
     <div class="container mx-auto px-4 max-w-4xl flex justify-between items-center">
-      <a href="index.html" class="text-xl font-black flex items-center gap-2 text-white">🏆 ModelRank</a>
+      <a href="index.html" class="text-xl font-black flex items-center gap-2 text-white"><img src="logo.svg" class="h-7 w-7 rounded-md" alt="ModelRank"> ModelRank</a>
       <div class="text-sm font-medium text-gray-400">
         <a href="index.html" class="hover:text-white mr-4">Leaderboard</a>
         <a href="collections.html" class="hover:text-white">Collections</a>
@@ -1583,7 +1583,7 @@ def generate_collections_html() -> str:
     <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none"></div>
     <div class="container mx-auto px-4 max-w-6xl relative z-10">
       <nav class="flex items-center justify-between mb-12">
-        <a href="index.html" class="text-2xl font-black tracking-tight flex items-center gap-2 text-white">🏆 ModelRank</a>
+        <a href="index.html" class="text-2xl font-black tracking-tight flex items-center gap-2 text-white"><img src="logo.svg" class="h-7 w-7 rounded-md" alt="ModelRank"> ModelRank</a>
         <div class="flex items-center gap-6 text-sm font-medium text-gray-400">
           <a href="index.html" class="hover:text-white">Leaderboard</a>
           <a href="dna.html" class="hover:text-white">Model DNA</a>
@@ -1717,7 +1717,7 @@ def generate_pricing_html() -> str:
   <!-- Navbar -->
   <div class="navbar bg-base-100 shadow-sm border-b border-base-200">
     <div class="flex-1">
-      <a href="index.html" class="btn btn-ghost text-xl font-black">🏆 ModelRank</a>
+      <a href="index.html" class="btn btn-ghost text-xl font-black"><img src="logo.svg" class="h-7 w-7 rounded-md" alt="ModelRank"> ModelRank</a>
     </div>
     <div class="flex-none gap-2">
       <a href="index.html" class="btn btn-ghost">Leaderboard</a>
@@ -2112,7 +2112,7 @@ def generate_pricing_html() -> str:
   <!-- Footer -->
   <footer class="footer items-center p-8 bg-neutral text-neutral-content">
     <aside class="items-center grid-flow-col">
-      <span class="text-xl font-black mr-2">🏆 ModelRank</span> 
+      <span class="text-xl font-black mr-2"><img src="logo.svg" class="h-7 w-7 rounded-md" alt="ModelRank"> ModelRank</span> 
       <p>Copyright &copy; 2026 - All rights reserved</p>
     </aside> 
     <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
@@ -2376,7 +2376,7 @@ def generate_api_html() -> str:
     <aside class="w-full md:w-64 lg:w-72 sidebar md:h-screen md:sticky top-0 z-20 flex-shrink-0">
       <div class="p-6">
         <a href="index.html" class="text-2xl font-black flex items-center gap-2 mb-8 text-white hover:text-gray-300 transition-colors">
-          🏆 ModelRank
+          <img src="logo.svg" class="h-7 w-7 rounded-md" alt="ModelRank"> ModelRank
         </a>
         
         <nav class="space-y-8">
@@ -3344,7 +3344,7 @@ def generate_head_to_head_html(standings: list, reviews: list, base_url: str) ->
 <body class="min-h-screen">
   <header class="pt-8 pb-4 border-b border-white/5">
     <div class="container mx-auto px-4 max-w-5xl flex justify-between items-center">
-      <a href="index.html" class="text-xl font-black flex items-center gap-2 text-white">🏆 ModelRank</a>
+      <a href="index.html" class="text-xl font-black flex items-center gap-2 text-white"><img src="logo.svg" class="h-7 w-7 rounded-md" alt="ModelRank"> ModelRank</a>
           <div class="text-sm font-medium text-gray-400 flex gap-4">
         <a href="index.html" class="hover:text-white">Leaderboard</a>
         <a href="quiz.html" class="hover:text-white">Quiz</a>

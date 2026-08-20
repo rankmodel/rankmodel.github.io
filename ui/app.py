@@ -519,7 +519,7 @@ CSS = '''
 with gr.Blocks(title='ModelRank — HuggingFace Model Leaderboard') as demo:
     gr.HTML('''
     <div style="text-align:center;padding:24px 0 12px;font-family:-apple-system,sans-serif;">
-        <div style="font-size:32px;font-weight:900;color:#f1f5f9;letter-spacing:-0.5px;">🏆 ModelRank</div>
+        <div style="font-size:32px;font-weight:900;color:#f1f5f9;letter-spacing:-0.5px;"><img src="https://rankmodel.github.io/logo.svg" style="height:32px;width:32px;border-radius:6px;vertical-align:middle" alt="ModelRank"> ModelRank</div>
         <div style="font-size:15px;color:#64748b;margin-top:6px;">Composite scoring & leaderboard for HuggingFace models</div>
     </div>''')
 
