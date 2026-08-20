@@ -1,5 +1,9 @@
-Show HN: ModelRank – an independent, open leaderboard for 120+ open LLMs that ranks efficiency, not just size
+Show HN: ModelRank — an independent, open leaderboard for AI models (no paid placements, weights are public)
 
-We built it in Python with a FastAPI REST API, a Gradio UI, and a SQLite cache that stores normalized model metadata, eval results, and scores pulled from HuggingFace. No training, no hosting, no model to sell.
+---
 
-The deeper point: every major leaderboard today is run by someone with a horse in the race. We think "which model should I actually use?" deserves an answer nobody can buy, rig, or own. So we publish the full scoring methodology, weight efficiency and recency alongside raw benchmarks, and let anyone challenge a ranking with a PR. Independence isn't a feature. It's the whole product.
+Founder here. Every other leaderboard we looked at either has a conflict of interest or hides its scoring. ModelRank doesn't: the 5-dimension weights live in config/settings.py and the community votes on them in Discussions.
+
+To keep us honest, we publish the raw data — there's a CSV/JSON of every model's benchmark, efficiency, community, recency, and reproducibility score in the repo and on the site. Scrutinize it.
+
+The most surprising real result in our index: the efficiency leader is a 135M-parameter model that outscores the top composite model on efficiency by a wide margin. Small models are wildly underrated on value. AMA.

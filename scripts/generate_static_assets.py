@@ -65,46 +65,84 @@ def generate_score_badge(model_id: str, score: float, tier: str, rank: int) -> s
     color = score_color(score)
     tier_color = TIER_COLORS.get(tier, '#6366f1')
     name = model_id.split('/')[-1][:22]
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="200" height="36">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="230" height="36">
   <defs>
-    <linearGradient id="bg{rank}" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#0f0f23"/>
-      <stop offset="100%" stop-color="#1a1a36"/>
+    <linearGradient id="bg_{rank}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#2563eb"/>
     </linearGradient>
-    <filter id="glow{rank}">
-      <feGaussianBlur stdDeviation="1.5" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    <clipPath id="clip_{rank}">
+      <rect width="230" height="36" rx="8"/>
+    </clipPath>
   </defs>
-  <rect width="200" height="36" rx="7" fill="url(#bg{rank})" stroke="{tier_color}" stroke-width="1.2"/>
-  <rect x="0" y="0" width="4" height="36" rx="3" fill="{tier_color}"/>
-  <text x="12" y="13" font-family="-apple-system,system-ui,sans-serif" font-size="8" fill="#64748b" font-weight="600" letter-spacing="0.6">MODELRANK</text>
-  <text x="12" y="27" font-family="-apple-system,system-ui,sans-serif" font-size="12" fill="#f1f5f9" font-weight="600">{name}</text>
-  <text x="155" y="13" font-family="-apple-system,system-ui,sans-serif" font-size="8" fill="#64748b" text-anchor="middle">SCORE</text>
-  <text x="155" y="28" font-family="-apple-system,system-ui,sans-serif" font-size="15" fill="{color}" font-weight="900" text-anchor="middle" filter="url(#glow{rank})">{score:.0f}</text>
-  <rect x="178" y="8" width="18" height="20" rx="4" fill="{tier_color}"/>
-  <text x="187" y="22" font-family="-apple-system,system-ui,sans-serif" font-size="11" fill="#000" font-weight="900" text-anchor="middle">{tier}</text>
+  <g clip-path="url(#clip_{rank})">
+    <rect width="230" height="36" fill="url(#bg_{rank})"/>
+    <rect x="160" y="0" width="70" height="36" fill="#000000" fill-opacity="0.25"/>
+  </g>
+  <rect width="230" height="36" rx="8" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+  <path d="M 160 0 L 160 36" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+  
+  <text x="12" y="23" font-family="system-ui, sans-serif" font-size="16" fill="#ffffff" font-weight="900" font-style="italic">MR</text>
+  <text x="42" y="14" font-family="system-ui, sans-serif" font-size="9" fill="#a5b4fc" font-weight="600" letter-spacing="0.5">MODELRANK</text>
+  <text x="42" y="27" font-family="system-ui, sans-serif" font-size="12" fill="#ffffff" font-weight="bold">{name}</text>
+  
+  <text x="170" y="24" font-family="system-ui, sans-serif" font-size="16" fill="{color}" font-weight="900">{score:.0f}</text>
+  <rect x="198" y="10" width="22" height="16" rx="4" fill="{tier_color}" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="209" y="22" font-family="system-ui, sans-serif" font-size="10" fill="#ffffff" font-weight="bold" text-anchor="middle">{tier}</text>
 </svg>'''
 
 
 def generate_tier_badge(tier: str) -> str:
     tier_color = TIER_COLORS.get(tier, '#6366f1')
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="100" height="28">
-  <rect width="100" height="28" rx="6" fill="#0f0f23" stroke="{tier_color}" stroke-width="1.2"/>
-  <text x="36" y="13" font-family="-apple-system,system-ui,sans-serif" font-size="7" fill="#64748b" letter-spacing="0.5">MODELRANK</text>
-  <rect x="62" y="4" width="32" height="20" rx="5" fill="{tier_color}"/>
-  <text x="78" y="18" font-family="-apple-system,system-ui,sans-serif" font-size="12" fill="#000" font-weight="900" text-anchor="middle">{tier}</text>
-  <text x="5" y="18" font-family="-apple-system,system-ui,sans-serif" font-size="8" fill="#94a3b8">Tier</text>
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="110" height="28">
+  <defs>
+    <linearGradient id="tier_bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <clipPath id="clip_tier">
+      <rect width="110" height="28" rx="6"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip_tier)">
+    <rect width="110" height="28" fill="url(#tier_bg)"/>
+    <rect x="70" y="0" width="40" height="28" fill="#000000" fill-opacity="0.25"/>
+  </g>
+  <rect width="110" height="28" rx="6" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+  <path d="M 70 0 L 70 28" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+  
+  <text x="8" y="18" font-family="system-ui, sans-serif" font-size="12" fill="#ffffff" font-weight="900" font-style="italic">MR</text>
+  <text x="32" y="18" font-family="system-ui, sans-serif" font-size="10" fill="#a5b4fc" font-weight="bold">TIER</text>
+  
+  <rect x="78" y="5" width="24" height="18" rx="4" fill="{tier_color}" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="90" y="18" font-family="system-ui, sans-serif" font-size="11" fill="#ffffff" font-weight="900" text-anchor="middle">{tier}</text>
 </svg>'''
 
 
 def generate_rank_badge(rank: int, total: int) -> str:
     color = '#22c55e' if rank <= 3 else ('#eab308' if rank <= 10 else '#94a3b8')
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="110" height="28">
-  <rect width="110" height="28" rx="6" fill="#0f0f23" stroke="{color}" stroke-width="1.2"/>
-  <text x="4" y="12" font-family="-apple-system,system-ui,sans-serif" font-size="7" fill="#64748b" letter-spacing="0.5">MODELRANK RANK</text>
-  <text x="4" y="24" font-family="-apple-system,system-ui,sans-serif" font-size="13" fill="{color}" font-weight="800">#{rank}</text>
-  <text x="50" y="24" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#64748b">/ {total}</text>
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="130" height="28">
+  <defs>
+    <linearGradient id="rank_bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <clipPath id="clip_rank">
+      <rect width="130" height="28" rx="6"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip_rank)">
+    <rect width="130" height="28" fill="url(#rank_bg)"/>
+    <rect x="75" y="0" width="55" height="28" fill="#000000" fill-opacity="0.25"/>
+  </g>
+  <rect width="130" height="28" rx="6" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+  <path d="M 75 0 L 75 28" stroke="#ffffff" stroke-width="1" stroke-opacity="0.15"/>
+  
+  <text x="8" y="18" font-family="system-ui, sans-serif" font-size="12" fill="#ffffff" font-weight="900" font-style="italic">MR</text>
+  <text x="32" y="18" font-family="system-ui, sans-serif" font-size="10" fill="#a5b4fc" font-weight="bold">RANK</text>
+  
+  <text x="82" y="19" font-family="system-ui, sans-serif" font-size="13" fill="{color}" font-weight="900">#{rank}</text>
+  <text x="110" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#cbd5e1">/{total}</text>
 </svg>'''
 
 

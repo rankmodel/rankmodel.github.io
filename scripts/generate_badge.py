@@ -74,7 +74,7 @@ SCORE_WEIGHTS: dict[str, float] = {
 ALL_BADGE_TYPES: list[str] = ["score", "tier", "rank"]
 
 # Output format choices
-FORMAT_CHOICES: list[str] = ["markdown", "html", "rst"]
+FORMAT_CHOICES: list[str] = ["markdown", "html", "rst", "svg"]
 
 
 # ---------------------------------------------------------------------------
@@ -281,6 +281,23 @@ def _badge_image_url(model_id: str, badge_type: str) -> str:
 # ---------------------------------------------------------------------------
 
 
+def _svg_badge(model_id: str, badge_type: str, score: Optional[float] = None, tier: Optional[str] = None, rank: Optional[int] = None) -> str:
+    """Generate raw SVG string by delegating to generate_static_assets."""
+    import sys, os
+    _project_root = str(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    if _project_root not in sys.path:
+        sys.path.insert(0, _project_root)
+    from scripts.generate_static_assets import generate_score_badge, generate_tier_badge, generate_rank_badge
+    
+    if badge_type == "score":
+        return generate_score_badge(model_id, score or 0.0, tier or "D", rank or 0)
+    elif badge_type == "tier":
+        return generate_tier_badge(tier or "?")
+    elif badge_type == "rank":
+        return generate_rank_badge(rank or 0, 150) # default total
+    return ""
+
+
 def _render_badge(
     *,
     model_id: str,
@@ -290,6 +307,9 @@ def _render_badge(
     color: str,
     fmt: str,
     link: str = BASE_URL,
+    score: Optional[float] = None,
+    tier: Optional[str] = None,
+    rank: Optional[int] = None,
 ) -> str:
     """Render a single badge in the requested output format.
 
@@ -299,12 +319,18 @@ def _render_badge(
         label: Left-side label text.
         message: Right-side message text.
         color: Hex colour (without ``#``).
-        fmt: Output format — 'markdown', 'html', or 'rst'.
+        fmt: Output format — 'markdown', 'html', 'rst', or 'svg'.
         link: URL the badge should link to.
+        score: Optional score.
+        tier: Optional tier.
+        rank: Optional rank.
 
     Returns:
         Formatted badge snippet string.
     """
+    if fmt == "svg":
+        return _svg_badge(model_id, badge_type, score=score, tier=tier, rank=rank)
+
     img_url = _badge_image_url(model_id, badge_type)
     alt_text = f"ModelRank {label}: {message}"
 
@@ -391,6 +417,8 @@ def _score_badge(
         message=message,
         color=color,
         fmt=fmt,
+        score=score,
+        tier=tier,
     )
 
 
@@ -414,6 +442,7 @@ def _tier_badge(model_id: str, tier: Optional[str], fmt: str) -> str:
         message=message,
         color=color,
         fmt=fmt,
+        tier=tier,
     )
 
 
@@ -436,6 +465,7 @@ def _rank_badge(model_id: str, rank: Optional[int], fmt: str) -> str:
         message=message,
         color="3b82f6",
         fmt=fmt,
+        rank=rank,
     )
 
 
@@ -922,8 +952,13 @@ def main() -> int:
     global_parser.add_argument("--offline", action="store_true", default=False)
     global_parser.add_argument("--copy", action="store_true", default=False)
     global_parser.add_argument("--api-base", default=API_BASE, dest="api_base")
+    global_parser.add_argument("--model", help="Shorthand for running 'score <model>'")
 
     global_args, remaining = global_parser.parse_known_args()
+
+    # If --model is given and no valid subcommand is in remaining, default to score
+    if global_args.model and not any(arg in remaining for arg in ["score", "tier", "all", "compare"]):
+        remaining = ["score", global_args.model] + remaining
 
     # Pass 2 — parse the remainder: subcommand + its own positional/optional args.
     parser = _build_parser()
