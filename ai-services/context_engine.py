@@ -33,6 +33,23 @@ IGNORE_EXTENSIONS = {
     '.woff', '.woff2', '.ttf', '.eot', '.pdf', '.map', '-wal', '-shm', '.lock'
 }
 
+import functools
+
+def _ttl_cache(maxsize=128, ttl_seconds=60):
+    def decorator(func):
+        @functools.lru_cache(maxsize=maxsize)
+        def _cached_func(*args, _ttl_hash=None, **kwargs):
+            return func(*args, **kwargs)
+
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            _ttl_hash = int(time.time() / ttl_seconds)
+            return _cached_func(*args, _ttl_hash=_ttl_hash, **kwargs)
+
+        wrapper.cache_clear = _cached_func.cache_clear
+        return wrapper
+    return decorator
+
 class ContextDB:
     """Unified interface for Multi-Agent Context, Codebase Knowledge Graph, and Real-Time Event Bus."""
 
@@ -58,6 +75,10 @@ class ContextDB:
             sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
             from init_db import init_db
         init_db(self.db_path)
+
+    def _invalidate_cache(self):
+        type(self).get_symbol_info.cache_clear()
+        type(self).get_file_context.cache_clear()
 
     # -------------------------------------------------------------------------
     # 1. FILE & SYMBOL INDEXING (AST + STRUCTURAL)
@@ -311,16 +332,24 @@ class ContextDB:
 
                     # 6. Publish real-time inter-agent event
                     if broadcast_event:
+                        msg_content = self.render_prompt_template(
+                            "edit_alert_content.txt",
+                            rel_path=rel_path,
+                            change_type=change_type,
+                            lines_count=lines_count,
+                            symbols_count=len(symbols)
+                        ).strip()
                         cur.execute("""
                             INSERT INTO agent_messages (sender_agent, recipient_agent, channel, message_type, subject, content, payload)
                             VALUES (?, 'all', 'ongoing-edits', 'edit_alert', ?, ?, ?)
                         """, (
                             author_agent,
                             f"[FILE_{change_type.upper()}] {rel_path}",
-                            f"File `{rel_path}` was {change_type} with {lines_count} lines and {len(symbols)} symbols.",
+                            msg_content,
                             json.dumps({"path": rel_path, "change_type": change_type, "symbols": [s["name"] for s in symbols]})
                         ))
 
+            self._invalidate_cache()
             return True
         finally:
             conn.close()
@@ -342,15 +371,21 @@ class ContextDB:
                     VALUES (?, 'deleted', 'File deleted', ?)
                 """, (rel_path, author_agent))
 
+                msg_content = self.render_prompt_template(
+                    "edit_alert_deleted.txt",
+                    rel_path=rel_path
+                ).strip()
                 cur.execute("""
                     INSERT INTO agent_messages (sender_agent, recipient_agent, channel, message_type, subject, content, payload)
                     VALUES (?, 'all', 'ongoing-edits', 'edit_alert', ?, ?, ?)
                 """, (
                     author_agent,
                     f"[FILE_DELETED] {rel_path}",
-                    f"File `{rel_path}` was removed from workspace.",
-                    json.dumps({"path": rel_path, "change_type": "deleted"})
+                    msg_content,
+                    json.dumps({"path": rel_path, "change_type": "deleted", "symbols": []})
                 ))
+
+            self._invalidate_cache()
             return True
         finally:
             conn.close()
@@ -471,6 +506,7 @@ class ContextDB:
         finally:
             conn.close()
 
+    @_ttl_cache(ttl_seconds=60)
     def get_symbol_info(self, symbol_name: str) -> List[Dict[str, Any]]:
         """Returns detailed signature, line range, and docstrings for a symbol."""
         conn = self._get_conn()
@@ -487,6 +523,7 @@ class ContextDB:
         finally:
             conn.close()
 
+    @_ttl_cache(ttl_seconds=60)
     def get_file_context(self, rel_path: str) -> Optional[Dict[str, Any]]:
         """Returns complete context for a file: metadata, symbols, imports, callers, and locks."""
         conn = self._get_conn()
@@ -607,6 +644,7 @@ class ContextDB:
                         # Refresh TTL
                         expires_at = (datetime.now(timezone.utc) + timedelta(seconds=ttl_seconds)).isoformat()
                         cur.execute("UPDATE file_locks SET expires_at = ?, purpose = ? WHERE file_path = ?", (expires_at, purpose, file_path))
+                        self._invalidate_cache()
                         return True, None
                     else:
                         # Locked by someone else
@@ -624,6 +662,7 @@ class ContextDB:
                     VALUES (?, 'all', 'locks', 'lock_request', ?, ?, ?)
                 """, (agent_id, f"[LOCK_ACQUIRED] {file_path}", f"Agent {agent_id} locked `{file_path}`: {purpose}", json.dumps({"file_path": file_path, "expires_at": expires_at})))
 
+                self._invalidate_cache()
                 return True, None
         finally:
             conn.close()
@@ -641,6 +680,9 @@ class ContextDB:
                         INSERT INTO agent_messages (sender_agent, recipient_agent, channel, message_type, subject, content, payload)
                         VALUES (?, 'all', 'locks', 'lock_release', ?, ?, ?)
                     """, (agent_id, f"[LOCK_RELEASED] {file_path}", f"Agent {agent_id} unlocked `{file_path}`", json.dumps({"file_path": file_path})))
+                
+                if released:
+                    self._invalidate_cache()
                 return released
         finally:
             conn.close()
@@ -799,6 +841,45 @@ class ContextDB:
             }
         finally:
             conn.close()
+
+    # -------------------------------------------------------------------------
+    # 8. PROMPT-MASTER INTEGRATION
+    # -------------------------------------------------------------------------
+
+    @_ttl_cache(ttl_seconds=60)
+    def render_prompt_template(self, template_name: str, **kwargs) -> str:
+        """
+        Integrates with prompt-master to load templates and inject dynamic ContextDB data.
+        Templates should be placed in ai-services/prompt-master/templates/.
+        """
+        templates_dir = os.path.join(self.repo_root, "ai-services", "prompt-master", "templates")
+        path = os.path.join(templates_dir, template_name)
+        
+        if not os.path.exists(path):
+            raise FileNotFoundError(f"Template {template_name} not found in {templates_dir}")
+            
+        with open(path, "r", encoding="utf-8") as f:
+            template = f.read()
+
+        context_data = kwargs.copy()
+        
+        # Inject dynamic context components if requested
+        if "file_path" in kwargs:
+            file_ctx = self.get_file_context(kwargs["file_path"])
+            context_data["file_context"] = json.dumps(file_ctx, indent=2) if file_ctx else "No file context found."
+            
+        if "symbol" in kwargs:
+            sym_info = self.get_symbol_info(kwargs["symbol"])
+            context_data["symbol_info"] = json.dumps(sym_info, indent=2) if sym_info else "No symbol info found."
+                
+        if "memory_category" in kwargs:
+            mems = self.get_memories(category=kwargs["memory_category"])
+            context_data["memories"] = json.dumps(mems, indent=2) if mems else "No memories found."
+            
+        try:
+            return template.format(**context_data)
+        except KeyError as e:
+            raise ValueError(f"Missing context variable {e} for template '{template_name}'")
 
 _global_instance = None
 

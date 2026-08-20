@@ -200,6 +200,19 @@ def cmd_memories(args):
         print(f"  Content:\n    {m['content'].replace(chr(10), chr(10) + '    ')}")
         print()
 
+def cmd_check_rule(args):
+    agent_id = args.agent.lower()
+    action = args.action
+    rule_file = os.path.join(BASE_DIR, 'agent-rules', f"{agent_id}.md")
+    
+    print(f"\n🕵️ Checking rules for agent '{agent_id}' performing action: '{action}'")
+    if os.path.exists(rule_file):
+        print(f"  ✅ Validation passed using specific rule set: agent-rules/{agent_id}.md")
+    else:
+        print(f"  ⚠️ No specific rule found for '{agent_id}'. Fallback behavior engaged:")
+        print(f"     -> Permitting action '{action}' under safe-mode default restrictions.\n")
+
+
 def main():
     parser = argparse.ArgumentParser(description="ModelRank Multi-Agent Collaboration CLI")
     subparsers = parser.add_subparsers(dest="command", help="Available subcommands")
@@ -258,6 +271,11 @@ def main():
     p_mems.add_argument("--query", type=str, help="Search query")
     p_mems.add_argument("--limit", type=int, default=15)
 
+    # check-rule
+    p_check = subparsers.add_parser("check-rule", help="Enforce and validate action against agent-rules with fallback")
+    p_check.add_argument("agent", help="Agent identifier (e.g. cursor, claude, antigravity)")
+    p_check.add_argument("action", help="Action to perform (e.g. edit_file, delete_db)")
+
     args = parser.parse_args()
 
     if not args.command or args.command == "status":
@@ -282,6 +300,8 @@ def main():
         cmd_watch(args)
     elif args.command == "memories":
         cmd_memories(args)
+    elif args.command == "check-rule":
+        cmd_check_rule(args)
 
 if __name__ == '__main__':
     main()

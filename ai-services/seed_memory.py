@@ -87,28 +87,23 @@ MEMORIES = [
     }
 ]
 
-PROMPTS = [
-    {
-        "name": "modelrank_agent_system",
-        "category": "system",
-        "content": (
-            "You are a specialized AI Agent working on the ModelRank codebase. "
-            "You have direct access to the Context DB (`ai-services/data/memory.db`) via MCP tools or Python SDK. "
-            "Always check recent change alerts, respect file locks, maintain clean docstrings, and log major decisions."
-        )
-    },
-    {
-        "name": "modelrank_code_reviewer",
-        "category": "review",
-        "content": (
-            "Review code changes for ModelRank: verify scoring weight normalization, check SQLite parameter binding "
-            "safety, ensure Tailwind/daisyUI responsiveness without clunky styling, and verify all 27 unit tests pass."
-        )
-    }
-]
-
 def seed_memories():
     db = get_context_db()
+    
+    prompts_to_seed = [
+        {"name": "modelrank_agent_system", "category": "system", "file": "modelrank_agent_system.txt"},
+        {"name": "modelrank_code_reviewer", "category": "review", "file": "modelrank_code_reviewer.txt"}
+    ]
+    
+    loaded_prompts = []
+    for p in prompts_to_seed:
+        content = db.render_prompt_template(p["file"]).strip()
+        loaded_prompts.append({
+            "name": p["name"],
+            "category": p["category"],
+            "content": content
+        })
+
     for mem in MEMORIES:
         m_id = db.record_memory(
             category=mem["category"],
@@ -123,7 +118,7 @@ def seed_memories():
     try:
         with conn:
             cur = conn.cursor()
-            for p in PROMPTS:
+            for p in loaded_prompts:
                 cur.execute("""
                     INSERT INTO prompts (name, category, content)
                     VALUES (?, ?, ?)

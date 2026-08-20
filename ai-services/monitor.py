@@ -20,6 +20,35 @@ from context_engine import get_context_db, IGNORE_DIRS, IGNORE_EXTENSIONS
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("codebase_monitor")
 
+class TelemetryLogger:
+    """Tracks LLM token usage, latency, and cost with simple counters."""
+    def __init__(self):
+        self.stats = {
+            "total_tokens": 0,
+            "total_cost": 0.0,
+            "latency_per_prompt": {}
+        }
+        
+    def log_call(self, prompt_version: str, tokens: int, latency_ms: float, cost: float):
+        self.stats["total_tokens"] += tokens
+        self.stats["total_cost"] += cost
+        if prompt_version not in self.stats["latency_per_prompt"]:
+            self.stats["latency_per_prompt"][prompt_version] = []
+        
+        self.stats["latency_per_prompt"][prompt_version].append(latency_ms)
+        avg_latency = sum(self.stats["latency_per_prompt"][prompt_version]) / len(self.stats["latency_per_prompt"][prompt_version])
+        
+        logger.info(
+            f"📊 Telemetry - Prompt: {prompt_version} | Tokens: {tokens} | "
+            f"Latency: {latency_ms:.1f}ms (Avg: {avg_latency:.1f}ms) | Cost: ${cost:.5f}"
+        )
+        logger.info(
+            f"📈 Telemetry Totals - Tokens: {self.stats['total_tokens']} | "
+            f"Cost: ${self.stats['total_cost']:.5f}"
+        )
+
+telemetry = TelemetryLogger()
+
 class CodebaseMonitor:
     def __init__(self, poll_interval: float = 2.0, agent_id: str = "monitor-daemon"):
         self.poll_interval = poll_interval
