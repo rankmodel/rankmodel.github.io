@@ -3356,7 +3356,7 @@ def generate_head_to_head_html(standings: list, reviews: list, base_url: str) ->
 </html>'''
 
 
-def main(limit: int = 200):
+def main(limit: int = 10000):
     from data.cache import ModelCache
 
     cache = ModelCache()
@@ -3526,6 +3526,6 @@ def main(limit: int = 200):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate static badge and leaderboard assets')
-    parser.add_argument('--limit', type=int, default=200)
+    parser.add_argument('--limit', type=int, default=10000)
     args = parser.parse_args()
     main(limit=args.limit)

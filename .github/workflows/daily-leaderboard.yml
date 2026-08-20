@@ -20,7 +20,7 @@ env:
 jobs:
   update-leaderboard:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 360
 
     steps:
       - name: Checkout repo
@@ -49,9 +49,9 @@ jobs:
         run: |
           python scripts/seed_leaderboard.py \
             --task text-generation \
-            --limit ${{ github.event.inputs.limit || '50' }} \
+            --limit ${{ github.event.inputs.limit || '10000' }} \
             --sort downloads \
-            --delay 0.5
+            --delay 0.1
 
       - name: Generate static badges & leaderboard JSON
         run: python scripts/generate_static_assets.py
