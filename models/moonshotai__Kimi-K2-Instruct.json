@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-20T15:22:16.531689",
+  "computed_at": "2026-08-20T15:33:55.549298",
   "details": {
     "benchmark_details": {
       "score": 80.99999999999999,
@@ -51,11 +51,11 @@
     "diversity_details": {
       "count": 6,
       "datasets": [
-        "mmlu-pro",
         "scaleai/swe-bench_pro",
         "mercor/apex-agents",
-        "swe-bench/swe-bench_multilingual",
         "mercor/apex-swe",
+        "mmlu-pro",
+        "swe-bench/swe-bench_multilingual",
         "harborframework/terminal-bench-2.0"
       ],
       "diversity_bonus": 10.0
