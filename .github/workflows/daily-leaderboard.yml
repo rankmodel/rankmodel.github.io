@@ -56,6 +56,9 @@ jobs:
       - name: Generate static badges & leaderboard JSON
         run: python scripts/generate_static_assets.py
 
+      - name: Generate weekly newsletter page
+        run: python scripts/generate_weekly.py
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
