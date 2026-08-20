@@ -1,6 +1,6 @@
 # ModelRank Agency
 
-A **Paperclip-style company of AI agents** that grows [ModelRank](https://github.com/rankmodel/rankmodel1).
+A **Paperclip-style company of AI agents** that grows [ModelRank](https://github.com/rankmodel/rankmodel).
 Modeled on [paperclipai/paperclip](https://github.com/paperclipai/paperclip): define a
 mission, hire agents with roles + budgets + heartbeats, gate the spend, and let them run.
 

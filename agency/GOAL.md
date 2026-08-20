@@ -1,6 +1,6 @@
 # GOAL.md — ModelRank Agency
 
-> If [ModelRank](https://github.com/rankmodel/rankmodel1) is the product, the
+> If [ModelRank](https://github.com/rankmodel/rankmodel) is the product, the
 > **ModelRank Agency** is the autonomous company that makes it the #1 independent
 > open-weight model leaderboard on the internet.
 

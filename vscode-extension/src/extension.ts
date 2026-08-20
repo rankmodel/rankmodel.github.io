@@ -59,8 +59,8 @@ function toMarkdown(modelId: string, data: ModelRankScore): vscode.MarkdownStrin
   }
 
   md.appendMarkdown(
-    `[Open leaderboard](https://rankmodel.github.io/rankmodel1) · ` +
-      `[Head-to-head](https://rankmodel.github.io/rankmodel1/head-to-head.html)`
+    `[Open leaderboard](https://rankmodel.github.io/rankmodel) · ` +
+      `[Head-to-head](https://rankmodel.github.io/rankmodel/head-to-head.html)`
   );
   md.isTrusted = true;
   return md;

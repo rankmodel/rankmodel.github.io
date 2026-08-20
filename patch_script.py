@@ -639,7 +639,7 @@ def generate_methodology_html() -> str:
   author = {ModelRank Team},
   title = {ModelRank: Composite Scoring and Embeddable Badges for Open-Weight AI Models},
   year = {2026},
-  url = {https://github.com/rankmodel/rankmodel1},
+  url = {https://github.com/rankmodel/rankmodel},
   license = {MIT}
 }</code></pre>
         </div>

@@ -20,7 +20,7 @@ inputs:
   leaderboard_url:
     description: 'ModelRank leaderboard.json URL'
     required: false
-    default: 'https://rankmodel.github.io/rankmodel1/leaderboard.json'
+    default: 'https://rankmodel.github.io/rankmodel/leaderboard.json'
   fail_on_unscored:
     description: 'Fail if model is not yet scored on ModelRank'
     required: false
@@ -74,7 +74,7 @@ runs:
 
         if [ "$SCORE" = "NOT_FOUND" ]; then
           echo "❌ Model '$MODEL_ID' not found on ModelRank leaderboard."
-          echo "   Submit for scoring: https://rankmodel.github.io/rankmodel1"
+          echo "   Submit for scoring: https://rankmodel.github.io/rankmodel"
           if [ "$FAIL_UNSCORED" = "true" ]; then exit 1; fi
           exit 0
         fi
@@ -82,7 +82,7 @@ runs:
         COMPOSITE=$(echo $SCORE | cut -d'|' -f1)
         TIER=$(echo $SCORE | cut -d'|' -f2)
         RANK=$(echo $SCORE | cut -d'|' -f3)
-        BADGE_URL="https://rankmodel.github.io/rankmodel1/badges/${MODEL_ID}/score.svg"
+        BADGE_URL="https://rankmodel.github.io/rankmodel/badges/${MODEL_ID}/score.svg"
 
         echo "score=$COMPOSITE" >> $GITHUB_OUTPUT
         echo "tier=$TIER" >> $GITHUB_OUTPUT

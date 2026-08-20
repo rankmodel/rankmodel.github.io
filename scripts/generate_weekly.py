@@ -25,7 +25,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 OUTPUT_DIR = Path('outputs')
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 STATIC_DIR = Path('static_output')
-BASE_URL = 'https://rankmodel.github.io/rankmodel1'
+BASE_URL = 'https://rankmodel.github.io/rankmodel'
 
 
 def _short(mid: str) -> str:
@@ -203,7 +203,7 @@ def main():
     <h2 class="text-xl font-bold text-white mb-3">Trending</h2>
     <ul class="glass-card rounded-2xl p-6 mb-8 list-disc list-inside text-gray-300">{trend_rows}</ul>
 
-    <p class="text-center text-sm text-gray-500">Independent AI leaderboard · <a href="{BASE_URL}" class="text-blue-400 hover:underline">rankmodel.github.io/rankmodel1</a></p>
+    <p class="text-center text-sm text-gray-500">Independent AI leaderboard · <a href="{BASE_URL}" class="text-blue-400 hover:underline">rankmodel.github.io/rankmodel</a></p>
   </main>
 </body>
 </html>"""

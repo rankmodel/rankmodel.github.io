@@ -100,10 +100,10 @@ async def get_meta():
     return {
         'version': '2.0.0',
         'total_models': cache_size,
-        'methodology_url': 'https://rankmodel.github.io/rankmodel1/methodology.html',
-        'api_docs_url': 'https://rankmodel.github.io/rankmodel1/api.html',
-        'changelog_url': 'https://rankmodel.github.io/rankmodel1/changelog.json',
-        'github_url': 'https://github.com/rankmodel/rankmodel1',
+        'methodology_url': 'https://rankmodel.github.io/rankmodel/methodology.html',
+        'api_docs_url': 'https://rankmodel.github.io/rankmodel/api.html',
+        'changelog_url': 'https://rankmodel.github.io/rankmodel/changelog.json',
+        'github_url': 'https://github.com/rankmodel/rankmodel',
     }
 
 @app.get("/score/{model_id:path}", response_model=ModelScore)

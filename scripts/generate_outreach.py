@@ -157,7 +157,7 @@ Hey @{org}! We just ranked {model_name} on ModelRank — it scored {score}/100 (
 Your efficiency score is particularly strong at {eff}/100 — top {eff_percentile}% for models its size.
 
 Free embed badge for your README:
-![ModelRank](https://rankmodel.github.io/rankmodel1/badges/{model_id}/score.svg)
+![ModelRank](https://rankmodel.github.io/rankmodel/badges/{model_id}/score.svg)
 
 Want an animated Pro badge? First month free for original creators: [link]
 ```"""
@@ -168,7 +168,7 @@ Want an animated Pro badge? First month free for original creators: [link]
 ```text
 Hi {org} team 👋
 
-We built ModelRank (https://rankmodel.github.io/rankmodel1), an independent composite scoring system for HuggingFace models.
+We built ModelRank (https://rankmodel.github.io/rankmodel), an independent composite scoring system for HuggingFace models.
 
 Your model **{model_name}** just made our leaderboard:
 - 🏆 Composite Score: **{score}/100** ({tier}-tier)
@@ -177,7 +177,7 @@ Your model **{model_name}** just made our leaderboard:
 - 📊 Rank: #{rank} globally
 
 Free embeddable badge for your model card:
-```![ModelRank Score](https://rankmodel.github.io/rankmodel1/badges/{model_id}/score.svg)```
+```![ModelRank Score](https://rankmodel.github.io/rankmodel/badges/{model_id}/score.svg)```
 
 Would love to feature {model_name} as a highlighted model. Happy to chat!
 — ModelRank Team

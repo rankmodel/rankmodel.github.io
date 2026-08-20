@@ -14,20 +14,20 @@
 </p>
 
 <p align="center">
-  <img src="https://rankmodel.github.io/rankmodel1/badges/meta-llama/Llama-3.1-8B/score.svg" alt="Live ModelRank badge example" width="320">
+  <img src="https://rankmodel.github.io/rankmodel/badges/meta-llama/Llama-3.1-8B/score.svg" alt="Live ModelRank badge example" width="320">
 </p>
 
 <p align="center">
-  🌐 <a href="https://rankmodel.github.io/rankmodel1">Live Leaderboard</a> ·
+  🌐 <a href="https://rankmodel.github.io/rankmodel">Live Leaderboard</a> ·
   🤗 <a href="https://huggingface.co/spaces/pal404error/modelrank">HuggingFace Space</a> ·
-  💰 <a href="https://rankmodel.github.io/rankmodel1/pricing.html">Pricing</a> ·
-  📚 <a href="https://rankmodel.github.io/rankmodel1/methodology.html">Methodology</a> ·
-  📰 <a href="https://rankmodel.github.io/rankmodel1/weekly.html">Weekly</a>
+  💰 <a href="https://rankmodel.github.io/rankmodel/pricing.html">Pricing</a> ·
+  📚 <a href="https://rankmodel.github.io/rankmodel/methodology.html">Methodology</a> ·
+  📰 <a href="https://rankmodel.github.io/rankmodel/weekly.html">Weekly</a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/rankmodel/rankmodel1/stargazers"><img src="https://img.shields.io/github/stars/rankmodel/rankmodel1?style=social" alt="Stars"></a>
-  <a href="https://star-history.com/#rankmodel/rankmodel1&Date"><img src="https://api.star-history.com/svg?repos=rankmodel/rankmodel1&type=Date" alt="Star History" width="420"></a>
+  <a href="https://github.com/rankmodel/rankmodel/stargazers"><img src="https://img.shields.io/github/stars/rankmodel/rankmodel?style=social" alt="Stars"></a>
+  <a href="https://star-history.com/#rankmodel/rankmodel&Date"><img src="https://api.star-history.com/svg?repos=rankmodel/rankmodel&type=Date" alt="Star History" width="420"></a>
 </p>
 
 > ⭐ **If ModelRank helps you cut through AI-model hype, star the repo** — it's free, and stars are how an independent project like this grows.
@@ -77,8 +77,8 @@ No API key needed to *use* ModelRank. (Add `HF_TOKEN` for higher HuggingFace rat
 Paste this into **your** model's README and you're on the leaderboard:
 
 ```markdown
-![ModelRank Score](https://rankmodel.github.io/rankmodel1/badges/ORG/MODEL/score.svg)
-![ModelRank Tier](https://rankmodel.github.io/rankmodel1/badges/ORG/MODEL/tier.svg)
+![ModelRank Score](https://rankmodel.github.io/rankmodel/badges/ORG/MODEL/score.svg)
+![ModelRank Tier](https://rankmodel.github.io/rankmodel/badges/ORG/MODEL/tier.svg)
 ```
 
 Replace `ORG/MODEL` with your HuggingFace path (e.g. `meta-llama/Llama-3.1-8B`).
@@ -129,7 +129,7 @@ curl "http://localhost:8000/elo-leaderboard?limit=10"
 curl "http://localhost:8000/judge/Qwen/Qwen3.5-9B/deepseek-ai/DeepSeek-R1"
 ```
 
-The same data powers the public **[Head-to-Head](https://rankmodel.github.io/rankmodel1/head-to-head.html)**
+The same data powers the public **[Head-to-Head](https://rankmodel.github.io/rankmodel/head-to-head.html)**
 page (ELO standings + verdict feed) and the `⚖️ Judge & ELO` tab in the Gradio UI.
 
 ## 💻 VS Code extension
@@ -164,7 +164,7 @@ Tools: `modelrank_score`, `modelrank_compare`, `modelrank_recommend`, `modelrank
 Fail a build when a model drops below a score or tier:
 
 ```yaml
-- uses: rankmodel/rankmodel1/.github/actions/modelrank-check@main
+- uses: rankmodel/rankmodel/.github/actions/modelrank-check@main
   with:
     model_id: 'your-org/your-model'
     min_score: '70'
