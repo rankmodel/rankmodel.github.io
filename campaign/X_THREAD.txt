@@ -1,0 +1,19 @@
+1/ We just shipped ModelRank: an independent, open leaderboard for 120+ open LLMs. No model to sell, no API to push. Just transparent scores and a middle finger to vendor-run "leaderboards." 🧵
+
+2/ Here's the uncomfortable truth most rankings hide: the biggest model is rarely the smartest *buy* for your workload. We scored every model on 5 dimensions, not just raw benchmarks. And the efficiency podium looks nothing like the raw-smart podium.
+
+3/ Top composite model in our index: zai-org/GLM-5.2 at 87.35 (tier A). Respect. But its efficiency score is 27.13. Meanwhile the most efficient model we ranked scores 99.91.
+
+4/ That most-efficient model is HuggingFaceTB/SmolLM2-135M. 135 million parameters. It beats the #1 composite model on efficiency by ~73 points. A model you can run on a toaster out-efficiency-kings the flagships.
+
+5/ And it's not just toys. Qwen/Qwen3-4B-Instruct-2507 hits tier B (composite 70.85) with an efficiency score of 65.38. That's 2.4x the efficiency of the overall #1, at a fraction of the size.
+
+6/ Our scoring: Benchmarks 70%, Recency 15%, Community 10%, Efficiency 5%, Reproducibility (computed, shown, currently 0% weight). Weights are public. Methodology is public. The repo is public.
+
+7/ Why efficiency at only 5%? Because we're honest about what we trust today. Benchmarks are the strongest signal we have. But we surface efficiency loudly precisely because nobody else does.
+
+8/ Independence is the whole point. Every other big leaderboard is run by someone training or hosting models. We don't. So we have zero incentive to rank anyone higher than their measured quality.
+
+9/ Built with Python + FastAPI + Gradio + a SQLite cache of HuggingFace signals. Open source. You can re-rank any model with a PR. We'd rather be corrected than trusted blindly.
+
+10/ Go rank us: https://rankmodel.github.io  Source: https://github.com/rankmodel/rankmodel.github.io  Which small model do YOU think is underrated? Drop it below. ⭐

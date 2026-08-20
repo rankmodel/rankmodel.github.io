@@ -1,0 +1,5 @@
+Show HN: ModelRank – an independent, open leaderboard for 120+ open LLMs that ranks efficiency, not just size
+
+We built it in Python with a FastAPI REST API, a Gradio UI, and a SQLite cache that stores normalized model metadata, eval results, and scores pulled from HuggingFace. No training, no hosting, no model to sell.
+
+The deeper point: every major leaderboard today is run by someone with a horse in the race. We think "which model should I actually use?" deserves an answer nobody can buy, rig, or own. So we publish the full scoring methodology, weight efficiency and recency alongside raw benchmarks, and let anyone challenge a ranking with a PR. Independence isn't a feature. It's the whole product.

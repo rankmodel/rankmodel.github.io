@@ -1,0 +1,52 @@
+# ModelRank — Auto-Generate Social Preview on Push to Main
+# Regenerates brand/social_preview.png and commits it back.
+
+name: Refresh Social Preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/generate_social_preview.py"
+      - "config/settings.py"
+      - "data/modelrank.db"
+  schedule:
+    # Re-generate weekly (picks up new top-ranked models for the ticker)
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          pip install pillow requests
+
+      - name: Generate social preview
+        run: |
+          python scripts/generate_social_preview.py --output brand/social_preview.png
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add brand/social_preview.png brand/social_preview.html
+          git diff --staged --quiet || git commit -m "chore: refresh social preview card [skip ci]"
+          git push

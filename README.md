@@ -1,20 +1,21 @@
 # 🏆 ModelRank
 
 <p align="center">
-  <img src="https://img.shields.io/badge/ModelRank-Independent%20AI%20Leaderboard-8A2BE2" alt="ModelRank">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT">
-  <img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python">
+  <img src="https://img.shields.io/badge/version-beta-8A2BE2" alt="Version">
+  <a href="https://github.com/rankmodel/rankmodel.github.io/stargazers"><img src="https://img.shields.io/github/stars/rankmodel/rankmodel.github.io?style=social" alt="Stars"></a>
+  <a href="https://github.com/rankmodel/rankmodel.github.io/graphs/contributors"><img src="https://img.shields.io/github/contributors/rankmodel/rankmodel.github.io" alt="Contributors"></a>
   <img src="https://img.shields.io/badge/models%20ranked-150%2B-8A2BE2" alt="models">
 </p>
 
 <p align="center">
-  <b>The independent standard for open-weight AI.</b><br>
-  A leaderboard that sits on top of HuggingFace, Ollama, and every hub. It uses
-  transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges.
+  <img src="assets/social-preview.png" alt="ModelRank social preview" width="640">
 </p>
 
 <p align="center">
-  <img src="https://rankmodel.github.io/badges/meta-llama/Llama-3.1-8B/score.svg" alt="Live ModelRank badge example" width="320">
+  <b>The independent standard for open-weight AI.</b><br>
+  A leaderboard that sits on top of HuggingFace, Ollama, and every hub. Transparent
+  5-dimension scoring, head-to-head ELO, and free embeddable badges.
 </p>
 
 <p align="center">
@@ -25,31 +26,64 @@
   📰 <a href="https://rankmodel.github.io/weekly.html">Weekly</a>
 </p>
 
-<p align="center">
-  <a href="https://github.com/rankmodel/rankmodel.github.io/stargazers"><img src="https://img.shields.io/github/stars/rankmodel/rankmodel.github.io?style=social" alt="Stars"></a>
-  <a href="https://star-history.com/#rankmodel/rankmodel.github.io&Date"><img src="https://api.star-history.com/svg?repos=rankmodel/rankmodel.github.io&type=Date" alt="Star History" width="420"></a>
-</p>
-
-> ⭐ **If ModelRank helps you cut through AI-model hype, star the repo.** It is free, and stars are how an independent project grows.
+> ⭐ **The AI industry is lying to you about model performance.** Vendors publish the
+> benchmark they won and bury the ones they lost. ModelRank is the independent scorecard:
+> every model, the same ruler, no money in the room. If it helps you cut through the hype,
+> star the repo. It is free, and stars are how an independent project survives.
 
 ---
 
-## Why ModelRank
+## The manifesto
 
-HuggingFace tells you what models exist. ModelRank tells you which ones are actually good, using a transparent, weighted score and head-to-head win probabilities instead of a black box.
+We are not a model factory and we do not host weights. We have no reason to rank our own
+models higher, because we do not make any. Independence is the point, not a slogan.
 
-We are not a model factory and we do not host weights. We have no reason to rank our own models higher, because we do not make any. Independence is the point.
+A 7B model can beat a 70B model on efficiency. ModelRank is built to surface that. We score
+what is measurable, weight it in the open, and let the community move the weights when they
+disagree. The score is a starting argument, not a verdict from on high.
 
-A 7B model can beat a 70B model on efficiency. ModelRank is built to surface that.
+## Why we don't accept paid placements
+
+ModelRank makes exactly zero dollars from ranking models, and we intend to keep it that way.
+
+- **No sponsored spots.** A spot on the leaderboard is earned by publicly observable signals
+  (benchmarks, efficiency, community, recency). There is no "contact us to rank higher" path.
+- **No affiliate links.** We do not earn a commission when you download or deploy a model.
+- **No owned models.** We cannot bias the board toward a product we sell, because we sell none.
+- **Weights are public and votable.** The scoring weights live in `config/settings.py` and the
+  community votes on changes in Discussions. You can audit or fork the math in minutes.
+
+If a leaderboard is funded by the models it ranks, ask who the score is really for.
 
 ## Features
 
-- **Transparent 5-dimension scoring.** Benchmarks, efficiency, community, recency, and reproducibility, all weighted and reproducible from public signals.
-- **Head-to-head ELO.** Compare any two models and see live win probabilities from community and LLM-judge verdicts.
-- **Free embeddable badges.** Drop a score or tier badge into your README. Every badge links back to the leaderboard.
+- **Transparent 5-dimension scoring.** Benchmarks, efficiency, community, recency, and
+  reproducibility, all weighted and reproducible from public signals.
+- **Head-to-head ELO.** Compare any two models and see live win probabilities from community
+  and LLM-judge verdicts.
+- **Free embeddable badges.** Drop a score or tier badge into your README. Every badge links
+  back to the leaderboard.
 - **Agent-ready.** A zero-dependency Python client, plus LangChain and LlamaIndex tools.
 - **VS Code extension.** Hover any `org/model` id and see its score and breakdown instantly.
 - **ModelRank Weekly.** A data-driven newsletter on the model landscape, published every week.
+
+## See it run (10-second demo)
+
+We ship a `vhs` tape that records a real terminal session of the Python client. Generate the
+GIF yourself:
+
+```bash
+# requires: brew install vhs
+cat > demo.tape <<'TAPE'
+Output demo.gif
+Set FontSize 16
+Type "python main.py score --model mistralai/Mistral-7B-v0.1" Enter
+Sleep 2s
+TAPE
+vhs demo.tape
+```
+
+![ModelRank demo](docs/demo.gif) <!-- placeholder: run the vhs tape above to generate -->
 
 ## Try it in 10 seconds
 
@@ -82,7 +116,8 @@ Paste this into your model's README and you are on the leaderboard:
 ```
 
 Replace `ORG/MODEL` with your HuggingFace path (for example `meta-llama/Llama-3.1-8B`).
-Every badge is a backlink to the leaderboard, which is how the community grows.
+Every badge is a backlink to the leaderboard, which is how the community grows. Generate a
+custom badge with `python scripts/generate_badge.py --model ORG/MODEL --format md`.
 
 ## How models are scored (composite, 0 to 100)
 
@@ -169,6 +204,20 @@ Fail a build when a model drops below a score or tier:
     min_score: '70'
     min_tier: 'B'
 ```
+
+## FAQ
+
+**"Your data is small."** We rank what is publicly observable on HuggingFace, and the catalog
+grows every time the daily job runs. The method is the product: the same scoring code runs on
+150+ models today and 15,000 tomorrow. Every input is a public signal you can verify.
+
+**"You are biased."** Toward what? We make no models, take no placements, and publish the
+weights. If you think a dimension is mis-weighted, open a Discussion and vote. The board moves
+when the community moves it. That is the opposite of bias hidden behind a closed rubric.
+
+**"This is just a popularity contest."** Benchmarks are 70% of the score and community is 10%.
+A model with huge downloads and weak benchmarks sinks. Efficiency and recency are objective.
+Popularity can lift a model a little; it cannot manufacture a score it did not earn.
 
 ## License
 

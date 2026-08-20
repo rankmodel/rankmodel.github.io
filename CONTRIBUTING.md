@@ -1,48 +1,60 @@
 # Contributing to ModelRank
 
-Thank you for contributing!
+ModelRank is independent and community-run. You do not need to be an engineer to help.
+Most of the work that grows this project is not code.
 
-## Setup
+## Non-code contributions (welcome)
 
-```bash
-git clone https://github.com/rankmodel/rankmodel.github.io.git
-cd modelrank
-pip install -r requirements.txt -r requirements-optional.txt
-cp .env.example .env
-```
+These move the project as much as any pull request:
 
-## Running
+- **Write or share.** Post about ModelRank on Reddit, Hacker News, X, or your blog.
+  Link back to `https://rankmodel.github.io`. A good writeup beats a silent star.
+- **Coverage tips.** Tell us which models we missed in the
+  [Missing Models discussion](https://github.com/rankmodel/rankmodel.github.io/discussions/4).
+- **Vote on weights.** Weigh in on the
+  [Efficiency weight vote](https://github.com/rankmodel/rankmodel.github.io/discussions/3).
+- **Debate the philosophy.** Join
+  [The Great Debate](https://github.com/rankmodel/rankmodel.github.io/discussions/5).
+- **Documentation.** Fix a typo, clarify the methodology, or translate the README.
+- **Design.** Badges, the social card, or UI polish. Open an issue with a mock.
+- **Report data issues.** A wrong score, a stale model, a broken link. File an issue.
 
-```bash
-make api   # FastAPI at :8000
-make ui    # Gradio UI at :7860
-```
+## All-contributors
 
-## Tests
+We use the [all-contributors](https://allcontributors.org) spec so credit is explicit.
+Every contribution type — code, docs, design, ideas, social media, bug reports,
+translation, mentoring — is recognized in the README contributors table.
 
-```bash
-make test  # or: pytest tests/ -v
-```
+To add yourself after contributing, either:
 
-## Code Style
+- Comment on your PR/issue with: `@all-contributors please add @yourhandle for
+  <code,docs,ideas,content,social,design,bug>`; the bot updates `.all-contributorsrc`
+  and the table for you, or
+- Edit `.all-contributorsrc` directly and run `npx all-contributors generate`.
 
-- Format: `black --line-length 100`
-- Lint: `ruff check .`
-- Type hints on all public functions
+The contributor list is machine-owned: never hand-edit the generated table, edit the
+`.all-contributorsrc` file instead.
 
-## Pull Request Process
+## Code contributions
 
-1. Open an issue for major changes first
-2. Ensure all tests pass
-3. Update README if behavior changes
-4. Keep PRs focused on a single concern
+1. Find a [`good first issue`](https://github.com/rankmodel/rankmodel.github.io/labels/good%20first%20issue)
+   or open one to discuss your idea first.
+2. Set up the environment:
 
-## Adding a New Benchmark
+   ```bash
+   python -m venv venv && source venv/bin/activate
+   pip install -e .
+   cp .env.example .env   # add HF_TOKEN for higher rate limits
+   ```
 
-1. Add entry to `BENCHMARK_META` in `scoring/benchmarks.py`
-2. Add all dataset name aliases to `ALIAS_MAP`
-3. Add a test case in `tests/test_scoring.py`
+3. Make your change with tests:
 
-## Bug Reports
+   ```bash
+   python -m pytest tests/ -q
+   ```
 
-Open a GitHub issue with Python version, reproduction steps, and log output.
+4. Open a PR. Describe the why, not just the what. Link the related discussion if any.
+
+## Code of conduct
+
+Be decent. We are ranking other people's models; critique the method, not the maker.

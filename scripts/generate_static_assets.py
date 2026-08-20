@@ -222,7 +222,7 @@ def generate_dna_html(base_url: str) -> str:
   <meta property="og:site_name" content="ModelRank" />
   <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
   <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
-  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
   <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
@@ -505,7 +505,7 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
   <meta property="og:site_name" content="ModelRank" />
   <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
   <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
-  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
   <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
@@ -1178,7 +1178,7 @@ def generate_quiz_html() -> str:
   <meta property="og:site_name" content="ModelRank" />
   <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
   <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
-  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
   <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
@@ -1498,7 +1498,7 @@ def generate_collections_html() -> str:
   <meta property="og:site_name" content="ModelRank" />
   <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
   <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
-  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
   <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
@@ -2084,7 +2084,7 @@ def generate_methodology_html() -> str:
   <meta property="og:site_name" content="ModelRank" />
   <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
   <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
-  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
   <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
@@ -2263,7 +2263,7 @@ def generate_api_html() -> str:
   <meta property="og:site_name" content="ModelRank" />
   <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
   <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
-  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
   <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
@@ -3274,7 +3274,7 @@ def generate_head_to_head_html(standings: list, reviews: list, base_url: str) ->
   <meta property="og:site_name" content="ModelRank" />
   <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
   <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
-  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
   <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
@@ -3375,7 +3375,7 @@ def main(limit: int = 200):
 
     # Copy public assets (favicon, OG image, logo) into the output
     _assets_src = Path(__file__).resolve().parent.parent / 'assets'
-    for _a in ('favicon.svg', 'og-image.png', 'logo.svg'):
+    for _a in ('favicon.svg', 'og-image.png', 'social-preview.png', 'logo.svg'):
         _src = _assets_src / _a
         if _src.exists():
             shutil.copy(_src, OUTPUT_DIR / _a)
