@@ -220,12 +220,12 @@ def generate_dna_html(base_url: str) -> str:
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ModelRank" />
-  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta property="og:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
   <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta name="twitter:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta name="twitter:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
 
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank — Model DNA Cards</title>
@@ -503,12 +503,12 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ModelRank" />
-  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta property="og:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
   <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta name="twitter:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta name="twitter:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
 
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank — The independent standard for open-weight AI</title>
@@ -1176,12 +1176,12 @@ def generate_quiz_html() -> str:
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ModelRank" />
-  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta property="og:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
   <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta name="twitter:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta name="twitter:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
 
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank — Best Model for Your Use Case</title>
@@ -1496,12 +1496,12 @@ def generate_collections_html() -> str:
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ModelRank" />
-  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta property="og:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
   <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta name="twitter:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta name="twitter:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
 
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank — Model Collections</title>
@@ -2082,12 +2082,12 @@ def generate_methodology_html() -> str:
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ModelRank" />
-  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta property="og:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
   <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta name="twitter:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta name="twitter:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
 
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank Scoring Methodology — How We Evaluate Open-Weight AI Models</title>
@@ -2261,12 +2261,12 @@ def generate_api_html() -> str:
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ModelRank" />
-  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta property="og:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
   <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta name="twitter:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta name="twitter:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
 
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank API Reference</title>
@@ -3272,12 +3272,12 @@ def generate_head_to_head_html(standings: list, reviews: list, base_url: str) ->
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ModelRank" />
-  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta property="og:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
   <meta property="og:image" content="https://rankmodel.github.io/social-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
-  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta name="twitter:title" content="STOP GUESSING. START RANKING. The Independent LLM Standard." />
+  <meta name="twitter:description" content="The AI industry is lying to you about performance. Here is the independent truth. 150+ Models. 5 Dimensions. Zero Bias." />
 
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank — Head-to-Head Community Rankings</title>
@@ -3374,7 +3374,7 @@ def main(limit: int = 200):
     (OUTPUT_DIR / 'models').mkdir(parents=True, exist_ok=True)
 
     # Copy public assets (favicon, OG image, logo) into the output
-    _assets_src = Path(__file__).resolve().parent.parent / 'assets'
+    _assets_src = pathlib.Path(__file__).resolve().parent.parent / 'assets'
     for _a in ('favicon.svg', 'og-image.png', 'social-preview.png', 'logo.svg'):
         _src = _assets_src / _a
         if _src.exists():
