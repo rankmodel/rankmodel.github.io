@@ -24,6 +24,7 @@ import sys
 import json
 import base64
 import argparse
+import shutil
 import pathlib
 import logging
 import math
@@ -216,6 +217,16 @@ def generate_dna_html(base_url: str) -> str:
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8"/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ModelRank" />
+  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank — Model DNA Cards</title>
   <meta name="description" content="Your model's personality, scored. Get a shareable Model DNA card showing the 5-dimension breakdown."/>
@@ -489,6 +500,16 @@ def generate_leaderboard_html(models: list, base_url: str) -> str:
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8"/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ModelRank" />
+  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank — The independent standard for open-weight AI</title>
   <meta name="description" content="Composite scoring and tier rankings for HuggingFace models. Independent benchmarks, efficiency, community, and freshness scores."/>
@@ -1152,6 +1173,16 @@ def generate_quiz_html() -> str:
 <html lang="en" class="dark" data-theme="dark">
 <head>
   <meta charset="UTF-8"/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ModelRank" />
+  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank — Best Model for Your Use Case</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -1462,6 +1493,16 @@ def generate_collections_html() -> str:
 <html lang="en" class="dark" data-theme="dark">
 <head>
   <meta charset="UTF-8"/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ModelRank" />
+  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank — Model Collections</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -2038,6 +2079,16 @@ def generate_methodology_html() -> str:
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8"/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ModelRank" />
+  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank Scoring Methodology — How We Evaluate Open-Weight AI Models</title>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.0/dist/full.css" rel="stylesheet" type="text/css" />
@@ -2207,6 +2258,16 @@ def generate_api_html() -> str:
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8"/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ModelRank" />
+  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank API Reference</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -3208,6 +3269,16 @@ def generate_head_to_head_html(standings: list, reviews: list, base_url: str) ->
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8"/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ModelRank" />
+  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ModelRank — Head-to-Head Community Rankings</title>
   <meta name="description" content="Community + LLM-judge head-to-head rankings. See which open-weight models win, lose, and tie in direct comparison."/>
@@ -3301,6 +3372,13 @@ def main(limit: int = 200):
     # Create output dirs
     (OUTPUT_DIR / 'badges').mkdir(parents=True, exist_ok=True)
     (OUTPUT_DIR / 'models').mkdir(parents=True, exist_ok=True)
+
+    # Copy public assets (favicon, OG image, logo) into the output
+    _assets_src = Path(__file__).resolve().parent.parent / 'assets'
+    for _a in ('favicon.svg', 'og-image.png', 'logo.svg'):
+        _src = _assets_src / _a
+        if _src.exists():
+            shutil.copy(_src, OUTPUT_DIR / _a)
 
     logger.info(f'Generating static assets for {total} models → {OUTPUT_DIR}/')
 
