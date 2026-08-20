@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-20T15:56:37.548115",
+  "computed_at": "2026-08-20T16:36:33.089608",
   "details": {
     "benchmark_details": {
       "score": 87.30000000000001,
@@ -53,12 +53,12 @@
     "diversity_details": {
       "count": 6,
       "datasets": [
-        "gpqa",
-        "swe-bench/swe-bench_verified",
-        "cais/hle",
-        "math",
         "mmlu-pro",
-        "mercor/apex-agents"
+        "swe-bench/swe-bench_verified",
+        "mercor/apex-agents",
+        "gpqa",
+        "math",
+        "cais/hle"
       ],
       "diversity_bonus": 10.0
     },

@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "C",
-  "computed_at": "2026-08-20T15:52:25.851009",
+  "computed_at": "2026-08-20T16:31:45.995749",
   "details": {
     "benchmark_details": {
       "score": 57.67800000000001,
@@ -53,9 +53,9 @@
     "diversity_details": {
       "count": 4,
       "datasets": [
-        "gpqa",
-        "liquidai/ifstruct-v1.0",
         "mmlu-pro",
+        "liquidai/ifstruct-v1.0",
+        "gpqa",
         "gsm8k"
       ],
       "diversity_bonus": 10.0

@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "C",
-  "computed_at": "2026-08-20T15:53:01.759721",
+  "computed_at": "2026-08-20T16:32:20.336593",
   "details": {
     "benchmark_details": {
       "score": 65.94297645142001,
@@ -53,11 +53,11 @@
     "diversity_details": {
       "count": 5,
       "datasets": [
-        "gpqa",
-        "gsm8k",
+        "mmlu-pro",
         "thamilvendhan/signalbench",
+        "gsm8k",
         "lexam-benchmark/lexam",
-        "mmlu-pro"
+        "gpqa"
       ],
       "diversity_bonus": 10.0
     },

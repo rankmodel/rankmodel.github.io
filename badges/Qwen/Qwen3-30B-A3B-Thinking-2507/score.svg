@@ -21,18 +21,7 @@
     <line x1="160" y1="0" x2="160" y2="32" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
     <rect width="240" height="32" rx="6" fill="none" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
   </g>
-  <g transform="translate(8, 6) scale(0.0390625)">
-    <linearGradient id="mr-gradient-logo" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4c1d95" />
-      <stop offset="100%" stop-color="#2563eb" />
-    </linearGradient>
-    <path d="M 256 32 C 256 32 100 80 100 80 L 100 240 C 100 360 256 480 256 480 C 256 480 412 360 412 240 L 412 80 C 412 80 256 32 256 32 Z" fill="url(#mr-gradient-logo)" />
-    <rect x="160" y="180" width="36" height="150" rx="8" fill="#ffffff" />
-    <rect x="210" y="210" width="36" height="120" rx="8" fill="#ffffff" />
-    <rect x="260" y="160" width="36" height="170" rx="8" fill="#ffffff" />
-    <rect x="310" y="240" width="36" height="90" rx="8" fill="#ffffff" />
-    <path d="M 296 160 H 316 C 344 160 360 176 360 200 C 360 224 344 240 316 240 H 296 V 160 Z" fill="none" stroke="#ffffff" stroke-width="28" stroke-linejoin="round" />
-  </g>
+  <g transform="translate(6,4) scale(0.046875)" fill="#ffffff"><rect x="150" y="300" width="64" height="100" rx="14"/><rect x="234" y="250" width="64" height="150" rx="14"/><rect x="318" y="190" width="64" height="210" rx="14"/><path d="M 350.0,104.0 L 361.2,134.6 L 393.7,135.8 L 368.1,155.9 L 377.0,187.2 L 350.0,169.0 L 323.0,187.2 L 331.9,155.9 L 306.3,135.8 L 338.8,134.6 Z"/></g>
   <text x="34" y="21" font-family="system-ui, sans-serif" font-size="12" fill="#ffffff" font-weight="600">Qwen3-30B-A3B-Thinking</text>
   <text x="172" y="21" font-family="system-ui, sans-serif" font-size="13" fill="#eab308" font-weight="800">77</text>
   <rect x="202" y="7" width="30" height="18" rx="4" fill="#22c55e" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1"/>
