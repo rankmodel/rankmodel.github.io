@@ -5,7 +5,7 @@ Thank you for contributing!
 ## Setup
 
 ```bash
-git clone https://github.com/rankmodel/rankmodel.git
+git clone https://github.com/rankmodel/rankmodel.github.io.git
 cd modelrank
 pip install -r requirements.txt -r requirements-optional.txt
 cp .env.example .env

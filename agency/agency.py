@@ -72,7 +72,7 @@ def action_social_draft(ctx) -> str:
         "# Draft social post\n\n"
         "Today's biggest ModelRank mover is live on the leaderboard. "
         "Grab your free, embeddable score badge and join the independent ranking layer.\n"
-        "https://rankmodel.github.io/rankmodel\n"
+        "https://rankmodel.github.io\n"
     )
     return f"drafted social post -> {out.relative_to(PROJECT_ROOT)}"
 
