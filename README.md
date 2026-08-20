@@ -22,7 +22,7 @@
   🤗 <a href="https://huggingface.co/spaces/pal404error/modelrank">HuggingFace Space</a> ·
   💰 <a href="https://rankmodel.github.io/rankmodel1/pricing.html">Pricing</a> ·
   📚 <a href="https://rankmodel.github.io/rankmodel1/methodology.html">Methodology</a> ·
-  🎙️ <a href="https://notebooklm.google.com">Weekly Podcast</a>
+  📰 <a href="https://rankmodel.github.io/rankmodel1/weekly.html">Weekly</a>
 </p>
 
 <p align="center">
@@ -34,16 +34,7 @@
 
 ---
 
-## 🎯 Mission
-
-**Make "which AI model should I actually use?" a solved question** — with scoring that no model vendor can buy, rig, or own.
-
-- 🔍 **Independence first.** Zero conflict of interest: we don't train or host models, so we have no incentive to rank our own higher.
-- 📊 **Transparency by default.** Every score is reproducible from public signals — benchmarks, efficiency, community, freshness, provenance.
-- 🌍 **Free for everyone, forever.** The badge — our growth engine — is free; we monetize *visibility & trust*, never the score.
-- 🤖 **Self-improving.** An autonomous agent "company" keeps the data fresh, the content flowing, and the community growing.
-
-## ✨ Why ModelRank exists
+## ✨ Why ModelRank
 
 HuggingFace tells you **what models exist**. ModelRank tells you **which ones are actually good** — with a transparent, weighted score and head-to-head win probabilities, not a black box.
 
@@ -51,7 +42,16 @@ We are **not** a model factory and we don't host weights. We have **zero incenti
 
 > 🔥 *A 7B model just beat a 70B model on efficiency. ModelRank is the only leaderboard that shows you.*
 
-## 🚀 Try it in 10 seconds
+## 🚀 Features
+
+- **🧠 Transparent 5D scoring** — benchmarks, efficiency, community, recency, and reproducibility, weighted and reproducible from public signals.
+- **⚔️ Head-to-head ELO** — compare any two models and see live win probabilities from community + LLM-judge verdicts.
+- **🏷️ Free embeddable badges** — drop a score/tier badge into your README; every badge links back to the leaderboard.
+- **🤖 Agent-ready** — a zero-dependency Python client, plus LangChain and LlamaIndex tools.
+- **💻 VS Code extension** — hover any `org/model` id and see its score + breakdown instantly.
+- **📰 ModelRank Weekly** — a data-driven newsletter on the model landscape, published every week.
+
+## 🏁 Try it in 10 seconds
 
 ```bash
 pip install -e .
@@ -72,7 +72,7 @@ python main.py api  # → http://localhost:8000/docs
 
 No API key needed to *use* ModelRank. (Add `HF_TOKEN` for higher HuggingFace rate limits.)
 
-## 🏷️ Get your free badge (the viral part)
+## 🏷️ Get your free badge
 
 Paste this into **your** model's README and you're on the leaderboard:
 
@@ -82,27 +82,22 @@ Paste this into **your** model's README and you're on the leaderboard:
 ```
 
 Replace `ORG/MODEL` with your HuggingFace path (e.g. `meta-llama/Llama-3.1-8B`).
-Every badge is a backlink to the leaderboard — that's how we grow.
+Every badge is a backlink to the leaderboard — that's how the community grows.
 
 ## 📐 How models are scored (composite, 0–100)
-
-> **Weights live in `config/settings.py` (`SCORING_WEIGHTS`) — that file is the single
-> source of truth**, not this README. The composite is currently a **4 active-dimension**
-> blend: `reproducibility` is reserved in the schema but weighted `0.00` until its
-> signals are wired in (so "5D" today means 4 weighted dimensions + 1 reserved).
 
 | Dimension | Weight | Measures |
 |-----------|--------|----------|
 | 🧠 **Benchmarks** | 70% | MMLU-Pro (0.25), GPQA (0.20), HLE (0.20), GSM8K (0.20), HumanEval (0.15) |
-| 🕐 **Recency** | 15% | 180-day half-life decay (formerly "Freshness") |
+| 🕐 **Recency** | 15% | 180-day half-life decay |
 | 🔥 **Community** | 10% | Downloads + likes + trending rank |
 | ⚡ **Efficiency** | 5% | Score per billion params (rewards small models) |
 | ✅ **Reproducibility** | 0% | Source credibility + benchmark diversity (reserved) |
 
 Plus **ELO head-to-head** (`P(A>B) = 1 / (1 + 10^((ELO_B-ELO_A)/400))`) and extended
 signals (context window, VRAM tier, license, multilingual, safety, momentum, …).
-Benchmarks are normalized against population bounds (`leaderboard_bounds`) so the
-score is comparable across the whole catalog.
+Benchmarks are normalized against population bounds so the score is comparable across
+the whole catalog.
 
 ## ⚖️ How we compare
 
@@ -121,11 +116,6 @@ Beyond the composite score, ModelRank runs **direct comparisons** between models
 and tracks them with an ELO rating. Anyone can judge a pair — a human verdict or
 an impartial LLM "vibe-check" — and every verdict feeds the community standings.
 
-- `GET /reviews` — the community + LLM-judge verdict feed (filter by `model_id` / `judge_type=human|llm`).
-- `GET /elo-leaderboard` — all models ranked by ELO.
-- `POST /judge/human` — record a human verdict (`A` / `B` / `tie`); updates ELO.
-- `GET /judge/{model_a}/{model_b}` — run the LLM judge and persist the result.
-
 ```bash
 # Record a human verdict
 curl -X POST http://localhost:8000/judge/human \
@@ -142,19 +132,36 @@ curl "http://localhost:8000/judge/Qwen/Qwen3.5-9B/deepseek-ai/DeepSeek-R1"
 The same data powers the public **[Head-to-Head](https://rankmodel.github.io/rankmodel1/head-to-head.html)**
 page (ELO standings + verdict feed) and the `⚖️ Judge & ELO` tab in the Gradio UI.
 
-## 💸 Revenue model (open-core hybrid)
+## 💻 VS Code extension
 
-The **free badge is the growth engine** — it stays free, forever. Devs pay for **visibility & trust**, never for the score:
+Hover any HuggingFace model id in your editor — `meta-llama/Llama-3.1-8B`,
+`Qwen/Qwen3.5-9B`, etc. — and get its **ModelRank score**, tier, and 5-dimension
+breakdown, fetched live from the API. Built on `ModelRankClient`
+(`vscode-extension/`, run `npm install && npm run compile`).
 
-- **Verified** — prove ownership / provenance.
-- **Featured** — bought placement on the leaderboard & weekly newsletter.
-- **Glow** — animated premium badges for paid tiers.
-- **Enterprise API** — SLA, rate limits, white-label.
-- **CI gating** — fail builds below a score/tier.
+## 🐍 Python client & agent tools
 
-See [Pricing](https://rankmodel.github.io/rankmodel1/pricing.html). Free core drives adoption; paid tier solves real problems. We never cripple the free badge.
+```python
+from api.client import ModelRankClient
 
-## 🤝 CI/CD (GitHub Action)
+client = ModelRankClient()                       # or ModelRankClient(base_url="http://localhost:8000")
+top = client.leaderboard(limit=10)
+score = client.score("mistralai/Mistral-7B-v0.1")
+cmp = client.compare("Qwen/Qwen3.5-9B", "deepseek-ai/DeepSeek-R1")
+```
+
+Drop ModelRank into your own agents via the `integrations/` package:
+
+```python
+from integrations.langchain import get_modelrank_langchain_tools   # LangChain
+from integrations.llama_index import get_modelrank_llama_index_tools  # LlamaIndex
+```
+
+Tools: `modelrank_score`, `modelrank_compare`, `modelrank_recommend`, `modelrank_head_to_head`.
+
+## 🤝 Use ModelRank in CI
+
+Fail a build when a model drops below a score or tier:
 
 ```yaml
 - uses: rankmodel/rankmodel1/.github/actions/modelrank-check@main
@@ -162,50 +169,6 @@ See [Pricing](https://rankmodel.github.io/rankmodel1/pricing.html). Free core dr
     model_id: 'your-org/your-model'
     min_score: '70'
     min_tier: 'B'
-```
-
-## 🤖 The ModelRank Agency
-
-ModelRank also ships as a **Paperclip-style company of AI agents** that grows itself
-— modeled on [paperclipai/paperclip](https://github.com/paperclipai/paperclip). A
-CEO, CMO, DevRel, Platform Eng, Outreach, and Analytics agent run daily/weekly
-heartbeats (regenerate assets, draft posts, publish the newsletter, recruit
-creators) under approval gates and a budget hard-stop. See
-[`agency/`](agency/) — `python agency/agency.py --list`.
-
-## 🗂️ Project structure
-
-```
-main.py                 # CLI: api | ui | score | leaderboard
-api/                    # FastAPI REST (scoring, badges, leaderboard, compare, judge/H2H, reviews) + premium
-scoring/                # composite engine, ELO, benchmarks, efficiency, community, recency
-data/                   # HF fetcher, SQLite cache, NotebookLM integration
-badges/                 # SVG + premium (glow/featured) generators
-config/                 # settings + pricing tiers
-scripts/                # static asset + outreach generators
-agency/                 # Paperclip-style autonomous growth company (agents + routines)
-static_output/          # GitHub Pages CDN (leaderboard, badges, pages)
-ui/app.py               # Gradio leaderboard
-tests/                  # 34 passing unit tests
-```
-
-## 🗺️ Roadmap
-
-- [x] 150+ seeded models, 5D scoring, ELO, badges, pricing
-- [x] Shareable **"Model DNA"** cards (Spotify-Wrapped for models)
-- [x] **ModelRank Agency** — Paperclip-style autonomous growth company
-- [x] **Community head-to-head** — LLM-judge vibe-check, ELO standings, verdict feed (`/reviews`, `/elo-leaderboard`, `head-to-head.html`)
-- [x] **Python API client** (`api/client.py`) — zero-dep SDK wrapping every endpoint (foundation for the integrations below)
-- [~] Interactive **"Best model for my use case"** quiz — recommendation engine built; UI quiz shell still pending
-- [x] VS Code extension (hover a model name → see its score) — `vscode-extension/` hover provider built on `ModelRankClient`
-- [x] **LangChain / LlamaIndex tools** — `integrations/` wraps every endpoint as agent tools (`modelrank_score`, `compare`, `recommend`, `head_to_head`)
-- [x] Weekly automated **ModelRank** newsletter (`scripts/generate_weekly.py` → `outputs/*.md`, `static_output/weekly.html` + `weekly.json`; runs via the agency `weekly_newsletter` routine)
-- [ ] Weekly podcast episode (audio) — optional; build on the newsletter script if desired
-
-## 🧪 Tests
-
-```bash
-make test   # 79 passed
 ```
 
 ## 📄 License
