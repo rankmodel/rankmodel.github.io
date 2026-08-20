@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-20T15:32:40.425855",
+  "computed_at": "2026-08-20T15:52:34.092331",
   "details": {
     "benchmark_details": {
       "score": 84.78600000000002,
@@ -54,20 +54,20 @@
     "diversity_details": {
       "count": 14,
       "datasets": [
-        "swe-bench/swe-bench_verified",
-        "scaleai/swe-bench_pro",
-        "mercor/apex-agents",
-        "internlm/wildclawbench",
-        "mercor/apex-swe",
         "futurema/evasionbench",
-        "gpqa",
-        "cais/hle",
+        "internlm/wildclawbench",
         "collinear-ai/yc-bench",
-        "mmlu-pro",
+        "claw-eval/claw-eval",
+        "gpqa",
+        "swe-bench/swe-bench_verified",
+        "mercor/apex-swe",
+        "cais/hle",
         "math",
         "harborframework/terminal-bench-2.0",
-        "open-agent-leaderboard/results",
-        "claw-eval/claw-eval"
+        "mmlu-pro",
+        "scaleai/swe-bench_pro",
+        "mercor/apex-agents",
+        "open-agent-leaderboard/results"
       ],
       "diversity_bonus": 10.0
     },

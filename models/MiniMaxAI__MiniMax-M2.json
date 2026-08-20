@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-20T15:33:40.614375",
+  "computed_at": "2026-08-20T15:53:13.290755",
   "details": {
     "benchmark_details": {
       "score": 82.0,
@@ -51,10 +51,10 @@
     "diversity_details": {
       "count": 4,
       "datasets": [
-        "harborframework/terminal-bench-2.0",
-        "mmlu-pro",
         "cais/hle",
-        "swe-bench/swe-bench_verified"
+        "swe-bench/swe-bench_verified",
+        "harborframework/terminal-bench-2.0",
+        "mmlu-pro"
       ],
       "diversity_bonus": 10.0
     },

@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-20T15:33:32.480503",
+  "computed_at": "2026-08-20T15:53:07.612014",
   "details": {
     "benchmark_details": {
       "score": 0.0,
@@ -49,9 +49,9 @@
       "count": 4,
       "datasets": [
         "swe-bench/swe-bench_verified",
-        "scaleai/swe-bench_pro",
         "swe-bench/swe-bench_multilingual",
-        "claw-eval/claw-eval"
+        "claw-eval/claw-eval",
+        "scaleai/swe-bench_pro"
       ],
       "diversity_bonus": 10.0
     },
