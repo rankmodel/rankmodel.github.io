@@ -1,0 +1,27 @@
+name: PR Code Reviewer
+version: "1.0"
+description: An automated agent that reviews pull requests for style, security, and performance.
+agent_type: code-reviewer
+
+# Reference to the rulebook in agent-rules directory
+rulebook_reference: "agent-rules/code-reviewer.md"
+
+model:
+  provider: gemini
+  name: gemini-3.5-pro
+
+capabilities:
+  - read_codebase
+  - run_linter
+  - create_pr_comments
+
+parameters:
+  strictness: high
+  focus_areas:
+    - security
+    - readability
+    - performance
+
+environment:
+  max_execution_time_seconds: 300
+  allow_network_access: false
