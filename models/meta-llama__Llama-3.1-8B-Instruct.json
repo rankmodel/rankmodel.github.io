@@ -1,0 +1,88 @@
+{
+  "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+  "composite": 58.17,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 65,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 22.5,
+  "breakdown": {
+    "benchmarks": 48.43,
+    "efficiency": 40.21,
+    "community": 72.53,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "D",
+  "computed_at": "2026-08-20T18:06:38.938873",
+  "details": {
+    "benchmark_details": {
+      "score": 48.43333333333333,
+      "benchmarks_found": [
+        "gpqa",
+        "gsm8k"
+      ],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "hle",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 30.4,
+        "gsm8k": 84.5
+      }
+    },
+    "diversity_details": {
+      "count": 4,
+      "datasets": [
+        "thamilvendhan/signalbench",
+        "lexam-benchmark/lexam",
+        "gsm8k",
+        "gpqa"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 2,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "hle",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 15.4,
+    "confidence": "low"
+  },
+  "rank": 8,
+  "badge_url": "https://rankmodel.github.io/badges/meta-llama/Llama-3.1-8B-Instruct/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/meta-llama/Llama-3.1-8B-Instruct/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/meta-llama/Llama-3.1-8B-Instruct.svg"
+}

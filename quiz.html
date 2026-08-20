@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ModelRank" />
+  <meta property="og:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta property="og:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+  <meta property="og:image" content="https://rankmodel.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ModelRank: the independent AI model leaderboard" />
+  <meta name="twitter:description" content="Transparent 5-dimension scoring, head-to-head ELO, and free embeddable badges for open-weight AI models." />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ModelRank — Best Model for Your Use Case</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.0/dist/full.css" rel="stylesheet" type="text/css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { base: '#0a0a0f', surface: '#13131a', border: '#232330' },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    body { background-color: #0a0a0f; color: #f1f5f9; font-family: 'Inter', sans-serif; }
+    .glass-card { background: rgba(19, 19, 26, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+    .step-panel { display: none; opacity: 0; transform: translateX(20px); transition: all 0.4s ease-out; }
+    .step-panel.active { display: block; opacity: 1; transform: translateX(0); }
+    .card-option { cursor: pointer; transition: all 0.2s; border: 2px solid transparent; }
+    .card-option:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+    .card-option.selected { border-color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
+  </style>
+</head>
+<body class="min-h-screen text-gray-200">
+  <header class="pt-8 pb-4 border-b border-white/5">
+    <div class="container mx-auto px-4 max-w-4xl flex justify-between items-center">
+      <a href="index.html" class="text-xl font-black flex items-center gap-2 text-white">🏆 ModelRank</a>
+      <div class="text-sm font-medium text-gray-400">
+        <a href="index.html" class="hover:text-white mr-4">Leaderboard</a>
+        <a href="collections.html" class="hover:text-white">Collections</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <div class="mb-8">
+      <div class="flex justify-between text-xs font-bold text-gray-500 mb-2">
+        <span>Step <span id="step-counter">1</span> of 3</span>
+      </div>
+      <div class="w-full bg-gray-800 rounded-full h-1.5">
+        <div id="progress-bar" class="bg-blue-500 h-1.5 rounded-full transition-all duration-300" style="width: 33%"></div>
+      </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div id="step-1" class="step-panel active">
+      <h1 class="text-3xl font-black text-white mb-2">What is your primary use case?</h1>
+      <p class="text-gray-400 mb-8">Select the task that represents 80%+ of what you'll use the model for.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="use-case-options">
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="chat">
+          <div class="text-3xl mb-3">💬</div>
+          <h3 class="text-lg font-bold text-white mb-1">Chat / Assistant</h3>
+          <p class="text-sm text-gray-400">Conversational AI, customer support, general Q&A</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="code">
+          <div class="text-3xl mb-3">💻</div>
+          <h3 class="text-lg font-bold text-white mb-1">Code Generation</h3>
+          <p class="text-sm text-gray-400">Write, explain, debug code — Python, JS, Go</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="rag">
+          <div class="text-3xl mb-3">📖</div>
+          <h3 class="text-lg font-bold text-white mb-1">RAG / Knowledge Base</h3>
+          <p class="text-sm text-gray-400">Retrieve and summarize long documents</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="research">
+          <div class="text-3xl mb-3">🔬</div>
+          <h3 class="text-lg font-bold text-white mb-1">Research / Reasoning</h3>
+          <p class="text-sm text-gray-400">Complex multi-step reasoning, PhD-level questions</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="multilingual">
+          <div class="text-3xl mb-3">🌍</div>
+          <h3 class="text-lg font-bold text-white mb-1">Multilingual</h3>
+          <p class="text-sm text-gray-400">Support for non-English languages</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="edge">
+          <div class="text-3xl mb-3">🏎️</div>
+          <h3 class="text-lg font-bold text-white mb-1">Edge / On-device</h3>
+          <p class="text-sm text-gray-400">Must run on laptop/mobile without cloud</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="step-2" class="step-panel">
+      <button class="text-sm text-gray-400 hover:text-white flex items-center gap-1 mb-4" onclick="goToStep(1)">
+        ← Back
+      </button>
+      <h1 class="text-3xl font-black text-white mb-2">What hardware will you run it on?</h1>
+      <p class="text-gray-400 mb-8">This helps us filter out models that won't fit in your memory.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="hardware-options">
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="cloud">
+          <div class="text-3xl mb-3">☁️</div>
+          <h3 class="text-lg font-bold text-white mb-1">Cloud / API</h3>
+          <p class="text-sm text-gray-400">Use via API, no local hardware constraints</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="high">
+          <div class="text-3xl mb-3">🖥️</div>
+          <h3 class="text-lg font-bold text-white mb-1">High-end GPU</h3>
+          <p class="text-sm text-gray-400">RTX 4090, A100, 80GB+ VRAM</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="mid">
+          <div class="text-3xl mb-3">💻</div>
+          <h3 class="text-lg font-bold text-white mb-1">Mid-range GPU</h3>
+          <p class="text-sm text-gray-400">RTX 3080/4070, 16-24GB VRAM</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="potato">
+          <div class="text-3xl mb-3">🥔</div>
+          <h3 class="text-lg font-bold text-white mb-1">Potato</h3>
+          <p class="text-sm text-gray-400">CPU only or 8GB RAM — must be tiny</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div id="step-3" class="step-panel">
+      <button class="text-sm text-gray-400 hover:text-white flex items-center gap-1 mb-4" onclick="goToStep(2)">
+        ← Back
+      </button>
+      <h1 class="text-3xl font-black text-white mb-2">What's your priority?</h1>
+      <p class="text-gray-400 mb-8">Trade-off between quality and speed.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="priority-options">
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="quality">
+          <div class="text-3xl mb-3">🏆</div>
+          <h3 class="text-lg font-bold text-white mb-1">Best quality</h3>
+          <p class="text-sm text-gray-400">Highest possible score, I don't care about speed</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="balanced">
+          <div class="text-3xl mb-3">⚡</div>
+          <h3 class="text-lg font-bold text-white mb-1">Balanced</h3>
+          <p class="text-sm text-gray-400">Good quality + reasonable speed</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl card-option" data-value="speed">
+          <div class="text-3xl mb-3">🚀</div>
+          <h3 class="text-lg font-bold text-white mb-1">Speed first</h3>
+          <p class="text-sm text-gray-400">Fastest inference, good enough quality</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div id="results" class="step-panel">
+      <button class="text-sm text-gray-400 hover:text-white flex items-center gap-1 mb-4" onclick="goToStep(1); resetSelections();">
+        ← Start Over
+      </button>
+      <h1 class="text-3xl font-black text-white mb-2">Top Recommendations</h1>
+      <p class="text-gray-400 mb-8">Based on your selections: <span id="summary-text" class="text-blue-400 font-bold"></span></p>
+      
+      <div id="loading" class="text-center py-12">
+        <span class="loading loading-spinner loading-lg text-primary"></span>
+        <p class="mt-4 text-gray-400">Analyzing models...</p>
+      </div>
+
+      <div id="recommendations-container" class="space-y-4 hidden"></div>
+
+      <div class="mt-8 flex gap-4 hidden" id="action-buttons">
+        <a href="index.html" class="btn btn-outline">Compare all models</a>
+        <button onclick="shareResults()" class="btn btn-primary">Share Results</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let selections = { useCase: '', hardware: '', priority: '' };
+    const LEADERBOARD_URL = 'leaderboard.json';
+    let leaderboardData = null;
+
+    function resetSelections() {
+      selections = { useCase: '', hardware: '', priority: '' };
+      document.querySelectorAll('.card-option').forEach(el => el.classList.remove('selected'));
+    }
+
+    function goToStep(step) {
+      document.querySelectorAll('.step-panel').forEach(el => el.classList.remove('active'));
+      document.getElementById(`step-${step}`)?.classList.add('active');
+      document.getElementById('step-counter').innerText = step;
+      document.getElementById('progress-bar').style.width = `${(step/3)*100}%`;
+    }
+
+    function handleSelection(step, key, value, el) {
+      selections[key] = value;
+      const parent = el.closest('.grid');
+      parent.querySelectorAll('.card-option').forEach(card => card.classList.remove('selected'));
+      el.classList.add('selected');
+      
+      setTimeout(() => {
+        if (step < 3) {
+          goToStep(step + 1);
+        } else {
+          showResults();
+        }
+      }, 300);
+    }
+
+    document.getElementById('use-case-options').addEventListener('click', e => {
+      const card = e.target.closest('.card-option');
+      if(card) handleSelection(1, 'useCase', card.dataset.value, card);
+    });
+    document.getElementById('hardware-options').addEventListener('click', e => {
+      const card = e.target.closest('.card-option');
+      if(card) handleSelection(2, 'hardware', card.dataset.value, card);
+    });
+    document.getElementById('priority-options').addEventListener('click', e => {
+      const card = e.target.closest('.card-option');
+      if(card) handleSelection(3, 'priority', card.dataset.value, card);
+    });
+
+    function calcFit(model, useCase, hardware, priority) {
+      let score = model.composite;
+      const b = model.breakdown || {};
+      
+      // Use case adjustments
+      if (useCase === 'code') score += (b.benchmarks || 0) * 0.3;
+      if (useCase === 'edge') score += (b.efficiency || 0) * 0.5 - (model.composite * 0.2);
+      if (useCase === 'multilingual') score += (b.community || 0) * 0.2;
+      if (useCase === 'research') score += (b.benchmarks || 0) * 0.4;
+      
+      // Hardware filter
+      const eff = b.efficiency || 0;
+      if (hardware === 'potato') { if (eff < 70) score -= 40; else score += 20; }
+      if (hardware === 'mid') { if (eff < 40) score -= 20; }
+      
+      // Priority
+      if (priority === 'speed') score += (b.efficiency || 0) * 0.3;
+      if (priority === 'quality') score += (b.benchmarks || 0) * 0.2;
+      
+      return score;
+    }
+
+    async function fetchLeaderboard() {
+      if (leaderboardData) return leaderboardData;
+      try {
+        const res = await fetch(LEADERBOARD_URL);
+        leaderboardData = await res.json();
+        return leaderboardData;
+      } catch (err) {
+        console.error(err);
+        return { models: [] };
+      }
+    }
+
+    async function showResults() {
+      document.querySelectorAll('.step-panel').forEach(el => el.classList.remove('active'));
+      document.getElementById('results').classList.add('active');
+      document.getElementById('progress-bar').style.width = '100%';
+      
+      const labels = {
+        chat: 'Chat', code: 'Code', rag: 'RAG', research: 'Research', multilingual: 'Multilingual', edge: 'Edge',
+        cloud: 'Cloud', high: 'High-end GPU', mid: 'Mid-range GPU', potato: 'Potato PC',
+        quality: 'Quality', balanced: 'Balanced', speed: 'Speed'
+      };
+      document.getElementById('summary-text').innerText = `${labels[selections.useCase]} on ${labels[selections.hardware]} (${labels[selections.priority]})`;
+      
+      const data = await fetchLeaderboard();
+      document.getElementById('loading').classList.add('hidden');
+      
+      const scored = data.models.map(m => ({
+        ...m,
+        fit: calcFit(m, selections.useCase, selections.hardware, selections.priority)
+      })).sort((a, b) => b.fit - a.fit).slice(0, 3);
+      
+      const container = document.getElementById('recommendations-container');
+      container.innerHTML = '';
+      container.classList.remove('hidden');
+      document.getElementById('action-buttons').classList.remove('hidden');
+
+      scored.forEach((m, idx) => {
+        const parts = m.model_id.split('/');
+        const name = parts.length > 1 ? parts[1] : m.model_id;
+        const org = parts.length > 1 ? parts[0] : '';
+        const html = `
+          <div class="glass-card p-6 rounded-2xl flex flex-col md:flex-row gap-6 items-center border-l-4 ${idx===0 ? 'border-l-blue-500' : 'border-l-gray-600'}">
+            <div class="text-4xl font-black text-gray-500">#${idx+1}</div>
+            <div class="flex-1">
+              <div class="text-xs text-gray-500">${org}</div>
+              <h3 class="text-xl font-bold text-white"><a href="https://huggingface.co/${m.model_id}" target="_blank" class="hover:underline">${name}</a></h3>
+              <p class="text-sm text-gray-400 mt-1">Score: <span class="text-blue-400 font-bold">${m.composite.toFixed(1)}</span> • Tier: <span class="badge badge-sm badge-outline">${m.tier}</span> • Efficiency: ${m.breakdown?.efficiency?.toFixed(1)||'N/A'}</p>
+              <p class="text-sm text-gray-300 mt-2 bg-white/5 p-2 rounded italic">"Best fit due to high ${selections.priority==='speed'||selections.hardware==='potato'?'efficiency':'benchmark performance'} for this hardware."</p>
+            </div>
+            <div>
+              <img src="${m.badge_url}" alt="Score Badge" class="h-8">
+            </div>
+          </div>
+        `;
+        container.innerHTML += html;
+      });
+      
+      window.shareText = `ModelRank recommends ${scored[0]?.model_id || 'these models'} for ${labels[selections.useCase]} on ${labels[selections.hardware]}. Check it out at ModelRank!`;
+    }
+    
+    function shareResults() {
+      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(window.shareText)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>

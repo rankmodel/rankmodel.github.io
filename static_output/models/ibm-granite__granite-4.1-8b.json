@@ -1,0 +1,88 @@
+{
+  "model_id": "ibm-granite/granite-4.1-8b",
+  "composite": 63.49,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 65,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 22.5,
+  "breakdown": {
+    "benchmarks": 57.68,
+    "efficiency": 41.49,
+    "community": 60.46,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "C",
+  "computed_at": "2026-08-20T18:07:10.394879",
+  "details": {
+    "benchmark_details": {
+      "score": 57.67800000000001,
+      "benchmarks_found": [
+        "gsm8k",
+        "mmlu-pro",
+        "gpqa"
+      ],
+      "benchmarks_missing": [
+        "hle",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gsm8k": 92.49,
+        "mmlu-pro": 55.99,
+        "gpqa": 41.96
+      }
+    },
+    "diversity_details": {
+      "count": 4,
+      "datasets": [
+        "liquidai/ifstruct-v1.0",
+        "mmlu-pro",
+        "gpqa",
+        "gsm8k"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 3,
+    "missing_benchmarks": [
+      "hle",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 23.1,
+    "confidence": "low"
+  },
+  "rank": 7,
+  "badge_url": "https://rankmodel.github.io/badges/ibm-granite/granite-4.1-8b/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/ibm-granite/granite-4.1-8b/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/ibm-granite/granite-4.1-8b.svg"
+}

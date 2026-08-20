@@ -1,0 +1,96 @@
+{
+  "model_id": "openai/gpt-oss-20b",
+  "composite": 69.82,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 45,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 20.5,
+  "breakdown": {
+    "benchmarks": 65.72,
+    "efficiency": 33.3,
+    "community": 71.44,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "C",
+  "computed_at": "2026-08-20T18:06:37.918534",
+  "details": {
+    "benchmark_details": {
+      "score": 65.72323232323751,
+      "benchmarks_found": [
+        "gpqa",
+        "mmlu-pro",
+        "gpqa",
+        "gpqa",
+        "gpqa",
+        "gpqa",
+        "gpqa",
+        "gpqa"
+      ],
+      "benchmarks_missing": [
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 71.5,
+        "mmlu-pro": 73.6
+      }
+    },
+    "diversity_details": {
+      "count": 6,
+      "datasets": [
+        "liquidai/ifstruct-v1.0",
+        "gpqa",
+        "mmlu-pro",
+        "cais/hle",
+        "swe-bench/swe-bench_verified",
+        "lexam-benchmark/lexam"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 2,
+    "missing_benchmarks": [
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 15.4,
+    "confidence": "low"
+  },
+  "rank": 6,
+  "badge_url": "https://rankmodel.github.io/badges/openai/gpt-oss-20b/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/openai/gpt-oss-20b/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/openai/gpt-oss-20b.svg"
+}

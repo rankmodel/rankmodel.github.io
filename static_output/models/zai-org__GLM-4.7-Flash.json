@@ -1,0 +1,87 @@
+{
+  "model_id": "zai-org/GLM-4.7-Flash",
+  "composite": 76.01,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 45,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 20.5,
+  "breakdown": {
+    "benchmarks": 75.2,
+    "efficiency": 31.88,
+    "community": 67.75,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "B",
+  "computed_at": "2026-08-20T18:07:33.647807",
+  "details": {
+    "benchmark_details": {
+      "score": 75.2,
+      "benchmarks_found": [
+        "gpqa"
+      ],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 75.2
+      }
+    },
+    "diversity_details": {
+      "count": 3,
+      "datasets": [
+        "gpqa",
+        "cais/hle",
+        "swe-bench/swe-bench_verified"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 4,
+  "badge_url": "https://rankmodel.github.io/badges/zai-org/GLM-4.7-Flash/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/zai-org/GLM-4.7-Flash/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/zai-org/GLM-4.7-Flash.svg"
+}
