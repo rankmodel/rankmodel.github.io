@@ -144,6 +144,8 @@ Extended signals tracked (not yet weighted): context window, VRAM tier, license 
 
 > Every leaderboard that accepts sponsored rankings has a corruption problem, whether they admit it or not. ModelRank's rule is simple: **you cannot buy a higher score.** You can pay for visibility (Featured placement, labeled clearly as such), but the composite score is computed from public benchmark data only. This is the independence guarantee.
 
+We are sustained by optional paid infrastructure (high-volume API access, premium badge styling) — never by moving a score. The composite, the raw data, and the methodology are permanently free.
+
 The scoring weights live in `config/settings.py`. The community votes on changes in [Discussions](https://github.com/rankmodel/rankmodel.github.io/discussions). You can audit or fork the math in minutes.
 
 ---
