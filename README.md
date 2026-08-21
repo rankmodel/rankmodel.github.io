@@ -8,7 +8,7 @@
   <a href="https://github.com/rankmodel/rankmodel.github.io/stargazers"><img src="https://img.shields.io/github/stars/rankmodel/rankmodel.github.io?style=social" alt="GitHub Stars"></a>
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT License">
   <img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python 3.10+">
-  <img src="https://img.shields.io/badge/models%20ranked-150%2B-8A2BE2" alt="150+ Models Ranked">
+  <img src="https://img.shields.io/badge/models%20ranked-954%2B-8A2BE2" alt="954+ Models Ranked">
   <a href="https://github.com/rankmodel/rankmodel.github.io/graphs/contributors"><img src="https://img.shields.io/github/contributors/rankmodel/rankmodel.github.io?color=orange" alt="Contributors"></a>
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
 </p>
@@ -110,6 +110,12 @@ Generate a custom badge from the CLI:
 
 ```bash
 python scripts/generate_badge.py --model meta-llama/Llama-3.1-8B --format md
+```
+
+Or grab the raw SVG directly, no install required:
+
+```bash
+curl -sSL https://rankmodel.github.io/badges/meta-llama/Llama-3.1-8B/score.svg -o modelrank-score.svg
 ```
 
 Every badge is a statement: *my model's score is public, auditable, and earned.*
@@ -234,9 +240,9 @@ If the model's score drops below your threshold, the CI step fails. Your pipelin
 
 ## ❓ FAQ — Pre-emptive Troll Disarmament
 
-**Q: Your dataset is too small / you only have 150 models.**
+**Q: Your dataset is too small / you only have 954 models.**
 
-> A: We seed from HuggingFace's top 1,000 most-downloaded models and expand weekly. 150 is the *verified* set — models with complete benchmark data across all five dimensions. Coverage is a community effort. [Submit your model →](https://github.com/rankmodel/rankmodel.github.io/issues/new?template=model-submission.md)
+> A: We seed from HuggingFace's top 1,000 most-downloaded models and expand weekly. 954 is the *verified* set — models with complete benchmark data across all five dimensions. Coverage is a community effort. [Submit your model →](https://github.com/rankmodel/rankmodel.github.io/issues/new?template=model-submission.md)
 
 ---
 
