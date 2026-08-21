@@ -20,10 +20,10 @@
     "efficiency": 21.89,
     "community": 59.25,
     "recency": 100.0,
-    "reproducibility": 30.0
+    "reproducibility": 0.0
   },
   "tier": "D",
-  "computed_at": "2026-08-20T17:11:35.638001",
+  "computed_at": "2026-08-21T02:55:42.804527",
   "details": {
     "benchmark_details": {
       "score": 0.0,
@@ -46,13 +46,9 @@
       "details": {}
     },
     "diversity_details": {
-      "count": 3,
-      "datasets": [
-        "datacurve/deep-swe",
-        "swe-bench/swe-bench_multilingual",
-        "scaleai/swe-bench_pro"
-      ],
-      "diversity_bonus": 10.0
+      "count": 0,
+      "datasets": [],
+      "diversity_bonus": 0.0
     },
     "freshness_label": "Just Released"
   },

@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-20T17:16:05.880397",
+  "computed_at": "2026-08-21T02:56:43.996166",
   "details": {
     "benchmark_details": {
       "score": 74.00000000000001,
@@ -53,15 +53,15 @@
     "diversity_details": {
       "count": 9,
       "datasets": [
-        "swe-bench/swe-bench_verified",
-        "claw-eval/claw-eval",
         "cais/hle",
+        "mmlu-pro",
+        "claw-eval/claw-eval",
+        "swe-bench/swe-bench_verified",
+        "internlm/wildclawbench",
         "scaleai/swe-bench_pro",
         "gpqa",
-        "internlm/wildclawbench",
-        "mmlu-pro",
-        "harborframework/terminal-bench-2.0",
-        "gsm8k"
+        "gsm8k",
+        "harborframework/terminal-bench-2.0"
       ],
       "diversity_bonus": 10.0
     },
@@ -86,7 +86,7 @@
     "coverage_percent": 23.1,
     "confidence": "low"
   },
-  "rank": 45,
+  "rank": 44,
   "badge_url": "https://rankmodel.github.io/badges/XiaomiMiMo/MiMo-V2.5-Pro/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/XiaomiMiMo/MiMo-V2.5-Pro/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/XiaomiMiMo/MiMo-V2.5-Pro.svg"

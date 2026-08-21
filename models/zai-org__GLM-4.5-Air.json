@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-20T17:06:48.259389",
+  "computed_at": "2026-08-21T02:54:25.210568",
   "details": {
     "benchmark_details": {
       "score": 76.5585858586,
@@ -53,8 +53,8 @@
       "count": 3,
       "datasets": [
         "gpqa",
-        "mmlu-pro",
-        "cais/hle"
+        "cais/hle",
+        "mmlu-pro"
       ],
       "diversity_bonus": 10.0
     },
@@ -80,7 +80,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 42,
+  "rank": 41,
   "badge_url": "https://rankmodel.github.io/badges/zai-org/GLM-4.5-Air/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/zai-org/GLM-4.5-Air/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/zai-org/GLM-4.5-Air.svg"

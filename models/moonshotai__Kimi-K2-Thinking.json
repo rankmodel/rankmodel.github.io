@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-20T17:16:14.577847",
+  "computed_at": "2026-08-21T02:56:52.669039",
   "details": {
     "benchmark_details": {
       "score": 84.5,
@@ -51,10 +51,10 @@
     "diversity_details": {
       "count": 4,
       "datasets": [
-        "swe-bench/swe-bench_verified",
         "gpqa",
+        "cais/hle",
         "harborframework/terminal-bench-2.0",
-        "cais/hle"
+        "swe-bench/swe-bench_verified"
       ],
       "diversity_bonus": 10.0
     },
@@ -81,7 +81,7 @@
     "coverage_percent": 7.7,
     "confidence": "low"
   },
-  "rank": 22,
+  "rank": 21,
   "badge_url": "https://rankmodel.github.io/badges/moonshotai/Kimi-K2-Thinking/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/moonshotai/Kimi-K2-Thinking/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/moonshotai/Kimi-K2-Thinking.svg"

@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-20T17:05:52.342331",
+  "computed_at": "2026-08-21T02:53:26.171808",
   "details": {
     "benchmark_details": {
       "score": 75.29999999999998,
@@ -52,9 +52,9 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
-        "mmlu-pro",
         "gpqa",
-        "cais/hle"
+        "cais/hle",
+        "mmlu-pro"
       ],
       "diversity_bonus": 10.0
     },
@@ -80,7 +80,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 43,
+  "rank": 42,
   "badge_url": "https://rankmodel.github.io/badges/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8.svg"
