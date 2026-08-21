@@ -21,7 +21,7 @@ We ran the numbers. The signal is lying to you.
 
 ModelRank started with a simple, possibly naive question: *if you strip away marketing, brand recognition, and pricing psychology, which LLMs actually perform per dollar?*
 
-To answer it without conflicts of interest, we built a scoring system that runs on public benchmark data, aggregated from academic papers, third-party evals, and community submissions — none of it paid for or approved by the labs themselves. Over the past several months, we've evaluated more than 150 models across five dimensions: Benchmarks (70%), Recency (15%), Community (10%), and Efficiency (5%).
+To answer it without conflicts of interest, we built a scoring system that runs on public benchmark data, aggregated from academic papers, third-party evals, and community submissions — none of it paid for or approved by the labs themselves. Over the past several months, we've evaluated more than 954 models across five dimensions: Benchmarks (70%), Recency (15%), Community (10%), and Efficiency (5%).
 
 Yes, Efficiency is only 5% of the composite score. That's by design — raw quality matters more than price. But when we isolated the efficiency dimension and sorted by it, the resulting table looked nothing like the pricing ladder the industry implies.
 
@@ -31,9 +31,9 @@ The $0.004 model wasn't at the bottom. It was at the top.
 
 ## The Data: 100 Models, One Honest Table
 
-The following table represents a cross-section of the models we've evaluated. Costs reflect public pricing pages as of Q3 2025. Benchmark scores are sourced from published evals and normalized against our 150-model population. **These are not cherry-picked runs — they represent average performance across MMLU-Pro, GPQA, HLE, GSM8K, and HumanEval.**
+The following table represents a cross-section of the models we've evaluated. Costs reflect public pricing pages as of Q3 2025. Benchmark scores are sourced from published evals and normalized against our 954-model population. **These are not cherry-picked runs — they represent average performance across MMLU-Pro, GPQA, HLE, GSM8K, and HumanEval.**
 
-> ⚠️ All scores normalized against the 150-model population. Verify at [rankmodel.github.io](https://rankmodel.github.io)
+> ⚠️ All scores normalized against the 954-model population. Verify at [rankmodel.github.io](https://rankmodel.github.io)
 
 | Model | Params | Cost / 1M Tokens (Input) | MMLU-Pro | ModelRank Score | Efficiency Score |
 |---|---|---|---|---|---|
@@ -199,7 +199,7 @@ This is not a criticism of any specific lab. It's a structural problem: **you ca
 
 ModelRank exists because the developer community deserves a benchmark that doesn't have a conflict of interest baked into its founding. One number that answers: *for a given task, how good is this model, independent of who made it and how much they charge?*
 
-We're not there yet. 150 models is a good start. The formula is imperfect and we know it. The community scores are noisy and we know that too.
+We're not there yet. 954 models is a good start. The formula is imperfect and we know it. The community scores are noisy and we know that too.
 
 But it's ours. And it's open.
 
@@ -207,7 +207,7 @@ But it's ours. And it's open.
 
 ## Related Links
 
-- 🏆 [Full Leaderboard](https://rankmodel.github.io) — All 150+ models ranked
+- 🏆 [Full Leaderboard](https://rankmodel.github.io) — All 954+ models ranked
 - 📊 [Methodology](https://rankmodel.github.io/methodology) — Complete scoring formula and data sources
 - 🔖 [Free Badges](https://rankmodel.github.io/badges) — Embed live scores in any README
 - ⚡ [VS Code Extension](https://rankmodel.github.io/vscode) — Hover a model name to see its live score

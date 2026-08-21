@@ -52,7 +52,7 @@ The scoring dimension weights — how much Benchmarks vs. Recency vs. Community 
 ### 📣 Share on Social Media
 Share ModelRank where developers hang out. Suggested platforms and angles:
 
-- **Twitter/X:** "Finally, an LLM leaderboard with no conflict of interest. 150+ models, open source, free badges."
+- **Twitter/X:** "Finally, an LLM leaderboard with no conflict of interest. 954+ models, open source, free badges."
 - **Reddit:** r/LocalLLaMA, r/MachineLearning, r/singularity — share when you notice a model ranked differently than you expected.
 - **LinkedIn:** Great for the "independent benchmarking matters" angle if you work in enterprise AI.
 - **Hacker News:** Show HN posts and Ask HN discussions welcome. The methodology is defensible and the code is open.

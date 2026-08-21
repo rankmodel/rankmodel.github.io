@@ -75,7 +75,7 @@ The vote closes in 7 days. Current tally will be pinned as a comment.
         "body": """\
 ## Help Us Grow the Leaderboard
 
-We currently rank **150+ open-weight models**, but we know we're missing some good ones.
+We currently rank **954+ open-weight models**, but we know we're missing some good ones.
 
 **Drop a comment with the model(s) you want ranked:**
 

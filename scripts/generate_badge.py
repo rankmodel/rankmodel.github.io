@@ -800,7 +800,7 @@ def _build_readme_section(model_id: str, badge_lines: list[str], fmt: str) -> st
         {badges_block}
 
         This model is ranked on **[ModelRank]({BASE_URL})** — the independent LLM
-        leaderboard with zero bias and 150+ models evaluated across 5 dimensions.
+        leaderboard with zero bias and 954+ models evaluated across 5 dimensions.
 
         ### Scoring Dimensions
 

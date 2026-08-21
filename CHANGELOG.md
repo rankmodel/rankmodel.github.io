@@ -1,21 +1,24 @@
 # Changelog
 
-All notable changes to ModelRank are documented here.
+All entries are honest and traceable to public commits. Latest first.
 
-## [Unreleased]
-- Renamed repo and site to `rankmodel.github.io` (clean root URL).
-- Humanized README and newsletter copy (direct prose, no filler).
-- Added favicon, Open Graph / Twitter meta tags, and a generated social preview.
-- Weekly newsletter page is now part of the automated deploy.
+## [v1.1.0] - 2026-08-21
+### Added
+- Redesigned auto-sized SVG badges (no name/score overlap) + premium hero banner.
+- Site hero, 6-card feature grid, and FAQ accordion (vibe-coding pass in `ui/app.py`).
+- `ROADMAP.md` and `DECISION_LOG.md` for public, auditable planning.
+- `.github/ISSUE_TEMPLATE/model-submission.md` (README links to it).
+- Community Discussions: efficiency-weight vote (#9), "models we missed" (#10), Great Debate (#5).
+- One-line `curl` badge download in the README.
 
-## [1.0.0] - 2026-08
-- Independent 5-dimension scoring: benchmarks, efficiency, community, recency, reproducibility.
-- Leaderboard UI (Gradio) with use-case recommender and Judge/ELO tabs.
-- REST API: `score`, `leaderboard`, `compare`, `recommend`, `reviews`, `elo-leaderboard`, `judge`.
-- Community head-to-head: LLM-judge vibe-check, ELO standings, and a verdict feed.
-- Free embeddable badges (score / tier / rank) and shareable Model DNA cards.
-- Python client SDK (`api/client.py`) plus LangChain and LlamaIndex tool adapters.
-- VS Code extension that shows a model's score and breakdown on hover.
-- ModelRank Weekly newsletter (Markdown + X thread + public page).
-- ModelRank Agency: a Paperclip-style autonomous growth company.
-- 79 passing tests.
+### Changed
+- Fixed the live model count (150 → 954 verified) in shields + FAQ.
+- Reconciled the independence claim with the Pricing page (optional paid infrastructure, never paid scores).
+
+### Transparency
+- Full rankings CSV remains the source of truth for every claim.
+
+## [v1.0.0] - prior
+- Composite 5-dimension scoring, head-to-head ELO, free embeddable badges,
+  VS Code extension, Python client, agent integrations, and CI action.
+- MIT licensed, fully open methodology.
