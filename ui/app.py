@@ -509,19 +509,84 @@ theme = gr.themes.Soft(
 
 # ---- Build UI ----
 CSS = '''
-    .gradio-container { max-width: 1200px; }
+    .gradio-container { max-width: 1200px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
     .tab-nav button { font-size: 14px !important; }
     footer { display: none !important; }
     .svelte-1gfkn6j { border-color: #2d2d50 !important; }
+    .mr-card { background:#0f0f23; border:1px solid #2d2d50; border-radius:14px; padding:18px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .mr-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(99,102,241,.18); border-color:#6366f1; }
+    @keyframes mr-pulse { 0%,100%{ box-shadow:0 0 0 0 rgba(99,102,241,.5);} 50%{ box-shadow:0 0 0 10px rgba(99,102,241,0);} }
+    .mr-cta { animation: mr-pulse 2.4s infinite; }
+    @media (max-width: 820px) {
+      .mr-feature-grid { grid-template-columns: 1fr !important; }
+      .tab-nav { flex-wrap: wrap !important; }
+    }
+    @media (min-width: 821px) and (max-width: 1080px) {
+      .mr-feature-grid { grid-template-columns: repeat(2,1fr) !important; }
+    }
 '''
 
 # ---- Build UI ----
-with gr.Blocks(title='ModelRank — HuggingFace Model Leaderboard') as demo:
+with gr.Blocks(title='ModelRank - Independent HuggingFace Model Leaderboard') as demo:
+    # ---- Hero ----
     gr.HTML('''
-    <div style="text-align:center;padding:24px 0 12px;font-family:-apple-system,sans-serif;">
-        <div style="font-size:32px;font-weight:900;color:#f1f5f9;letter-spacing:-0.5px;"><img src="https://rankmodel.github.io/logo.svg" style="height:32px;width:32px;border-radius:6px;vertical-align:middle" alt="ModelRank"> ModelRank</div>
-        <div style="font-size:15px;color:#64748b;margin-top:6px;">Composite scoring & leaderboard for HuggingFace models</div>
-    </div>''')
+    <div style="position:relative;text-align:center;padding:44px 16px 20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:radial-gradient(1100px 380px at 50% -15%, rgba(99,102,241,.28), transparent 60%), #0a0a1a;"></div>
+      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(148,163,184,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.06) 1px,transparent 1px);background-size:38px 38px;-webkit-mask-image:radial-gradient(620px 300px at 50% 0%,#000,transparent 75%);mask-image:radial-gradient(620px 300px at 50% 0%,#000,transparent 75%);"></div>
+      <div style="position:relative;">
+        <div class="mr-hero-title" style="font-size:clamp(30px,6vw,46px);font-weight:900;letter-spacing:-1px;color:#f1f5f9;">
+          <img src="https://rankmodel.github.io/logo.svg" style="height:42px;width:42px;border-radius:10px;vertical-align:middle;margin-right:12px;" alt="ModelRank">
+          <span style="background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;background-clip:text;color:transparent;">ModelRank</span>
+        </div>
+        <div style="font-size:clamp(15px,2.4vw,19px);color:#cbd5e1;margin:16px auto 0;max-width:720px;line-height:1.55;">
+          The independent leaderboard for open HuggingFace models. Composite 5-dimension scoring, free embeddable badges, and zero paid placements.
+        </div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px;">
+          <a href="https://rankmodel.github.io" class="mr-cta" style="display:inline-block;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-weight:700;padding:12px 22px;border-radius:12px;text-decoration:none;font-size:15px;">Score a model</a>
+          <a href="https://rankmodel.github.io" style="display:inline-block;background:transparent;color:#e2e8f0;border:1px solid #2d2d50;font-weight:600;padding:12px 22px;border-radius:12px;text-decoration:none;font-size:15px;">Get your badge</a>
+        </div>
+        <div style="margin-top:20px;font-size:13px;color:#64748b;letter-spacing:.3px;">
+          954+ models ranked &nbsp;•&nbsp; 5 scoring dimensions &nbsp;•&nbsp; 0 paid placements
+        </div>
+      </div>
+    </div>
+    ''')
+
+    # ---- Feature grid ----
+    gr.HTML('''
+    <div class="mr-feature-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:6px 16px 26px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+      <div class="mr-card">
+        <div style="font-size:24px;margin-bottom:8px;">Composite Score</div>
+        <div style="font-weight:700;color:#e2e8f0;font-size:15px;">One number, five dimensions</div>
+        <div style="color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.5;">Benchmarks, recency, community, efficiency, and reproducibility in a single composite.</div>
+      </div>
+      <div class="mr-card">
+        <div style="font-size:24px;margin-bottom:8px;">Free Badges</div>
+        <div style="font-weight:700;color:#e2e8f0;font-size:15px;">Embed in your README</div>
+        <div style="color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.5;">Live SVG badges for score, tier, and rank. No account, no tracking.</div>
+      </div>
+      <div class="mr-card">
+        <div style="font-size:24px;margin-bottom:8px;">Head-to-Head</div>
+        <div style="font-weight:700;color:#e2e8f0;font-size:15px;">Compare any two models</div>
+        <div style="color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.5;">Radar charts across all five dimensions, side by side.</div>
+      </div>
+      <div class="mr-card">
+        <div style="font-size:24px;margin-bottom:8px;">LLM Judge & ELO</div>
+        <div style="font-weight:700;color:#e2e8f0;font-size:15px;">Crowd verdicts, ranked</div>
+        <div style="color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.5;">Record human and LLM verdicts, then climb the ELO ladder.</div>
+      </div>
+      <div class="mr-card">
+        <div style="font-size:24px;margin-bottom:8px;">Best for Use Case</div>
+        <div style="font-weight:700;color:#e2e8f0;font-size:15px;">Pick the right model</div>
+        <div style="color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.5;">Recommendations filtered by coding, chat, research, local, or multilingual.</div>
+      </div>
+      <div class="mr-card">
+        <div style="font-size:24px;margin-bottom:8px;">Weekly Podcast</div>
+        <div style="font-weight:700;color:#e2e8f0;font-size:15px;">A 5-minute deep dive</div>
+        <div style="color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.5;">Generate a NotebookLM audio breakdown for any model.</div>
+      </div>
+    </div>
+    ''')
 
     stats_html = gr.HTML(value=get_cache_stats)
 
@@ -688,6 +753,32 @@ ModelRank uses a composite scoring methodology to evaluate HuggingFace models ac
 ### API
 Start the REST API with `python main.py api` and access docs at `http://localhost:8000/docs`.
 ''')
+
+    gr.HTML('''
+    <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;max-width:840px;margin:8px auto 0;">
+      <div style="font-size:20px;font-weight:800;color:#e2e8f0;margin:18px 0 10px;">Frequently asked questions</div>
+      <details style="border:1px solid #2d2d50;border-radius:10px;padding:12px 14px;margin-bottom:8px;background:#0f0f23;">
+        <summary style="cursor:pointer;font-weight:600;color:#e2e8f0;">How is the score computed?</summary>
+        <div style="color:#94a3b8;margin-top:8px;line-height:1.6;">A weighted composite across benchmarks (70%), recency (15%), community (10%), and efficiency (5%). Reproducibility is tracked but reserved at 0% weight.</div>
+      </details>
+      <details style="border:1px solid #2d2d50;border-radius:10px;padding:12px 14px;margin-bottom:8px;background:#0f0f23;">
+        <summary style="cursor:pointer;font-weight:600;color:#e2e8f0;">Are paid placements allowed?</summary>
+        <div style="color:#94a3b8;margin-top:8px;line-height:1.6;">No. ModelRank is independent and never sells rankings. Every model is scored by the same open methodology.</div>
+      </details>
+      <details style="border:1px solid #2d2d50;border-radius:10px;padding:12px 14px;margin-bottom:8px;background:#0f0f23;">
+        <summary style="cursor:pointer;font-weight:600;color:#e2e8f0;">How do I embed a badge?</summary>
+        <div style="color:#94a3b8;margin-top:8px;line-height:1.6;">Grab the markdown from the Badge Studio tab and paste it into your README. It renders a live SVG from our CDN.</div>
+      </details>
+      <details style="border:1px solid #2d2d50;border-radius:10px;padding:12px 14px;margin-bottom:8px;background:#0f0f23;">
+        <summary style="cursor:pointer;font-weight:600;color:#e2e8f0;">Where do the rankings come from?</summary>
+        <div style="color:#94a3b8;margin-top:8px;line-height:1.6;">We aggregate public HuggingFace metadata (downloads, likes, recency) and benchmark results, then apply the composite formula. Raw data is available via the API.</div>
+      </details>
+      <details style="border:1px solid #2d2d50;border-radius:10px;padding:12px 14px;margin-bottom:8px;background:#0f0f23;">
+        <summary style="cursor:pointer;font-weight:600;color:#e2e8f0;">Is ModelRank independent?</summary>
+        <div style="color:#94a3b8;margin-top:8px;line-height:1.6;">Yes. It is open source, community funded, and has no affiliation with any model vendor.</div>
+      </details>
+    </div>
+    ''')
 
 if __name__ == '__main__':
     demo.launch(server_name='0.0.0.0', server_port=7860, share=False, theme=theme, css=CSS)
