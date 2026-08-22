@@ -1,6 +1,6 @@
 {
   "model_id": "MiniMaxAI/MiniMax-M2",
-  "composite": 80.05,
+  "composite": 80.06,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 82.0,
     "efficiency": 27.6,
-    "community": 62.74,
+    "community": 62.78,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-21T02:54:15.946118",
+  "computed_at": "2026-08-22T02:45:28.066492",
   "details": {
     "benchmark_details": {
       "score": 82.0,
@@ -51,10 +51,10 @@
     "diversity_details": {
       "count": 4,
       "datasets": [
-        "cais/hle",
         "harborframework/terminal-bench-2.0",
-        "swe-bench/swe-bench_verified",
-        "mmlu-pro"
+        "mmlu-pro",
+        "cais/hle",
+        "swe-bench/swe-bench_verified"
       ],
       "diversity_bonus": 10.0
     },

@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 73.33,
     "efficiency": 27.25,
-    "community": 60.23,
+    "community": 60.24,
     "recency": 100.0,
     "reproducibility": 20.0
   },
   "tier": "B",
-  "computed_at": "2026-08-21T02:54:49.276909",
+  "computed_at": "2026-08-22T02:45:58.222804",
   "details": {
     "benchmark_details": {
       "score": 73.33333333333333,
@@ -52,8 +52,8 @@
     "diversity_details": {
       "count": 2,
       "datasets": [
-        "mmlu-pro",
-        "gsm8k"
+        "gsm8k",
+        "mmlu-pro"
       ],
       "diversity_bonus": 0.0
     },
@@ -79,7 +79,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 45,
+  "rank": 46,
   "badge_url": "https://rankmodel.github.io/badges/meta-llama/Llama-3.1-405B/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/meta-llama/Llama-3.1-405B/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/meta-llama/Llama-3.1-405B.svg"

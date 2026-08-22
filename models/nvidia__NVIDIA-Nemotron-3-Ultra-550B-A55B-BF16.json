@@ -1,6 +1,6 @@
 {
   "model_id": "nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
-  "composite": 83.09,
+  "composite": 83.1,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 86.9,
     "efficiency": 27.2,
-    "community": 59.03,
+    "community": 59.08,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-21T02:53:41.567632",
+  "computed_at": "2026-08-22T02:45:04.687960",
   "details": {
     "benchmark_details": {
       "score": 86.9,
@@ -50,13 +50,14 @@
       }
     },
     "diversity_details": {
-      "count": 5,
+      "count": 6,
       "datasets": [
+        "harborframework/terminal-bench-2.1",
         "cais/hle",
-        "mmlu-pro",
         "swe-bench/swe-bench_verified",
+        "swe-bench/swe-bench_multilingual",
         "gpqa",
-        "swe-bench/swe-bench_multilingual"
+        "mmlu-pro"
       ],
       "diversity_bonus": 10.0
     },

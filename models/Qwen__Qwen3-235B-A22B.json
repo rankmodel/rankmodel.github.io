@@ -1,6 +1,6 @@
 {
   "model_id": "Qwen/Qwen3-235B-A22B",
-  "composite": 70.22,
+  "composite": 70.23,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 68.18,
     "efficiency": 22.47,
-    "community": 63.73,
+    "community": 63.78,
     "recency": 100.0,
     "reproducibility": 20.0
   },
   "tier": "B",
-  "computed_at": "2026-08-21T02:53:37.734849",
+  "computed_at": "2026-08-22T02:45:01.602469",
   "details": {
     "benchmark_details": {
       "score": 68.18,
@@ -51,8 +51,8 @@
     "diversity_details": {
       "count": 2,
       "datasets": [
-        "mmlu-pro",
-        "scaleai/swe-bench_pro"
+        "scaleai/swe-bench_pro",
+        "mmlu-pro"
       ],
       "diversity_bonus": 0.0
     },
@@ -79,7 +79,7 @@
     "coverage_percent": 7.7,
     "confidence": "low"
   },
-  "rank": 54,
+  "rank": 55,
   "badge_url": "https://rankmodel.github.io/badges/Qwen/Qwen3-235B-A22B/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/Qwen/Qwen3-235B-A22B/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/Qwen/Qwen3-235B-A22B.svg"

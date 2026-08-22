@@ -1,6 +1,6 @@
 {
   "model_id": "moonshotai/Kimi-K2-Instruct",
-  "composite": 79.44,
+  "composite": 79.42,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 81.0,
     "efficiency": 27.05,
-    "community": 63.83,
+    "community": 63.68,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-21T02:54:31.643122",
+  "computed_at": "2026-08-22T02:45:54.689884",
   "details": {
     "benchmark_details": {
       "score": 80.99999999999999,
@@ -51,12 +51,12 @@
     "diversity_details": {
       "count": 6,
       "datasets": [
-        "mmlu-pro",
+        "harborframework/terminal-bench-2.0",
+        "swe-bench/swe-bench_multilingual",
+        "scaleai/swe-bench_pro",
         "mercor/apex-swe",
         "mercor/apex-agents",
-        "scaleai/swe-bench_pro",
-        "harborframework/terminal-bench-2.0",
-        "swe-bench/swe-bench_multilingual"
+        "mmlu-pro"
       ],
       "diversity_bonus": 10.0
     },
@@ -83,7 +83,7 @@
     "coverage_percent": 7.7,
     "confidence": "low"
   },
-  "rank": 32,
+  "rank": 33,
   "badge_url": "https://rankmodel.github.io/badges/moonshotai/Kimi-K2-Instruct/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/moonshotai/Kimi-K2-Instruct/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/moonshotai/Kimi-K2-Instruct.svg"

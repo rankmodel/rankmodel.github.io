@@ -1,6 +1,6 @@
 {
   "model_id": "deepseek-ai/DeepSeek-V4-Pro-0813",
-  "composite": 21.59,
+  "composite": 21.65,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 0.0,
     "efficiency": 21.89,
-    "community": 54.95,
+    "community": 55.57,
     "recency": 100.0,
-    "reproducibility": 0.0
+    "reproducibility": 20.0
   },
   "tier": "D",
-  "computed_at": "2026-08-21T02:57:12.488668",
+  "computed_at": "2026-08-22T02:51:04.926188",
   "details": {
     "benchmark_details": {
       "score": 0.0,
@@ -46,8 +46,10 @@
       "details": {}
     },
     "diversity_details": {
-      "count": 0,
-      "datasets": [],
+      "count": 1,
+      "datasets": [
+        "harborframework/terminal-bench-2.1"
+      ],
       "diversity_bonus": 0.0
     },
     "freshness_label": "Just Released"
@@ -74,7 +76,7 @@
     "coverage_percent": 0.0,
     "confidence": "low"
   },
-  "rank": 396,
+  "rank": 378,
   "badge_url": "https://rankmodel.github.io/badges/deepseek-ai/DeepSeek-V4-Pro-0813/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/deepseek-ai/DeepSeek-V4-Pro-0813/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/deepseek-ai/DeepSeek-V4-Pro-0813.svg"

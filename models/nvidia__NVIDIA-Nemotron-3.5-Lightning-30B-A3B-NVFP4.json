@@ -1,6 +1,6 @@
 {
   "model_id": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4",
-  "composite": 77.71,
+  "composite": 77.78,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 78.59,
     "efficiency": 36.38,
-    "community": 58.7,
+    "community": 59.41,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-21T02:53:46.531557",
+  "computed_at": "2026-08-22T02:45:02.467283",
   "details": {
     "benchmark_details": {
       "score": 78.595,
@@ -52,11 +52,11 @@
     "diversity_details": {
       "count": 5,
       "datasets": [
-        "mmlu-pro",
         "cais/hle",
         "swe-bench/swe-bench_verified",
+        "swe-bench/swe-bench_multilingual",
         "gpqa",
-        "swe-bench/swe-bench_multilingual"
+        "mmlu-pro"
       ],
       "diversity_bonus": 10.0
     },
@@ -82,7 +82,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 34,
+  "rank": 35,
   "badge_url": "https://rankmodel.github.io/badges/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4.svg"

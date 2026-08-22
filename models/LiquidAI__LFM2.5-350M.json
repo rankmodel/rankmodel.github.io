@@ -1,6 +1,6 @@
 {
   "model_id": "LiquidAI/LFM2.5-350M",
-  "composite": 43.23,
+  "composite": 43.26,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 25.32,
     "efficiency": 99.79,
-    "community": 55.1,
+    "community": 55.44,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-21T02:56:07.215863",
+  "computed_at": "2026-08-22T02:46:24.348355",
   "details": {
     "benchmark_details": {
       "score": 25.325,
@@ -52,9 +52,9 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
+        "liquidai/ifstruct-v1.0",
         "gpqa",
-        "mmlu-pro",
-        "liquidai/ifstruct-v1.0"
+        "mmlu-pro"
       ],
       "diversity_bonus": 10.0
     },
@@ -80,7 +80,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 100,
+  "rank": 101,
   "badge_url": "https://rankmodel.github.io/badges/LiquidAI/LFM2.5-350M/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/LiquidAI/LFM2.5-350M/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/LiquidAI/LFM2.5-350M.svg"

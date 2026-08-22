@@ -1,6 +1,6 @@
 {
   "model_id": "ornith-ai/Ornith-1.0-397B",
-  "composite": 21.78,
+  "composite": 21.76,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 0.0,
     "efficiency": 21.89,
-    "community": 56.83,
+    "community": 56.63,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-21T02:54:06.953493",
+  "computed_at": "2026-08-22T02:45:24.230917",
   "details": {
     "benchmark_details": {
       "score": 0.0,
@@ -46,12 +46,13 @@
       "details": {}
     },
     "diversity_details": {
-      "count": 4,
+      "count": 5,
       "datasets": [
-        "swe-bench/swe-bench_multilingual",
+        "harborframework/terminal-bench-2.1",
         "swe-bench/swe-bench_verified",
-        "claw-eval/claw-eval",
-        "scaleai/swe-bench_pro"
+        "swe-bench/swe-bench_multilingual",
+        "scaleai/swe-bench_pro",
+        "claw-eval/claw-eval"
       ],
       "diversity_bonus": 10.0
     },
@@ -79,7 +80,7 @@
     "coverage_percent": 0.0,
     "confidence": "low"
   },
-  "rank": 339,
+  "rank": 347,
   "badge_url": "https://rankmodel.github.io/badges/ornith-ai/Ornith-1.0-397B/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/ornith-ai/Ornith-1.0-397B/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/ornith-ai/Ornith-1.0-397B.svg"

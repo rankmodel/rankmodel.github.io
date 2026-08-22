@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 48.43,
     "efficiency": 40.21,
-    "community": 72.53,
+    "community": 72.54,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-21T02:52:48.129879",
+  "computed_at": "2026-08-22T02:44:30.044347",
   "details": {
     "benchmark_details": {
       "score": 48.43333333333333,
@@ -53,9 +53,9 @@
       "count": 4,
       "datasets": [
         "gpqa",
+        "gsm8k",
         "lexam-benchmark/lexam",
-        "thamilvendhan/signalbench",
-        "gsm8k"
+        "thamilvendhan/signalbench"
       ],
       "diversity_bonus": 10.0
     },
@@ -81,7 +81,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 77,
+  "rank": 78,
   "badge_url": "https://rankmodel.github.io/badges/meta-llama/Llama-3.1-8B-Instruct/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/meta-llama/Llama-3.1-8B-Instruct/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/meta-llama/Llama-3.1-8B-Instruct.svg"

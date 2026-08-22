@@ -1,6 +1,6 @@
 {
   "model_id": "moonshotai/Kimi-K2-Thinking",
-  "composite": 81.41,
+  "composite": 81.4,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 84.5,
     "efficiency": 27.05,
-    "community": 59.05,
+    "community": 59.02,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-21T02:56:52.669039",
+  "computed_at": "2026-08-22T02:51:01.890160",
   "details": {
     "benchmark_details": {
       "score": 84.5,
@@ -51,9 +51,9 @@
     "diversity_details": {
       "count": 4,
       "datasets": [
+        "harborframework/terminal-bench-2.0",
         "gpqa",
         "cais/hle",
-        "harborframework/terminal-bench-2.0",
         "swe-bench/swe-bench_verified"
       ],
       "diversity_bonus": 10.0
@@ -81,7 +81,7 @@
     "coverage_percent": 7.7,
     "confidence": "low"
   },
-  "rank": 21,
+  "rank": 22,
   "badge_url": "https://rankmodel.github.io/badges/moonshotai/Kimi-K2-Thinking/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/moonshotai/Kimi-K2-Thinking/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/moonshotai/Kimi-K2-Thinking.svg"

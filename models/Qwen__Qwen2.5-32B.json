@@ -1,6 +1,6 @@
 {
   "model_id": "Qwen/Qwen2.5-32B",
-  "composite": 70.12,
+  "composite": 70.14,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 69.23,
     "efficiency": 31.24,
-    "community": 51.0,
+    "community": 51.17,
     "recency": 100.0,
     "reproducibility": 20.0
   },
   "tier": "B",
-  "computed_at": "2026-08-21T02:56:43.373989",
+  "computed_at": "2026-08-22T02:50:46.522534",
   "details": {
     "benchmark_details": {
       "score": 69.23,
@@ -78,7 +78,7 @@
     "coverage_percent": 7.7,
     "confidence": "low"
   },
-  "rank": 55,
+  "rank": 56,
   "badge_url": "https://rankmodel.github.io/badges/Qwen/Qwen2.5-32B/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/Qwen/Qwen2.5-32B/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/Qwen/Qwen2.5-32B.svg"

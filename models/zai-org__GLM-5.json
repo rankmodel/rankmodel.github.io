@@ -1,6 +1,6 @@
 {
   "model_id": "zai-org/GLM-5",
-  "composite": 83.5,
+  "composite": 83.51,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 87.02,
     "efficiency": 27.12,
-    "community": 62.31,
+    "community": 62.44,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-21T02:55:08.115021",
+  "computed_at": "2026-08-22T02:46:08.336187",
   "details": {
     "benchmark_details": {
       "score": 87.019,
@@ -54,17 +54,17 @@
     "diversity_details": {
       "count": 11,
       "datasets": [
-        "cais/hle",
-        "mmlu-pro",
-        "mercor/apex-v1-extended",
-        "mercor/apex-agents",
-        "swe-bench/swe-bench_verified",
-        "internlm/wildclawbench",
-        "math",
-        "gpqa",
         "harborframework/terminal-bench-2.0",
+        "internlm/wildclawbench",
+        "mercor/apex-v1-extended",
+        "cais/hle",
+        "swe-bench/swe-bench_verified",
+        "collinear-ai/yc-bench",
         "swe-bench/swe-bench_multilingual",
-        "collinear-ai/yc-bench"
+        "mmlu-pro",
+        "gpqa",
+        "mercor/apex-agents",
+        "math"
       ],
       "diversity_bonus": 10.0
     },

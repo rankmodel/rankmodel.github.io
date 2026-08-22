@@ -17,13 +17,13 @@
   "extended_composite": 17.0,
   "breakdown": {
     "benchmarks": 87.35,
-    "efficiency": 27.41,
-    "community": 58.02,
+    "efficiency": 27.47,
+    "community": 58.05,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-21T02:53:53.260374",
+  "computed_at": "2026-08-22T02:45:12.934271",
   "details": {
     "benchmark_details": {
       "score": 87.35,
@@ -50,11 +50,12 @@
       }
     },
     "diversity_details": {
-      "count": 4,
+      "count": 5,
       "datasets": [
-        "gpqa",
+        "harborframework/terminal-bench-2.1",
         "cais/hle",
         "swe-bench/swe-bench_verified",
+        "gpqa",
         "mmlu-pro"
       ],
       "diversity_bonus": 10.0

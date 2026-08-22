@@ -1,6 +1,6 @@
 {
   "model_id": "poolside/Laguna-S-2.1",
-  "composite": 22.02,
+  "composite": 22.01,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 0.0,
     "efficiency": 21.89,
-    "community": 59.25,
+    "community": 59.18,
     "recency": 100.0,
-    "reproducibility": 0.0
+    "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-21T02:55:42.804527",
+  "computed_at": "2026-08-22T02:46:16.725896",
   "details": {
     "benchmark_details": {
       "score": 0.0,
@@ -46,9 +46,13 @@
       "details": {}
     },
     "diversity_details": {
-      "count": 0,
-      "datasets": [],
-      "diversity_bonus": 0.0
+      "count": 3,
+      "datasets": [
+        "swe-bench/swe-bench_multilingual",
+        "scaleai/swe-bench_pro",
+        "datacurve/deep-swe"
+      ],
+      "diversity_bonus": 10.0
     },
     "freshness_label": "Just Released"
   },
@@ -74,7 +78,7 @@
     "coverage_percent": 0.0,
     "confidence": "low"
   },
-  "rank": 279,
+  "rank": 283,
   "badge_url": "https://rankmodel.github.io/badges/poolside/Laguna-S-2.1/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/poolside/Laguna-S-2.1/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/poolside/Laguna-S-2.1.svg"

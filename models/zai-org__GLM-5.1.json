@@ -1,6 +1,6 @@
 {
   "model_id": "zai-org/GLM-5.1",
-  "composite": 83.38,
+  "composite": 83.39,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 87.12,
     "efficiency": 27.12,
-    "community": 60.44,
+    "community": 60.55,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-21T02:56:16.445983",
+  "computed_at": "2026-08-22T02:46:35.264459",
   "details": {
     "benchmark_details": {
       "score": 87.11666666666666,
@@ -54,18 +54,18 @@
     "diversity_details": {
       "count": 12,
       "datasets": [
-        "arc",
-        "cais/hle",
-        "claw-eval/claw-eval",
-        "collinear-ai/yc-bench",
-        "benchflow/skillsbench",
-        "internlm/wildclawbench",
-        "scaleai/swe-bench_pro",
-        "math",
-        "gpqa",
         "harborframework/terminal-bench-2.0",
+        "internlm/wildclawbench",
+        "cais/hle",
+        "intelligencelab/long-horizon-terminal-bench",
+        "collinear-ai/yc-bench",
+        "gpqa",
+        "scaleai/swe-bench_pro",
+        "claw-eval/claw-eval",
+        "benchflow/skillsbench",
         "actava/chi-bench",
-        "intelligencelab/long-horizon-terminal-bench"
+        "arc",
+        "math"
       ],
       "diversity_bonus": 10.0
     },

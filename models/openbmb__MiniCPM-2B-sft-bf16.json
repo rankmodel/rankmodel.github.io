@@ -1,6 +1,6 @@
 {
   "model_id": "openbmb/MiniCPM-2B-sft-bf16",
-  "composite": 21.29,
+  "composite": 21.23,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 0.0,
     "efficiency": 26.89,
-    "community": 49.49,
+    "community": 48.8,
     "recency": 100.0,
     "reproducibility": 0.0
   },
   "tier": "D",
-  "computed_at": "2026-08-21T02:56:51.435538",
+  "computed_at": "2026-08-22T02:51:15.583656",
   "details": {
     "benchmark_details": {
       "score": 0.0,
@@ -74,7 +74,7 @@
     "coverage_percent": 0.0,
     "confidence": "low"
   },
-  "rank": 500,
+  "rank": 538,
   "badge_url": "https://rankmodel.github.io/badges/openbmb/MiniCPM-2B-sft-bf16/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/openbmb/MiniCPM-2B-sft-bf16/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/openbmb/MiniCPM-2B-sft-bf16.svg"
