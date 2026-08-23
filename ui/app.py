@@ -509,14 +509,70 @@ theme = gr.themes.Soft(
 
 # ---- Build UI ----
 CSS = '''
-    .gradio-container { max-width: 1200px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .gradio-container { max-width: 1200px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color:#e2e8f0; }
     .tab-nav button { font-size: 14px !important; }
     footer { display: none !important; }
     .svelte-1gfkn6j { border-color: #2d2d50 !important; }
-    .mr-card { background:#0f0f23; border:1px solid #2d2d50; border-radius:14px; padding:18px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
-    .mr-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(99,102,241,.18); border-color:#6366f1; }
-    @keyframes mr-pulse { 0%,100%{ box-shadow:0 0 0 0 rgba(99,102,241,.5);} 50%{ box-shadow:0 0 0 10px rgba(99,102,241,0);} }
-    .mr-cta { animation: mr-pulse 2.4s infinite; }
+
+    /* threeui-inspired: animated aurora backdrop */
+    @keyframes mr-aurora {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .mr-aurora {
+      position:absolute; inset:0; z-index:0; overflow:hidden;
+      background:
+        radial-gradient(42% 52% at 18% 18%, rgba(99,102,241,.40), transparent 60%),
+        radial-gradient(46% 56% at 82% 28%, rgba(168,85,247,.34), transparent 60%),
+        radial-gradient(52% 62% at 50% 96%, rgba(34,211,238,.22), transparent 60%);
+      background-size: 200% 200%;
+      animation: mr-aurora 16s ease infinite;
+      filter: blur(10px);
+    }
+
+    /* glass surfaces */
+    .mr-glass {
+      position:relative; z-index:1;
+      background: rgba(13,13,32,.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(148,163,184,.18);
+      box-shadow: 0 12px 44px rgba(2,2,20,.50);
+    }
+
+    .mr-card {
+      background: rgba(15,15,35,.50);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(148,163,184,.16);
+      border-radius: 16px; padding: 18px;
+      transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, border-color .25s;
+    }
+    .mr-card:hover { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(99,102,241,.30); border-color: rgba(129,140,248,.6); }
+
+    .mr-pill { display:inline-block; padding:5px 13px; border-radius:999px; background:rgba(99,102,241,.16); border:1px solid rgba(129,140,248,.40); color:#c7d2fe; font-size:13px; }
+
+    @keyframes mr-pulse { 0%,100%{ box-shadow:0 0 0 0 rgba(99,102,241,.5);} 50%{ box-shadow:0 0 0 12px rgba(99,102,241,0);} }
+    .mr-cta { animation: mr-pulse 2.6s infinite; }
+
+    @keyframes mr-rise { from { opacity:0; transform: translateY(14px);} to { opacity:1; transform:none;} }
+    .mr-rise { animation: mr-rise .7s ease both; }
+    @keyframes mr-shimmer { 0%{ background-position:200% 0;} 100%{ background-position:-200% 0;} }
+
+    .mr-btn-ghost { background: rgba(255,255,255,.04); color:#e2e8f0; border:1px solid rgba(148,163,184,.30); }
+    .mr-btn-ghost:hover { border-color: rgba(129,140,248,.7); background: rgba(99,102,241,.10); }
+
+    .mr-faq details {
+      background: rgba(15,15,35,.50);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(148,163,184,.16);
+      border-radius: 12px; margin-bottom: 10px; overflow:hidden;
+    }
+    .mr-faq summary { font-weight:700; color:#e2e8f0; padding:14px 16px; cursor:pointer; }
+    .mr-faq details > div { padding: 0 16px 16px; color:#cbd5e1; line-height:1.6; }
+
     @media (max-width: 820px) {
       .mr-feature-grid { grid-template-columns: 1fr !important; }
       .tab-nav { flex-wrap: wrap !important; }
@@ -530,23 +586,22 @@ CSS = '''
 with gr.Blocks(title='ModelRank - Independent HuggingFace Model Leaderboard') as demo:
     # ---- Hero ----
     gr.HTML('''
-    <div style="position:relative;text-align:center;padding:44px 16px 20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;overflow:hidden;">
-      <div style="position:absolute;inset:0;background:radial-gradient(1100px 380px at 50% -15%, rgba(99,102,241,.28), transparent 60%), #0a0a1a;"></div>
-      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(148,163,184,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.06) 1px,transparent 1px);background-size:38px 38px;-webkit-mask-image:radial-gradient(620px 300px at 50% 0%,#000,transparent 75%);mask-image:radial-gradient(620px 300px at 50% 0%,#000,transparent 75%);"></div>
-      <div style="position:relative;">
-        <div class="mr-hero-title" style="font-size:clamp(30px,6vw,46px);font-weight:900;letter-spacing:-1px;color:#f1f5f9;">
-          <img src="https://rankmodel.github.io/logo.svg" style="height:42px;width:42px;border-radius:10px;vertical-align:middle;margin-right:12px;" alt="ModelRank">
-          <span style="background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;background-clip:text;color:transparent;">ModelRank</span>
+    <div class="mr-glass" style="position:relative;text-align:center;padding:48px 18px 38px;margin:16px 6px 10px;border-radius:22px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+      <div class="mr-aurora"></div>
+      <div class="mr-rise" style="position:relative;z-index:1;">
+        <div class="mr-hero-title" style="font-size:clamp(32px,6.5vw,50px);font-weight:900;letter-spacing:-1.5px;color:#f8fafc;">
+          <img src="https://rankmodel.github.io/logo.svg" style="height:46px;width:46px;border-radius:13px;vertical-align:middle;margin-right:14px;box-shadow:0 6px 20px rgba(99,102,241,.45);" alt="ModelRank">
+          <span style="background:linear-gradient(135deg,#a5b4fc,#a855f7,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent;">ModelRank</span>
         </div>
-        <div style="font-size:clamp(15px,2.4vw,19px);color:#cbd5e1;margin:16px auto 0;max-width:720px;line-height:1.55;">
+        <div style="font-size:clamp(15px,2.4vw,19px);color:#dbe2ef;margin:18px auto 0;max-width:760px;line-height:1.6;">
           The independent leaderboard for open HuggingFace models. Composite 5-dimension scoring, free embeddable badges, and zero paid placements.
         </div>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px;">
-          <a href="https://rankmodel.github.io" class="mr-cta" style="display:inline-block;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-weight:700;padding:12px 22px;border-radius:12px;text-decoration:none;font-size:15px;">Score a model</a>
-          <a href="https://rankmodel.github.io" style="display:inline-block;background:transparent;color:#e2e8f0;border:1px solid #2d2d50;font-weight:600;padding:12px 22px;border-radius:12px;text-decoration:none;font-size:15px;">Get your badge</a>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px;">
+          <a href="https://rankmodel.github.io" class="mr-cta" style="display:inline-block;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-weight:700;padding:13px 24px;border-radius:14px;text-decoration:none;font-size:15px;">Score a model</a>
+          <a href="https://rankmodel.github.io" class="mr-btn-ghost" style="display:inline-block;font-weight:600;padding:13px 24px;border-radius:14px;text-decoration:none;font-size:15px;">Get your badge</a>
         </div>
-        <div style="margin-top:20px;font-size:13px;color:#64748b;letter-spacing:.3px;">
-          954+ models ranked &nbsp;•&nbsp; 5 scoring dimensions &nbsp;•&nbsp; 0 paid placements
+        <div style="margin-top:22px;font-size:13px;color:#cbd5e1;letter-spacing:.3px;">
+          <span class="mr-pill">954+ models ranked</span> &nbsp; <span class="mr-pill">5 scoring dimensions</span> &nbsp; <span class="mr-pill">0 paid placements</span>
         </div>
       </div>
     </div>
@@ -755,7 +810,7 @@ Start the REST API with `python main.py api` and access docs at `http://localhos
 ''')
 
     gr.HTML('''
-    <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;max-width:840px;margin:8px auto 0;">
+    <div class="mr-faq" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;max-width:840px;margin:8px auto 0;">
       <div style="font-size:20px;font-weight:800;color:#e2e8f0;margin:18px 0 10px;">Frequently asked questions</div>
       <details style="border:1px solid #2d2d50;border-radius:10px;padding:12px 14px;margin-bottom:8px;background:#0f0f23;">
         <summary style="cursor:pointer;font-weight:600;color:#e2e8f0;">How is the score computed?</summary>
