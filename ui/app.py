@@ -89,7 +89,7 @@ def score_html_card(model_id: str, score: dict, model_data: dict) -> str:
         dim_bars += f'''
         <div style="margin:8px 0;">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                <span style="color:#e2e8f0;font-size:13px;">{icon} {label}</span>
+                <span style="color:#1f2430;font-size:13px;">{icon} {label}</span>
                 <span style="color:{score_color(v)};font-weight:700;font-size:14px;">{v:.1f}</span>
             </div>
             <div style="background:#2d2d50;border-radius:6px;height:8px;overflow:hidden;">
@@ -98,11 +98,11 @@ def score_html_card(model_id: str, score: dict, model_data: dict) -> str:
         </div>'''
 
     html = f'''
-    <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f0f23;color:#e2e8f0;border-radius:16px;padding:24px;border:1px solid #2d2d50;">
+    <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f0f23;color:#1f2430;border-radius:16px;padding:24px;border:1px solid #2d2d50;">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
             <div>
                 <div style="font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Model</div>
-                <div style="font-size:20px;font-weight:700;color:#f1f5f9;">{model_id.split('/')[-1]}</div>
+                <div style="font-size:20px;font-weight:700;color:#1f2430;">{model_id.split('/')[-1]}</div>
                 <div style="font-size:12px;color:#64748b;">{model_id}</div>
             </div>
             <div style="text-align:center;">
@@ -307,7 +307,7 @@ def compare_models(model_id_1: str, model_id_2: str):
             c2 = '#22c55e' if v2 >= v1 else '#64748b'
             rows += f'<tr><td style="padding:8px;color:#94a3b8;">{label}</td><td style="padding:8px;text-align:center;color:{c1};font-weight:700;">{w1} {v1:.1f}</td><td style="padding:8px;text-align:center;color:{c2};font-weight:700;">{w2} {v2:.1f}</td></tr>'
         comp_html = f'''
-        <div style="font-family:-apple-system,sans-serif;background:#0f0f23;color:#e2e8f0;border-radius:12px;padding:20px;border:1px solid #2d2d50;">
+        <div style="font-family:-apple-system,sans-serif;background:#0f0f23;color:#1f2430;border-radius:12px;padding:20px;border:1px solid #2d2d50;">
             <div style="text-align:center;margin-bottom:16px;padding:12px;background:#1a1a36;border-radius:8px;">
                 <span style="color:#64748b;font-size:12px;">Winner: </span>
                 <span style="color:#fbbf24;font-weight:700;font-size:16px;">👑 {winner_composite.split('/')[-1]}</span>
@@ -381,7 +381,7 @@ def recommend_ui(use_case: str) -> str:
             return "<div style='color:#64748b;padding:12px;'>No scored models yet — score some models first.</div>"
         items = "".join(
             f"<div style='display:flex;justify-content:space-between;padding:8px 12px;border-bottom:1px solid #2d2d50;'>"
-            f"<span style='color:#e2e8f0;'>{i+1}. {r['model_id']}</span>"
+            f"<span style='color:#1f2430;'>{i+1}. {r['model_id']}</span>"
             f"<span style='color:#22c55e;font-weight:700;'>{r['use_case_score']:.2f}</span></div>"
             for i, r in enumerate(rows)
         )
@@ -443,7 +443,7 @@ def reviews_feed_ui(model_id: str = '', judge_type: str = 'all', limit: int = 50
             rows += (
                 f"<div style='display:flex;justify-content:space-between;align-items:center;padding:8px 12px;"
                 f"border-bottom:1px solid #2d2d50;font-family:sans-serif;'>"
-                f"<span style='color:#e2e8f0;font-size:13px;'>{badge} {verdict_label(r['verdict'], r['model_a'], r['model_b'])}</span>"
+                f"<span style='color:#1f2430;font-size:13px;'>{badge} {verdict_label(r['verdict'], r['model_a'], r['model_b'])}</span>"
                 f"<span style='color:#64748b;font-size:11px;'>{r['judge_type']}</span></div>"
             )
         return f"<div style='background:#0f0f23;border-radius:12px;padding:8px;max-height:360px;overflow:auto;'>{rows}</div>"
@@ -462,7 +462,7 @@ def elo_leaderboard_ui(limit: int = 25) -> str:
             rows += (
                 f"<div style='display:flex;justify-content:space-between;align-items:center;padding:7px 12px;"
                 f"border-bottom:1px solid #2d2d50;font-family:sans-serif;'>"
-                f"<span style='color:#e2e8f0;'>{medal} {s['model_id'].split('/')[-1]}</span>"
+                f"<span style='color:#1f2430;'>{medal} {s['model_id'].split('/')[-1]}</span>"
                 f"<span style='color:#a855f7;font-weight:700;'>{s['rating']:.0f}</span></div>"
             )
         return f"<div style='background:#0f0f23;border-radius:12px;padding:8px;max-height:360px;overflow:auto;'>{rows}</div>"
@@ -509,7 +509,7 @@ theme = gr.themes.Soft(
 
 # ---- Build UI ----
 CSS = '''
-    .gradio-container { max-width: 1200px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color:#e2e8f0; }
+    .gradio-container { max-width: 1200px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color:#1f2430; }
     .tab-nav button { font-size: 14px !important; }
     footer { display: none !important; }
     .svelte-1gfkn6j { border-color: #2d2d50 !important; }
@@ -531,47 +531,38 @@ CSS = '''
       filter: blur(10px);
     }
 
-    /* glass surfaces */
+    /* surfaces - subtle light */
     .mr-glass {
       position:relative; z-index:1;
-      background: rgba(13,13,32,.55);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(148,163,184,.18);
-      box-shadow: 0 12px 44px rgba(2,2,20,.50);
+      background: #ffffff;
+      border: 1px solid #e4e7ec;
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(16,24,40,.06);
     }
 
     .mr-card {
-      background: rgba(15,15,35,.50);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(148,163,184,.16);
-      border-radius: 16px; padding: 18px;
-      transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, border-color .25s;
+      background: #ffffff;
+      border: 1px solid #e4e7ec;
+      border-radius: 14px; padding: 18px;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
-    .mr-card:hover { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(99,102,241,.30); border-color: rgba(129,140,248,.6); }
+    .mr-card:hover { transform: translateY(-4px); box-shadow: 0 8px 22px rgba(16,24,40,.10); border-color: #cdd2db; }
 
-    .mr-pill { display:inline-block; padding:5px 13px; border-radius:999px; background:rgba(99,102,241,.16); border:1px solid rgba(129,140,248,.40); color:#c7d2fe; font-size:13px; }
+    .mr-pill { display:inline-block; padding:5px 13px; border-radius:999px; background:#eef0fe; border:1px solid #dfe1fb; color:#3730a3; font-size:13px; }
 
-    @keyframes mr-pulse { 0%,100%{ box-shadow:0 0 0 0 rgba(99,102,241,.5);} 50%{ box-shadow:0 0 0 12px rgba(99,102,241,0);} }
-    .mr-cta { animation: mr-pulse 2.6s infinite; }
+    @keyframes mr-rise { from { opacity:0; transform: translateY(8px);} to { opacity:1; transform:none;} }
+    .mr-rise { animation: mr-rise .4s ease both; }
 
-    @keyframes mr-rise { from { opacity:0; transform: translateY(14px);} to { opacity:1; transform:none;} }
-    .mr-rise { animation: mr-rise .7s ease both; }
-    @keyframes mr-shimmer { 0%{ background-position:200% 0;} 100%{ background-position:-200% 0;} }
-
-    .mr-btn-ghost { background: rgba(255,255,255,.04); color:#e2e8f0; border:1px solid rgba(148,163,184,.30); }
-    .mr-btn-ghost:hover { border-color: rgba(129,140,248,.7); background: rgba(99,102,241,.10); }
+    .mr-btn-ghost { background: #fff; color:#1f2430; border:1px solid #cdd2db; }
+    .mr-btn-ghost:hover { border-color:#4f46e5; color:#3730a3; }
 
     .mr-faq details {
-      background: rgba(15,15,35,.50);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(148,163,184,.16);
+      background: #ffffff;
+      border: 1px solid #e4e7ec;
       border-radius: 12px; margin-bottom: 10px; overflow:hidden;
     }
-    .mr-faq summary { font-weight:700; color:#e2e8f0; padding:14px 16px; cursor:pointer; }
-    .mr-faq details > div { padding: 0 16px 16px; color:#cbd5e1; line-height:1.6; }
+    .mr-faq summary { font-weight:700; color:#1f2430; padding:14px 16px; cursor:pointer; }
+    .mr-faq details > div { padding: 0 16px 16px; color:#374151; line-height:1.6; }
 
     @media (max-width: 820px) {
       .mr-feature-grid { grid-template-columns: 1fr !important; }
@@ -583,7 +574,7 @@ CSS = '''
 '''
 
 # ---- Build UI ----
-with gr.Blocks(title='ModelRank - Independent HuggingFace Model Leaderboard') as demo:
+with gr.Blocks(title='ModelRank - Independent HuggingFace Model Leaderboard', theme=gr.themes.Soft()) as demo:
     # ---- Hero ----
     gr.HTML('''
     <div id="mr-island" class="mr-glass" style="position:relative;overflow:hidden;margin:16px 6px 10px;border-radius:22px;">
@@ -593,7 +584,7 @@ with gr.Blocks(title='ModelRank - Independent HuggingFace Model Leaderboard') as
           <img src="https://rankmodel.github.io/logo.svg" style="height:46px;width:46px;border-radius:13px;box-shadow:0 6px 20px rgba(99,102,241,.45);" alt="ModelRank">
           <span style="font-size:clamp(30px,6vw,48px);font-weight:900;letter-spacing:-1.5px;background:linear-gradient(135deg,#a5b4fc,#a855f7,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent;">ModelRank</span>
         </div>
-        <div style="margin-top:14px;color:#dbe2ef;font-size:clamp(15px,2.4vw,18px);max-width:680px;line-height:1.6;">The independent leaderboard for open HuggingFace models. Built with ThreeUI + React + Three.js.</div>
+         <div style="margin-top:14px;color:#374151;font-size:clamp(15px,2.4vw,18px);max-width:680px;line-height:1.6;">The independent leaderboard for open HuggingFace models. Built with ThreeUI + React + Three.js.</div>
         <span id="mr-react-pill"></span>
       </div>
     </div>
@@ -610,13 +601,13 @@ with gr.Blocks(title='ModelRank - Independent HuggingFace Model Leaderboard') as
       const scene = new THREE.Scene(); const cam = new THREE.Camera();
       const mat = new THREE.ShaderMaterial({ transparent: true, uniforms: { u_time: { value: 0 } },
         vertexShader: 'void main(){ gl_Position = vec4(position,1.0); }',
-        fragmentShader: 'precision highp float; uniform float u_time; void main(){ vec2 uv=gl_FragCoord.xy/vec2(' + w.toFixed(1) + ',' + h.toFixed(1) + '); float n=sin(uv.x*6.0+u_time*0.4)*0.5+0.5; float m=sin(uv.y*5.0-u_time*0.3)*0.5+0.5; vec3 c=mix(vec3(0.39,0.40,0.95),vec3(0.66,0.33,0.97),n); c=mix(c,vec3(0.13,0.83,0.93),m*0.5); gl_FragColor=vec4(c,0.35); }' });
+        fragmentShader: 'precision highp float; uniform float u_time; void main(){ vec2 uv=gl_FragCoord.xy/vec2(' + w.toFixed(1) + ',' + h.toFixed(1) + '); float n=sin(uv.x*6.0+u_time*0.4)*0.5+0.5; float m=sin(uv.y*5.0-u_time*0.3)*0.5+0.5; vec3 c=mix(vec3(0.39,0.40,0.95),vec3(0.66,0.33,0.97),n); c=mix(c,vec3(0.13,0.83,0.93),m*0.5); gl_FragColor=vec4(c,0.18); }' });
       scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
       const clock = new THREE.Clock();
       const anim = () => { mat.uniforms.u_time.value = clock.getElapsedTime(); renderer.render(scene, cam); requestAnimationFrame(anim); };
       anim();
       const pill = document.getElementById('mr-react-pill');
-      if (pill) createRoot(pill).render(React.createElement('span', { style: { display:'inline-block', marginTop:'18px', padding:'5px 13px', borderRadius:'999px', background:'rgba(99,102,241,.16)', border:'1px solid rgba(129,140,248,.4)', color:'#c7d2fe', fontSize:'13px' } }, 'React + Three.js · ThreeUI'));
+      if (pill) createRoot(pill).render(React.createElement('span', { style: { display:'inline-block', marginTop:'18px', padding:'5px 13px', borderRadius:'999px', background:'#eef0fe', border:'1px solid #dfe1fb', color:'#3730a3', fontSize:'13px' } }, 'React + Three.js · ThreeUI'));
     </script>
     ''')
 
@@ -625,32 +616,32 @@ with gr.Blocks(title='ModelRank - Independent HuggingFace Model Leaderboard') as
     <div class="mr-feature-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:6px 16px 26px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
       <div class="mr-card">
         <div style="font-size:24px;margin-bottom:8px;">Composite Score</div>
-        <div style="font-weight:700;color:#e2e8f0;font-size:15px;">One number, five dimensions</div>
+        <div style="font-weight:700;color:#1f2430;font-size:15px;">One number, five dimensions</div>
         <div style="color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.5;">Benchmarks, recency, community, efficiency, and reproducibility in a single composite.</div>
       </div>
       <div class="mr-card">
         <div style="font-size:24px;margin-bottom:8px;">Free Badges</div>
-        <div style="font-weight:700;color:#e2e8f0;font-size:15px;">Embed in your README</div>
+        <div style="font-weight:700;color:#1f2430;font-size:15px;">Embed in your README</div>
         <div style="color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.5;">Live SVG badges for score, tier, and rank. No account, no tracking.</div>
       </div>
       <div class="mr-card">
         <div style="font-size:24px;margin-bottom:8px;">Head-to-Head</div>
-        <div style="font-weight:700;color:#e2e8f0;font-size:15px;">Compare any two models</div>
+        <div style="font-weight:700;color:#1f2430;font-size:15px;">Compare any two models</div>
         <div style="color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.5;">Radar charts across all five dimensions, side by side.</div>
       </div>
       <div class="mr-card">
         <div style="font-size:24px;margin-bottom:8px;">LLM Judge & ELO</div>
-        <div style="font-weight:700;color:#e2e8f0;font-size:15px;">Crowd verdicts, ranked</div>
+        <div style="font-weight:700;color:#1f2430;font-size:15px;">Crowd verdicts, ranked</div>
         <div style="color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.5;">Record human and LLM verdicts, then climb the ELO ladder.</div>
       </div>
       <div class="mr-card">
         <div style="font-size:24px;margin-bottom:8px;">Best for Use Case</div>
-        <div style="font-weight:700;color:#e2e8f0;font-size:15px;">Pick the right model</div>
+        <div style="font-weight:700;color:#1f2430;font-size:15px;">Pick the right model</div>
         <div style="color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.5;">Recommendations filtered by coding, chat, research, local, or multilingual.</div>
       </div>
       <div class="mr-card">
         <div style="font-size:24px;margin-bottom:8px;">Weekly Podcast</div>
-        <div style="font-weight:700;color:#e2e8f0;font-size:15px;">A 5-minute deep dive</div>
+        <div style="font-weight:700;color:#1f2430;font-size:15px;">A 5-minute deep dive</div>
         <div style="color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.5;">Generate a NotebookLM audio breakdown for any model.</div>
       </div>
     </div>
@@ -737,7 +728,7 @@ with gr.Blocks(title='ModelRank - Independent HuggingFace Model Leaderboard') as
         with gr.Tab('🎙️ Podcast Studio'):
             gr.HTML('''
             <div style="background:#1a1a36;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid #2d2d50;">
-                <div style="font-size:16px;font-weight:700;color:#e2e8f0;margin-bottom:8px;">🎙️ AI Deep Dive Podcast</div>
+                <div style="font-size:16px;font-weight:700;color:#1f2430;margin-bottom:8px;">🎙️ AI Deep Dive Podcast</div>
                 <div style="color:#94a3b8;font-size:14px;line-height:1.6;">Generate a 5-minute technical podcast using Google NotebookLM, discussing the model's architecture, benchmarks, and best use cases. Requires <code style="background:#0f0f23;padding:2px 6px;border-radius:4px;">notebooklm-py</code> to be installed and <code style="background:#0f0f23;padding:2px 6px;border-radius:4px;">notebooklm login</code> to be run.</div>
             </div>''')
             with gr.Row():
@@ -772,12 +763,12 @@ with gr.Blocks(title='ModelRank - Independent HuggingFace Model Leaderboard') as
                 elo_btn = gr.Button('📊 Show ELO')
             elo_out = gr.HTML()
 
-            gr.HTML("<div style='font-size:14px;font-weight:700;color:#e2e8f0;margin:18px 0 6px;font-family:sans-serif;'>🏅 Head-to-Head ELO Standings</div>")
+            gr.HTML("<div style='font-size:14px;font-weight:700;color:#1f2430;margin:18px 0 6px;font-family:sans-serif;'>🏅 Head-to-Head ELO Standings</div>")
             j_board_limit = gr.Slider(minimum=10, maximum=100, step=5, value=25, label='Top N')
             j_elo_board = gr.HTML(value=lambda: elo_leaderboard_ui(25))
             j_refresh_board = gr.Button('🔄 Refresh Standings')
 
-            gr.HTML("<div style='font-size:14px;font-weight:700;color:#e2e8f0;margin:18px 0 6px;font-family:sans-serif;'>💬 Community Verdict Feed</div>")
+            gr.HTML("<div style='font-size:14px;font-weight:700;color:#1f2430;margin:18px 0 6px;font-family:sans-serif;'>💬 Community Verdict Feed</div>")
             with gr.Row():
                 j_judge_filter = gr.Dropdown(choices=['all', 'human', 'llm'], value='all', label='Judge')
                 j_feed_limit = gr.Slider(minimum=10, maximum=100, step=10, value=50, label='Rows')
@@ -824,25 +815,25 @@ Start the REST API with `python main.py api` and access docs at `http://localhos
 
     gr.HTML('''
     <div class="mr-faq" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;max-width:840px;margin:8px auto 0;">
-      <div style="font-size:20px;font-weight:800;color:#e2e8f0;margin:18px 0 10px;">Frequently asked questions</div>
+      <div style="font-size:20px;font-weight:800;color:#1f2430;margin:18px 0 10px;">Frequently asked questions</div>
       <details style="border:1px solid #2d2d50;border-radius:10px;padding:12px 14px;margin-bottom:8px;background:#0f0f23;">
-        <summary style="cursor:pointer;font-weight:600;color:#e2e8f0;">How is the score computed?</summary>
+        <summary style="cursor:pointer;font-weight:600;color:#1f2430;">How is the score computed?</summary>
         <div style="color:#94a3b8;margin-top:8px;line-height:1.6;">A weighted composite across benchmarks (70%), recency (15%), community (10%), and efficiency (5%). Reproducibility is tracked but reserved at 0% weight.</div>
       </details>
       <details style="border:1px solid #2d2d50;border-radius:10px;padding:12px 14px;margin-bottom:8px;background:#0f0f23;">
-        <summary style="cursor:pointer;font-weight:600;color:#e2e8f0;">Are paid placements allowed?</summary>
+        <summary style="cursor:pointer;font-weight:600;color:#1f2430;">Are paid placements allowed?</summary>
         <div style="color:#94a3b8;margin-top:8px;line-height:1.6;">No. ModelRank is independent and never sells rankings. Every model is scored by the same open methodology.</div>
       </details>
       <details style="border:1px solid #2d2d50;border-radius:10px;padding:12px 14px;margin-bottom:8px;background:#0f0f23;">
-        <summary style="cursor:pointer;font-weight:600;color:#e2e8f0;">How do I embed a badge?</summary>
+        <summary style="cursor:pointer;font-weight:600;color:#1f2430;">How do I embed a badge?</summary>
         <div style="color:#94a3b8;margin-top:8px;line-height:1.6;">Grab the markdown from the Badge Studio tab and paste it into your README. It renders a live SVG from our CDN.</div>
       </details>
       <details style="border:1px solid #2d2d50;border-radius:10px;padding:12px 14px;margin-bottom:8px;background:#0f0f23;">
-        <summary style="cursor:pointer;font-weight:600;color:#e2e8f0;">Where do the rankings come from?</summary>
+        <summary style="cursor:pointer;font-weight:600;color:#1f2430;">Where do the rankings come from?</summary>
         <div style="color:#94a3b8;margin-top:8px;line-height:1.6;">We aggregate public HuggingFace metadata (downloads, likes, recency) and benchmark results, then apply the composite formula. Raw data is available via the API.</div>
       </details>
       <details style="border:1px solid #2d2d50;border-radius:10px;padding:12px 14px;margin-bottom:8px;background:#0f0f23;">
-        <summary style="cursor:pointer;font-weight:600;color:#e2e8f0;">Is ModelRank independent?</summary>
+        <summary style="cursor:pointer;font-weight:600;color:#1f2430;">Is ModelRank independent?</summary>
         <div style="color:#94a3b8;margin-top:8px;line-height:1.6;">Yes. It is open source, community funded, and has no affiliation with any model vendor.</div>
       </details>
     </div>
