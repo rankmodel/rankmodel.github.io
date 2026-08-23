@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 0.0,
     "efficiency": 26.89,
-    "community": 51.83,
+    "community": 51.82,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-22T02:51:24.914464",
+  "computed_at": "2026-08-23T03:02:06.866020",
   "details": {
     "benchmark_details": {
       "score": 0.0,
@@ -48,10 +48,10 @@
     "diversity_details": {
       "count": 4,
       "datasets": [
+        "swe-bench/swe-bench_verified",
         "harborframework/terminal-bench-2.0",
-        "swe-bench/swe-bench_multilingual",
         "scaleai/swe-bench_pro",
-        "swe-bench/swe-bench_verified"
+        "swe-bench/swe-bench_multilingual"
       ],
       "diversity_bonus": 10.0
     },
@@ -79,7 +79,7 @@
     "coverage_percent": 0.0,
     "confidence": "low"
   },
-  "rank": 422,
+  "rank": 425,
   "badge_url": "https://rankmodel.github.io/badges/poolside/Laguna-XS.2/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/poolside/Laguna-XS.2/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/poolside/Laguna-XS.2.svg"

@@ -1,6 +1,6 @@
 {
   "model_id": "prism-ml/Ternary-Bonsai-27B-gguf",
-  "composite": 88.39,
+  "composite": 88.4,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 93.21,
     "efficiency": 34.19,
-    "community": 64.35,
+    "community": 64.45,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-22T02:44:59.682554",
+  "computed_at": "2026-08-23T02:53:47.191409",
   "details": {
     "benchmark_details": {
       "score": 93.20666666666666,
@@ -52,9 +52,9 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
-        "gsm8k",
         "mmmu/mmmu_pro",
-        "math"
+        "math",
+        "gsm8k"
       ],
       "diversity_bonus": 10.0
     },

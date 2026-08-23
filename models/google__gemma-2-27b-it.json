@@ -1,6 +1,6 @@
 {
   "model_id": "google/gemma-2-27b-it",
-  "composite": 47.22,
+  "composite": 47.07,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 35.81,
     "efficiency": 29.56,
-    "community": 56.74,
+    "community": 55.23,
     "recency": 100.0,
     "reproducibility": 20.0
   },
   "tier": "D",
-  "computed_at": "2026-08-21T02:55:54.104981",
+  "computed_at": "2026-08-23T03:01:01.523396",
   "details": {
     "benchmark_details": {
       "score": 35.81328984915,
@@ -79,7 +79,7 @@
     "coverage_percent": 7.7,
     "confidence": "low"
   },
-  "rank": 95,
+  "rank": 96,
   "badge_url": "https://rankmodel.github.io/badges/google/gemma-2-27b-it/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/google/gemma-2-27b-it/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/google/gemma-2-27b-it.svg"

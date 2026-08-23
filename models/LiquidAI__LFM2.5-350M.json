@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 25.32,
     "efficiency": 99.79,
-    "community": 55.44,
+    "community": 55.46,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-22T02:46:24.348355",
+  "computed_at": "2026-08-23T02:57:05.478865",
   "details": {
     "benchmark_details": {
       "score": 25.325,
@@ -52,9 +52,9 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
-        "liquidai/ifstruct-v1.0",
         "gpqa",
-        "mmlu-pro"
+        "mmlu-pro",
+        "liquidai/ifstruct-v1.0"
       ],
       "diversity_bonus": 10.0
     },

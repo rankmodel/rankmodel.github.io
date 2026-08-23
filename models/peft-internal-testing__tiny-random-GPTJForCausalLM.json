@@ -1,6 +1,6 @@
 {
   "model_id": "peft-internal-testing/tiny-random-GPTJForCausalLM",
-  "composite": 19.57,
+  "composite": 19.6,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 0.0,
     "efficiency": 26.89,
-    "community": 32.28,
+    "community": 32.51,
     "recency": 100.0,
     "reproducibility": 0.0
   },
   "tier": "D",
-  "computed_at": "2026-08-21T02:56:28.186684",
+  "computed_at": "2026-08-23T02:57:33.826714",
   "details": {
     "benchmark_details": {
       "score": 0.0,
@@ -74,7 +74,7 @@
     "coverage_percent": 0.0,
     "confidence": "low"
   },
-  "rank": 989,
+  "rank": 998,
   "badge_url": "https://rankmodel.github.io/badges/peft-internal-testing/tiny-random-GPTJForCausalLM/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/peft-internal-testing/tiny-random-GPTJForCausalLM/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/peft-internal-testing/tiny-random-GPTJForCausalLM.svg"

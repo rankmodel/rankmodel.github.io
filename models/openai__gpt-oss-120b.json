@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 75.55,
     "efficiency": 28.18,
-    "community": 71.57,
+    "community": 71.58,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-22T02:44:31.579324",
+  "computed_at": "2026-08-23T02:52:55.596802",
   "details": {
     "benchmark_details": {
       "score": 75.55101010101251,
@@ -58,12 +58,12 @@
     "diversity_details": {
       "count": 6,
       "datasets": [
-        "cais/hle",
         "lexam-benchmark/lexam",
-        "swe-bench/swe-bench_verified",
-        "gpqa",
+        "mmlu-pro",
         "scaleai/swe-bench_pro",
-        "mmlu-pro"
+        "gpqa",
+        "cais/hle",
+        "swe-bench/swe-bench_verified"
       ],
       "diversity_bonus": 10.0
     },

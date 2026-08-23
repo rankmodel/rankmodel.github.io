@@ -1,6 +1,6 @@
 {
   "model_id": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
-  "composite": 76.99,
+  "composite": 77.02,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 78.69,
     "efficiency": 32.06,
-    "community": 53.06,
+    "community": 53.37,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-22T02:46:14.862659",
+  "computed_at": "2026-08-23T02:56:36.906203",
   "details": {
     "benchmark_details": {
       "score": 78.69,
@@ -53,11 +53,11 @@
       "count": 6,
       "datasets": [
         "harborframework/terminal-bench-2.1",
-        "cais/hle",
-        "swe-bench/swe-bench_verified",
+        "mmlu-pro",
         "swe-bench/swe-bench_multilingual",
         "gpqa",
-        "mmlu-pro"
+        "cais/hle",
+        "swe-bench/swe-bench_verified"
       ],
       "diversity_bonus": 10.0
     },

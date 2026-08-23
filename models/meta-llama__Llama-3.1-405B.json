@@ -1,6 +1,6 @@
 {
   "model_id": "meta-llama/Llama-3.1-405B",
-  "composite": 73.72,
+  "composite": 73.71,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 73.33,
     "efficiency": 27.25,
-    "community": 60.24,
+    "community": 60.16,
     "recency": 100.0,
     "reproducibility": 20.0
   },
   "tier": "B",
-  "computed_at": "2026-08-22T02:45:58.222804",
+  "computed_at": "2026-08-23T02:56:17.031225",
   "details": {
     "benchmark_details": {
       "score": 73.33333333333333,
@@ -52,8 +52,8 @@
     "diversity_details": {
       "count": 2,
       "datasets": [
-        "gsm8k",
-        "mmlu-pro"
+        "mmlu-pro",
+        "gsm8k"
       ],
       "diversity_bonus": 0.0
     },

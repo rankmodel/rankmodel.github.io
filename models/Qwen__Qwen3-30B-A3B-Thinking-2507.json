@@ -1,6 +1,6 @@
 {
   "model_id": "Qwen/Qwen3-30B-A3B-Thinking-2507",
-  "composite": 76.59,
+  "composite": 76.58,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 77.88,
     "efficiency": 32.19,
-    "community": 54.61,
+    "community": 54.6,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-22T02:46:38.160122",
+  "computed_at": "2026-08-23T02:57:30.482469",
   "details": {
     "benchmark_details": {
       "score": 77.87788888888001,
@@ -54,9 +54,9 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
-        "mmlu-pro",
         "gpqa",
-        "math"
+        "math",
+        "mmlu-pro"
       ],
       "diversity_bonus": 10.0
     },

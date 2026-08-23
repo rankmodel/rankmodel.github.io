@@ -1,6 +1,6 @@
 {
   "model_id": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
-  "composite": 80.5,
+  "composite": 80.51,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 82.68,
     "efficiency": 28.23,
-    "community": 62.16,
+    "community": 62.21,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-22T02:44:47.996120",
+  "computed_at": "2026-08-23T02:53:25.714313",
   "details": {
     "benchmark_details": {
       "score": 82.67785714285714,
@@ -55,14 +55,14 @@
     "diversity_details": {
       "count": 8,
       "datasets": [
-        "harborframework/terminal-bench-2.0",
         "math",
-        "cais/hle",
-        "swe-bench/swe-bench_verified",
+        "mmlu-pro",
+        "claw-eval/claw-eval",
+        "harborframework/terminal-bench-2.0",
         "swe-bench/swe-bench_multilingual",
         "gpqa",
-        "claw-eval/claw-eval",
-        "mmlu-pro"
+        "cais/hle",
+        "swe-bench/swe-bench_verified"
       ],
       "diversity_bonus": 10.0
     },

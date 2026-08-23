@@ -1,6 +1,6 @@
 {
   "model_id": "moonshotai/Kimi-K2-Instruct",
-  "composite": 79.42,
+  "composite": 79.41,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 81.0,
     "efficiency": 27.05,
-    "community": 63.68,
+    "community": 63.55,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-22T02:45:54.689884",
+  "computed_at": "2026-08-23T02:56:13.508483",
   "details": {
     "benchmark_details": {
       "score": 80.99999999999999,
@@ -51,12 +51,12 @@
     "diversity_details": {
       "count": 6,
       "datasets": [
-        "harborframework/terminal-bench-2.0",
-        "swe-bench/swe-bench_multilingual",
-        "scaleai/swe-bench_pro",
-        "mercor/apex-swe",
         "mercor/apex-agents",
-        "mmlu-pro"
+        "mmlu-pro",
+        "harborframework/terminal-bench-2.0",
+        "scaleai/swe-bench_pro",
+        "swe-bench/swe-bench_multilingual",
+        "mercor/apex-swe"
       ],
       "diversity_bonus": 10.0
     },

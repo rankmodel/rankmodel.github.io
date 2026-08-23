@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 87.12,
     "efficiency": 27.12,
-    "community": 60.55,
+    "community": 60.47,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-22T02:46:35.264459",
+  "computed_at": "2026-08-23T02:57:26.555061",
   "details": {
     "benchmark_details": {
       "score": 87.11666666666666,
@@ -54,18 +54,18 @@
     "diversity_details": {
       "count": 12,
       "datasets": [
-        "harborframework/terminal-bench-2.0",
-        "internlm/wildclawbench",
-        "cais/hle",
-        "intelligencelab/long-horizon-terminal-bench",
-        "collinear-ai/yc-bench",
-        "gpqa",
-        "scaleai/swe-bench_pro",
-        "claw-eval/claw-eval",
-        "benchflow/skillsbench",
         "actava/chi-bench",
+        "internlm/wildclawbench",
+        "math",
+        "collinear-ai/yc-bench",
+        "intelligencelab/long-horizon-terminal-bench",
+        "claw-eval/claw-eval",
+        "scaleai/swe-bench_pro",
+        "harborframework/terminal-bench-2.0",
         "arc",
-        "math"
+        "gpqa",
+        "cais/hle",
+        "benchflow/skillsbench"
       ],
       "diversity_bonus": 10.0
     },

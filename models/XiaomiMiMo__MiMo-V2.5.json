@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 14.37,
     "efficiency": 21.99,
-    "community": 59.77,
+    "community": 59.75,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-22T02:45:05.412372",
+  "computed_at": "2026-08-23T02:54:00.599144",
   "details": {
     "benchmark_details": {
       "score": 14.3735,
@@ -51,10 +51,10 @@
     "diversity_details": {
       "count": 4,
       "datasets": [
+        "claw-eval/claw-eval",
         "harborframework/terminal-bench-2.0",
-        "arc",
         "scaleai/swe-bench_pro",
-        "claw-eval/claw-eval"
+        "arc"
       ],
       "diversity_bonus": 10.0
     },

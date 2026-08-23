@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 49.99,
     "efficiency": 61.51,
-    "community": 52.07,
+    "community": 52.0,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-22T02:45:58.860039",
+  "computed_at": "2026-08-23T02:56:17.281247",
   "details": {
     "benchmark_details": {
       "score": 49.98800000000001,
@@ -54,8 +54,8 @@
       "count": 3,
       "datasets": [
         "gpqa",
-        "gsm8k",
-        "mmlu-pro"
+        "mmlu-pro",
+        "gsm8k"
       ],
       "diversity_bonus": 10.0
     },

@@ -1,6 +1,6 @@
 {
   "model_id": "Nanbeige/Nanbeige4.2-3B",
-  "composite": 84.82,
+  "composite": 84.79,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -11,19 +11,19 @@
     "safety_score": 40,
     "update_velocity": 20,
     "inference_coverage": 10,
-    "community_momentum": 40,
+    "community_momentum": 70,
     "hub_completeness": 0
   },
-  "extended_composite": 24.0,
+  "extended_composite": 27.0,
   "breakdown": {
     "benchmarks": 86.34,
     "efficiency": 74.47,
-    "community": 56.61,
+    "community": 56.3,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-21T02:56:26.416478",
+  "computed_at": "2026-08-23T03:00:49.822370",
   "details": {
     "benchmark_details": {
       "score": 86.34,
@@ -52,13 +52,13 @@
     "diversity_details": {
       "count": 7,
       "datasets": [
-        "cais/hle",
-        "claw-eval/claw-eval",
-        "swe-bench/swe-bench_verified",
-        "scaleai/swe-bench_pro",
         "math",
+        "claw-eval/claw-eval",
+        "scaleai/swe-bench_pro",
+        "harborframework/terminal-bench-2.0",
         "gpqa",
-        "harborframework/terminal-bench-2.0"
+        "cais/hle",
+        "swe-bench/swe-bench_verified"
       ],
       "diversity_bonus": 10.0
     },

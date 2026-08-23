@@ -1,6 +1,6 @@
 {
   "model_id": "Qwen/Qwen2-7B",
-  "composite": 60.25,
+  "composite": 60.26,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 53.79,
     "efficiency": 42.71,
-    "community": 54.66,
+    "community": 54.72,
     "recency": 100.0,
     "reproducibility": 20.0
   },
   "tier": "C",
-  "computed_at": "2026-08-22T02:45:30.104426",
+  "computed_at": "2026-08-23T02:54:45.493283",
   "details": {
     "benchmark_details": {
       "score": 53.786666666666655,
@@ -52,8 +52,8 @@
     "diversity_details": {
       "count": 2,
       "datasets": [
-        "gsm8k",
-        "mmlu-pro"
+        "mmlu-pro",
+        "gsm8k"
       ],
       "diversity_bonus": 0.0
     },

@@ -1,6 +1,6 @@
 {
   "model_id": "MiniMaxAI/MiniMax-M2.5",
-  "composite": 80.83,
+  "composite": 80.82,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 82.65,
     "efficiency": 27.61,
-    "community": 65.92,
+    "community": 65.85,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-22T02:44:53.562432",
+  "computed_at": "2026-08-23T02:53:37.460059",
   "details": {
     "benchmark_details": {
       "score": 82.65,
@@ -53,13 +53,13 @@
       "count": 8,
       "datasets": [
         "internlm/wildclawbench",
-        "cais/hle",
-        "swe-bench/swe-bench_verified",
-        "collinear-ai/yc-bench",
-        "gpqa",
-        "scaleai/swe-bench_pro",
         "mercor/apex-agents",
-        "mmlu-pro"
+        "collinear-ai/yc-bench",
+        "mmlu-pro",
+        "scaleai/swe-bench_pro",
+        "gpqa",
+        "cais/hle",
+        "swe-bench/swe-bench_verified"
       ],
       "diversity_bonus": 10.0
     },
