@@ -59,6 +59,25 @@ jobs:
       - name: Generate weekly newsletter page
         run: python scripts/generate_weekly.py
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build React + Three.js frontend (ThreeUI)
+        working-directory: web
+        run: |
+          npm ci
+          node node_modules/esbuild/install.js
+          npm run build
+
+      - name: Remove stale static HTML pages (replaced by React app)
+        run: |
+          rm -f static_output/collections.html static_output/pricing.html \
+                static_output/methodology.html static_output/api.html \
+                static_output/quiz.html static_output/head-to-head.html \
+                static_output/dna.html
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

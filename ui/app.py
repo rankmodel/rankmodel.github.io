@@ -586,25 +586,38 @@ CSS = '''
 with gr.Blocks(title='ModelRank - Independent HuggingFace Model Leaderboard') as demo:
     # ---- Hero ----
     gr.HTML('''
-    <div class="mr-glass" style="position:relative;text-align:center;padding:48px 18px 38px;margin:16px 6px 10px;border-radius:22px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
-      <div class="mr-aurora"></div>
-      <div class="mr-rise" style="position:relative;z-index:1;">
-        <div class="mr-hero-title" style="font-size:clamp(32px,6.5vw,50px);font-weight:900;letter-spacing:-1.5px;color:#f8fafc;">
-          <img src="https://rankmodel.github.io/logo.svg" style="height:46px;width:46px;border-radius:13px;vertical-align:middle;margin-right:14px;box-shadow:0 6px 20px rgba(99,102,241,.45);" alt="ModelRank">
-          <span style="background:linear-gradient(135deg,#a5b4fc,#a855f7,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent;">ModelRank</span>
+    <div id="mr-island" class="mr-glass" style="position:relative;overflow:hidden;margin:16px 6px 10px;border-radius:22px;">
+      <canvas id="mr-island-aurora" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
+      <div id="mr-island-react" style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:52px 18px 40px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <img src="https://rankmodel.github.io/logo.svg" style="height:46px;width:46px;border-radius:13px;box-shadow:0 6px 20px rgba(99,102,241,.45);" alt="ModelRank">
+          <span style="font-size:clamp(30px,6vw,48px);font-weight:900;letter-spacing:-1.5px;background:linear-gradient(135deg,#a5b4fc,#a855f7,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent;">ModelRank</span>
         </div>
-        <div style="font-size:clamp(15px,2.4vw,19px);color:#dbe2ef;margin:18px auto 0;max-width:760px;line-height:1.6;">
-          The independent leaderboard for open HuggingFace models. Composite 5-dimension scoring, free embeddable badges, and zero paid placements.
-        </div>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px;">
-          <a href="https://rankmodel.github.io" class="mr-cta" style="display:inline-block;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-weight:700;padding:13px 24px;border-radius:14px;text-decoration:none;font-size:15px;">Score a model</a>
-          <a href="https://rankmodel.github.io" class="mr-btn-ghost" style="display:inline-block;font-weight:600;padding:13px 24px;border-radius:14px;text-decoration:none;font-size:15px;">Get your badge</a>
-        </div>
-        <div style="margin-top:22px;font-size:13px;color:#cbd5e1;letter-spacing:.3px;">
-          <span class="mr-pill">954+ models ranked</span> &nbsp; <span class="mr-pill">5 scoring dimensions</span> &nbsp; <span class="mr-pill">0 paid placements</span>
-        </div>
+        <div style="margin-top:14px;color:#dbe2ef;font-size:clamp(15px,2.4vw,18px);max-width:680px;line-height:1.6;">The independent leaderboard for open HuggingFace models. Built with ThreeUI + React + Three.js.</div>
+        <span id="mr-react-pill"></span>
       </div>
     </div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@designcodeio/threeui@0.3.0/lib-dist/style.css" />
+    <script type="module">
+      import * as THREE from 'https://esm.sh/three@0.165.0';
+      import React from 'https://esm.sh/react@18.3.1';
+      import { createRoot } from 'https://esm.sh/react-dom@18.3.1/client';
+      const mount = document.getElementById('mr-island-aurora');
+      const w = mount.clientWidth || 820, h = mount.clientHeight || 260;
+      const renderer = new THREE.WebGLRenderer({ canvas: mount, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      renderer.setSize(w, h, false);
+      const scene = new THREE.Scene(); const cam = new THREE.Camera();
+      const mat = new THREE.ShaderMaterial({ transparent: true, uniforms: { u_time: { value: 0 } },
+        vertexShader: 'void main(){ gl_Position = vec4(position,1.0); }',
+        fragmentShader: 'precision highp float; uniform float u_time; void main(){ vec2 uv=gl_FragCoord.xy/vec2(' + w.toFixed(1) + ',' + h.toFixed(1) + '); float n=sin(uv.x*6.0+u_time*0.4)*0.5+0.5; float m=sin(uv.y*5.0-u_time*0.3)*0.5+0.5; vec3 c=mix(vec3(0.39,0.40,0.95),vec3(0.66,0.33,0.97),n); c=mix(c,vec3(0.13,0.83,0.93),m*0.5); gl_FragColor=vec4(c,0.35); }' });
+      scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+      const clock = new THREE.Clock();
+      const anim = () => { mat.uniforms.u_time.value = clock.getElapsedTime(); renderer.render(scene, cam); requestAnimationFrame(anim); };
+      anim();
+      const pill = document.getElementById('mr-react-pill');
+      if (pill) createRoot(pill).render(React.createElement('span', { style: { display:'inline-block', marginTop:'18px', padding:'5px 13px', borderRadius:'999px', background:'rgba(99,102,241,.16)', border:'1px solid rgba(129,140,248,.4)', color:'#c7d2fe', fontSize:'13px' } }, 'React + Three.js · ThreeUI'));
+    </script>
     ''')
 
     # ---- Feature grid ----
