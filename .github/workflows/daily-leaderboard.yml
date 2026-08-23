@@ -9,6 +9,8 @@ on:
         description: 'Number of models to seed'
         required: false
         default: '50'
+  push:
+    branches: [main]
 
 permissions:
   contents: write           # needed to commit badge files back
@@ -46,6 +48,7 @@ jobs:
             modelrank-db-
 
       - name: Seed leaderboard (text-generation, top models)
+        if: github.event_name != 'push'
         run: |
           python scripts/seed_leaderboard.py \
             --task text-generation \

@@ -28,7 +28,7 @@ export default function Pricing() {
             <div className="pill" style={{ marginBottom: 12 }}>{t.tag}</div>
             <h2 style={{ margin: '0 0 4px' }}>{t.name}</h2>
             <div style={{ fontSize: 34, fontWeight: 900 }} className="grad-text">{t.price}</div>
-            <ul style={{ listStyle: 'none', padding: 0, margin: '16px 0', color: '#cbd5e1', lineHeight: 2 }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: '16px 0', color: 'var(--text)', lineHeight: 2 }}>
               {t.feats.map((f) => <li key={f}>✓ {f}</li>)}
             </ul>
             <a className={t.primary ? 'btn btn-primary' : 'btn btn-ghost'} href="https://github.com/rankmodel/rankmodel.github.io" style={{ width: '100%', textAlign: 'center' }}>

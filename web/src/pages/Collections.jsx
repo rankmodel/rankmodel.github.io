@@ -30,7 +30,7 @@ export default function Collections() {
           <p style={{ color: '#9aa3b8', marginTop: 0 }}>{c.blurb}</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
             {c.items.map((m) => (
-              <Link key={m.model_id} to={`/model/${encodeURIComponent(m.model_id)}`} className="glass" style={{ padding: 14, display: 'block', background: 'rgba(15,15,35,.4)' }}>
+                <Link key={m.model_id} to={`/model/${encodeURIComponent(m.model_id)}`} className="glass" style={{ padding: 14, display: 'block', background: 'var(--bg-soft)' }}>
                 <div style={{ fontWeight: 700 }}>{nameOf(m.model_id)}</div>
                 <div style={{ color: '#9aa3b8', fontSize: 13 }}>#{m.rank} · {m.composite.toFixed(1)} · {m.tier}</div>
               </Link>

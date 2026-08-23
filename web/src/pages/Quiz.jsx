@@ -65,7 +65,7 @@ export default function Quiz() {
             <h2 style={{ fontSize: 20 }}>Your top picks</h2>
             <div style={{ display: 'grid', gap: 10 }}>
               {recs.map((m) => (
-                <Link key={m.model_id} to={`/model/${encodeURIComponent(m.model_id)}`} className="glass" style={{ padding: 14, display: 'block', background: 'rgba(15,15,35,.4)' }}>
+                <Link key={m.model_id} to={`/model/${encodeURIComponent(m.model_id)}`} className="glass" style={{ padding: 14, display: 'block', background: 'var(--bg-soft)' }}>
                   <span style={{ fontWeight: 700 }}>{m.model_id}</span> <span style={{ color: '#9aa3b8' }}>· {m.composite.toFixed(1)} · {m.tier}</span>
                 </Link>
               ))}

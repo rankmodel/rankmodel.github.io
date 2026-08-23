@@ -23,21 +23,18 @@ float fbm(vec2 p){
 }
 void main(){
   vec2 uv=v_uv;
-  vec2 p=uv*3.0;
-  float t=u_time*0.05;
-  float n=fbm(p+vec2(t, t*0.7));
-  float n2=fbm(p*1.4-vec2(t*0.6, t));
-  vec3 indigo=vec3(0.39,0.40,0.95);
-  vec3 violet=vec3(0.66,0.33,0.97);
-  vec3 cyan=vec3(0.13,0.83,0.93);
-  vec3 col=mix(indigo, violet, smoothstep(0.2,0.8,n));
-  col=mix(col, cyan, smoothstep(0.4,0.9,n2)*0.5);
-  float glow=smoothstep(0.6,1.0,n)*0.5;
-  col+=glow*0.25;
-  // vignette
+  vec2 p=uv*2.4;
+  float t=u_time*0.03;
+  float n=fbm(p+vec2(t, t*0.6));
+  float n2=fbm(p*1.3-vec2(t*0.5, t));
+  vec3 indigo=vec3(0.55,0.57,0.98);
+  vec3 violet=vec3(0.78,0.62,0.98);
+  vec3 cyan=vec3(0.55,0.85,0.96);
+  vec3 col=mix(indigo, violet, smoothstep(0.25,0.8,n));
+  col=mix(col, cyan, smoothstep(0.45,0.9,n2)*0.4);
   float d=distance(uv, vec2(0.5));
-  col*= 1.0 - d*0.7;
-  gl_FragColor=vec4(col*0.9, 1.0);
+  col*= 1.0 - d*0.35;
+  gl_FragColor=vec4(col, 1.0);
 }
 `
 
@@ -95,8 +92,8 @@ export default function AuroraBackground() {
         position: 'fixed',
         inset: 0,
         zIndex: 0,
-        filter: 'blur(12px) saturate(1.1)',
-        opacity: 0.55,
+        filter: 'blur(40px) saturate(1.05)',
+        opacity: 0.16,
       }}
     />
   )

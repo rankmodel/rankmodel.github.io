@@ -23,23 +23,23 @@ export default function Radar({ breakdown, size = 220 }) {
             return `${cx + Math.cos(angle(i)) * rad},${cy + Math.sin(angle(i)) * rad}`
           }).join(' ')}
           fill="none"
-          stroke="rgba(148,163,184,0.18)"
+          stroke="#e4e7ec"
           strokeWidth="1"
         />
       ))}
       {DIMS.map((d, i) => {
         const [x, y] = point(i, 100)
-        return <line key={d.key} x1={cx} y1={cy} x2={x} y2={y} stroke="rgba(148,163,184,0.18)" strokeWidth="1" />
+        return <line key={d.key} x1={cx} y1={cy} x2={x} y2={y} stroke="#e4e7ec" strokeWidth="1" />
       })}
-      <polygon points={poly} fill="rgba(129,140,248,0.35)" stroke="#a855f7" strokeWidth="2" />
+      <polygon points={poly} fill="rgba(99,102,241,0.14)" stroke="#4f46e5" strokeWidth="2" />
       {DIMS.map((d, i) => {
         const [x, y] = point(i, breakdown[d.key] ?? 0)
-        return <circle key={d.key} cx={x} cy={y} r="3.2" fill="#a855f7" />
+        return <circle key={d.key} cx={x} cy={y} r="3.2" fill="#4f46e5" />
       })}
       {DIMS.map((d, i) => {
-        const [x, y] = point(i, 118)
+        const [x, y] = point(i, 120)
         return (
-          <text key={d.key} x={x} y={y} fontSize="11" fill="#9aa3b8" textAnchor="middle" dominantBaseline="middle">
+          <text key={d.key} x={x} y={y} fontSize="11" fill="#9aa1ad" textAnchor="middle" dominantBaseline="middle">
             {d.label.slice(0, 4)}
           </text>
         )

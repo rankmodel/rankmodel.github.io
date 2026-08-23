@@ -19,7 +19,7 @@ export default function Methodology() {
         <p style={{ color: '#9aa3b8' }}>Every model gets a composite from five normalized dimensions, each scored 0–100.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 14 }}>
           {DIMS.map((x) => (
-            <div key={x.k} className="glass" style={{ padding: 16, background: 'rgba(15,15,35,.4)' }}>
+            <div key={x.k} className="glass" style={{ padding: 16, background: 'var(--bg-soft)' }}>
               <div style={{ fontWeight: 700, marginBottom: 6 }} className="grad-text">{x.k}</div>
               <div style={{ color: '#9aa3b8', fontSize: 14 }}>{x.d}</div>
             </div>
@@ -29,7 +29,7 @@ export default function Methodology() {
 
       <section className="glass" style={{ padding: 24 }}>
         <h2 style={{ marginTop: 0 }}>Independence, by design</h2>
-        <ul style={{ color: '#cbd5e1', lineHeight: 1.8, paddingLeft: 18 }}>
+        <ul style={{ color: 'var(--text)', lineHeight: 1.8, paddingLeft: 18 }}>
           <li><strong>Zero paid placements.</strong> No model can buy a higher rank. Ever.</li>
           <li><strong>Open scoring.</strong> Every weight and formula is published; raw rankings ship as CSV.</li>
           <li><strong>Free badges.</strong> Embeddable SVG badges for any ranked model, no account needed.</li>

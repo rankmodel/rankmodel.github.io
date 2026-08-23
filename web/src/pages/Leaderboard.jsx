@@ -1,29 +1,33 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { loadLeaderboard, DIMS } from '../data.js'
-import ModelCard from '../components/ModelCard.jsx'
+import ModelRow from '../components/ModelCard.jsx'
 
-const SORTS = [
-  { key: 'rank', label: 'Rank' },
-  { key: 'composite', label: 'Composite' },
-  { key: 'benchmarks', label: 'Benchmarks' },
-  { key: 'efficiency', label: 'Efficiency' },
-  { key: 'community', label: 'Community' },
-  { key: 'recency', label: 'Recency' },
-  { key: 'reproducibility', label: 'Reproducibility' },
+const COLS = [
+  { key: 'rank', label: 'Rank', sort: (m) => m.rank, cls: '' },
+  { key: 'model', label: 'Model', sort: (m) => m.model_id.toLowerCase(), cls: '' },
+  { key: 'tier', label: 'Tier', sort: (m) => m.tier, cls: '' },
+  { key: 'composite', label: 'Composite', sort: (m) => m.composite, cls: '' },
+  { key: 'benchmarks', label: 'Bench', sort: (m) => m.breakdown?.benchmarks ?? 0, cls: '' },
+  { key: 'efficiency', label: 'Effic', sort: (m) => m.breakdown?.efficiency ?? 0, cls: '' },
+  { key: 'community', label: 'Comm', sort: (m) => m.breakdown?.community ?? 0, cls: '' },
+  { key: 'recency', label: 'Recency', sort: (m) => m.breakdown?.recency ?? 0, cls: 'hide-sm' },
+  { key: 'reproducibility', label: 'Repro', sort: (m) => m.breakdown?.reproducibility ?? 0, cls: 'hide-sm' },
+  { key: 'badge', label: 'Badge', sort: null, cls: 'hide-sm' },
 ]
 
 export default function Leaderboard() {
   const [data, setData] = useState(null)
   const [q, setQ] = useState('')
-  const [sort, setSort] = useState('rank')
   const [tier, setTier] = useState('all')
+  const [sortKey, setSortKey] = useState('rank')
+  const [dir, setDir] = useState('asc')
 
   useEffect(() => {
     loadLeaderboard().then(setData).catch((e) => setData({ error: e.message }))
   }, [])
 
-  const models = useMemo(() => {
+  const rows = useMemo(() => {
     if (!data || !data.models) return []
     let list = data.models.slice()
     if (q.trim()) {
@@ -31,53 +35,59 @@ export default function Leaderboard() {
       list = list.filter((m) => m.model_id.toLowerCase().includes(t))
     }
     if (tier !== 'all') list = list.filter((m) => m.tier === tier)
-    list.sort((a, b) => {
-      if (sort === 'rank') return a.rank - b.rank
-      if (sort === 'composite') return b.composite - a.composite
-      return (b.breakdown?.[sort] ?? 0) - (a.breakdown?.[sort] ?? 0)
-    })
+    const col = COLS.find((c) => c.key === sortKey)
+    if (col?.sort) {
+      list.sort((a, b) => {
+        const va = col.sort(a), vb = col.sort(b)
+        const cmp = typeof va === 'number' ? va - vb : String(va).localeCompare(String(vb))
+        return dir === 'asc' ? cmp : -cmp
+      })
+    }
     return list
-  }, [data, q, sort, tier])
+  }, [data, q, tier, sortKey, dir])
+
+  const onSort = (key) => {
+    if (sortKey === key) setDir((d) => (d === 'asc' ? 'desc' : 'asc'))
+    else { setSortKey(key); setDir('asc') }
+  }
 
   return (
     <div className="rise">
-      <section className="glass" style={{ position: 'relative', overflow: 'hidden', textAlign: 'center', padding: '46px 20px 34px', borderRadius: 22, marginBottom: 22 }}>
-        <h1 style={{ fontSize: 'clamp(30px,6vw,50px)', fontWeight: 900, letterSpacing: '-1.5px', margin: 0 }}>
-          <span className="grad-text">ModelRank</span>
-        </h1>
-        <p style={{ fontSize: 'clamp(15px,2.4vw,19px)', color: '#dbe2ef', maxWidth: 760, margin: '16px auto 0', lineHeight: 1.6 }}>
-          The independent leaderboard for open HuggingFace models. Composite 5-dimension scoring, free embeddable badges, and zero paid placements.
-        </p>
-        <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap', marginTop: 22 }}>
-          <a className="btn btn-primary" href="https://rankmodel.github.io">Score a model</a>
-          <a className="btn btn-ghost" href="./api">Read the API</a>
-        </div>
-        <div style={{ marginTop: 20, fontSize: 13, color: '#cbd5e1' }}>
-          <span className="pill">{data?.total ?? '…'} models ranked</span>{' '}
-          <span className="pill">5 scoring dimensions</span>{' '}
-          <span className="pill">0 paid placements</span>
-        </div>
-      </section>
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
+        <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700 }}>Leaderboard</h1>
+        <span style={{ color: 'var(--muted)', fontSize: 14 }}>{data?.total ?? '…'} open models · 5-dimension scoring</span>
+      </div>
+      <p style={{ color: 'var(--muted)', margin: '0 0 18px' }}>
+        Independent, zero paid placements. Click any column to sort.
+      </p>
 
-      <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginBottom: 18 }}>
+      <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginBottom: 14 }}>
         <input className="input" style={{ flex: 1, minWidth: 220 }} placeholder="Search models…" value={q} onChange={(e) => setQ(e.target.value)} />
-        <select className="select" value={sort} onChange={(e) => setSort(e.target.value)}>
-          {SORTS.map((s) => <option key={s.key} value={s.key}>Sort: {s.label}</option>)}
-        </select>
         <select className="select" value={tier} onChange={(e) => setTier(e.target.value)}>
           <option value="all">All tiers</option>
           {['S', 'A', 'B', 'C', 'D'].map((t) => <option key={t} value={t}>Tier {t}</option>)}
         </select>
       </div>
 
-      {!data && <p style={{ color: '#9aa3b8' }}>Loading leaderboard…</p>}
-      {data?.error && <p style={{ color: '#f87171' }}>Error: {data.error}</p>}
-      {data && (
-        <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
-          {models.map((m, i) => <ModelCard key={m.model_id} model={m} index={i} />)}
-        </div>
-      )}
-      {data && models.length === 0 && <p style={{ color: '#9aa3b8' }}>No models match your filters.</p>}
+      <div className="glass" style={{ overflowX: 'auto' }}>
+        <table className="table">
+          <thead>
+            <tr>
+              {COLS.map((c) => (
+                <th key={c.key} className={c.cls} onClick={c.sort ? () => onSort(c.key) : undefined} style={c.sort ? { cursor: 'pointer' } : { cursor: 'default' }}>
+                  {c.label}{sortKey === c.key && c.sort ? <span className="arrow">{dir === 'asc' ? '↑' : '↓'}</span> : null}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {!data && <tr><td colSpan={COLS.length} style={{ color: 'var(--muted)' }}>Loading leaderboard…</td></tr>}
+            {data?.error && <tr><td colSpan={COLS.length} style={{ color: '#dc2626' }}>Error: {data.error}</td></tr>}
+            {rows.map((m) => <ModelRow key={m.model_id} model={m} />)}
+            {data && rows.length === 0 && <tr><td colSpan={COLS.length} style={{ color: 'var(--muted)' }}>No models match your filters.</td></tr>}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
