@@ -1,84 +1,82 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
-// Animated aurora backdrop rendered with three.js (WebGL).
-// Mirrors ThreeUI's immersive shader aesthetic without external asset deps.
-const frag = `
-precision highp float;
-uniform float u_time;
-uniform vec2 u_res;
-varying vec2 v_uv;
-
-float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }
-float noise(vec2 p){
-  vec2 i=floor(p), f=fract(p);
-  float a=hash(i), b=hash(i+vec2(1.,0.)), c=hash(i+vec2(0.,1.)), d=hash(i+vec2(1.,1.));
-  vec2 u=f*f*(3.-2.*f);
-  return mix(a,b,u.x)+(c-a)*u.y*(1.-u.x)+(d-b)*u.x*u.y;
-}
-float fbm(vec2 p){
-  float v=0., a=0.5;
-  for(int i=0;i<5;i++){ v+=a*noise(p); p*=2.02; a*=0.5; }
-  return v;
-}
-void main(){
-  vec2 uv=v_uv;
-  vec2 p=uv*2.4;
-  float t=u_time*0.03;
-  float n=fbm(p+vec2(t, t*0.6));
-  float n2=fbm(p*1.3-vec2(t*0.5, t));
-  vec3 indigo=vec3(0.55,0.57,0.98);
-  vec3 violet=vec3(0.78,0.62,0.98);
-  vec3 cyan=vec3(0.55,0.85,0.96);
-  vec3 col=mix(indigo, violet, smoothstep(0.25,0.8,n));
-  col=mix(col, cyan, smoothstep(0.45,0.9,n2)*0.4);
-  float d=distance(uv, vec2(0.5));
-  col*= 1.0 - d*0.35;
-  gl_FragColor=vec4(col, 1.0);
-}
-`
-
-const vert = `
-varying vec2 v_uv;
-void main(){ v_uv=uv; gl_Position=vec4(position,1.0); }
-`
+// Subtle three.js "data field": drifting points, like a ranked constellation.
+// Technical texture rather than a decorative gradient blob.
+const COUNT = 520
 
 export default function AuroraBackground() {
   const ref = useRef(null)
   useEffect(() => {
     const mount = ref.current
-    const w = mount.clientWidth
-    const h = mount.clientHeight
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false })
+    const w = mount.clientWidth || window.innerWidth
+    const h = mount.clientHeight || window.innerHeight
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))
     renderer.setSize(w, h)
     mount.appendChild(renderer.domElement)
 
     const scene = new THREE.Scene()
-    const camera = new THREE.Camera()
-    const geo = new THREE.PlaneGeometry(2, 2)
-    const uniforms = { u_time: { value: 0 }, u_res: { value: new THREE.Vector2(w, h) } }
-    const mat = new THREE.ShaderMaterial({ vertexShader: vert, fragmentShader: frag, uniforms })
-    const mesh = new THREE.Mesh(geo, mat)
-    scene.add(mesh)
+    const camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 100)
+    camera.position.z = 14
 
+    const positions = new Float32Array(COUNT * 3)
+    const speeds = new Float32Array(COUNT)
+    for (let i = 0; i < COUNT; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 26
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 16
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 10
+      speeds[i] = 0.2 + Math.random() * 0.6
+    }
+    const geo = new THREE.BufferGeometry()
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+    const mat = new THREE.PointsMaterial({
+      color: 0x16161a,
+      size: 0.05,
+      transparent: true,
+      opacity: 0.35,
+      sizeAttenuation: true,
+    })
+    const points = new THREE.Points(geo, mat)
+    scene.add(points)
+
+    const mouse = { x: 0, y: 0 }
+    const onMove = (e) => {
+      mouse.x = (e.clientX / window.innerWidth - 0.5) * 2
+      mouse.y = (e.clientY / window.innerHeight - 0.5) * 2
+    }
+    window.addEventListener('mousemove', onMove)
+
+    const pos = geo.attributes.position
     let raf
     const clock = new THREE.Clock()
     const animate = () => {
-      uniforms.u_time.value = clock.getElapsedTime()
+      const t = clock.getElapsedTime()
+      for (let i = 0; i < COUNT; i++) {
+        let y = pos.array[i * 3 + 1] + speeds[i] * 0.01
+        if (y > 8) y = -8
+        pos.array[i * 3 + 1] = y
+        pos.array[i * 3] += Math.sin(t * 0.2 + i) * 0.002
+      }
+      pos.needsUpdate = true
+      points.rotation.y = t * 0.02 + mouse.x * 0.15
+      points.rotation.x = mouse.y * 0.08
       renderer.render(scene, camera)
       raf = requestAnimationFrame(animate)
     }
     animate()
 
     const onResize = () => {
-      const nw = mount.clientWidth, nh = mount.clientHeight
+      const nw = mount.clientWidth || window.innerWidth
+      const nh = mount.clientHeight || window.innerHeight
       renderer.setSize(nw, nh)
-      uniforms.u_res.value.set(nw, nh)
+      camera.aspect = nw / nh
+      camera.updateProjectionMatrix()
     }
     window.addEventListener('resize', onResize)
     return () => {
       cancelAnimationFrame(raf)
+      window.removeEventListener('mousemove', onMove)
       window.removeEventListener('resize', onResize)
       geo.dispose(); mat.dispose(); renderer.dispose()
       if (renderer.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement)
@@ -88,13 +86,7 @@ export default function AuroraBackground() {
     <div
       ref={ref}
       aria-hidden="true"
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 0,
-        filter: 'blur(40px) saturate(1.05)',
-        opacity: 0.16,
-      }}
+      style={{ position: 'fixed', inset: 0, zIndex: 0, opacity: 0.5, pointerEvents: 'none' }}
     />
   )
 }

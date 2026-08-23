@@ -31,10 +31,10 @@ export default function Radar({ breakdown, size = 220 }) {
         const [x, y] = point(i, 100)
         return <line key={d.key} x1={cx} y1={cy} x2={x} y2={y} stroke="#e4e7ec" strokeWidth="1" />
       })}
-      <polygon points={poly} fill="rgba(99,102,241,0.14)" stroke="#4f46e5" strokeWidth="2" />
+      <polygon points={poly} fill="rgba(224,73,43,0.14)" stroke="#e0492b" strokeWidth="2" />
       {DIMS.map((d, i) => {
         const [x, y] = point(i, breakdown[d.key] ?? 0)
-        return <circle key={d.key} cx={x} cy={y} r="3.2" fill="#4f46e5" />
+        return <circle key={d.key} cx={x} cy={y} r="3.2" fill="#e0492b" />
       })}
       {DIMS.map((d, i) => {
         const [x, y] = point(i, 120)

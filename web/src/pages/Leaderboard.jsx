@@ -4,17 +4,26 @@ import { loadLeaderboard, DIMS } from '../data.js'
 import ModelRow from '../components/ModelCard.jsx'
 
 const COLS = [
-  { key: 'rank', label: 'Rank', sort: (m) => m.rank, cls: '' },
-  { key: 'model', label: 'Model', sort: (m) => m.model_id.toLowerCase(), cls: '' },
-  { key: 'tier', label: 'Tier', sort: (m) => m.tier, cls: '' },
-  { key: 'composite', label: 'Composite', sort: (m) => m.composite, cls: '' },
-  { key: 'benchmarks', label: 'Bench', sort: (m) => m.breakdown?.benchmarks ?? 0, cls: '' },
-  { key: 'efficiency', label: 'Effic', sort: (m) => m.breakdown?.efficiency ?? 0, cls: '' },
-  { key: 'community', label: 'Comm', sort: (m) => m.breakdown?.community ?? 0, cls: '' },
-  { key: 'recency', label: 'Recency', sort: (m) => m.breakdown?.recency ?? 0, cls: 'hide-sm' },
-  { key: 'reproducibility', label: 'Repro', sort: (m) => m.breakdown?.reproducibility ?? 0, cls: 'hide-sm' },
+  { key: 'rank', label: 'Rank', sort: (m) => m.rank, num: true },
+  { key: 'model', label: 'Model', sort: (m) => m.model_id.toLowerCase() },
+  { key: 'tier', label: 'Tier', sort: (m) => m.tier },
+  { key: 'composite', label: 'Composite', sort: (m) => m.composite, num: true },
+  { key: 'benchmarks', label: 'Bench', sort: (m) => m.breakdown?.benchmarks ?? 0, num: true },
+  { key: 'efficiency', label: 'Effic', sort: (m) => m.breakdown?.efficiency ?? 0, num: true },
+  { key: 'community', label: 'Comm', sort: (m) => m.breakdown?.community ?? 0, num: true },
+  { key: 'recency', label: 'Recency', sort: (m) => m.breakdown?.recency ?? 0, num: true, cls: 'hide-sm' },
+  { key: 'reproducibility', label: 'Repro', sort: (m) => m.breakdown?.reproducibility ?? 0, num: true, cls: 'hide-sm' },
   { key: 'badge', label: 'Badge', sort: null, cls: 'hide-sm' },
 ]
+
+function Stat({ value, label, accent, last }) {
+  return (
+    <div style={{ flex: '1 1 150px', padding: '14px 18px 14px 0', borderRight: last ? 'none' : '1px solid var(--hair)' }}>
+      <div className="mono" style={{ fontSize: 26, fontWeight: 600, color: accent ? 'var(--accent)' : 'var(--ink)', letterSpacing: '-0.5px' }}>{value}</div>
+      <div style={{ fontSize: 11.5, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{label}</div>
+    </div>
+  )
+}
 
 export default function Leaderboard() {
   const [data, setData] = useState(null)
@@ -53,13 +62,20 @@ export default function Leaderboard() {
 
   return (
     <div className="rise">
-      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
-        <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700 }}>Leaderboard</h1>
-        <span style={{ color: 'var(--muted)', fontSize: 14 }}>{data?.total ?? '…'} open models · 5-dimension scoring</span>
-      </div>
-      <p style={{ color: 'var(--muted)', margin: '0 0 18px' }}>
-        Independent, zero paid placements. Click any column to sort.
-      </p>
+      <header style={{ marginBottom: 22 }}>
+        <div className="eyebrow">Independent leaderboard · open HuggingFace models</div>
+        <h1 style={{ fontFamily: 'var(--display)', fontWeight: 700, fontSize: 'clamp(26px,5vw,40px)', letterSpacing: '-1px', margin: '8px 0 6px', lineHeight: 1.05 }}>
+          Rank the open web's models. Honestly.
+        </h1>
+        <p style={{ color: 'var(--muted)', fontSize: 16, maxWidth: 640, margin: '0 0 18px', lineHeight: 1.55 }}>
+          A five-dimension composite score, free embeddable badges, and zero paid placements. Click any column to sort.
+        </p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', borderTop: '1px solid var(--hair)', borderBottom: '1px solid var(--hair)' }}>
+          <Stat value={data?.total ?? '—'} label="models ranked" />
+          <Stat value="5" label="scoring dimensions" />
+          <Stat value="0" label="paid placements" accent last />
+        </div>
+      </header>
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginBottom: 14 }}>
         <input className="input" style={{ flex: 1, minWidth: 220 }} placeholder="Search models…" value={q} onChange={(e) => setQ(e.target.value)} />
@@ -74,7 +90,7 @@ export default function Leaderboard() {
           <thead>
             <tr>
               {COLS.map((c) => (
-                <th key={c.key} className={c.cls} onClick={c.sort ? () => onSort(c.key) : undefined} style={c.sort ? { cursor: 'pointer' } : { cursor: 'default' }}>
+                <th key={c.key} className={(c.num ? 'num ' : '') + (c.cls || '')} onClick={c.sort ? () => onSort(c.key) : undefined} style={c.sort ? { cursor: 'pointer' } : { cursor: 'default' }}>
                   {c.label}{sortKey === c.key && c.sort ? <span className="arrow">{dir === 'asc' ? '↑' : '↓'}</span> : null}
                 </th>
               ))}
@@ -82,7 +98,7 @@ export default function Leaderboard() {
           </thead>
           <tbody>
             {!data && <tr><td colSpan={COLS.length} style={{ color: 'var(--muted)' }}>Loading leaderboard…</td></tr>}
-            {data?.error && <tr><td colSpan={COLS.length} style={{ color: '#dc2626' }}>Error: {data.error}</td></tr>}
+            {data?.error && <tr><td colSpan={COLS.length} style={{ color: '#c0392b' }}>Error: {data.error}</td></tr>}
             {rows.map((m) => <ModelRow key={m.model_id} model={m} />)}
             {data && rows.length === 0 && <tr><td colSpan={COLS.length} style={{ color: 'var(--muted)' }}>No models match your filters.</td></tr>}
           </tbody>
