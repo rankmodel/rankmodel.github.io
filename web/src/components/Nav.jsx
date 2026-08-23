@@ -27,7 +27,7 @@ export default function Nav() {
                   color: isActive ? 'var(--ink)' : 'var(--muted)',
                   background: isActive ? '#f0efec' : 'transparent',
                 })}>
-                {label}
+                {l.label}
               </NavLink>
             ))}
           </nav>
