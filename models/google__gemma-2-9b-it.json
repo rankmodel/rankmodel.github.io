@@ -1,6 +1,6 @@
 {
   "model_id": "google/gemma-2-9b-it",
-  "composite": 45.19,
+  "composite": 45.2,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 31.58,
     "efficiency": 34.11,
-    "community": 63.81,
+    "community": 63.87,
     "recency": 100.0,
     "reproducibility": 20.0
   },
   "tier": "D",
-  "computed_at": "2026-08-23T02:53:38.661187",
+  "computed_at": "2026-08-24T02:53:50.644789",
   "details": {
     "benchmark_details": {
       "score": 31.5803777687,
@@ -52,8 +52,8 @@
     "diversity_details": {
       "count": 2,
       "datasets": [
-        "gpqa",
-        "lexam-benchmark/lexam"
+        "lexam-benchmark/lexam",
+        "gpqa"
       ],
       "diversity_bonus": 0.0
     },

@@ -1,6 +1,6 @@
 {
   "model_id": "zai-org/GLM-4.5-Air",
-  "composite": 75.88,
+  "composite": 75.87,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 76.56,
     "efficiency": 28.28,
-    "community": 58.78,
+    "community": 58.61,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-23T02:56:07.063674",
+  "computed_at": "2026-08-24T02:56:07.259691",
   "details": {
     "benchmark_details": {
       "score": 76.5585858586,
@@ -52,9 +52,9 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
-        "gpqa",
+        "mmlu-pro",
         "cais/hle",
-        "mmlu-pro"
+        "gpqa"
       ],
       "diversity_bonus": 10.0
     },

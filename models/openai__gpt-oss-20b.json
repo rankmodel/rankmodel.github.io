@@ -1,6 +1,6 @@
 {
   "model_id": "openai/gpt-oss-20b",
-  "composite": 69.82,
+  "composite": 69.83,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -17,13 +17,13 @@
   "extended_composite": 20.5,
   "breakdown": {
     "benchmarks": 65.72,
-    "efficiency": 33.3,
-    "community": 71.44,
+    "efficiency": 33.5,
+    "community": 71.45,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "C",
-  "computed_at": "2026-08-23T02:52:42.485524",
+  "computed_at": "2026-08-24T02:53:04.231995",
   "details": {
     "benchmark_details": {
       "score": 65.72323232323751,
@@ -58,12 +58,12 @@
     "diversity_details": {
       "count": 6,
       "datasets": [
-        "lexam-benchmark/lexam",
-        "mmlu-pro",
-        "gpqa",
         "liquidai/ifstruct-v1.0",
-        "cais/hle",
-        "swe-bench/swe-bench_verified"
+        "swe-bench/swe-bench_verified",
+        "gpqa",
+        "mmlu-pro",
+        "lexam-benchmark/lexam",
+        "cais/hle"
       ],
       "diversity_bonus": 10.0
     },

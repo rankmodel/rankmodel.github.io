@@ -1,6 +1,6 @@
 {
   "model_id": "XiaomiMiMo/MiMo-V2.5",
-  "composite": 32.14,
+  "composite": 32.13,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 14.37,
     "efficiency": 21.99,
-    "community": 59.75,
+    "community": 59.68,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-23T02:54:00.599144",
+  "computed_at": "2026-08-24T02:54:15.841004",
   "details": {
     "benchmark_details": {
       "score": 14.3735,
@@ -51,8 +51,8 @@
     "diversity_details": {
       "count": 4,
       "datasets": [
-        "claw-eval/claw-eval",
         "harborframework/terminal-bench-2.0",
+        "claw-eval/claw-eval",
         "scaleai/swe-bench_pro",
         "arc"
       ],

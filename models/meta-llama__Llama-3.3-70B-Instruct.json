@@ -1,6 +1,6 @@
 {
   "model_id": "meta-llama/Llama-3.3-70B-Instruct",
-  "composite": 68.96,
+  "composite": 68.95,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 65.94,
     "efficiency": 23.77,
-    "community": 66.15,
+    "community": 66.04,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "C",
-  "computed_at": "2026-08-23T02:54:18.512385",
+  "computed_at": "2026-08-24T02:54:37.474262",
   "details": {
     "benchmark_details": {
       "score": 65.94297645142001,
@@ -53,11 +53,11 @@
     "diversity_details": {
       "count": 5,
       "datasets": [
-        "lexam-benchmark/lexam",
         "thamilvendhan/signalbench",
-        "mmlu-pro",
         "gsm8k",
-        "gpqa"
+        "gpqa",
+        "mmlu-pro",
+        "lexam-benchmark/lexam"
       ],
       "diversity_bonus": 10.0
     },

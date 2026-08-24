@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 82.65,
     "efficiency": 27.61,
-    "community": 65.85,
+    "community": 65.8,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-23T02:53:37.460059",
+  "computed_at": "2026-08-24T02:53:50.368869",
   "details": {
     "benchmark_details": {
       "score": 82.65,
@@ -52,14 +52,14 @@
     "diversity_details": {
       "count": 8,
       "datasets": [
-        "internlm/wildclawbench",
-        "mercor/apex-agents",
+        "swe-bench/swe-bench_verified",
         "collinear-ai/yc-bench",
-        "mmlu-pro",
-        "scaleai/swe-bench_pro",
+        "internlm/wildclawbench",
         "gpqa",
+        "mercor/apex-agents",
+        "mmlu-pro",
         "cais/hle",
-        "swe-bench/swe-bench_verified"
+        "scaleai/swe-bench_pro"
       ],
       "diversity_bonus": 10.0
     },

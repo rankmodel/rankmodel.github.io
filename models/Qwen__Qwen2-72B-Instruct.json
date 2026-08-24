@@ -1,6 +1,6 @@
 {
   "model_id": "Qwen/Qwen2-72B-Instruct",
-  "composite": 66.79,
+  "composite": 21.63,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -16,21 +16,20 @@
   },
   "extended_composite": 20.0,
   "breakdown": {
-    "benchmarks": 64.38,
-    "efficiency": 23.67,
+    "benchmarks": 0.0,
+    "efficiency": 21.89,
     "community": 55.38,
     "recency": 100.0,
-    "reproducibility": 20.0
+    "reproducibility": 0.0
   },
-  "tier": "C",
-  "computed_at": "2026-08-23T03:01:33.627803",
+  "tier": "D",
+  "computed_at": "2026-08-24T03:00:26.315977",
   "details": {
     "benchmark_details": {
-      "score": 64.38,
-      "benchmarks_found": [
-        "mmlu-pro"
-      ],
+      "score": 0.0,
+      "benchmarks_found": [],
       "benchmarks_missing": [
+        "mmlu-pro",
         "gpqa",
         "hle",
         "gsm8k",
@@ -44,15 +43,11 @@
         "truthfulqa",
         "winogrande"
       ],
-      "details": {
-        "mmlu-pro": 64.38
-      }
+      "details": {}
     },
     "diversity_details": {
-      "count": 1,
-      "datasets": [
-        "mmlu-pro"
-      ],
+      "count": 0,
+      "datasets": [],
       "diversity_bonus": 0.0
     },
     "freshness_label": "Just Released"
@@ -60,8 +55,9 @@
   "confidence": "low",
   "coverage": {
     "total_benchmarks": 13,
-    "found_benchmarks": 1,
+    "found_benchmarks": 0,
     "missing_benchmarks": [
+      "mmlu-pro",
       "gpqa",
       "hle",
       "gsm8k",
@@ -75,10 +71,10 @@
       "truthfulqa",
       "winogrande"
     ],
-    "coverage_percent": 7.7,
+    "coverage_percent": 0.0,
     "confidence": "low"
   },
-  "rank": 63,
+  "rank": 383,
   "badge_url": "https://rankmodel.github.io/badges/Qwen/Qwen2-72B-Instruct/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/Qwen/Qwen2-72B-Instruct/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/Qwen/Qwen2-72B-Instruct.svg"

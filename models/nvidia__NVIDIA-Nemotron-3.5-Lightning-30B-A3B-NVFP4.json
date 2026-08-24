@@ -1,6 +1,6 @@
 {
   "model_id": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4",
-  "composite": 77.82,
+  "composite": 77.85,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 78.59,
     "efficiency": 36.38,
-    "community": 59.84,
+    "community": 60.13,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-23T02:53:46.264274",
+  "computed_at": "2026-08-24T02:53:55.725061",
   "details": {
     "benchmark_details": {
       "score": 78.595,
@@ -52,11 +52,11 @@
     "diversity_details": {
       "count": 5,
       "datasets": [
-        "mmlu-pro",
+        "swe-bench/swe-bench_verified",
         "swe-bench/swe-bench_multilingual",
         "gpqa",
         "cais/hle",
-        "swe-bench/swe-bench_verified"
+        "mmlu-pro"
       ],
       "diversity_bonus": 10.0
     },

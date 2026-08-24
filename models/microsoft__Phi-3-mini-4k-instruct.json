@@ -1,6 +1,6 @@
 {
   "model_id": "microsoft/Phi-3-mini-4k-instruct",
-  "composite": 66.01,
+  "composite": 66.02,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 59.01,
     "efficiency": 63.28,
-    "community": 65.44,
+    "community": 65.51,
     "recency": 100.0,
     "reproducibility": 20.0
   },
   "tier": "C",
-  "computed_at": "2026-08-23T02:53:40.869462",
+  "computed_at": "2026-08-24T02:53:52.956938",
   "details": {
     "benchmark_details": {
       "score": 59.00666666666665,
@@ -79,7 +79,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 66,
+  "rank": 65,
   "badge_url": "https://rankmodel.github.io/badges/microsoft/Phi-3-mini-4k-instruct/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/microsoft/Phi-3-mini-4k-instruct/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/microsoft/Phi-3-mini-4k-instruct.svg"

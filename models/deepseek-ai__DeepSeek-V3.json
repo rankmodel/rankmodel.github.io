@@ -1,6 +1,6 @@
 {
   "model_id": "deepseek-ai/DeepSeek-V3",
-  "composite": 70.01,
+  "composite": 69.99,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 66.9,
     "efficiency": 22.09,
-    "community": 70.77,
+    "community": 70.57,
     "recency": 100.0,
     "reproducibility": 30.0
   },
-  "tier": "B",
-  "computed_at": "2026-08-23T02:53:24.278626",
+  "tier": "C",
+  "computed_at": "2026-08-24T02:53:38.093007",
   "details": {
     "benchmark_details": {
       "score": 66.90282828284,
@@ -53,11 +53,11 @@
     "diversity_details": {
       "count": 5,
       "datasets": [
-        "lexam-benchmark/lexam",
         "thamilvendhan/signalbench",
-        "mmlu-pro",
         "gsm8k",
-        "gpqa"
+        "gpqa",
+        "mmlu-pro",
+        "lexam-benchmark/lexam"
       ],
       "diversity_bonus": 10.0
     },
