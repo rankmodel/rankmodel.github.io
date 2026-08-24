@@ -3496,6 +3496,23 @@ def main(limit: int = 10000):
             'models': leaderboard_data,
         }, indent=2), encoding='utf-8')
 
+    # Write paginated page files so the frontend downloads only what it shows
+    # (page 1 is ~35KB instead of the full ~700KB leaderboard.json up front).
+    PAGE_SIZE = 100
+    total_pages = max(1, (total + PAGE_SIZE - 1) // PAGE_SIZE)
+    (OUTPUT_DIR / 'pages').mkdir(parents=True, exist_ok=True)
+    for p in range(1, total_pages + 1):
+        chunk = leaderboard_data[(p - 1) * PAGE_SIZE: p * PAGE_SIZE]
+        (OUTPUT_DIR / 'pages' / f'page-{p}.json').write_text(
+            json.dumps({
+                'updated_at': __import__('datetime').datetime.utcnow().isoformat() + 'Z',
+                'total': total,
+                'page': p,
+                'total_pages': total_pages,
+                'models': chunk,
+            }, indent=2), encoding='utf-8')
+    logger.info(f'   {total_pages} paginated page files written (PAGE_SIZE={PAGE_SIZE})')
+
     # Write search_index.json (lightweight for frontend 100k array load)
     search_index = [{'id': m['model_id'], 'c': m['composite'], 't': m['tier']} for m in leaderboard_data]
     (OUTPUT_DIR / 'search_index.json').write_text(json.dumps(search_index), encoding='utf-8')

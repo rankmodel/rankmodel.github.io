@@ -100,19 +100,20 @@ class HFDataFetcher:
         except ModelNotFoundError:
             raise
 
-    def fetch_model_list(self, task: Optional[str] = None, sort: str = 'downloads', limit: int = 100, search: Optional[str] = None) -> List[Dict[str, Any]]:
+    def fetch_model_list(self, task: Optional[str] = None, sort: str = 'downloads', limit: int = 100, search: Optional[str] = None, offset: int = 0) -> List[Dict[str, Any]]:
         url = f"{self.base_url}/models"
         if sort == 'trending':
             sort = 'trendingScore'
         params = {
             "sort": sort,
-            "limit": limit
+            "limit": limit,
+            "offset": offset,
         }
         if task:
             params["pipeline_tag"] = task
         if search:
             params["search"] = search
-            
+
         return self._make_request(url, params=params)
 
     def fetch_eval_results(self, model_id: str) -> List[Dict[str, Any]]:

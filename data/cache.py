@@ -137,6 +137,41 @@ class ModelCache:
             row = cursor.fetchone()
             return row[0] if row else 0
 
+    def get_scored_ids(self) -> set:
+        """Return the set of model IDs that already have a score (dedup source)."""
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute("SELECT model_id FROM scores")
+            return {r[0] for r in cursor.fetchall()}
+
+    def prune_oldest(self, keep: int) -> int:
+        """Keep only the ``keep`` most-recently-added scores (FIFO by
+        ``scores.timestamp``) and delete the rest so the leaderboard never
+        grows past the cap. Returns the number of models removed.
+
+        ``scores.timestamp`` is stamped on every ``set_score`` call, so the
+        oldest rows are the earliest additions to the leaderboard.
+        """
+        with self.lock:
+            cursor = self.conn.cursor()
+            cursor.execute("SELECT COUNT(*) FROM scores")
+            total = cursor.fetchone()[0]
+            excess = total - keep
+            if excess <= 0:
+                return 0
+            cursor.execute(
+                "SELECT model_id FROM scores ORDER BY timestamp ASC LIMIT ?",
+                (excess,),
+            )
+            old = [r[0] for r in cursor.fetchall()]
+            for mid in old:
+                cursor.execute("DELETE FROM scores WHERE model_id = ?", (mid,))
+                cursor.execute("DELETE FROM models WHERE model_id = ?", (mid,))
+                cursor.execute("DELETE FROM eval_results WHERE model_id = ?", (mid,))
+                cursor.execute("DELETE FROM achievements WHERE model_id = ?", (mid,))
+            self.conn.commit()
+            return len(old)
+
     def get_total_models(self, tier: Optional[str] = None, task: Optional[str] = None) -> int:
         """Return total count of models matching optional filters."""
         with self.lock:

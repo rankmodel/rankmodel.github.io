@@ -10,6 +10,10 @@ export default function AuroraBackground() {
   useEffect(() => {
     const mount = ref.current
     if (!mount) return
+    // Respect users who ask for less motion (accessibility + perf).
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
     let renderer, geo, mat, raf
     try {
       const w = mount.clientWidth || window.innerWidth

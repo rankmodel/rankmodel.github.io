@@ -1,24 +1,37 @@
-name: 🏆 Daily Leaderboard Update
+name: 🚀 Daily Model Refresh
 
-# NOTE: the daily ranking job now lives in daily-refresh.yml (500 new/day, cap 2000).
-# This workflow is kept as a MANUAL full-reseed tool only (no schedule, no push).
+# Incrementally ranks ~500 NEW HuggingFace models per day and keeps the
+# leaderboard capped at 2000 (oldest removed via FIFO). See
+# scripts/daily_refresh.py for the ranking/trim logic.
 on:
-  workflow_dispatch:        # allow manual trigger from GitHub UI
+  schedule:
+    - cron: '0 3 * * *'   # 3am UTC = 8:30am IST, every day
+  workflow_dispatch:
     inputs:
-      limit:
-        description: 'Number of models to seed'
+      daily:
+        description: 'New models to rank this run'
         required: false
-        default: '50'
+        default: '500'
+      cap:
+        description: 'Hard cap on total models kept'
+        required: false
+        default: '2000'
+      fetch_limit:
+        description: 'Newest models pulled per sort pass'
+        required: false
+        default: '1500'
+  push:
+    branches: [main]
 
 permissions:
-  contents: write           # needed to commit badge files back
+  contents: write
 
 env:
   HF_TOKEN: ${{ secrets.HF_TOKEN }}
   CACHE_DB_PATH: data/modelrank.db
 
 jobs:
-  update-leaderboard:
+  refresh-leaderboard:
     runs-on: ubuntu-latest
     timeout-minutes: 360
 
@@ -37,7 +50,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Restore leaderboard DB from cache
+      - name: Restore leaderboard DB from cache (carries the 2000-cap across days)
         uses: actions/cache@v4
         with:
           path: data/modelrank.db
@@ -45,13 +58,16 @@ jobs:
           restore-keys: |
             modelrank-db-
 
-      - name: Seed leaderboard (text-generation, top models)
+      - name: Rank 500 new models from HuggingFace (cap 2000)
         if: github.event_name != 'push'
         run: |
-          python scripts/seed_leaderboard.py \
+          python scripts/daily_refresh.py \
             --task text-generation \
-            --limit ${{ github.event.inputs.limit || '10000' }} \
-            --sort downloads \
+            --daily ${{ github.event.inputs.daily || '500' }} \
+            --cap ${{ github.event.inputs.cap || '2000' }} \
+            --fetch-limit ${{ github.event.inputs.fetch_limit || '1500' }} \
+            --sort createdAt \
+            --backup-sort lastModified \
             --delay 0.1
 
       - name: Generate static badges & leaderboard JSON
@@ -68,6 +84,9 @@ jobs:
       - name: Build React + Three.js frontend (ThreeUI)
         working-directory: web
         run: |
+          # emptyOutDir is false (to preserve leaderboard.json/badges), so
+          # drop previously-built JS/CSS chunks to avoid stale-asset pile-up.
+          rm -rf ../static_output/assets
           npm ci
           node node_modules/esbuild/install.js
           npm run build
@@ -85,7 +104,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./static_output
           publish_branch: gh-pages
-          commit_message: '🤖 Auto-update leaderboard & badges [${{ github.run_number }}]'
+          commit_message: '🤖 Auto-refresh leaderboard & badges [${{ github.run_number }}]'
 
       - name: Upload DB artifact (for debugging)
         uses: actions/upload-artifact@v4
