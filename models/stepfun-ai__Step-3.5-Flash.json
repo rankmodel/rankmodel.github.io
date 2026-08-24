@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 85.46,
     "efficiency": 27.75,
-    "community": 59.58,
+    "community": 59.57,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-24T02:56:08.277943",
+  "computed_at": "2026-08-24T12:08:18.181727",
   "details": {
     "benchmark_details": {
       "score": 85.463,
@@ -54,12 +54,12 @@
     "diversity_details": {
       "count": 7,
       "datasets": [
-        "swe-bench/swe-bench_verified",
         "internlm/wildclawbench",
         "gpqa",
-        "harborframework/terminal-bench-2.0",
-        "math",
         "mmlu-pro",
+        "math",
+        "swe-bench/swe-bench_verified",
+        "harborframework/terminal-bench-2.0",
         "cais/hle"
       ],
       "diversity_bonus": 10.0
@@ -85,7 +85,7 @@
     "coverage_percent": 23.1,
     "confidence": "low"
   },
-  "rank": 18,
+  "rank": 20,
   "badge_url": "https://rankmodel.github.io/badges/stepfun-ai/Step-3.5-Flash/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/stepfun-ai/Step-3.5-Flash/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/stepfun-ai/Step-3.5-Flash.svg"

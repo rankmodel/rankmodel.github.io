@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "C",
-  "computed_at": "2026-08-24T02:57:43.660462",
+  "computed_at": "2026-08-24T12:08:10.417905",
   "details": {
     "benchmark_details": {
       "score": 62.772000000000006,
@@ -53,8 +53,8 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
-        "mmlu-pro",
         "gsm8k",
+        "mmlu-pro",
         "gpqa"
       ],
       "diversity_bonus": 10.0
@@ -80,7 +80,7 @@
     "coverage_percent": 23.1,
     "confidence": "low"
   },
-  "rank": 66,
+  "rank": 69,
   "badge_url": "https://rankmodel.github.io/badges/ibm-granite/granite-4.1-30b/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/ibm-granite/granite-4.1-30b/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/ibm-granite/granite-4.1-30b.svg"

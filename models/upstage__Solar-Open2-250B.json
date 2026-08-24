@@ -1,6 +1,6 @@
 {
   "model_id": "upstage/Solar-Open2-250B",
-  "composite": 82.99,
+  "composite": 82.97,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 87.3,
     "efficiency": 27.59,
-    "community": 54.98,
+    "community": 54.84,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-24T03:01:18.606567",
+  "computed_at": "2026-08-24T12:16:25.172433",
   "details": {
     "benchmark_details": {
       "score": 87.30000000000001,
@@ -53,11 +53,11 @@
     "diversity_details": {
       "count": 6,
       "datasets": [
-        "swe-bench/swe-bench_verified",
         "gpqa",
-        "mercor/apex-agents",
-        "math",
         "mmlu-pro",
+        "math",
+        "mercor/apex-agents",
+        "swe-bench/swe-bench_verified",
         "cais/hle"
       ],
       "diversity_bonus": 10.0
@@ -83,7 +83,7 @@
     "coverage_percent": 23.1,
     "confidence": "low"
   },
-  "rank": 14,
+  "rank": 16,
   "badge_url": "https://rankmodel.github.io/badges/upstage/Solar-Open2-250B/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/upstage/Solar-Open2-250B/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/upstage/Solar-Open2-250B.svg"

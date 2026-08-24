@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "B",
-  "computed_at": "2026-08-24T02:53:06.398577",
+  "computed_at": "2026-08-24T12:06:01.586260",
   "details": {
     "benchmark_details": {
       "score": 75.55101010101251,
@@ -58,12 +58,12 @@
     "diversity_details": {
       "count": 6,
       "datasets": [
-        "swe-bench/swe-bench_verified",
         "gpqa",
-        "cais/hle",
         "mmlu-pro",
+        "swe-bench/swe-bench_verified",
+        "scaleai/swe-bench_pro",
         "lexam-benchmark/lexam",
-        "scaleai/swe-bench_pro"
+        "cais/hle"
       ],
       "diversity_bonus": 10.0
     },
@@ -89,7 +89,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 39,
+  "rank": 41,
   "badge_url": "https://rankmodel.github.io/badges/openai/gpt-oss-120b/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/openai/gpt-oss-120b/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/openai/gpt-oss-120b.svg"

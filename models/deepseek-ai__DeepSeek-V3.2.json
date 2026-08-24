@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-24T02:53:32.366314",
+  "computed_at": "2026-08-24T12:06:26.966687",
   "details": {
     "benchmark_details": {
       "score": 84.78600000000002,
@@ -55,19 +55,19 @@
       "count": 14,
       "datasets": [
         "futurema/evasionbench",
-        "swe-bench/swe-bench_verified",
-        "mercor/apex-swe",
         "internlm/wildclawbench",
-        "open-agent-leaderboard/results",
         "claw-eval/claw-eval",
+        "mercor/apex-swe",
         "collinear-ai/yc-bench",
         "gpqa",
-        "mercor/apex-agents",
-        "math",
-        "harborframework/terminal-bench-2.0",
         "mmlu-pro",
-        "cais/hle",
-        "scaleai/swe-bench_pro"
+        "open-agent-leaderboard/results",
+        "math",
+        "mercor/apex-agents",
+        "swe-bench/swe-bench_verified",
+        "harborframework/terminal-bench-2.0",
+        "scaleai/swe-bench_pro",
+        "cais/hle"
       ],
       "diversity_bonus": 10.0
     },
@@ -92,7 +92,7 @@
     "coverage_percent": 23.1,
     "confidence": "low"
   },
-  "rank": 17,
+  "rank": 19,
   "badge_url": "https://rankmodel.github.io/badges/deepseek-ai/DeepSeek-V3.2/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/deepseek-ai/DeepSeek-V3.2/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/deepseek-ai/DeepSeek-V3.2.svg"

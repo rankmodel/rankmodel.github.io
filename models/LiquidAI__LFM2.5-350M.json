@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 25.32,
     "efficiency": 99.79,
-    "community": 55.46,
+    "community": 55.44,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-24T02:56:47.096774",
+  "computed_at": "2026-08-24T12:11:29.837791",
   "details": {
     "benchmark_details": {
       "score": 25.325,
@@ -52,8 +52,8 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
-        "liquidai/ifstruct-v1.0",
         "mmlu-pro",
+        "liquidai/ifstruct-v1.0",
         "gpqa"
       ],
       "diversity_bonus": 10.0
@@ -80,7 +80,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 101,
+  "rank": 104,
   "badge_url": "https://rankmodel.github.io/badges/LiquidAI/LFM2.5-350M/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/LiquidAI/LFM2.5-350M/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/LiquidAI/LFM2.5-350M.svg"

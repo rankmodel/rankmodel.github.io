@@ -23,7 +23,7 @@
     "reproducibility": 30.0
   },
   "tier": "A",
-  "computed_at": "2026-08-24T02:53:20.551825",
+  "computed_at": "2026-08-24T12:06:13.132359",
   "details": {
     "benchmark_details": {
       "score": 87.25000000000001,
@@ -52,15 +52,15 @@
     "diversity_details": {
       "count": 9,
       "datasets": [
-        "swe-bench/swe-bench_verified",
-        "swe-bench/swe-bench_multilingual",
         "claw-eval/claw-eval",
+        "swe-bench/swe-bench_multilingual",
         "gpqa",
+        "mmlu-pro",
+        "swe-bench/swe-bench_verified",
+        "intelligencelab/long-horizon-terminal-bench",
         "harborframework/terminal-bench-2.0",
         "cais/hle",
-        "mmlu-pro",
-        "benchflow/skillsbench",
-        "intelligencelab/long-horizon-terminal-bench"
+        "benchflow/skillsbench"
       ],
       "diversity_bonus": 10.0
     },
@@ -86,7 +86,7 @@
     "coverage_percent": 15.4,
     "confidence": "low"
   },
-  "rank": 8,
+  "rank": 9,
   "badge_url": "https://rankmodel.github.io/badges/deepseek-ai/DeepSeek-V4-Flash/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/deepseek-ai/DeepSeek-V4-Flash/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/deepseek-ai/DeepSeek-V4-Flash.svg"

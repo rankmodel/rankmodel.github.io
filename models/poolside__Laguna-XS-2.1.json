@@ -1,6 +1,6 @@
 {
   "model_id": "poolside/Laguna-XS-2.1",
-  "composite": 21.55,
+  "composite": 21.56,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 0.0,
     "efficiency": 26.89,
-    "community": 52.1,
+    "community": 52.12,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-24T02:57:27.036181",
+  "computed_at": "2026-08-24T12:12:24.507337",
   "details": {
     "benchmark_details": {
       "score": 0.0,
@@ -48,9 +48,9 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
-        "harborframework/terminal-bench-2.0",
         "scaleai/swe-bench_pro",
-        "swe-bench/swe-bench_verified"
+        "swe-bench/swe-bench_verified",
+        "harborframework/terminal-bench-2.0"
       ],
       "diversity_bonus": 10.0
     },

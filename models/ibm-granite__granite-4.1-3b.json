@@ -1,6 +1,6 @@
 {
   "model_id": "ibm-granite/granite-4.1-3b",
-  "composite": 58.27,
+  "composite": 58.23,
   "rank_percentile": null,
   "extended": {
     "context_window": 0,
@@ -18,12 +18,12 @@
   "breakdown": {
     "benchmarks": 49.99,
     "efficiency": 61.51,
-    "community": 52.0,
+    "community": 51.67,
     "recency": 100.0,
     "reproducibility": 30.0
   },
   "tier": "D",
-  "computed_at": "2026-08-24T02:56:14.505195",
+  "computed_at": "2026-08-24T12:10:42.734979",
   "details": {
     "benchmark_details": {
       "score": 49.98800000000001,
@@ -53,8 +53,8 @@
     "diversity_details": {
       "count": 3,
       "datasets": [
-        "mmlu-pro",
         "gsm8k",
+        "mmlu-pro",
         "gpqa"
       ],
       "diversity_bonus": 10.0
@@ -80,7 +80,7 @@
     "coverage_percent": 23.1,
     "confidence": "low"
   },
-  "rank": 76,
+  "rank": 79,
   "badge_url": "https://rankmodel.github.io/badges/ibm-granite/granite-4.1-3b/score.svg",
   "shields_url": "https://rankmodel.github.io/badges/ibm-granite/granite-4.1-3b/shields.json",
   "dna_url": "https://rankmodel.github.io/dna/ibm-granite/granite-4.1-3b.svg"
