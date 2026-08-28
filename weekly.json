@@ -1,110 +1,110 @@
 {
-  "generated_at": "2026-08-27T13:51:22.937350Z",
-  "date": "August 27, 2026",
+  "generated_at": "2026-08-28T15:01:29.484689Z",
+  "date": "August 28, 2026",
   "top10": [
     {
       "rank": 1,
-      "model_id": "prism-ml/Bonsai-8B-gguf",
-      "composite": 84.99,
-      "tier": "A"
-    },
-    {
-      "rank": 2,
-      "model_id": "Nanbeige/Nanbeige4.2-3B",
-      "composite": 84.77,
-      "tier": "A"
-    },
-    {
-      "rank": 3,
-      "model_id": "ornith-ai/Ornith-1.5-35B-A3B",
-      "composite": 84.42,
-      "tier": "A"
-    },
-    {
-      "rank": 4,
-      "model_id": "zai-org/GLM-5.1",
-      "composite": 83.39,
-      "tier": "A"
-    },
-    {
-      "rank": 5,
-      "model_id": "zai-org/GLM-5",
-      "composite": 83.29,
-      "tier": "A"
-    },
-    {
-      "rank": 6,
-      "model_id": "ornith-ai/Ornith-1.5-9B",
-      "composite": 83.07,
-      "tier": "A"
-    },
-    {
-      "rank": 7,
-      "model_id": "internlm/internlm2_5-7b-chat",
-      "composite": 83.01,
-      "tier": "A"
-    },
-    {
-      "rank": 8,
       "model_id": "upstage/Solar-Open2-250B",
       "composite": 82.97,
       "tier": "A"
     },
     {
-      "rank": 9,
-      "model_id": "tencent/Hy3-preview",
-      "composite": 82.72,
+      "rank": 2,
+      "model_id": "tencent/Hy4-preview",
+      "composite": 82.93,
       "tier": "A"
     },
     {
-      "rank": 10,
-      "model_id": "zai-org/GLM-4.7",
-      "composite": 82.41,
+      "rank": 3,
+      "model_id": "prashim98/GLM-5.2",
+      "composite": 80.2,
       "tier": "A"
+    },
+    {
+      "rank": 4,
+      "model_id": "manaladan6/HYDRALINK",
+      "composite": 80.2,
+      "tier": "A"
+    },
+    {
+      "rank": 5,
+      "model_id": "sanjum2/GLM-5.2-Own",
+      "composite": 80.2,
+      "tier": "A"
+    },
+    {
+      "rank": 6,
+      "model_id": "manaladan6/GLM-5",
+      "composite": 77.75,
+      "tier": "B"
+    },
+    {
+      "rank": 7,
+      "model_id": "manaladan6/GLM-5.1",
+      "composite": 77.34,
+      "tier": "B"
+    },
+    {
+      "rank": 8,
+      "model_id": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+      "composite": 21.81,
+      "tier": "D"
+    },
+    {
+      "rank": 9,
+      "model_id": "zai-org/GLM-4-9B-0414",
+      "composite": 21.13,
+      "tier": "D"
+    },
+    {
+      "rank": 10,
+      "model_id": "sakamakismile/Huihui-Qwen3.6-27B-abliterated-NVFP4-MTP",
+      "composite": 20.93,
+      "tier": "D"
     }
   ],
   "trending": [
     {
-      "model_id": "Qwen/QwQ-32B",
-      "composite": 71.12,
-      "tier": "B",
-      "trend_score": 77.2,
-      "reason": "100/100 freshness",
-      "rank": 28
-    },
-    {
-      "model_id": "HuggingFaceH4/zephyr-7b-beta",
-      "composite": 46.05,
+      "model_id": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+      "composite": 21.81,
       "tier": "D",
-      "trend_score": 76.8,
+      "trend_score": 74.3,
       "reason": "100/100 freshness",
-      "rank": 47
+      "rank": 8
     },
     {
-      "model_id": "zai-org/GLM-5.1",
-      "composite": 83.39,
+      "model_id": "upstage/Solar-Open2-250B",
+      "composite": 82.97,
       "tier": "A",
-      "trend_score": 76.3,
+      "trend_score": 72.9,
       "reason": "100/100 freshness",
-      "rank": 4
+      "rank": 1
     },
     {
-      "model_id": "zai-org/GLM-4.7",
-      "composite": 82.41,
-      "tier": "A",
-      "trend_score": 76.3,
+      "model_id": "zai-org/GLM-4-9B-0414",
+      "composite": 21.13,
+      "tier": "D",
+      "trend_score": 68.7,
+      "reason": "100/100 freshness",
+      "rank": 9
+    },
+    {
+      "model_id": "sakamakismile/Huihui-Qwen3.6-27B-abliterated-NVFP4-MTP",
+      "composite": 20.93,
+      "tier": "D",
+      "trend_score": 67.5,
       "reason": "100/100 freshness",
       "rank": 10
     },
     {
-      "model_id": "zai-org/GLM-4.5",
-      "composite": 81.63,
-      "tier": "A",
-      "trend_score": 76.2,
+      "model_id": "anton-hugging/TimeOmni-1-7B",
+      "composite": 20.23,
+      "tier": "D",
+      "trend_score": 63.3,
       "reason": "100/100 freshness",
       "rank": 11
     }
   ],
-  "efficiency_king": "LiquidAI/LFM2.5-350M",
-  "newcomer": "prism-ml/Bonsai-8B-gguf"
+  "efficiency_king": "mondk/msh-tiny.For-Test-In-Note-Book-Google-Colab",
+  "newcomer": "upstage/Solar-Open2-250B"
 }
