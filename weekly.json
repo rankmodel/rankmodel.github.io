@@ -1,110 +1,110 @@
 {
-  "generated_at": "2026-08-28T15:01:29.484689Z",
-  "date": "August 28, 2026",
+  "generated_at": "2026-08-29T09:50:49.464156Z",
+  "date": "August 29, 2026",
   "top10": [
     {
       "rank": 1,
-      "model_id": "upstage/Solar-Open2-250B",
-      "composite": 82.97,
-      "tier": "A"
-    },
-    {
-      "rank": 2,
       "model_id": "tencent/Hy4-preview",
       "composite": 82.93,
       "tier": "A"
     },
     {
-      "rank": 3,
-      "model_id": "prashim98/GLM-5.2",
-      "composite": 80.2,
-      "tier": "A"
-    },
-    {
-      "rank": 4,
+      "rank": 2,
       "model_id": "manaladan6/HYDRALINK",
       "composite": 80.2,
       "tier": "A"
     },
     {
-      "rank": 5,
+      "rank": 3,
       "model_id": "sanjum2/GLM-5.2-Own",
       "composite": 80.2,
       "tier": "A"
     },
     {
-      "rank": 6,
+      "rank": 4,
       "model_id": "manaladan6/GLM-5",
       "composite": 77.75,
       "tier": "B"
     },
     {
-      "rank": 7,
+      "rank": 5,
       "model_id": "manaladan6/GLM-5.1",
       "composite": 77.34,
       "tier": "B"
     },
     {
+      "rank": 6,
+      "model_id": "JonathanColetti/Qwen3.8-27B-Uncensored-GGUF",
+      "composite": 22.82,
+      "tier": "D"
+    },
+    {
+      "rank": 7,
+      "model_id": "nvidia/Qwen3.6-35B-A3B-NVFP4",
+      "composite": 22.69,
+      "tier": "D"
+    },
+    {
       "rank": 8,
-      "model_id": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
-      "composite": 21.81,
+      "model_id": "RadixArk/Qwen3.8-27B-DSpark",
+      "composite": 21.37,
       "tier": "D"
     },
     {
       "rank": 9,
-      "model_id": "zai-org/GLM-4-9B-0414",
-      "composite": 21.13,
+      "model_id": "incoai/Qwen3.8-27B-DFlash2-GGUF",
+      "composite": 21.35,
       "tier": "D"
     },
     {
       "rank": 10,
-      "model_id": "sakamakismile/Huihui-Qwen3.6-27B-abliterated-NVFP4-MTP",
-      "composite": 20.93,
+      "model_id": "zai-org/GLM-5.3",
+      "composite": 21.35,
       "tier": "D"
     }
   ],
   "trending": [
     {
-      "model_id": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
-      "composite": 21.81,
+      "model_id": "JonathanColetti/Qwen3.8-27B-Uncensored-GGUF",
+      "composite": 22.82,
       "tier": "D",
-      "trend_score": 74.3,
+      "trend_score": 78.9,
       "reason": "100/100 freshness",
-      "rank": 8
+      "rank": 6
     },
     {
-      "model_id": "upstage/Solar-Open2-250B",
-      "composite": 82.97,
-      "tier": "A",
-      "trend_score": 72.9,
+      "model_id": "nvidia/Qwen3.6-35B-A3B-NVFP4",
+      "composite": 22.69,
+      "tier": "D",
+      "trend_score": 78.1,
       "reason": "100/100 freshness",
-      "rank": 1
+      "rank": 7
     },
     {
-      "model_id": "zai-org/GLM-4-9B-0414",
-      "composite": 21.13,
+      "model_id": "zai-org/GLM-5.3",
+      "composite": 21.35,
       "tier": "D",
-      "trend_score": 68.7,
-      "reason": "100/100 freshness",
-      "rank": 9
-    },
-    {
-      "model_id": "sakamakismile/Huihui-Qwen3.6-27B-abliterated-NVFP4-MTP",
-      "composite": 20.93,
-      "tier": "D",
-      "trend_score": 67.5,
+      "trend_score": 71.5,
       "reason": "100/100 freshness",
       "rank": 10
     },
     {
-      "model_id": "anton-hugging/TimeOmni-1-7B",
-      "composite": 20.23,
+      "model_id": "RadixArk/Qwen3.8-27B-DSpark",
+      "composite": 21.37,
       "tier": "D",
-      "trend_score": 63.3,
+      "trend_score": 70.2,
       "reason": "100/100 freshness",
-      "rank": 11
+      "rank": 8
+    },
+    {
+      "model_id": "incoai/Qwen3.8-27B-DFlash2-GGUF",
+      "composite": 21.35,
+      "tier": "D",
+      "trend_score": 70.0,
+      "reason": "100/100 freshness",
+      "rank": 9
     }
   ],
-  "efficiency_king": "mondk/msh-tiny.For-Test-In-Note-Book-Google-Colab",
-  "newcomer": "upstage/Solar-Open2-250B"
+  "efficiency_king": "unsloth/GLM-5.3-GGUF",
+  "newcomer": "tencent/Hy4-preview"
 }
