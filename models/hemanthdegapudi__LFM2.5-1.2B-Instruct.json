@@ -1,0 +1,85 @@
+{
+  "model_id": "hemanthdegapudi/LFM2.5-1.2B-Instruct",
+  "composite": 46.78,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 100,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 26.0,
+  "breakdown": {
+    "benchmarks": 38.89,
+    "efficiency": 91.08,
+    "community": 0.0,
+    "recency": 100.0,
+    "reproducibility": 20.0
+  },
+  "tier": "D",
+  "computed_at": "2026-09-02T07:40:18.012774",
+  "details": {
+    "benchmark_details": {
+      "score": 38.89,
+      "benchmarks_found": [
+        "gpqa"
+      ],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 38.89
+      }
+    },
+    "diversity_details": {
+      "count": 1,
+      "datasets": [
+        "gpqa"
+      ],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 4,
+  "badge_url": "https://rankmodel.github.io/badges/hemanthdegapudi/LFM2.5-1.2B-Instruct/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/hemanthdegapudi/LFM2.5-1.2B-Instruct/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/hemanthdegapudi/LFM2.5-1.2B-Instruct.svg"
+}
