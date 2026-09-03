@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-02T07:46:05.828079Z",
-  "date": "September 02, 2026",
+  "generated_at": "2026-09-03T07:51:13.320251Z",
+  "date": "September 03, 2026",
   "top10": [
     {
       "rank": 1,
@@ -10,32 +10,32 @@
     },
     {
       "rank": 2,
+      "model_id": "balajiduraisamy/GLM-5.2",
+      "composite": 80.2,
+      "tier": "A"
+    },
+    {
+      "rank": 3,
       "model_id": "Motif-Technologies/Motif-3",
       "composite": 79.01,
       "tier": "B"
     },
     {
-      "rank": 3,
+      "rank": 4,
       "model_id": "INCModel3/GLM-5.1-MXFP4-Mixed-CT-AutoRound",
       "composite": 77.34,
       "tier": "B"
     },
     {
-      "rank": 4,
+      "rank": 5,
       "model_id": "hemanthdegapudi/LFM2.5-1.2B-Instruct",
       "composite": 46.78,
       "tier": "D"
     },
     {
-      "rank": 5,
+      "rank": 6,
       "model_id": "BlinkDL/rwkv7-g1",
       "composite": 21.99,
-      "tier": "D"
-    },
-    {
-      "rank": 6,
-      "model_id": "zerodigest/Qwen3.8-27B-Uncensored-YMQ-MTP-GGUF",
-      "composite": 21.19,
       "tier": "D"
     },
     {
@@ -58,20 +58,12 @@
     },
     {
       "rank": 10,
-      "model_id": "reaperdoesntknow/Qwen3.5-0.8-Cyber-GGUF",
-      "composite": 20.36,
+      "model_id": "zerodigest/Qwen3.8-27B-YMQ-MTP-GGUF",
+      "composite": 20.28,
       "tier": "D"
     }
   ],
   "trending": [
-    {
-      "model_id": "zerodigest/Qwen3.8-27B-Uncensored-YMQ-MTP-GGUF",
-      "composite": 21.19,
-      "tier": "D",
-      "trend_score": 69.1,
-      "reason": "100/100 freshness",
-      "rank": 6
-    },
     {
       "model_id": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4-DSpark",
       "composite": 21.06,
@@ -86,7 +78,7 @@
       "tier": "D",
       "trend_score": 66.9,
       "reason": "100/100 freshness",
-      "rank": 5
+      "rank": 6
     },
     {
       "model_id": "Motif-Technologies/Motif-3",
@@ -94,7 +86,7 @@
       "tier": "B",
       "trend_score": 65.5,
       "reason": "100/100 freshness",
-      "rank": 2
+      "rank": 3
     },
     {
       "model_id": "kingjones777/Qwen3.8-27B-ROCmFP4-STRIX-MTP-GGUF",
@@ -103,6 +95,14 @@
       "trend_score": 65.4,
       "reason": "100/100 freshness",
       "rank": 9
+    },
+    {
+      "model_id": "zerodigest/Qwen3.8-27B-YMQ-MTP-GGUF",
+      "composite": 20.28,
+      "tier": "D",
+      "trend_score": 63.6,
+      "reason": "100/100 freshness",
+      "rank": 10
     }
   ],
   "efficiency_king": "hemanthdegapudi/LFM2.5-1.2B-Instruct",
