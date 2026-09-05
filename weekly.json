@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-04T07:51:25.057689Z",
-  "date": "September 04, 2026",
+  "generated_at": "2026-09-05T07:31:39.430433Z",
+  "date": "September 05, 2026",
   "top10": [
     {
       "rank": 1,
@@ -10,56 +10,56 @@
     },
     {
       "rank": 2,
-      "model_id": "INCModel3/GLM-5.1-MXFP4-Mixed-CT-AutoRound",
-      "composite": 77.34,
+      "model_id": "ibm-granite/granite-4.2-30b",
+      "composite": 75.28,
       "tier": "B"
     },
     {
       "rank": 3,
+      "model_id": "ibm-granite/granite-4.2-8b",
+      "composite": 73.45,
+      "tier": "B"
+    },
+    {
+      "rank": 4,
       "model_id": "hemanthdegapudi/LFM2.5-1.2B-Instruct",
       "composite": 46.78,
       "tier": "D"
     },
     {
-      "rank": 4,
+      "rank": 5,
+      "model_id": "jcbtc/Qwen3.8-Flash-CIRU-STRIX-IU4",
+      "composite": 21.12,
+      "tier": "D"
+    },
+    {
+      "rank": 6,
       "model_id": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4-DSpark",
       "composite": 21.06,
       "tier": "D"
     },
     {
-      "rank": 5,
+      "rank": 7,
       "model_id": "abenzerps/Apodex-1.1-mini-GGUF",
       "composite": 21.03,
       "tier": "D"
     },
     {
-      "rank": 6,
+      "rank": 8,
+      "model_id": "NANI-Nithin/Ling-3.0-tiny-GGUF",
+      "composite": 20.95,
+      "tier": "D"
+    },
+    {
+      "rank": 9,
       "model_id": "kingjones777/Qwen3.8-27B-ROCmFP4-STRIX-MTP-GGUF",
       "composite": 20.57,
       "tier": "D"
     },
     {
-      "rank": 7,
+      "rank": 10,
       "model_id": "zerodigest/Qwen3.8-27B-YMQ-MTP-GGUF",
       "composite": 20.28,
-      "tier": "D"
-    },
-    {
-      "rank": 8,
-      "model_id": "aj9o9/GLM-5.3-Flash-GGUF",
-      "composite": 19.93,
-      "tier": "D"
-    },
-    {
-      "rank": 9,
-      "model_id": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4-DFlash",
-      "composite": 19.82,
-      "tier": "D"
-    },
-    {
-      "rank": 10,
-      "model_id": "XHToken/Spark-X2.5-4B",
-      "composite": 19.67,
       "tier": "D"
     }
   ],
@@ -70,7 +70,23 @@
       "tier": "D",
       "trend_score": 68.3,
       "reason": "100/100 freshness",
-      "rank": 4
+      "rank": 6
+    },
+    {
+      "model_id": "ibm-granite/granite-4.2-30b",
+      "composite": 75.28,
+      "tier": "B",
+      "trend_score": 66.0,
+      "reason": "100/100 freshness",
+      "rank": 2
+    },
+    {
+      "model_id": "ibm-granite/granite-4.2-8b",
+      "composite": 73.45,
+      "tier": "B",
+      "trend_score": 65.9,
+      "reason": "100/100 freshness",
+      "rank": 3
     },
     {
       "model_id": "kingjones777/Qwen3.8-27B-ROCmFP4-STRIX-MTP-GGUF",
@@ -78,7 +94,7 @@
       "tier": "D",
       "trend_score": 65.4,
       "reason": "100/100 freshness",
-      "rank": 6
+      "rank": 9
     },
     {
       "model_id": "zerodigest/Qwen3.8-27B-YMQ-MTP-GGUF",
@@ -86,23 +102,7 @@
       "tier": "D",
       "trend_score": 63.6,
       "reason": "100/100 freshness",
-      "rank": 7
-    },
-    {
-      "model_id": "abenzerps/Apodex-1.1-mini-GGUF",
-      "composite": 21.03,
-      "tier": "D",
-      "trend_score": 61.2,
-      "reason": "100/100 freshness",
-      "rank": 5
-    },
-    {
-      "model_id": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4-DFlash",
-      "composite": 19.82,
-      "tier": "D",
-      "trend_score": 60.8,
-      "reason": "100/100 freshness",
-      "rank": 9
+      "rank": 10
     }
   ],
   "efficiency_king": "hemanthdegapudi/LFM2.5-1.2B-Instruct",
