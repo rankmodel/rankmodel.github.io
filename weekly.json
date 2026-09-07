@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-06T07:46:40.851348Z",
-  "date": "September 06, 2026",
+  "generated_at": "2026-09-07T08:01:38.325538Z",
+  "date": "September 07, 2026",
   "top10": [
     {
       "rank": 1,
-      "model_id": "balajiduraisamy/GLM-5.2",
-      "composite": 80.2,
-      "tier": "A"
+      "model_id": "Openintelligent123/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+      "composite": 75.38,
+      "tier": "B"
     },
     {
       "rank": 2,
@@ -22,44 +22,44 @@
     },
     {
       "rank": 4,
+      "model_id": "Ibackup/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4",
+      "composite": 71.84,
+      "tier": "B"
+    },
+    {
+      "rank": 5,
       "model_id": "jcbtc/Qwen3.8-Flash-CIRU-STRIX-IU4",
       "composite": 21.12,
       "tier": "D"
     },
     {
-      "rank": 5,
+      "rank": 6,
       "model_id": "NANI-Nithin/Ling-3.0-tiny-GGUF",
       "composite": 20.95,
       "tier": "D"
     },
     {
-      "rank": 6,
+      "rank": 7,
       "model_id": "RadixArk/GLM-5.3-NVFP4",
       "composite": 19.86,
       "tier": "D"
     },
     {
-      "rank": 7,
+      "rank": 8,
       "model_id": "jashepp/Ornith-1.5-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF",
       "composite": 19.82,
       "tier": "D"
     },
     {
-      "rank": 8,
+      "rank": 9,
       "model_id": "aj9o9/Qwen3.8-27B-Escha-W2-GGUF",
       "composite": 19.73,
       "tier": "D"
     },
     {
-      "rank": 9,
+      "rank": 10,
       "model_id": "litert-community/Phi-4-mini-reasoning",
       "composite": 19.72,
-      "tier": "D"
-    },
-    {
-      "rank": 10,
-      "model_id": "pugant/Qwen3.8-Flash-Next-ROCMFP4_STRIX_LEAN-GGUF",
-      "composite": 19.63,
       "tier": "D"
     }
   ],
@@ -86,7 +86,7 @@
       "tier": "D",
       "trend_score": 62.6,
       "reason": "100/100 freshness",
-      "rank": 6
+      "rank": 7
     },
     {
       "model_id": "jcbtc/Qwen3.8-Flash-CIRU-STRIX-IU4",
@@ -94,7 +94,7 @@
       "tier": "D",
       "trend_score": 61.7,
       "reason": "100/100 freshness",
-      "rank": 4
+      "rank": 5
     },
     {
       "model_id": "jashepp/Ornith-1.5-35B-A3B-MXFP4_MOE_Hybrid-Imatrix-GGUF",
@@ -102,9 +102,9 @@
       "tier": "D",
       "trend_score": 60.9,
       "reason": "100/100 freshness",
-      "rank": 7
+      "rank": 8
     }
   ],
   "efficiency_king": "jcbtc/Qwen3.8-Flash-CIRU-STRIX-IU4",
-  "newcomer": "balajiduraisamy/GLM-5.2"
+  "newcomer": "Openintelligent123/NVIDIA-Nemotron-3-Super-120B-A12B-BF16"
 }
