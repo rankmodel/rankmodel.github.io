@@ -1,0 +1,89 @@
+{
+  "model_id": "OrionLLM/OxCoder-9B",
+  "composite": 78.9,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 65,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 70,
+    "hub_completeness": 0
+  },
+  "extended_composite": 25.5,
+  "breakdown": {
+    "benchmarks": 86.9,
+    "efficiency": 48.09,
+    "community": 6.62,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "B",
+  "computed_at": "2026-09-08T07:51:55.819579",
+  "details": {
+    "benchmark_details": {
+      "score": 86.9,
+      "benchmarks_found": [
+        "gpqa"
+      ],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 86.9
+      }
+    },
+    "diversity_details": {
+      "count": 5,
+      "datasets": [
+        "cais/hle",
+        "scaleai/swe-bench_pro",
+        "gpqa",
+        "swe-bench/swe-bench_verified",
+        "harborframework/terminal-bench-2.1"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 2,
+  "badge_url": "https://rankmodel.github.io/badges/OrionLLM/OxCoder-9B/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/OrionLLM/OxCoder-9B/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/OrionLLM/OxCoder-9B.svg"
+}
