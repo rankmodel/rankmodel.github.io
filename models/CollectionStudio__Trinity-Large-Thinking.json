@@ -1,0 +1,87 @@
+{
+  "model_id": "CollectionStudio/Trinity-Large-Thinking",
+  "composite": 72.26,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 17.0,
+  "breakdown": {
+    "benchmarks": 79.85,
+    "efficiency": 27.29,
+    "community": 0.0,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "B",
+  "computed_at": "2026-09-09T07:55:12.720139",
+  "details": {
+    "benchmark_details": {
+      "score": 79.85000000000001,
+      "benchmarks_found": [
+        "gpqa",
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 76.3,
+        "mmlu-pro": 83.4
+      }
+    },
+    "diversity_details": {
+      "count": 3,
+      "datasets": [
+        "gpqa",
+        "mmlu-pro",
+        "swe-bench/swe-bench_verified"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 2,
+    "missing_benchmarks": [
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 15.4,
+    "confidence": "low"
+  },
+  "rank": 5,
+  "badge_url": "https://rankmodel.github.io/badges/CollectionStudio/Trinity-Large-Thinking/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/CollectionStudio/Trinity-Large-Thinking/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/CollectionStudio/Trinity-Large-Thinking.svg"
+}
