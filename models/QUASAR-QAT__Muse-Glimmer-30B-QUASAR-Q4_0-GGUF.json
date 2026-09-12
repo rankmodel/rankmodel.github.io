@@ -1,0 +1,88 @@
+{
+  "model_id": "QUASAR-QAT/Muse-Glimmer-30B-QUASAR-Q4_0-GGUF",
+  "composite": 71.45,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 45,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 70,
+    "hub_completeness": 0
+  },
+  "extended_composite": 23.5,
+  "breakdown": {
+    "benchmarks": 77.96,
+    "efficiency": 32.3,
+    "community": 2.56,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "B",
+  "computed_at": "2026-09-12T07:43:13.159669",
+  "details": {
+    "benchmark_details": {
+      "score": 77.964,
+      "benchmarks_found": [
+        "gpqa",
+        "gsm8k",
+        "mmlu-pro"
+      ],
+      "benchmarks_missing": [
+        "hle",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 67.68,
+        "gsm8k": 93.18,
+        "mmlu-pro": 80.64
+      }
+    },
+    "diversity_details": {
+      "count": 4,
+      "datasets": [
+        "gsm8k",
+        "mmlu-pro",
+        "gpqa",
+        "yentinglin/aime_2025"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 3,
+    "missing_benchmarks": [
+      "hle",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 23.1,
+    "confidence": "low"
+  },
+  "rank": 10,
+  "badge_url": "https://rankmodel.github.io/badges/QUASAR-QAT/Muse-Glimmer-30B-QUASAR-Q4_0-GGUF/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/QUASAR-QAT/Muse-Glimmer-30B-QUASAR-Q4_0-GGUF/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/QUASAR-QAT/Muse-Glimmer-30B-QUASAR-Q4_0-GGUF.svg"
+}
