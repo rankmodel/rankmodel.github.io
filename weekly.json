@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-14T08:41:07.254587Z",
-  "date": "September 14, 2026",
+  "generated_at": "2026-09-15T08:31:02.990297Z",
+  "date": "September 15, 2026",
   "top10": [
     {
       "rank": 1,
@@ -28,38 +28,38 @@
     },
     {
       "rank": 5,
-      "model_id": "0x795E2795/Obsidian-Alpha-26B-A4B-it-qat-q4_0",
-      "composite": 74.67,
-      "tier": "B"
-    },
-    {
-      "rank": 6,
-      "model_id": "0x795E2795/Obsidian-Alpha-26B-A4B-it-qat-w4a16-ct",
-      "composite": 73.82,
-      "tier": "B"
-    },
-    {
-      "rank": 7,
       "model_id": "Oscilla/Ternary-Bonsai-1.7B-mlx-2bit",
       "composite": 71.76,
       "tier": "B"
     },
     {
-      "rank": 8,
+      "rank": 6,
       "model_id": "QUASAR-QAT/Muse-Glimmer-30B-QUASAR-Q4_0-GGUF",
       "composite": 71.45,
       "tier": "B"
     },
     {
-      "rank": 9,
+      "rank": 7,
       "model_id": "zetianli/LFM2.5-350M-Experiment",
       "composite": 38.12,
       "tier": "D"
     },
     {
-      "rank": 10,
+      "rank": 8,
       "model_id": "agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
       "composite": 22.12,
+      "tier": "D"
+    },
+    {
+      "rank": 9,
+      "model_id": "XHToken/Spark-X2.5-4B",
+      "composite": 21.84,
+      "tier": "D"
+    },
+    {
+      "rank": 10,
+      "model_id": "Edge0/Edge0-35B-A3B-preview",
+      "composite": 21.38,
       "tier": "D"
     }
   ],
@@ -70,7 +70,7 @@
       "tier": "D",
       "trend_score": 73.0,
       "reason": "100/100 freshness",
-      "rank": 11
+      "rank": 9
     },
     {
       "model_id": "Edge0/Edge0-35B-A3B-preview",
@@ -78,7 +78,7 @@
       "tier": "D",
       "trend_score": 70.2,
       "reason": "100/100 freshness",
-      "rank": 12
+      "rank": 10
     },
     {
       "model_id": "ggml-org/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF",
@@ -86,7 +86,7 @@
       "tier": "D",
       "trend_score": 69.5,
       "reason": "100/100 freshness",
-      "rank": 13
+      "rank": 11
     },
     {
       "model_id": "agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
@@ -94,7 +94,7 @@
       "tier": "D",
       "trend_score": 67.7,
       "reason": "100/100 freshness",
-      "rank": 10
+      "rank": 8
     },
     {
       "model_id": "ReliquaryForge/qwen3-4b-base-dapo-v4",
@@ -102,7 +102,7 @@
       "tier": "D",
       "trend_score": 66.3,
       "reason": "100/100 freshness",
-      "rank": 15
+      "rank": 13
     }
   ],
   "efficiency_king": "Oscilla/Bonsai-8B-mlx-1bit",
