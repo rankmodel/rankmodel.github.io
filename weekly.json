@@ -1,65 +1,65 @@
 {
-  "generated_at": "2026-09-15T08:31:02.990297Z",
-  "date": "September 15, 2026",
+  "generated_at": "2026-09-16T08:21:09.663663Z",
+  "date": "September 16, 2026",
   "top10": [
     {
       "rank": 1,
-      "model_id": "Oscilla/Ternary-Bonsai-4B-mlx-2bit",
-      "composite": 82.24,
-      "tier": "A"
-    },
-    {
-      "rank": 2,
-      "model_id": "Oscilla/Bonsai-8B-mlx-1bit",
-      "composite": 81.6,
-      "tier": "A"
-    },
-    {
-      "rank": 3,
       "model_id": "ANGELOSEGRETO/GLM-5.2",
       "composite": 80.2,
       "tier": "A"
     },
     {
-      "rank": 4,
+      "rank": 2,
+      "model_id": "nesoai/GLM-5.2",
+      "composite": 80.2,
+      "tier": "A"
+    },
+    {
+      "rank": 3,
       "model_id": "ANGELOSEGRETO/MiniMax-M2.5",
       "composite": 76.02,
       "tier": "B"
     },
     {
-      "rank": 5,
-      "model_id": "Oscilla/Ternary-Bonsai-1.7B-mlx-2bit",
-      "composite": 71.76,
-      "tier": "B"
-    },
-    {
-      "rank": 6,
-      "model_id": "QUASAR-QAT/Muse-Glimmer-30B-QUASAR-Q4_0-GGUF",
-      "composite": 71.45,
-      "tier": "B"
-    },
-    {
-      "rank": 7,
-      "model_id": "zetianli/LFM2.5-350M-Experiment",
-      "composite": 38.12,
-      "tier": "D"
-    },
-    {
-      "rank": 8,
+      "rank": 4,
       "model_id": "agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
       "composite": 22.12,
       "tier": "D"
     },
     {
-      "rank": 9,
+      "rank": 5,
       "model_id": "XHToken/Spark-X2.5-4B",
       "composite": 21.84,
       "tier": "D"
     },
     {
-      "rank": 10,
+      "rank": 6,
       "model_id": "Edge0/Edge0-35B-A3B-preview",
       "composite": 21.38,
+      "tier": "D"
+    },
+    {
+      "rank": 7,
+      "model_id": "ggml-org/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF",
+      "composite": 21.26,
+      "tier": "D"
+    },
+    {
+      "rank": 8,
+      "model_id": "Vxtzq/Crowd-v1",
+      "composite": 20.94,
+      "tier": "D"
+    },
+    {
+      "rank": 9,
+      "model_id": "ReliquaryForge/qwen3-4b-base-dapo-v4",
+      "composite": 20.72,
+      "tier": "D"
+    },
+    {
+      "rank": 10,
+      "model_id": "IFM/K2-Horizon-0.9B",
+      "composite": 20.66,
       "tier": "D"
     }
   ],
@@ -70,7 +70,7 @@
       "tier": "D",
       "trend_score": 73.0,
       "reason": "100/100 freshness",
-      "rank": 9
+      "rank": 5
     },
     {
       "model_id": "Edge0/Edge0-35B-A3B-preview",
@@ -78,7 +78,7 @@
       "tier": "D",
       "trend_score": 70.2,
       "reason": "100/100 freshness",
-      "rank": 10
+      "rank": 6
     },
     {
       "model_id": "ggml-org/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF",
@@ -86,7 +86,7 @@
       "tier": "D",
       "trend_score": 69.5,
       "reason": "100/100 freshness",
-      "rank": 11
+      "rank": 7
     },
     {
       "model_id": "agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
@@ -94,7 +94,7 @@
       "tier": "D",
       "trend_score": 67.7,
       "reason": "100/100 freshness",
-      "rank": 8
+      "rank": 4
     },
     {
       "model_id": "ReliquaryForge/qwen3-4b-base-dapo-v4",
@@ -102,9 +102,9 @@
       "tier": "D",
       "trend_score": 66.3,
       "reason": "100/100 freshness",
-      "rank": 13
+      "rank": 9
     }
   ],
-  "efficiency_king": "Oscilla/Bonsai-8B-mlx-1bit",
-  "newcomer": "Oscilla/Ternary-Bonsai-4B-mlx-2bit"
+  "efficiency_king": "agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
+  "newcomer": "ANGELOSEGRETO/GLM-5.2"
 }
