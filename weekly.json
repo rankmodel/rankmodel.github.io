@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-16T08:21:09.663663Z",
-  "date": "September 16, 2026",
+  "generated_at": "2026-09-17T08:31:46.795349Z",
+  "date": "September 17, 2026",
   "top10": [
     {
       "rank": 1,
@@ -40,26 +40,26 @@
     },
     {
       "rank": 7,
-      "model_id": "ggml-org/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF",
-      "composite": 21.26,
-      "tier": "D"
-    },
-    {
-      "rank": 8,
       "model_id": "Vxtzq/Crowd-v1",
       "composite": 20.94,
       "tier": "D"
     },
     {
+      "rank": 8,
+      "model_id": "IFM/K2-Horizon-0.9B",
+      "composite": 20.66,
+      "tier": "D"
+    },
+    {
       "rank": 9,
-      "model_id": "ReliquaryForge/qwen3-4b-base-dapo-v4",
-      "composite": 20.72,
+      "model_id": "selorahomes/Selora-AI",
+      "composite": 20.32,
       "tier": "D"
     },
     {
       "rank": 10,
-      "model_id": "IFM/K2-Horizon-0.9B",
-      "composite": 20.66,
+      "model_id": "QLNI/SHADOW-250M",
+      "composite": 20.24,
       "tier": "D"
     }
   ],
@@ -81,14 +81,6 @@
       "rank": 6
     },
     {
-      "model_id": "ggml-org/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF",
-      "composite": 21.26,
-      "tier": "D",
-      "trend_score": 69.5,
-      "reason": "100/100 freshness",
-      "rank": 7
-    },
-    {
       "model_id": "agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
       "composite": 22.12,
       "tier": "D",
@@ -97,12 +89,20 @@
       "rank": 4
     },
     {
-      "model_id": "ReliquaryForge/qwen3-4b-base-dapo-v4",
-      "composite": 20.72,
+      "model_id": "IFM/K2-Horizon-0.9B",
+      "composite": 20.66,
       "tier": "D",
-      "trend_score": 66.3,
+      "trend_score": 65.9,
       "reason": "100/100 freshness",
-      "rank": 9
+      "rank": 8
+    },
+    {
+      "model_id": "ddalcu/Qwen3.8-Flash-Next-MLX-Serve-mixed-4-8bit",
+      "composite": 19.96,
+      "tier": "D",
+      "trend_score": 63.2,
+      "reason": "100/100 freshness",
+      "rank": 12
     }
   ],
   "efficiency_king": "agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
