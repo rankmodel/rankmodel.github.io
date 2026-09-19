@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-18T08:01:14.434905Z",
-  "date": "September 18, 2026",
+  "generated_at": "2026-09-19T07:55:51.296012Z",
+  "date": "September 19, 2026",
   "top10": [
     {
       "rank": 1,
@@ -10,85 +10,60 @@
     },
     {
       "rank": 2,
-      "model_id": "agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
-      "composite": 22.12,
-      "tier": "D"
-    },
-    {
-      "rank": 3,
-      "model_id": "bsaleh03/Qwen3.8-27B-ASCII-Condensed",
-      "composite": 19.92,
-      "tier": "D"
-    },
-    {
-      "rank": 4,
       "model_id": "devoffeed/gemma-cvantic",
       "composite": 19.39,
       "tier": "D"
     },
     {
-      "rank": 5,
-      "model_id": "HamoAI/hamo-score-0.6b",
-      "composite": 19.13,
-      "tier": "D"
-    },
-    {
-      "rank": 6,
+      "rank": 3,
       "model_id": "0xmoose0xmoose0xmoose/inference-rce-gpt2",
       "composite": 19.09,
       "tier": "D"
     },
     {
-      "rank": 7,
+      "rank": 4,
       "model_id": "IsValorum/Iris-mini-MTP-APEX-I-MiniPlus-GGUF",
       "composite": 19.0,
       "tier": "D"
     },
     {
-      "rank": 8,
+      "rank": 5,
       "model_id": "Sonorix/pulsar-v0.1-flash-gguf",
       "composite": 18.97,
       "tier": "D"
     },
     {
-      "rank": 9,
+      "rank": 6,
       "model_id": "atorsvn/Distil-NPC-gemma-3-270m-Q4_0-GGUF",
       "composite": 18.75,
       "tier": "D"
     },
     {
+      "rank": 7,
+      "model_id": "Aquiles-ai/Evo2-7B",
+      "composite": 18.44,
+      "tier": "D"
+    },
+    {
+      "rank": 8,
+      "model_id": "JasonYANG170/Qwen2.5-0.5B-Instruct-ONNX",
+      "composite": 18.42,
+      "tier": "D"
+    },
+    {
+      "rank": 9,
+      "model_id": "WilliamShakespear/Bingmath-v0.01",
+      "composite": 18.41,
+      "tier": "D"
+    },
+    {
       "rank": 10,
-      "model_id": "BioTorch/UI_Llama_3_2_1B",
-      "composite": 18.73,
+      "model_id": "fpadovani/nld-100mb-after-nld_heavy_zipf-ckpt500_seed3407_seed3407",
+      "composite": 18.33,
       "tier": "D"
     }
   ],
-  "trending": [
-    {
-      "model_id": "agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
-      "composite": 22.12,
-      "tier": "D",
-      "trend_score": 67.7,
-      "reason": "100/100 freshness",
-      "rank": 2
-    },
-    {
-      "model_id": "bsaleh03/Qwen3.8-27B-ASCII-Condensed",
-      "composite": 19.92,
-      "tier": "D",
-      "trend_score": 61.5,
-      "reason": "100/100 freshness",
-      "rank": 3
-    },
-    {
-      "model_id": "HamoAI/hamo-score-0.6b",
-      "composite": 19.13,
-      "tier": "D",
-      "trend_score": 56.7,
-      "reason": "100/100 freshness",
-      "rank": 5
-    }
-  ],
-  "efficiency_king": "agentionai/Qwen3.8-Flash-Next-ROCmFP4-FAST-imatrix-GGUF",
+  "trending": [],
+  "efficiency_king": "devoffeed/gemma-cvantic",
   "newcomer": "nesoai/GLM-5.2"
 }
