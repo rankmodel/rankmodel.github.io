@@ -250,7 +250,7 @@ If the model's score drops below your threshold, the CI step fails. Your pipelin
 
 **Q: Your scoring is biased toward benchmark performance, which anyone can game.**
 
-> A: True — that is why benchmark data only represents **70%** of the score, and all benchmark sources are public and auditable. Community signals, recency, and efficiency make up the remaining 30%. If you think a specific benchmark is being gamed, [open an issue](https://github.com/rankmodel/rankmodel.github.io/issues) and name it. We'll investigate and document the finding publicly.
+> A: Benchmark results account for **70%** of the score. The other 30% comes from recency (15%), community signals (10%), and efficiency (5%), so those factors can also affect a model's ranking. All benchmark sources are public and auditable. If you think a specific benchmark is being gamed, [open an issue](https://github.com/rankmodel/rankmodel.github.io/issues) and name it. We'll investigate and document the finding publicly.
 
 ---
 
