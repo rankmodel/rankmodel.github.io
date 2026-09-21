@@ -1,431 +1,11 @@
 {
-  "updated_at": "2026-09-20T08:26:07.721874Z",
+  "updated_at": "2026-09-21T08:41:24.730717Z",
   "total": 2000,
   "page": 6,
   "total_pages": 20,
   "models": [
     {
       "rank": 501,
-      "model_id": "amd/gpt-oss-20b-BF16-w4a16-llmcompressor",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/amd/gpt-oss-20b-BF16-w4a16-llmcompressor/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/amd/gpt-oss-20b-BF16-w4a16-llmcompressor/shields.json"
-    },
-    {
-      "rank": 502,
-      "model_id": "stratorys/zeta-2.1-mlx-mixed-3-4bit",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/stratorys/zeta-2.1-mlx-mixed-3-4bit/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/stratorys/zeta-2.1-mlx-mixed-3-4bit/shields.json"
-    },
-    {
-      "rank": 503,
-      "model_id": "DuoNeural/LFM2.5-8B-A1B-Hermes-Agentic-Coder-Abliterated-v2",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/DuoNeural/LFM2.5-8B-A1B-Hermes-Agentic-Coder-Abliterated-v2/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/DuoNeural/LFM2.5-8B-A1B-Hermes-Agentic-Coder-Abliterated-v2/shields.json"
-    },
-    {
-      "rank": 504,
-      "model_id": "vinaypoduri/vinayslm-tiny",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/vinaypoduri/vinayslm-tiny/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/vinaypoduri/vinayslm-tiny/shields.json"
-    },
-    {
-      "rank": 505,
-      "model_id": "Kuromi22/Xing4.0-29B-A4B-Official_Document_Writing_8k",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/Kuromi22/Xing4.0-29B-A4B-Official_Document_Writing_8k/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Kuromi22/Xing4.0-29B-A4B-Official_Document_Writing_8k/shields.json"
-    },
-    {
-      "rank": 506,
-      "model_id": "harlynmivra/Xing4.0-29B-A4B-Minutes",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/harlynmivra/Xing4.0-29B-A4B-Minutes/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/harlynmivra/Xing4.0-29B-A4B-Minutes/shields.json"
-    },
-    {
-      "rank": 507,
-      "model_id": "nuottroisaoduoc/Bonsai-2-27B-Ternary-CRACK-GGUF",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/nuottroisaoduoc/Bonsai-2-27B-Ternary-CRACK-GGUF/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/nuottroisaoduoc/Bonsai-2-27B-Ternary-CRACK-GGUF/shields.json"
-    },
-    {
-      "rank": 508,
-      "model_id": "hunter-P/roleplay-Xing4.0-29B",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/hunter-P/roleplay-Xing4.0-29B/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/hunter-P/roleplay-Xing4.0-29B/shields.json"
-    },
-    {
-      "rank": 509,
-      "model_id": "HITSZ-TMG/Xing4.0-29B-A4B-OR-SFT",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/HITSZ-TMG/Xing4.0-29B-A4B-OR-SFT/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/HITSZ-TMG/Xing4.0-29B-A4B-OR-SFT/shields.json"
-    },
-    {
-      "rank": 510,
-      "model_id": "HITSZ-TMG/Xing4.0-29B-A4B-Finance-SFT",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/HITSZ-TMG/Xing4.0-29B-A4B-Finance-SFT/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/HITSZ-TMG/Xing4.0-29B-A4B-Finance-SFT/shields.json"
-    },
-    {
-      "rank": 511,
-      "model_id": "theplayboy117/iz-instruct",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/theplayboy117/iz-instruct/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/theplayboy117/iz-instruct/shields.json"
-    },
-    {
-      "rank": 512,
-      "model_id": "DarkArtsForge/MN-Asmodeus-12B-v4",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/DarkArtsForge/MN-Asmodeus-12B-v4/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/DarkArtsForge/MN-Asmodeus-12B-v4/shields.json"
-    },
-    {
-      "rank": 513,
-      "model_id": "theplayboy117/iz-instruct-mini",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/theplayboy117/iz-instruct-mini/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/theplayboy117/iz-instruct-mini/shields.json"
-    },
-    {
-      "rank": 514,
-      "model_id": "kingjones777/Xing4.0-29B-A4B-BF16-GGUF",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/kingjones777/Xing4.0-29B-A4B-BF16-GGUF/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/kingjones777/Xing4.0-29B-A4B-BF16-GGUF/shields.json"
-    },
-    {
-      "rank": 515,
-      "model_id": "ukuwzi/Qweble-Sol-4B-MLX",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/ukuwzi/Qweble-Sol-4B-MLX/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/ukuwzi/Qweble-Sol-4B-MLX/shields.json"
-    },
-    {
-      "rank": 516,
-      "model_id": "VohoAI/voho-saudi-chat-4b",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/VohoAI/voho-saudi-chat-4b/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/VohoAI/voho-saudi-chat-4b/shields.json"
-    },
-    {
-      "rank": 517,
-      "model_id": "PixelML/Bonsai-2-27B-W4A16",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/PixelML/Bonsai-2-27B-W4A16/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/PixelML/Bonsai-2-27B-W4A16/shields.json"
-    },
-    {
-      "rank": 518,
-      "model_id": "mradermacher/Whittle-Qwen-3.8-35B-A3B-GGUF",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/mradermacher/Whittle-Qwen-3.8-35B-A3B-GGUF/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/mradermacher/Whittle-Qwen-3.8-35B-A3B-GGUF/shields.json"
-    },
-    {
-      "rank": 519,
-      "model_id": "BrodyMakezAI/Parvus",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/BrodyMakezAI/Parvus/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/BrodyMakezAI/Parvus/shields.json"
-    },
-    {
-      "rank": 520,
-      "model_id": "Parda21/Qwen3-4B-NWC-fp8",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/Parda21/Qwen3-4B-NWC-fp8/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Parda21/Qwen3-4B-NWC-fp8/shields.json"
-    },
-    {
-      "rank": 521,
-      "model_id": "litert-community/Gemma3-1B-IT-Tensor-G4-NPU",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/litert-community/Gemma3-1B-IT-Tensor-G4-NPU/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/litert-community/Gemma3-1B-IT-Tensor-G4-NPU/shields.json"
-    },
-    {
-      "rank": 522,
-      "model_id": "Parda21/Qwen3-0.6B-NWC",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/Parda21/Qwen3-0.6B-NWC/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Parda21/Qwen3-0.6B-NWC/shields.json"
-    },
-    {
-      "rank": 523,
-      "model_id": "elley-ai/elley-1b-v1",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/elley-ai/elley-1b-v1/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/elley-ai/elley-1b-v1/shields.json"
-    },
-    {
-      "rank": 524,
-      "model_id": "Arain119/sophia",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/Arain119/sophia/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Arain119/sophia/shields.json"
-    },
-    {
-      "rank": 525,
-      "model_id": "mradermacher/Qwen3.8-27B-Continuum-GGUF",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/mradermacher/Qwen3.8-27B-Continuum-GGUF/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/mradermacher/Qwen3.8-27B-Continuum-GGUF/shields.json"
-    },
-    {
-      "rank": 526,
-      "model_id": "anassaifi12/qwen2.5-3b_final_sql_tuned_model",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/anassaifi12/qwen2.5-3b_final_sql_tuned_model/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/anassaifi12/qwen2.5-3b_final_sql_tuned_model/shields.json"
-    },
-    {
-      "rank": 527,
-      "model_id": "Pluto-AI-Labs/Hades-4B-GGUF",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/Pluto-AI-Labs/Hades-4B-GGUF/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Pluto-AI-Labs/Hades-4B-GGUF/shields.json"
-    },
-    {
-      "rank": 528,
-      "model_id": "PulseOS/pulse-local-qwen3-0.6b",
-      "composite": 16.6,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 26.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/PulseOS/pulse-local-qwen3-0.6b/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/PulseOS/pulse-local-qwen3-0.6b/shields.json"
-    },
-    {
-      "rank": 529,
       "model_id": "costinstroie/lfm-medical-1.2b-GGUF",
       "composite": 16.6,
       "tier": "D",
@@ -440,7 +20,7 @@
       "shields_url": "https://rankmodel.github.io/badges/costinstroie/lfm-medical-1.2b-GGUF/shields.json"
     },
     {
-      "rank": 530,
+      "rank": 502,
       "model_id": "coderian/StoryGPT",
       "composite": 16.6,
       "tier": "D",
@@ -455,7 +35,7 @@
       "shields_url": "https://rankmodel.github.io/badges/coderian/StoryGPT/shields.json"
     },
     {
-      "rank": 531,
+      "rank": 503,
       "model_id": "aniruddhabagal/fraud-sentinel-1b",
       "composite": 16.6,
       "tier": "D",
@@ -470,7 +50,7 @@
       "shields_url": "https://rankmodel.github.io/badges/aniruddhabagal/fraud-sentinel-1b/shields.json"
     },
     {
-      "rank": 532,
+      "rank": 504,
       "model_id": "Pluto-AI-Labs/Hades-4B-Abliterated",
       "composite": 16.6,
       "tier": "D",
@@ -485,37 +65,442 @@
       "shields_url": "https://rankmodel.github.io/badges/Pluto-AI-Labs/Hades-4B-Abliterated/shields.json"
     },
     {
-      "rank": 533,
-      "model_id": "local-inference-lab/GLM-5.3-Flash-NVFP4-Spark",
-      "composite": 16.35,
+      "rank": 505,
+      "model_id": "SOYORiN/Susu",
+      "composite": 16.6,
       "tier": "D",
       "breakdown": {
         "benchmarks": 0.0,
-        "efficiency": 21.89,
+        "efficiency": 26.89,
         "community": 2.56,
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/local-inference-lab/GLM-5.3-Flash-NVFP4-Spark/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/local-inference-lab/GLM-5.3-Flash-NVFP4-Spark/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/SOYORiN/Susu/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/SOYORiN/Susu/shields.json"
+    },
+    {
+      "rank": 506,
+      "model_id": "anuroy007/sales-text2sql-qwen-0.5b",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/anuroy007/sales-text2sql-qwen-0.5b/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/anuroy007/sales-text2sql-qwen-0.5b/shields.json"
+    },
+    {
+      "rank": 507,
+      "model_id": "Sudi8dw/Ternary-Bonsai-2-27B-gguf",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/Sudi8dw/Ternary-Bonsai-2-27B-gguf/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Sudi8dw/Ternary-Bonsai-2-27B-gguf/shields.json"
+    },
+    {
+      "rank": 508,
+      "model_id": "elsacp/legal-assistant-sft",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/elsacp/legal-assistant-sft/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/elsacp/legal-assistant-sft/shields.json"
+    },
+    {
+      "rank": 509,
+      "model_id": "mradermacher/Qwen3.6-35B-A3B-Brainwaves-Nex-Uncensored-i1-GGUF",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/mradermacher/Qwen3.6-35B-A3B-Brainwaves-Nex-Uncensored-i1-GGUF/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/mradermacher/Qwen3.6-35B-A3B-Brainwaves-Nex-Uncensored-i1-GGUF/shields.json"
+    },
+    {
+      "rank": 510,
+      "model_id": "BrandonHowe/Qwen3-8b-urban-qwen-20260920-full-CPT-merged-epoch-3",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/BrandonHowe/Qwen3-8b-urban-qwen-20260920-full-CPT-merged-epoch-3/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/BrandonHowe/Qwen3-8b-urban-qwen-20260920-full-CPT-merged-epoch-3/shields.json"
+    },
+    {
+      "rank": 511,
+      "model_id": "FlyinGodzilla/AMOR-GatedDeltaNet-1.5B",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/FlyinGodzilla/AMOR-GatedDeltaNet-1.5B/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/FlyinGodzilla/AMOR-GatedDeltaNet-1.5B/shields.json"
+    },
+    {
+      "rank": 512,
+      "model_id": "FlyinGodzilla/AMOR-Mamba2-1.5B",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/FlyinGodzilla/AMOR-Mamba2-1.5B/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/FlyinGodzilla/AMOR-Mamba2-1.5B/shields.json"
+    },
+    {
+      "rank": 513,
+      "model_id": "FlyinGodzilla/AMOR-GatedDeltaNet-440M",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/FlyinGodzilla/AMOR-GatedDeltaNet-440M/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/FlyinGodzilla/AMOR-GatedDeltaNet-440M/shields.json"
+    },
+    {
+      "rank": 514,
+      "model_id": "FlyinGodzilla/AMOR-Mamba2-440M",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/FlyinGodzilla/AMOR-Mamba2-440M/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/FlyinGodzilla/AMOR-Mamba2-440M/shields.json"
+    },
+    {
+      "rank": 515,
+      "model_id": "FlyinGodzilla/AMOR-GatedDeltaNet-180M",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/FlyinGodzilla/AMOR-GatedDeltaNet-180M/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/FlyinGodzilla/AMOR-GatedDeltaNet-180M/shields.json"
+    },
+    {
+      "rank": 516,
+      "model_id": "IsValorum/Qwen3.8-35B-A3B-Distill-MTP-APEX-I-MiniPlus-V2.1-Abliterated-GGUF",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/IsValorum/Qwen3.8-35B-A3B-Distill-MTP-APEX-I-MiniPlus-V2.1-Abliterated-GGUF/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/IsValorum/Qwen3.8-35B-A3B-Distill-MTP-APEX-I-MiniPlus-V2.1-Abliterated-GGUF/shields.json"
+    },
+    {
+      "rank": 517,
+      "model_id": "FlyinGodzilla/AMOR-Mamba2-180M",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/FlyinGodzilla/AMOR-Mamba2-180M/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/FlyinGodzilla/AMOR-Mamba2-180M/shields.json"
+    },
+    {
+      "rank": 518,
+      "model_id": "KolmogorovAcc/sovereign-anthology-gemma-2-2b",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/KolmogorovAcc/sovereign-anthology-gemma-2-2b/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/KolmogorovAcc/sovereign-anthology-gemma-2-2b/shields.json"
+    },
+    {
+      "rank": 519,
+      "model_id": "ApolloRaines/Speedmark-Phi4-mini",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/ApolloRaines/Speedmark-Phi4-mini/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/ApolloRaines/Speedmark-Phi4-mini/shields.json"
+    },
+    {
+      "rank": 520,
+      "model_id": "Timothyemmanuel/Arakandar",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/Timothyemmanuel/Arakandar/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Timothyemmanuel/Arakandar/shields.json"
+    },
+    {
+      "rank": 521,
+      "model_id": "textilelabs/Loom-Weave-3",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/textilelabs/Loom-Weave-3/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/textilelabs/Loom-Weave-3/shields.json"
+    },
+    {
+      "rank": 522,
+      "model_id": "superAVTR/tinizong-46M",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/superAVTR/tinizong-46M/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/superAVTR/tinizong-46M/shields.json"
+    },
+    {
+      "rank": 523,
+      "model_id": "kingjones777/Ternary-Bonsai-2-27B-ROCm-gfx1151",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/kingjones777/Ternary-Bonsai-2-27B-ROCm-gfx1151/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/kingjones777/Ternary-Bonsai-2-27B-ROCm-gfx1151/shields.json"
+    },
+    {
+      "rank": 524,
+      "model_id": "vincespeed/Xing4.0-29B-A4B-APEX-GGUF",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/vincespeed/Xing4.0-29B-A4B-APEX-GGUF/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/vincespeed/Xing4.0-29B-A4B-APEX-GGUF/shields.json"
+    },
+    {
+      "rank": 525,
+      "model_id": "nextgenaimx/Rebekah-AI-1.8B",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/nextgenaimx/Rebekah-AI-1.8B/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/nextgenaimx/Rebekah-AI-1.8B/shields.json"
+    },
+    {
+      "rank": 526,
+      "model_id": "sudoingx/Ternary-Bonsai-2-27B-PTQ1_0-MTP-GGUF",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/sudoingx/Ternary-Bonsai-2-27B-PTQ1_0-MTP-GGUF/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/sudoingx/Ternary-Bonsai-2-27B-PTQ1_0-MTP-GGUF/shields.json"
+    },
+    {
+      "rank": 527,
+      "model_id": "prithivMLmods/Qwen-Image-2.1-PE-T2I-FP8",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/prithivMLmods/Qwen-Image-2.1-PE-T2I-FP8/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/prithivMLmods/Qwen-Image-2.1-PE-T2I-FP8/shields.json"
+    },
+    {
+      "rank": 528,
+      "model_id": "Zrald/Zrald-qwen3.8-27b-v2",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/Zrald/Zrald-qwen3.8-27b-v2/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Zrald/Zrald-qwen3.8-27b-v2/shields.json"
+    },
+    {
+      "rank": 529,
+      "model_id": "Taimwe/qwen2.5-coder-7b-pro-merged",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/Taimwe/qwen2.5-coder-7b-pro-merged/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Taimwe/qwen2.5-coder-7b-pro-merged/shields.json"
+    },
+    {
+      "rank": 530,
+      "model_id": "AvinashRicky/AViGPT",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/AvinashRicky/AViGPT/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/AvinashRicky/AViGPT/shields.json"
+    },
+    {
+      "rank": 531,
+      "model_id": "Taimwe/qwen2.5-coder-7b-pro",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/Taimwe/qwen2.5-coder-7b-pro/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Taimwe/qwen2.5-coder-7b-pro/shields.json"
+    },
+    {
+      "rank": 532,
+      "model_id": "prithivMLmods/Nexus-9B-CodeCore-Merge-GGUF",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/prithivMLmods/Nexus-9B-CodeCore-Merge-GGUF/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/prithivMLmods/Nexus-9B-CodeCore-Merge-GGUF/shields.json"
+    },
+    {
+      "rank": 533,
+      "model_id": "prithivMLmods/Nexus-9B-CodeCore-Merge",
+      "composite": 16.6,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 26.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/prithivMLmods/Nexus-9B-CodeCore-Merge/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/prithivMLmods/Nexus-9B-CodeCore-Merge/shields.json"
     },
     {
       "rank": 534,
-      "model_id": "mrmanan762/EarthMind",
-      "composite": 16.35,
-      "tier": "D",
-      "breakdown": {
-        "benchmarks": 0.0,
-        "efficiency": 21.89,
-        "community": 2.56,
-        "recency": 100.0,
-        "reproducibility": 0.0
-      },
-      "badge_url": "https://rankmodel.github.io/badges/mrmanan762/EarthMind/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/mrmanan762/EarthMind/shields.json"
-    },
-    {
-      "rank": 535,
       "model_id": "huginnfork/Qwen3.8-Flash-Next-NVFP4-Abliterated",
       "composite": 16.35,
       "tier": "D",
@@ -530,7 +515,7 @@
       "shields_url": "https://rankmodel.github.io/badges/huginnfork/Qwen3.8-Flash-Next-NVFP4-Abliterated/shields.json"
     },
     {
-      "rank": 536,
+      "rank": 535,
       "model_id": "Laerins/OpenYourMind-NVIDIA-Nemotron-3-Ultra-550B-A55B-abliterated-uncensored",
       "composite": 16.35,
       "tier": "D",
@@ -545,8 +530,23 @@
       "shields_url": "https://rankmodel.github.io/badges/Laerins/OpenYourMind-NVIDIA-Nemotron-3-Ultra-550B-A55B-abliterated-uncensored/shields.json"
     },
     {
+      "rank": 536,
+      "model_id": "Thaurock/Qwen3.5-122B-A10B-abliterated-GGUF",
+      "composite": 16.35,
+      "tier": "D",
+      "breakdown": {
+        "benchmarks": 0.0,
+        "efficiency": 21.89,
+        "community": 2.56,
+        "recency": 100.0,
+        "reproducibility": 0.0
+      },
+      "badge_url": "https://rankmodel.github.io/badges/Thaurock/Qwen3.5-122B-A10B-abliterated-GGUF/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Thaurock/Qwen3.5-122B-A10B-abliterated-GGUF/shields.json"
+    },
+    {
       "rank": 537,
-      "model_id": "Jeesup/svd-safety-l2_remove30_swapgapiter_b010_r02",
+      "model_id": "kopo17/kabyul-exaone-restaurant-lora-merged",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -556,12 +556,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_remove30_swapgapiter_b010_r02/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_remove30_swapgapiter_b010_r02/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/kopo17/kabyul-exaone-restaurant-lora-merged/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/kopo17/kabyul-exaone-restaurant-lora-merged/shields.json"
     },
     {
       "rank": 538,
-      "model_id": "imYChaudhary22/zen-polish-v2-1.7b-4bit",
+      "model_id": "Jeesup/svd-safety-mistral_remove30_swapgapiter_b010",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -571,12 +571,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/imYChaudhary22/zen-polish-v2-1.7b-4bit/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/imYChaudhary22/zen-polish-v2-1.7b-4bit/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-mistral_remove30_swapgapiter_b010/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-mistral_remove30_swapgapiter_b010/shields.json"
     },
     {
       "rank": 539,
-      "model_id": "formalmathatepfl/qwen3-8b-feedback-with-repair",
+      "model_id": "fpadovani/jpn-100mb-after-wc-zipf-newlex-eng-ckpt4000_seed3407_seed3407",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -586,12 +586,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/formalmathatepfl/qwen3-8b-feedback-with-repair/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/formalmathatepfl/qwen3-8b-feedback-with-repair/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/fpadovani/jpn-100mb-after-wc-zipf-newlex-eng-ckpt4000_seed3407_seed3407/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/fpadovani/jpn-100mb-after-wc-zipf-newlex-eng-ckpt4000_seed3407_seed3407/shields.json"
     },
     {
       "rank": 540,
-      "model_id": "sivasub987/iso20022-extract-53m",
+      "model_id": "Taku-Yumilab/qwen3-1.7b-issa-haiku-lora",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -601,12 +601,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/sivasub987/iso20022-extract-53m/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/sivasub987/iso20022-extract-53m/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Taku-Yumilab/qwen3-1.7b-issa-haiku-lora/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Taku-Yumilab/qwen3-1.7b-issa-haiku-lora/shields.json"
     },
     {
       "rank": 541,
-      "model_id": "Jeesup/svd-safety-l2_remove30_swapgapiter_b010_r01",
+      "model_id": "HarmenWessels/Spark-X2.5-4B-int4-symg128-ov",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -616,12 +616,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_remove30_swapgapiter_b010_r01/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_remove30_swapgapiter_b010_r01/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/HarmenWessels/Spark-X2.5-4B-int4-symg128-ov/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/HarmenWessels/Spark-X2.5-4B-int4-symg128-ov/shields.json"
     },
     {
       "rank": 542,
-      "model_id": "Ezksk1/qwen3-4b-with-internal-tools",
+      "model_id": "ai-forever/Zarya-4B",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -631,12 +631,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Ezksk1/qwen3-4b-with-internal-tools/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Ezksk1/qwen3-4b-with-internal-tools/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/ai-forever/Zarya-4B/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/ai-forever/Zarya-4B/shields.json"
     },
     {
       "rank": 543,
-      "model_id": "MMOPD/Qwen3-4B-OT3-tau2-3ep",
+      "model_id": "fpadovani/arb-arab-100mb-after-ppt-shuff-dyck-100mb-ckpt500_seed455",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -646,12 +646,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/MMOPD/Qwen3-4B-OT3-tau2-3ep/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/MMOPD/Qwen3-4B-OT3-tau2-3ep/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-100mb-after-ppt-shuff-dyck-100mb-ckpt500_seed455/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-100mb-after-ppt-shuff-dyck-100mb-ckpt500_seed455/shields.json"
     },
     {
       "rank": 544,
-      "model_id": "zero-proof-ai/text-to-sql-shop-nemotron-8b-r1",
+      "model_id": "lubzo/gemma-2-2b-it-marathi-lora",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -661,12 +661,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/zero-proof-ai/text-to-sql-shop-nemotron-8b-r1/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/zero-proof-ai/text-to-sql-shop-nemotron-8b-r1/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/lubzo/gemma-2-2b-it-marathi-lora/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/lubzo/gemma-2-2b-it-marathi-lora/shields.json"
     },
     {
       "rank": 545,
-      "model_id": "chenhaodev/qwen3-8b-nutrition-lora",
+      "model_id": "ai-forever/Zarya-1.7B",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -676,12 +676,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/chenhaodev/qwen3-8b-nutrition-lora/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/chenhaodev/qwen3-8b-nutrition-lora/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/ai-forever/Zarya-1.7B/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/ai-forever/Zarya-1.7B/shields.json"
     },
     {
       "rank": 546,
-      "model_id": "gauravrghosal/Qwen3-1.7B-Base-KnK6-RL",
+      "model_id": "ai-forever/Zarya-0.6B",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -691,12 +691,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/gauravrghosal/Qwen3-1.7B-Base-KnK6-RL/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/gauravrghosal/Qwen3-1.7B-Base-KnK6-RL/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/ai-forever/Zarya-0.6B/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/ai-forever/Zarya-0.6B/shields.json"
     },
     {
       "rank": 547,
-      "model_id": "MMOPD/Qwen3-4B-OT3-tau2-2ep",
+      "model_id": "jaebinn/exaone-4.0-restaurant-merged",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -706,12 +706,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/MMOPD/Qwen3-4B-OT3-tau2-2ep/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/MMOPD/Qwen3-4B-OT3-tau2-2ep/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/jaebinn/exaone-4.0-restaurant-merged/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/jaebinn/exaone-4.0-restaurant-merged/shields.json"
     },
     {
       "rank": 548,
-      "model_id": "lec301198/qwen-complaints-ft",
+      "model_id": "godsofheaven/functiongemma-270m-it-simple-tool-calling",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -721,12 +721,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/lec301198/qwen-complaints-ft/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/lec301198/qwen-complaints-ft/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/godsofheaven/functiongemma-270m-it-simple-tool-calling/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/godsofheaven/functiongemma-270m-it-simple-tool-calling/shields.json"
     },
     {
       "rank": 549,
-      "model_id": "fpadovani/arb-arab-100mb-100mb_seed3407",
+      "model_id": "VladShash/qwen3-8b-feedback-with-repair-distilled",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -736,12 +736,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-100mb-100mb_seed3407/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-100mb-100mb_seed3407/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/VladShash/qwen3-8b-feedback-with-repair-distilled/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/VladShash/qwen3-8b-feedback-with-repair-distilled/shields.json"
     },
     {
       "rank": 550,
-      "model_id": "MMOPD/Qwen3-4B-OT3-tau2-1ep",
+      "model_id": "Prii27/qwen4b-tallip-hopeedi",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -751,12 +751,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/MMOPD/Qwen3-4B-OT3-tau2-1ep/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/MMOPD/Qwen3-4B-OT3-tau2-1ep/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Prii27/qwen4b-tallip-hopeedi/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Prii27/qwen4b-tallip-hopeedi/shields.json"
     },
     {
       "rank": 551,
-      "model_id": "fpadovani/arb-arab-100mb-after-ppt-Dp-10mb-ckpt500_seed3407",
+      "model_id": "d4rkninja/tanpo-fundraising",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -766,12 +766,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-100mb-after-ppt-Dp-10mb-ckpt500_seed3407/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-100mb-after-ppt-Dp-10mb-ckpt500_seed3407/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/d4rkninja/tanpo-fundraising/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/d4rkninja/tanpo-fundraising/shields.json"
     },
     {
       "rank": 552,
-      "model_id": "rhymeas/Mavery-Lehrling-0.8B-MLX-8bit",
+      "model_id": "lubzo/gemma-2b-marathi-lora",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -781,12 +781,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/rhymeas/Mavery-Lehrling-0.8B-MLX-8bit/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/rhymeas/Mavery-Lehrling-0.8B-MLX-8bit/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/lubzo/gemma-2b-marathi-lora/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/lubzo/gemma-2b-marathi-lora/shields.json"
     },
     {
       "rank": 553,
-      "model_id": "teaguesterling/qwen3.5-4b-astcss",
+      "model_id": "davetha/Ternary-Bonsai-2-27B-Abliterated-PQ2_0-GGUF",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -796,12 +796,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/teaguesterling/qwen3.5-4b-astcss/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/teaguesterling/qwen3.5-4b-astcss/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/davetha/Ternary-Bonsai-2-27B-Abliterated-PQ2_0-GGUF/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/davetha/Ternary-Bonsai-2-27B-Abliterated-PQ2_0-GGUF/shields.json"
     },
     {
       "rank": 554,
-      "model_id": "Geyanth08/telecom-dslm-qwen3-8b",
+      "model_id": "sandeep123/grpo-qwen3-4b-nonthinking-entropy-2048-20260918",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -811,12 +811,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Geyanth08/telecom-dslm-qwen3-8b/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Geyanth08/telecom-dslm-qwen3-8b/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/sandeep123/grpo-qwen3-4b-nonthinking-entropy-2048-20260918/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/sandeep123/grpo-qwen3-4b-nonthinking-entropy-2048-20260918/shields.json"
     },
     {
       "rank": 555,
-      "model_id": "flashback2k/FlashModel-Qwen3.5-9B-GGUF",
+      "model_id": "sandeep123/grpo-qwen3-4b-nonthinking-likelihood-2048-20260918",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -826,12 +826,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/flashback2k/FlashModel-Qwen3.5-9B-GGUF/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/flashback2k/FlashModel-Qwen3.5-9B-GGUF/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/sandeep123/grpo-qwen3-4b-nonthinking-likelihood-2048-20260918/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/sandeep123/grpo-qwen3-4b-nonthinking-likelihood-2048-20260918/shields.json"
     },
     {
       "rank": 556,
-      "model_id": "anonymousgiraffe/Decomposer-Qwen3-8B",
+      "model_id": "sandeep123/grpo-qwen3-1.7b-nonthinking-entropy-2048-20260918",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -841,12 +841,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/anonymousgiraffe/Decomposer-Qwen3-8B/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/anonymousgiraffe/Decomposer-Qwen3-8B/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/sandeep123/grpo-qwen3-1.7b-nonthinking-entropy-2048-20260918/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/sandeep123/grpo-qwen3-1.7b-nonthinking-entropy-2048-20260918/shields.json"
     },
     {
       "rank": 557,
-      "model_id": "gradients-io-tournaments/tournament-tourn_5abc2fe9f0667979_20260914-4b628476-a7a9-4a47-bbe2-360fe6104db2-5GU4Xkd3",
+      "model_id": "sandeep123/grpo-qwen3-1.7b-nonthinking-likelihood-2048-20260918",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -856,12 +856,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/gradients-io-tournaments/tournament-tourn_5abc2fe9f0667979_20260914-4b628476-a7a9-4a47-bbe2-360fe6104db2-5GU4Xkd3/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/gradients-io-tournaments/tournament-tourn_5abc2fe9f0667979_20260914-4b628476-a7a9-4a47-bbe2-360fe6104db2-5GU4Xkd3/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/sandeep123/grpo-qwen3-1.7b-nonthinking-likelihood-2048-20260918/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/sandeep123/grpo-qwen3-1.7b-nonthinking-likelihood-2048-20260918/shields.json"
     },
     {
       "rank": 558,
-      "model_id": "Rislantrs/telecom-troubleshooter-qwen2.5-7b-balanced-lora",
+      "model_id": "Jeesup/svd-safety-mistral_remove20_swapgapiter_b010",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -871,12 +871,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Rislantrs/telecom-troubleshooter-qwen2.5-7b-balanced-lora/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Rislantrs/telecom-troubleshooter-qwen2.5-7b-balanced-lora/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-mistral_remove20_swapgapiter_b010/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-mistral_remove20_swapgapiter_b010/shields.json"
     },
     {
       "rank": 559,
-      "model_id": "gradients-io-tournaments/tournament-tourn_5abc2fe9f0667979_20260914-4b628476-a7a9-4a47-bbe2-360fe6104db2-5ELGMNNW",
+      "model_id": "OmAr-Kader-DeV/OxCoder-9B-mlx-6Bit",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -886,12 +886,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/gradients-io-tournaments/tournament-tourn_5abc2fe9f0667979_20260914-4b628476-a7a9-4a47-bbe2-360fe6104db2-5ELGMNNW/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/gradients-io-tournaments/tournament-tourn_5abc2fe9f0667979_20260914-4b628476-a7a9-4a47-bbe2-360fe6104db2-5ELGMNNW/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/OmAr-Kader-DeV/OxCoder-9B-mlx-6Bit/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/OmAr-Kader-DeV/OxCoder-9B-mlx-6Bit/shields.json"
     },
     {
       "rank": 560,
-      "model_id": "Jeesup/llama2_7b_chat_svdllm_v2_remove_50_seed42",
+      "model_id": "sashavoitovych2001/qwen2.5-3b-holmes-no-robots-lora-20260916",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -901,12 +901,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Jeesup/llama2_7b_chat_svdllm_v2_remove_50_seed42/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Jeesup/llama2_7b_chat_svdllm_v2_remove_50_seed42/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/sashavoitovych2001/qwen2.5-3b-holmes-no-robots-lora-20260916/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/sashavoitovych2001/qwen2.5-3b-holmes-no-robots-lora-20260916/shields.json"
     },
     {
       "rank": 561,
-      "model_id": "CharlieLLL/Qwen3-1.7B-BrowseComp-Worker-SFT-iter1366-0916",
+      "model_id": "sashavoitovych2001/qwen2.5-3b-holmes-no-robots-full-20260916",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -916,12 +916,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/CharlieLLL/Qwen3-1.7B-BrowseComp-Worker-SFT-iter1366-0916/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/CharlieLLL/Qwen3-1.7B-BrowseComp-Worker-SFT-iter1366-0916/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/sashavoitovych2001/qwen2.5-3b-holmes-no-robots-full-20260916/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/sashavoitovych2001/qwen2.5-3b-holmes-no-robots-full-20260916/shields.json"
     },
     {
       "rank": 562,
-      "model_id": "Jeesup/llama2_7b_chat_svdllm_v2_remove_40_seed42",
+      "model_id": "NG-ng/multi-science-reasoner-model",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -931,12 +931,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Jeesup/llama2_7b_chat_svdllm_v2_remove_40_seed42/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Jeesup/llama2_7b_chat_svdllm_v2_remove_40_seed42/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/NG-ng/multi-science-reasoner-model/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/NG-ng/multi-science-reasoner-model/shields.json"
     },
     {
       "rank": 563,
-      "model_id": "fpadovani/arb-arab-100mb-after-ppt-Dp-100mb-ckpt500_seed3407",
+      "model_id": "maximilianua/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -946,12 +946,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-100mb-after-ppt-Dp-100mb-ckpt500_seed3407/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-100mb-after-ppt-Dp-100mb-ckpt500_seed3407/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/maximilianua/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/maximilianua/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF/shields.json"
     },
     {
       "rank": 564,
-      "model_id": "Fbjfhvgv/Qwen3-0.6B",
+      "model_id": "skundu42/qwen3-4b-bitext-support-intent-lora",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -961,12 +961,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Fbjfhvgv/Qwen3-0.6B/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Fbjfhvgv/Qwen3-0.6B/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/skundu42/qwen3-4b-bitext-support-intent-lora/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/skundu42/qwen3-4b-bitext-support-intent-lora/shields.json"
     },
     {
       "rank": 565,
-      "model_id": "YuyangZhao/skill1-webshop-skill-only-qwen3.5-4b-step40",
+      "model_id": "ShaneKo/exaone-nsmc-lora-merged",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -976,12 +976,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/YuyangZhao/skill1-webshop-skill-only-qwen3.5-4b-step40/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/YuyangZhao/skill1-webshop-skill-only-qwen3.5-4b-step40/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/ShaneKo/exaone-nsmc-lora-merged/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/ShaneKo/exaone-nsmc-lora-merged/shields.json"
     },
     {
       "rank": 566,
-      "model_id": "Jeesup/llama2_7b_chat_svdllm_v2_remove_30_seed42",
+      "model_id": "ishikaa/acquisition_student_random_numina_qwen7b_15000",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -991,12 +991,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Jeesup/llama2_7b_chat_svdllm_v2_remove_30_seed42/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Jeesup/llama2_7b_chat_svdllm_v2_remove_30_seed42/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/ishikaa/acquisition_student_random_numina_qwen7b_15000/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/ishikaa/acquisition_student_random_numina_qwen7b_15000/shields.json"
     },
     {
       "rank": 567,
-      "model_id": "rhymeas/Mavery-Lehrling-0.8B-MLX-4bit",
+      "model_id": "dazzlig/exaone-nsmc-lora-merged-bluehoez",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1006,12 +1006,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/rhymeas/Mavery-Lehrling-0.8B-MLX-4bit/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/rhymeas/Mavery-Lehrling-0.8B-MLX-4bit/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/dazzlig/exaone-nsmc-lora-merged-bluehoez/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/dazzlig/exaone-nsmc-lora-merged-bluehoez/shields.json"
     },
     {
       "rank": 568,
-      "model_id": "aquaduck/Qwen3.8-27B-MLX",
+      "model_id": "Jeesup/svd-safety-l2_swift_remove20_swapgapiter_b010_r04",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1021,12 +1021,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/aquaduck/Qwen3.8-27B-MLX/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/aquaduck/Qwen3.8-27B-MLX/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_swift_remove20_swapgapiter_b010_r04/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_swift_remove20_swapgapiter_b010_r04/shields.json"
     },
     {
       "rank": 569,
-      "model_id": "neuqrui/EOPSA-Qwen3-32B",
+      "model_id": "jackcai1206/qwen3-4b-longcot-sft-vanilla",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1036,12 +1036,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/neuqrui/EOPSA-Qwen3-32B/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/neuqrui/EOPSA-Qwen3-32B/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/jackcai1206/qwen3-4b-longcot-sft-vanilla/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/jackcai1206/qwen3-4b-longcot-sft-vanilla/shields.json"
     },
     {
       "rank": 570,
-      "model_id": "fpadovani/arb-arab-100mb-after-ppt-shuff-dyck-10mb-ckpt500_seed3407",
+      "model_id": "Jeesup/svd-safety-l2_swift_remove20_swapgapiter_b010_r03",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1051,12 +1051,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-100mb-after-ppt-shuff-dyck-10mb-ckpt500_seed3407/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-100mb-after-ppt-shuff-dyck-10mb-ckpt500_seed3407/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_swift_remove20_swapgapiter_b010_r03/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_swift_remove20_swapgapiter_b010_r03/shields.json"
     },
     {
       "rank": 571,
-      "model_id": "bisectgroup/NovoMolGen_qwen3_0_5m_0e4fb736",
+      "model_id": "studiomaveric/Qwen3.8-27B-UD-Q8_K_XL-layers-v0762",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1066,12 +1066,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/bisectgroup/NovoMolGen_qwen3_0_5m_0e4fb736/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/bisectgroup/NovoMolGen_qwen3_0_5m_0e4fb736/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/studiomaveric/Qwen3.8-27B-UD-Q8_K_XL-layers-v0762/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/studiomaveric/Qwen3.8-27B-UD-Q8_K_XL-layers-v0762/shields.json"
     },
     {
       "rank": 572,
-      "model_id": "localized-ft/Qwen3-32B-bad-medical-advice-sft-bf16",
+      "model_id": "darkbit1001/ukisai-Swift-Qwen3.8-27b-EXL3-4.00bpw-HB8HQ",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1081,12 +1081,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/localized-ft/Qwen3-32B-bad-medical-advice-sft-bf16/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/localized-ft/Qwen3-32B-bad-medical-advice-sft-bf16/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/darkbit1001/ukisai-Swift-Qwen3.8-27b-EXL3-4.00bpw-HB8HQ/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/darkbit1001/ukisai-Swift-Qwen3.8-27b-EXL3-4.00bpw-HB8HQ/shields.json"
     },
     {
       "rank": 573,
-      "model_id": "karmax123/lfm2.5-2.6b-fable5-coding-agent-litert-int8",
+      "model_id": "Jeesup/svd-safety-l2_swift_remove20_swapgapiter_b010_r02",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1096,12 +1096,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/karmax123/lfm2.5-2.6b-fable5-coding-agent-litert-int8/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/karmax123/lfm2.5-2.6b-fable5-coding-agent-litert-int8/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_swift_remove20_swapgapiter_b010_r02/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_swift_remove20_swapgapiter_b010_r02/shields.json"
     },
     {
       "rank": 574,
-      "model_id": "Jeesup/llama2_7b_chat_svdllm_v2_remove_20_seed42",
+      "model_id": "AIArchiveInfo/Baichuan-M2-32B",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1111,12 +1111,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Jeesup/llama2_7b_chat_svdllm_v2_remove_20_seed42/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Jeesup/llama2_7b_chat_svdllm_v2_remove_20_seed42/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Baichuan-M2-32B/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Baichuan-M2-32B/shields.json"
     },
     {
       "rank": 575,
-      "model_id": "devon7y/Toronto-Mans-4B",
+      "model_id": "AIArchiveInfo/Qwen3-8B",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1126,12 +1126,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/devon7y/Toronto-Mans-4B/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/devon7y/Toronto-Mans-4B/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Qwen3-8B/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Qwen3-8B/shields.json"
     },
     {
       "rank": 576,
-      "model_id": "devon7y/Toronto-Mans-35B-A3B-FP8",
+      "model_id": "AIArchiveInfo/Qwen3-0.6B",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1141,12 +1141,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/devon7y/Toronto-Mans-35B-A3B-FP8/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/devon7y/Toronto-Mans-35B-A3B-FP8/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Qwen3-0.6B/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Qwen3-0.6B/shields.json"
     },
     {
       "rank": 577,
-      "model_id": "flashback2k/FlashModel-Qwen3.5-9B",
+      "model_id": "AIArchiveInfo/Qwen2.5-7B-Instruct",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1156,12 +1156,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/flashback2k/FlashModel-Qwen3.5-9B/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/flashback2k/FlashModel-Qwen3.5-9B/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Qwen2.5-7B-Instruct/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Qwen2.5-7B-Instruct/shields.json"
     },
     {
       "rank": 578,
-      "model_id": "Lkdosth/Huihui-Qwen3-4B-Instruct-2507-abliterated-Q5_K_M-GGUF",
+      "model_id": "AIArchiveInfo/academic-ds-9B",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1171,12 +1171,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Lkdosth/Huihui-Qwen3-4B-Instruct-2507-abliterated-Q5_K_M-GGUF/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Lkdosth/Huihui-Qwen3-4B-Instruct-2507-abliterated-Q5_K_M-GGUF/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/AIArchiveInfo/academic-ds-9B/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/AIArchiveInfo/academic-ds-9B/shields.json"
     },
     {
       "rank": 579,
-      "model_id": "helloboy91/tiny-english-30m",
+      "model_id": "AIArchiveInfo/Seed-OSS-36B-Instruct",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1186,12 +1186,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/helloboy91/tiny-english-30m/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/helloboy91/tiny-english-30m/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Seed-OSS-36B-Instruct/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Seed-OSS-36B-Instruct/shields.json"
     },
     {
       "rank": 580,
-      "model_id": "nabin2004/qwen-Manimator-1-merged",
+      "model_id": "AIArchiveInfo/Seed-OSS-36B-Base",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1201,12 +1201,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/nabin2004/qwen-Manimator-1-merged/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/nabin2004/qwen-Manimator-1-merged/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Seed-OSS-36B-Base/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Seed-OSS-36B-Base/shields.json"
     },
     {
       "rank": 581,
-      "model_id": "CATI-AI/Qwen3.6-35B-A3B-Legal-v2",
+      "model_id": "AIArchiveInfo/Yi-6B",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1216,12 +1216,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/CATI-AI/Qwen3.6-35B-A3B-Legal-v2/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/CATI-AI/Qwen3.6-35B-A3B-Legal-v2/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Yi-6B/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Yi-6B/shields.json"
     },
     {
       "rank": 582,
-      "model_id": "bisectgroup/NovoMolGen_qwen3_0_5m_3cd63c00",
+      "model_id": "AIArchiveInfo/Yi-6B-Chat",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1231,12 +1231,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/bisectgroup/NovoMolGen_qwen3_0_5m_3cd63c00/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/bisectgroup/NovoMolGen_qwen3_0_5m_3cd63c00/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Yi-6B-Chat/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Yi-6B-Chat/shields.json"
     },
     {
       "rank": 583,
-      "model_id": "bisectgroup/NovoMolGen_qwen3_0_5m_0264ddaa",
+      "model_id": "AIArchiveInfo/Yi-6B-200K",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1246,12 +1246,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/bisectgroup/NovoMolGen_qwen3_0_5m_0264ddaa/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/bisectgroup/NovoMolGen_qwen3_0_5m_0264ddaa/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Yi-6B-200K/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Yi-6B-200K/shields.json"
     },
     {
       "rank": 584,
-      "model_id": "Huangsssz/SmolLM3-3B-MOPD-PG-SGD-lr2p5e-3-NoThinking-500",
+      "model_id": "AIArchiveInfo/Yi-34B-Chat",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1261,12 +1261,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Huangsssz/SmolLM3-3B-MOPD-PG-SGD-lr2p5e-3-NoThinking-500/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Huangsssz/SmolLM3-3B-MOPD-PG-SGD-lr2p5e-3-NoThinking-500/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Yi-34B-Chat/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/AIArchiveInfo/Yi-34B-Chat/shields.json"
     },
     {
       "rank": 585,
-      "model_id": "Huangsssz/SmolLM3-3B-MOPD-Top64-DR-NoThinking-500",
+      "model_id": "gatherz/Qwen3-0.6B-GGUF",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1276,12 +1276,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Huangsssz/SmolLM3-3B-MOPD-Top64-DR-NoThinking-500/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Huangsssz/SmolLM3-3B-MOPD-Top64-DR-NoThinking-500/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/gatherz/Qwen3-0.6B-GGUF/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/gatherz/Qwen3-0.6B-GGUF/shields.json"
     },
     {
       "rank": 586,
-      "model_id": "Huangsssz/SmolLM3-3B-MOPD-Top64-DT-NoThinking-500",
+      "model_id": "Jeesup/svd-safety-l2_swift_remove20_swapgapiter_b010_r01",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1291,12 +1291,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Huangsssz/SmolLM3-3B-MOPD-Top64-DT-NoThinking-500/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Huangsssz/SmolLM3-3B-MOPD-Top64-DT-NoThinking-500/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_swift_remove20_swapgapiter_b010_r01/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_swift_remove20_swapgapiter_b010_r01/shields.json"
     },
     {
       "rank": 587,
-      "model_id": "Huangsssz/SmolLM3-3B-MOPD-Top64-GT-NoThinking-500",
+      "model_id": "benjzzz/Qwen3-1.7B-GALE-v2",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1306,12 +1306,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Huangsssz/SmolLM3-3B-MOPD-Top64-GT-NoThinking-500/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Huangsssz/SmolLM3-3B-MOPD-Top64-GT-NoThinking-500/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/benjzzz/Qwen3-1.7B-GALE-v2/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/benjzzz/Qwen3-1.7B-GALE-v2/shields.json"
     },
     {
       "rank": 588,
-      "model_id": "cuong1692001/Terminal-12k-top25",
+      "model_id": "Abhayn01/arka-advanced-slm-sft-v2-behavior",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1321,12 +1321,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/cuong1692001/Terminal-12k-top25/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/cuong1692001/Terminal-12k-top25/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Abhayn01/arka-advanced-slm-sft-v2-behavior/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Abhayn01/arka-advanced-slm-sft-v2-behavior/shields.json"
     },
     {
       "rank": 589,
-      "model_id": "teaguesterling/qwen3.5-0.8b-astcss-t5",
+      "model_id": "Jeesup/svd-safety-mistral_remove20_swapgapiter_b010_r04",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1336,12 +1336,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/teaguesterling/qwen3.5-0.8b-astcss-t5/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/teaguesterling/qwen3.5-0.8b-astcss-t5/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-mistral_remove20_swapgapiter_b010_r04/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-mistral_remove20_swapgapiter_b010_r04/shields.json"
     },
     {
       "rank": 590,
-      "model_id": "AwareLiquid/M2-2B",
+      "model_id": "Serialtechlab/dhivehi-orpheus-tts-v8",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1351,12 +1351,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/AwareLiquid/M2-2B/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/AwareLiquid/M2-2B/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Serialtechlab/dhivehi-orpheus-tts-v8/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Serialtechlab/dhivehi-orpheus-tts-v8/shields.json"
     },
     {
       "rank": 591,
-      "model_id": "bisectgroup/NovoMolGen_qwen3_0_5m_bc5b4443",
+      "model_id": "Jeesup/svd-safety-l3_remove50_swapgapiter_b010",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1366,12 +1366,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/bisectgroup/NovoMolGen_qwen3_0_5m_bc5b4443/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/bisectgroup/NovoMolGen_qwen3_0_5m_bc5b4443/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l3_remove50_swapgapiter_b010/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l3_remove50_swapgapiter_b010/shields.json"
     },
     {
       "rank": 592,
-      "model_id": "Dvijsj12/tiny-grpo",
+      "model_id": "Jeesup/svd-safety-mistral_remove20_swapgapiter_b010_r03",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1381,12 +1381,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Dvijsj12/tiny-grpo/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Dvijsj12/tiny-grpo/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-mistral_remove20_swapgapiter_b010_r03/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-mistral_remove20_swapgapiter_b010_r03/shields.json"
     },
     {
       "rank": 593,
-      "model_id": "BenoitJT-GIRARD/qwen3-1.7b-chsa-triage",
+      "model_id": "RoyYao233/Llama-3.1-8B-Instruct",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1396,12 +1396,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/BenoitJT-GIRARD/qwen3-1.7b-chsa-triage/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/BenoitJT-GIRARD/qwen3-1.7b-chsa-triage/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/RoyYao233/Llama-3.1-8B-Instruct/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/RoyYao233/Llama-3.1-8B-Instruct/shields.json"
     },
     {
       "rank": 594,
-      "model_id": "fpadovani/arb-arab-100mb-after-ppt-shuff-dyck-100mb-ckpt500_seed3407",
+      "model_id": "Jeesup/svd-safety-mistral_remove20_swapgapiter_b010_r02",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1411,12 +1411,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-100mb-after-ppt-shuff-dyck-100mb-ckpt500_seed3407/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-100mb-after-ppt-shuff-dyck-100mb-ckpt500_seed3407/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-mistral_remove20_swapgapiter_b010_r02/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-mistral_remove20_swapgapiter_b010_r02/shields.json"
     },
     {
       "rank": 595,
-      "model_id": "BenoitJT-GIRARD/qwen3-1.7b-chsa-triage-sft-merged",
+      "model_id": "ChiranjeeviDJ/final_model",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1426,12 +1426,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/BenoitJT-GIRARD/qwen3-1.7b-chsa-triage-sft-merged/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/BenoitJT-GIRARD/qwen3-1.7b-chsa-triage-sft-merged/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/ChiranjeeviDJ/final_model/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/ChiranjeeviDJ/final_model/shields.json"
     },
     {
       "rank": 596,
-      "model_id": "Dvijsj12/grpo-hello",
+      "model_id": "Foodoo1/Qwen3-14B-RLCD-Decision-LoRA",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1441,12 +1441,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/Dvijsj12/grpo-hello/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/Dvijsj12/grpo-hello/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Foodoo1/Qwen3-14B-RLCD-Decision-LoRA/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Foodoo1/Qwen3-14B-RLCD-Decision-LoRA/shields.json"
     },
     {
       "rank": 597,
-      "model_id": "vcerny/tailorbird-v0.3",
+      "model_id": "Jeesup/svd-safety-mistral_remove20_swapgapiter_b010_r01",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1456,12 +1456,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/vcerny/tailorbird-v0.3/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/vcerny/tailorbird-v0.3/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-mistral_remove20_swapgapiter_b010_r01/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-mistral_remove20_swapgapiter_b010_r01/shields.json"
     },
     {
       "rank": 598,
-      "model_id": "jiosephlee/intern-s1-mini-context-conditioned-molecule-transfer-v10-3-0-2-bioavailability-ma-BEST",
+      "model_id": "Riasok/dpo-scout-s80-ultrafeedback-lr5e-6-beta0.05-epoch1.0_20260918",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1471,12 +1471,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/jiosephlee/intern-s1-mini-context-conditioned-molecule-transfer-v10-3-0-2-bioavailability-ma-BEST/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/jiosephlee/intern-s1-mini-context-conditioned-molecule-transfer-v10-3-0-2-bioavailability-ma-BEST/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Riasok/dpo-scout-s80-ultrafeedback-lr5e-6-beta0.05-epoch1.0_20260918/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Riasok/dpo-scout-s80-ultrafeedback-lr5e-6-beta0.05-epoch1.0_20260918/shields.json"
     },
     {
       "rank": 599,
-      "model_id": "fpadovani/arb-arab-10mb-100mb_seed10",
+      "model_id": "Jeesup/svd-safety-l2_basis_remove20",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1486,12 +1486,12 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-10mb-100mb_seed10/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/fpadovani/arb-arab-10mb-100mb_seed10/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_basis_remove20/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l2_basis_remove20/shields.json"
     },
     {
       "rank": 600,
-      "model_id": "minjaechoi/qwen36-35b-a3b-2p00bit-r4",
+      "model_id": "Jeesup/svd-safety-l3_remove50_swapgapiter_b010_r09",
       "composite": 16.34,
       "tier": "D",
       "breakdown": {
@@ -1501,8 +1501,8 @@
         "recency": 100.0,
         "reproducibility": 0.0
       },
-      "badge_url": "https://rankmodel.github.io/badges/minjaechoi/qwen36-35b-a3b-2p00bit-r4/score.svg",
-      "shields_url": "https://rankmodel.github.io/badges/minjaechoi/qwen36-35b-a3b-2p00bit-r4/shields.json"
+      "badge_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l3_remove50_swapgapiter_b010_r09/score.svg",
+      "shields_url": "https://rankmodel.github.io/badges/Jeesup/svd-safety-l3_remove50_swapgapiter_b010_r09/shields.json"
     }
   ]
 }
