@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-21T08:41:24.853335Z",
-  "date": "September 21, 2026",
+  "generated_at": "2026-09-22T08:21:49.865306Z",
+  "date": "September 22, 2026",
   "top10": [
     {
       "rank": 1,
@@ -10,56 +10,56 @@
     },
     {
       "rank": 2,
+      "model_id": "microperceptron/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4",
+      "composite": 71.84,
+      "tier": "B"
+    },
+    {
+      "rank": 3,
       "model_id": "bloomer010/Ling-3.0-tiny-GGUF",
       "composite": 22.64,
       "tier": "D"
     },
     {
-      "rank": 3,
+      "rank": 4,
       "model_id": "XHToken/Spark-X2.5-4B-GGUF",
       "composite": 21.92,
       "tier": "D"
     },
     {
-      "rank": 4,
+      "rank": 5,
       "model_id": "InternScience/Agents-A1",
       "composite": 21.83,
       "tier": "D"
     },
     {
-      "rank": 5,
+      "rank": 6,
       "model_id": "bloomer010/Ling-3.0-flash-GGUF",
       "composite": 21.71,
       "tier": "D"
     },
     {
-      "rank": 6,
+      "rank": 7,
       "model_id": "Vxtzq/Crowd-v1",
       "composite": 21.15,
       "tier": "D"
     },
     {
-      "rank": 7,
+      "rank": 8,
       "model_id": "IFM/K2-Horizon-7B",
       "composite": 21.13,
       "tier": "D"
     },
     {
-      "rank": 8,
+      "rank": 9,
       "model_id": "ReliquaryForge/qwen3-4b-base-dapo-v4",
       "composite": 21.01,
       "tier": "D"
     },
     {
-      "rank": 9,
+      "rank": 10,
       "model_id": "XHToken/Spark-X2.5-1.7B-GGUF",
       "composite": 21.01,
-      "tier": "D"
-    },
-    {
-      "rank": 10,
-      "model_id": "IFM/K2-Horizon-0.9B",
-      "composite": 20.88,
       "tier": "D"
     }
   ],
@@ -70,7 +70,7 @@
       "tier": "D",
       "trend_score": 73.4,
       "reason": "100/100 freshness",
-      "rank": 3
+      "rank": 4
     },
     {
       "model_id": "InternScience/Agents-A1",
@@ -78,7 +78,7 @@
       "tier": "D",
       "trend_score": 72.9,
       "reason": "100/100 freshness",
-      "rank": 4
+      "rank": 5
     },
     {
       "model_id": "bloomer010/Ling-3.0-tiny-GGUF",
@@ -86,7 +86,7 @@
       "tier": "D",
       "trend_score": 70.9,
       "reason": "100/100 freshness",
-      "rank": 2
+      "rank": 3
     },
     {
       "model_id": "IFM/K2-Horizon-7B",
@@ -94,7 +94,7 @@
       "tier": "D",
       "trend_score": 68.7,
       "reason": "100/100 freshness",
-      "rank": 7
+      "rank": 8
     },
     {
       "model_id": "ReliquaryForge/qwen3-4b-base-dapo-v4",
@@ -102,7 +102,7 @@
       "tier": "D",
       "trend_score": 68.0,
       "reason": "100/100 freshness",
-      "rank": 8
+      "rank": 9
     }
   ],
   "efficiency_king": "bloomer010/Ling-3.0-tiny-GGUF",
