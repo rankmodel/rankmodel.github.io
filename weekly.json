@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-23T08:21:18.893875Z",
-  "date": "September 23, 2026",
+  "generated_at": "2026-09-24T08:16:22.292042Z",
+  "date": "September 24, 2026",
   "top10": [
     {
       "rank": 1,
-      "model_id": "FINAL-Bench/Darwin-397B-ZTC",
-      "composite": 83.89,
+      "model_id": "tsinghua-sigs-robot-lab/VeriLoop-E2",
+      "composite": 82.97,
       "tier": "A"
     },
     {
       "rank": 2,
-      "model_id": "tsinghua-sigs-robot-lab/VeriLoop-E2",
-      "composite": 82.97,
+      "model_id": "traitorluxuria/GLM-5.2-Bia-Discord",
+      "composite": 80.2,
       "tier": "A"
     },
     {
@@ -28,57 +28,49 @@
     },
     {
       "rank": 5,
-      "model_id": "XHToken/Spark-X2.5-4B-GGUF",
-      "composite": 21.92,
-      "tier": "D"
-    },
-    {
-      "rank": 6,
       "model_id": "InternScience/Agents-A1",
       "composite": 21.83,
       "tier": "D"
     },
     {
-      "rank": 7,
-      "model_id": "bloomer010/Ling-3.0-flash-GGUF",
-      "composite": 21.71,
-      "tier": "D"
-    },
-    {
-      "rank": 8,
-      "model_id": "Vxtzq/Crowd-v1",
-      "composite": 21.15,
-      "tier": "D"
-    },
-    {
-      "rank": 9,
+      "rank": 6,
       "model_id": "IFM/K2-Horizon-7B",
       "composite": 21.13,
       "tier": "D"
     },
     {
+      "rank": 7,
+      "model_id": "IFM/K2-Horizon-0.9B",
+      "composite": 20.88,
+      "tier": "D"
+    },
+    {
+      "rank": 8,
+      "model_id": "IFM/K2-Horizon-3.7B",
+      "composite": 20.53,
+      "tier": "D"
+    },
+    {
+      "rank": 9,
+      "model_id": "litert-community/Qwen3-0.6B",
+      "composite": 20.5,
+      "tier": "D"
+    },
+    {
       "rank": 10,
-      "model_id": "ReliquaryForge/qwen3-4b-base-dapo-v4",
-      "composite": 21.01,
+      "model_id": "IFM/K2-Horizon-375B-A23B",
+      "composite": 20.29,
       "tier": "D"
     }
   ],
   "trending": [
-    {
-      "model_id": "XHToken/Spark-X2.5-4B-GGUF",
-      "composite": 21.92,
-      "tier": "D",
-      "trend_score": 73.4,
-      "reason": "100/100 freshness",
-      "rank": 5
-    },
     {
       "model_id": "InternScience/Agents-A1",
       "composite": 21.83,
       "tier": "D",
       "trend_score": 72.9,
       "reason": "100/100 freshness",
-      "rank": 6
+      "rank": 5
     },
     {
       "model_id": "bloomer010/Ling-3.0-tiny-GGUF",
@@ -94,17 +86,25 @@
       "tier": "D",
       "trend_score": 68.7,
       "reason": "100/100 freshness",
-      "rank": 9
+      "rank": 6
     },
     {
-      "model_id": "ReliquaryForge/qwen3-4b-base-dapo-v4",
-      "composite": 21.01,
+      "model_id": "IFM/K2-Horizon-0.9B",
+      "composite": 20.88,
       "tier": "D",
-      "trend_score": 68.0,
+      "trend_score": 67.2,
+      "reason": "100/100 freshness",
+      "rank": 7
+    },
+    {
+      "model_id": "IFM/K2-Horizon-375B-A23B",
+      "composite": 20.29,
+      "tier": "D",
+      "trend_score": 65.2,
       "reason": "100/100 freshness",
       "rank": 10
     }
   ],
   "efficiency_king": "bloomer010/Ling-3.0-tiny-GGUF",
-  "newcomer": "FINAL-Bench/Darwin-397B-ZTC"
+  "newcomer": "tsinghua-sigs-robot-lab/VeriLoop-E2"
 }
