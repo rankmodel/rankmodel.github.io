@@ -1,65 +1,65 @@
 {
-  "generated_at": "2026-09-27T09:01:12.832711Z",
-  "date": "September 27, 2026",
+  "generated_at": "2026-09-28T09:30:56.031752Z",
+  "date": "September 28, 2026",
   "top10": [
     {
       "rank": 1,
-      "model_id": "tsinghua-sigs-robot-lab/VeriLoop-E2",
-      "composite": 82.97,
-      "tier": "A"
-    },
-    {
-      "rank": 2,
       "model_id": "Kaoeiri/VLOOP-E2-BKUP",
       "composite": 82.46,
       "tier": "A"
     },
     {
-      "rank": 3,
+      "rank": 2,
       "model_id": "PYTHAI/Ternary-Bonsai-8B-gguf-fork",
       "composite": 81.63,
       "tier": "A"
     },
     {
-      "rank": 4,
-      "model_id": "traitorluxuria/GLM-5.2-Bia-Discord",
-      "composite": 80.2,
-      "tier": "A"
-    },
-    {
-      "rank": 5,
+      "rank": 3,
       "model_id": "PYTHAI/Bonsai-8B-gguf-fork",
       "composite": 79.22,
       "tier": "B"
     },
     {
-      "rank": 6,
+      "rank": 4,
       "model_id": "prism-ml/Ternary-Bonsai-2-27B-gguf",
       "composite": 23.17,
       "tier": "D"
     },
     {
-      "rank": 7,
+      "rank": 5,
+      "model_id": "Cactus-Compute/needle3",
+      "composite": 22.83,
+      "tier": "D"
+    },
+    {
+      "rank": 6,
       "model_id": "FINAL-Bench/POCKET-35B-GGUF",
       "composite": 21.86,
       "tier": "D"
     },
     {
-      "rank": 8,
+      "rank": 7,
       "model_id": "FINAL-Bench/POCKET-26B-GGUF",
       "composite": 21.49,
       "tier": "D"
     },
     {
-      "rank": 9,
+      "rank": 8,
       "model_id": "BoldingBuilds/orcarouter_GLM-5.3-Flash-Uncensored-GGUF",
       "composite": 21.36,
       "tier": "D"
     },
     {
-      "rank": 10,
+      "rank": 9,
       "model_id": "Vxtzq/Crowd-v1",
       "composite": 21.29,
+      "tier": "D"
+    },
+    {
+      "rank": 10,
+      "model_id": "pyrodog/DeepSeek-V4.1-Flash-UNCENSORED-DwarfStar-Q2",
+      "composite": 20.89,
       "tier": "D"
     }
   ],
@@ -70,7 +70,7 @@
       "tier": "D",
       "trend_score": 81.0,
       "reason": "100/100 freshness",
-      "rank": 6
+      "rank": 4
     },
     {
       "model_id": "FINAL-Bench/POCKET-35B-GGUF",
@@ -78,7 +78,15 @@
       "tier": "D",
       "trend_score": 73.1,
       "reason": "100/100 freshness",
-      "rank": 7
+      "rank": 6
+    },
+    {
+      "model_id": "Cactus-Compute/needle3",
+      "composite": 22.83,
+      "tier": "D",
+      "trend_score": 72.0,
+      "reason": "100/100 freshness",
+      "rank": 5
     },
     {
       "model_id": "FINAL-Bench/POCKET-26B-GGUF",
@@ -86,7 +94,7 @@
       "tier": "D",
       "trend_score": 70.9,
       "reason": "100/100 freshness",
-      "rank": 8
+      "rank": 7
     },
     {
       "model_id": "CodeMasterCody3D/taardis-27b-full-ternary",
@@ -94,17 +102,9 @@
       "tier": "D",
       "trend_score": 67.2,
       "reason": "100/100 freshness",
-      "rank": 12
-    },
-    {
-      "model_id": "ReliquaryForge/qwen3-4b-base-dapo-v4",
-      "composite": 20.76,
-      "tier": "D",
-      "trend_score": 66.5,
-      "reason": "100/100 freshness",
-      "rank": 15
+      "rank": 11
     }
   ],
   "efficiency_king": "PYTHAI/Ternary-Bonsai-8B-gguf-fork",
-  "newcomer": "tsinghua-sigs-robot-lab/VeriLoop-E2"
+  "newcomer": "Kaoeiri/VLOOP-E2-BKUP"
 }
