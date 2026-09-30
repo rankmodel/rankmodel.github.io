@@ -1,84 +1,76 @@
 {
-  "generated_at": "2026-09-29T09:36:21.632480Z",
-  "date": "September 29, 2026",
+  "generated_at": "2026-09-30T09:26:13.246001Z",
+  "date": "September 30, 2026",
   "top10": [
     {
       "rank": 1,
-      "model_id": "Kaoeiri/VLOOP-E2-BKUP",
-      "composite": 82.46,
-      "tier": "A"
-    },
-    {
-      "rank": 2,
-      "model_id": "PYTHAI/Ternary-Bonsai-8B-gguf-fork",
-      "composite": 81.63,
-      "tier": "A"
-    },
-    {
-      "rank": 3,
-      "model_id": "PYTHAI/Bonsai-8B-gguf-fork",
-      "composite": 79.22,
-      "tier": "B"
-    },
-    {
-      "rank": 4,
       "model_id": "microperceptron/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
       "composite": 73.99,
       "tier": "B"
     },
     {
-      "rank": 5,
+      "rank": 2,
       "model_id": "SIZWL/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
       "composite": 73.73,
       "tier": "B"
     },
     {
-      "rank": 6,
-      "model_id": "prism-ml/Ternary-Bonsai-2-27B-gguf",
-      "composite": 23.17,
-      "tier": "D"
+      "rank": 3,
+      "model_id": "AxionML/Nemotron-3.5-Lightning-30B-A3B-NVFP4",
+      "composite": 71.84,
+      "tier": "B"
     },
     {
-      "rank": 7,
+      "rank": 4,
       "model_id": "Cactus-Compute/needle3",
       "composite": 22.83,
       "tier": "D"
     },
     {
-      "rank": 8,
+      "rank": 5,
       "model_id": "FINAL-Bench/POCKET-35B-GGUF",
       "composite": 21.86,
       "tier": "D"
     },
     {
-      "rank": 9,
+      "rank": 6,
       "model_id": "FINAL-Bench/POCKET-26B-GGUF",
       "composite": 21.49,
       "tier": "D"
     },
     {
+      "rank": 7,
+      "model_id": "pyrodog/DeepSeek-V4.1-Flash-UNCENSORED-DwarfStar-Q2",
+      "composite": 20.89,
+      "tier": "D"
+    },
+    {
+      "rank": 8,
+      "model_id": "CodeMasterCody3D/taardis-27b-full-ternary",
+      "composite": 20.88,
+      "tier": "D"
+    },
+    {
+      "rank": 9,
+      "model_id": "IsValorum/Occamy-1.0-APEX-I-MiniPlus-V2.1-GGUF",
+      "composite": 20.78,
+      "tier": "D"
+    },
+    {
       "rank": 10,
-      "model_id": "BoldingBuilds/orcarouter_GLM-5.3-Flash-Uncensored-GGUF",
-      "composite": 21.36,
+      "model_id": "FINAL-Bench/POCKET-KR-GGUF",
+      "composite": 20.67,
       "tier": "D"
     }
   ],
   "trending": [
-    {
-      "model_id": "prism-ml/Ternary-Bonsai-2-27B-gguf",
-      "composite": 23.17,
-      "tier": "D",
-      "trend_score": 81.0,
-      "reason": "100/100 freshness",
-      "rank": 6
-    },
     {
       "model_id": "FINAL-Bench/POCKET-35B-GGUF",
       "composite": 21.86,
       "tier": "D",
       "trend_score": 73.1,
       "reason": "100/100 freshness",
-      "rank": 8
+      "rank": 5
     },
     {
       "model_id": "Cactus-Compute/needle3",
@@ -86,7 +78,7 @@
       "tier": "D",
       "trend_score": 72.0,
       "reason": "100/100 freshness",
-      "rank": 7
+      "rank": 4
     },
     {
       "model_id": "FINAL-Bench/POCKET-26B-GGUF",
@@ -94,7 +86,7 @@
       "tier": "D",
       "trend_score": 70.9,
       "reason": "100/100 freshness",
-      "rank": 9
+      "rank": 6
     },
     {
       "model_id": "CodeMasterCody3D/taardis-27b-full-ternary",
@@ -102,9 +94,17 @@
       "tier": "D",
       "trend_score": 67.2,
       "reason": "100/100 freshness",
+      "rank": 8
+    },
+    {
+      "model_id": "trl-internal-testing/tiny-DeepseekV3ForCausalLM",
+      "composite": 20.3,
+      "tier": "D",
+      "trend_score": 63.7,
+      "reason": "100/100 freshness",
       "rank": 13
     }
   ],
-  "efficiency_king": "PYTHAI/Ternary-Bonsai-8B-gguf-fork",
-  "newcomer": "Kaoeiri/VLOOP-E2-BKUP"
+  "efficiency_king": "Cactus-Compute/needle3",
+  "newcomer": "microperceptron/NVIDIA-Nemotron-3-Super-120B-A12B-BF16"
 }
