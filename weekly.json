@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-10-02T09:27:25.647582Z",
-  "date": "October 02, 2026",
+  "generated_at": "2026-10-03T08:56:20.148999Z",
+  "date": "October 03, 2026",
   "top10": [
     {
       "rank": 1,
-      "model_id": "microperceptron/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
-      "composite": 73.99,
-      "tier": "B"
+      "model_id": "LiveUK/GLM-5.2",
+      "composite": 80.2,
+      "tier": "A"
     },
     {
       "rank": 2,
-      "model_id": "SIZWL/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
-      "composite": 73.73,
+      "model_id": "SLORA/ZIA",
+      "composite": 77.34,
       "tier": "B"
     },
     {
@@ -22,48 +22,89 @@
     },
     {
       "rank": 4,
+      "model_id": "Lythri/Lythri-7B-A4B",
+      "composite": 46.42,
+      "tier": "D"
+    },
+    {
+      "rank": 5,
+      "model_id": "LessThanThreeAI/Qwen3.8-27B-Humanlike-Chat-GGUF",
+      "composite": 21.17,
+      "tier": "D"
+    },
+    {
+      "rank": 6,
+      "model_id": "ReliquaryForge/qwen3-4b-base-dapo-v4",
+      "composite": 20.6,
+      "tier": "D"
+    },
+    {
+      "rank": 7,
+      "model_id": "uctnlp/mzansilm-125m",
+      "composite": 19.83,
+      "tier": "D"
+    },
+    {
+      "rank": 8,
       "model_id": "SlayerLab/Slayer149-balanced",
       "composite": 19.64,
       "tier": "D"
     },
     {
-      "rank": 5,
+      "rank": 9,
       "model_id": "honda6666/Ling-1T-GGUF",
       "composite": 19.39,
       "tier": "D"
     },
     {
-      "rank": 6,
+      "rank": 10,
       "model_id": "muhammad-taqi512/LYRA-prism",
       "composite": 19.23,
       "tier": "D"
-    },
-    {
-      "rank": 7,
-      "model_id": "AMAImedia/Naive-N0.5-Flash-Mixed-Quant-GGUF",
-      "composite": 19.05,
-      "tier": "D"
-    },
-    {
-      "rank": 8,
-      "model_id": "webmp3/Sakura-Qwen3.8-Flash-Next-Swift-DE-EN-K352-IQ3_XXS-GGUF",
-      "composite": 19.03,
-      "tier": "D"
-    },
-    {
-      "rank": 9,
-      "model_id": "ViorikaAI-org/CalmaCatCoder-next-mini-gguf",
-      "composite": 19.02,
-      "tier": "D"
-    },
-    {
-      "rank": 10,
-      "model_id": "webmp3/Sakura-Qwen3.8-Flash-Next-Swift-DE-EN-K352-IQ2_XS-GGUF",
-      "composite": 19.01,
-      "tier": "D"
     }
   ],
-  "trending": [],
+  "trending": [
+    {
+      "model_id": "LessThanThreeAI/Qwen3.8-27B-Humanlike-Chat-GGUF",
+      "composite": 21.17,
+      "tier": "D",
+      "trend_score": 68.9,
+      "reason": "100/100 freshness",
+      "rank": 5
+    },
+    {
+      "model_id": "ReliquaryForge/qwen3-4b-base-dapo-v4",
+      "composite": 20.6,
+      "tier": "D",
+      "trend_score": 65.5,
+      "reason": "100/100 freshness",
+      "rank": 6
+    },
+    {
+      "model_id": "uctnlp/mzansilm-125m",
+      "composite": 19.83,
+      "tier": "D",
+      "trend_score": 60.9,
+      "reason": "100/100 freshness",
+      "rank": 7
+    },
+    {
+      "model_id": "ahmetggg/Luck-spark-V-300-MoE",
+      "composite": 19.19,
+      "tier": "D",
+      "trend_score": 57.0,
+      "reason": "100/100 freshness",
+      "rank": 11
+    },
+    {
+      "model_id": "lighteternal/biodecision-tev1-4b",
+      "composite": 19.16,
+      "tier": "D",
+      "trend_score": 56.9,
+      "reason": "100/100 freshness",
+      "rank": 12
+    }
+  ],
   "efficiency_king": "SlayerLab/Slayer149-balanced",
-  "newcomer": "microperceptron/NVIDIA-Nemotron-3-Super-120B-A12B-BF16"
+  "newcomer": "LiveUK/GLM-5.2"
 }
