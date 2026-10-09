@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-08T10:11:15.317221Z",
-  "date": "October 08, 2026",
+  "generated_at": "2026-10-09T10:11:55.337364Z",
+  "date": "October 09, 2026",
   "top10": [
     {
       "rank": 1,
@@ -16,38 +16,38 @@
     },
     {
       "rank": 3,
+      "model_id": "kindlingai/glm-5.3-exlr8-k2-k3-k4",
+      "composite": 21.09,
+      "tier": "D"
+    },
+    {
+      "rank": 4,
       "model_id": "mradermacher/authormist-originality-GGUF",
       "composite": 20.05,
       "tier": "D"
     },
     {
-      "rank": 4,
+      "rank": 5,
+      "model_id": "JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF",
+      "composite": 19.67,
+      "tier": "D"
+    },
+    {
+      "rank": 6,
       "model_id": "Subject-Emu-5259/NeuralAI-Nae1",
       "composite": 19.47,
       "tier": "D"
     },
     {
-      "rank": 5,
+      "rank": 7,
       "model_id": "haakona/Qwen-Unitopia-Style",
       "composite": 19.4,
       "tier": "D"
     },
     {
-      "rank": 6,
-      "model_id": "nexbridgesolutions/Arden-2.0-280M",
-      "composite": 19.29,
-      "tier": "D"
-    },
-    {
-      "rank": 7,
-      "model_id": "shamidk/apex-flash-1-abliterated-DS4-Q2-GGUF",
-      "composite": 19.29,
-      "tier": "D"
-    },
-    {
       "rank": 8,
-      "model_id": "shamidk/apex-flash-1-DS4-Q2-GGUF",
-      "composite": 19.29,
+      "model_id": "jkim96/Magistral-Small-2509-DASHQ-Q2-GGUF",
+      "composite": 19.3,
       "tier": "D"
     },
     {
@@ -58,8 +58,8 @@
     },
     {
       "rank": 10,
-      "model_id": "sushan98/opportunity-hunter-ai-model",
-      "composite": 19.23,
+      "model_id": "Maximilian228/OrcaRouter-Qwen3.8-Flash-Next-Uncensored-NVFP4-GPTQ-Strata",
+      "composite": 19.27,
       "tier": "D"
     }
   ],
@@ -71,6 +71,22 @@
       "trend_score": 64.9,
       "reason": "100/100 freshness",
       "rank": 2
+    },
+    {
+      "model_id": "kindlingai/glm-5.3-exlr8-k2-k3-k4",
+      "composite": 21.09,
+      "tier": "D",
+      "trend_score": 61.5,
+      "reason": "100/100 freshness",
+      "rank": 3
+    },
+    {
+      "model_id": "JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF",
+      "composite": 19.67,
+      "tier": "D",
+      "trend_score": 59.9,
+      "reason": "100/100 freshness",
+      "rank": 5
     },
     {
       "model_id": "techdotus/Tokle-3M",
@@ -86,23 +102,7 @@
       "tier": "D",
       "trend_score": 56.7,
       "reason": "100/100 freshness",
-      "rank": 14
-    },
-    {
-      "model_id": "bartowski/K2-Horizon-MoVA-36B-A4B-GGUF",
-      "composite": 19.12,
-      "tier": "D",
-      "trend_score": 56.7,
-      "reason": "100/100 freshness",
-      "rank": 15
-    },
-    {
-      "model_id": "SlickPulla/Qwen3.8-27B-Heretic-Abliterated-Uncensored-GGUF",
-      "composite": 19.01,
-      "tier": "D",
-      "trend_score": 56.0,
-      "reason": "100/100 freshness",
-      "rank": 21
+      "rank": 19
     }
   ],
   "efficiency_king": "Vxtzq/Crowd-v1",
