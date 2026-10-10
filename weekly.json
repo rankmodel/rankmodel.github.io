@@ -1,65 +1,65 @@
 {
-  "generated_at": "2026-10-09T10:11:55.337364Z",
-  "date": "October 09, 2026",
+  "generated_at": "2026-10-10T09:32:09.560105Z",
+  "date": "October 10, 2026",
   "top10": [
     {
       "rank": 1,
+      "model_id": "glyd/Qwen3.8-27B-kestrel",
+      "composite": 86.0,
+      "tier": "A"
+    },
+    {
+      "rank": 2,
+      "model_id": "glyd/Qwen3.8-27B-swift",
+      "composite": 85.94,
+      "tier": "A"
+    },
+    {
+      "rank": 3,
+      "model_id": "glyd/Qwen3.5-9B-kestrel",
+      "composite": 85.89,
+      "tier": "A"
+    },
+    {
+      "rank": 4,
+      "model_id": "glyd/Qwen3.5-9B-swift",
+      "composite": 85.56,
+      "tier": "A"
+    },
+    {
+      "rank": 5,
       "model_id": "pwarner333/GLM-5.2",
       "composite": 80.2,
       "tier": "A"
     },
     {
-      "rank": 2,
+      "rank": 6,
       "model_id": "Vxtzq/Crowd-v1",
       "composite": 21.65,
       "tier": "D"
     },
     {
-      "rank": 3,
+      "rank": 7,
       "model_id": "kindlingai/glm-5.3-exlr8-k2-k3-k4",
       "composite": 21.09,
       "tier": "D"
     },
     {
-      "rank": 4,
+      "rank": 8,
+      "model_id": "sirfyyn/Qwen3.8-Flash-Next-FLE-GGUF",
+      "composite": 20.1,
+      "tier": "D"
+    },
+    {
+      "rank": 9,
       "model_id": "mradermacher/authormist-originality-GGUF",
       "composite": 20.05,
       "tier": "D"
     },
     {
-      "rank": 5,
-      "model_id": "JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF",
-      "composite": 19.67,
-      "tier": "D"
-    },
-    {
-      "rank": 6,
-      "model_id": "Subject-Emu-5259/NeuralAI-Nae1",
-      "composite": 19.47,
-      "tier": "D"
-    },
-    {
-      "rank": 7,
-      "model_id": "haakona/Qwen-Unitopia-Style",
-      "composite": 19.4,
-      "tier": "D"
-    },
-    {
-      "rank": 8,
-      "model_id": "jkim96/Magistral-Small-2509-DASHQ-Q2-GGUF",
-      "composite": 19.3,
-      "tier": "D"
-    },
-    {
-      "rank": 9,
-      "model_id": "techdotus/Tokle-3M",
-      "composite": 19.29,
-      "tier": "D"
-    },
-    {
       "rank": 10,
-      "model_id": "Maximilian228/OrcaRouter-Qwen3.8-Flash-Next-Uncensored-NVFP4-GPTQ-Strata",
-      "composite": 19.27,
+      "model_id": "Maximilian228/Qwen3.8-Flash-Next-NVIDIA-NVFP4-Strata",
+      "composite": 19.84,
       "tier": "D"
     }
   ],
@@ -70,7 +70,7 @@
       "tier": "D",
       "trend_score": 64.9,
       "reason": "100/100 freshness",
-      "rank": 2
+      "rank": 6
     },
     {
       "model_id": "kindlingai/glm-5.3-exlr8-k2-k3-k4",
@@ -78,7 +78,7 @@
       "tier": "D",
       "trend_score": 61.5,
       "reason": "100/100 freshness",
-      "rank": 3
+      "rank": 7
     },
     {
       "model_id": "JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF",
@@ -86,7 +86,7 @@
       "tier": "D",
       "trend_score": 59.9,
       "reason": "100/100 freshness",
-      "rank": 5
+      "rank": 11
     },
     {
       "model_id": "techdotus/Tokle-3M",
@@ -94,7 +94,7 @@
       "tier": "D",
       "trend_score": 57.7,
       "reason": "100/100 freshness",
-      "rank": 9
+      "rank": 16
     },
     {
       "model_id": "ConwayResearch/Underdog-Saluki-27B-1.0",
@@ -102,9 +102,9 @@
       "tier": "D",
       "trend_score": 56.7,
       "reason": "100/100 freshness",
-      "rank": 19
+      "rank": 28
     }
   ],
-  "efficiency_king": "Vxtzq/Crowd-v1",
-  "newcomer": "pwarner333/GLM-5.2"
+  "efficiency_king": "glyd/Qwen3.5-9B-swift",
+  "newcomer": "glyd/Qwen3.8-27B-kestrel"
 }

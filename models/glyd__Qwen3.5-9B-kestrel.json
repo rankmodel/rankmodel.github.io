@@ -1,0 +1,85 @@
+{
+  "model_id": "glyd/Qwen3.5-9B-kestrel",
+  "composite": 85.89,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 65,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 22.5,
+  "breakdown": {
+    "benchmarks": 95.75,
+    "efficiency": 57.8,
+    "community": 9.75,
+    "recency": 100.0,
+    "reproducibility": 20.0
+  },
+  "tier": "A",
+  "computed_at": "2026-10-10T09:30:25.541149",
+  "details": {
+    "benchmark_details": {
+      "score": 95.75439999999998,
+      "benchmarks_found": [
+        "gsm8k"
+      ],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "gpqa",
+        "hle",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gsm8k": 95.75439999999999
+      }
+    },
+    "diversity_details": {
+      "count": 1,
+      "datasets": [
+        "gsm8k"
+      ],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "gpqa",
+      "hle",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 3,
+  "badge_url": "https://rankmodel.github.io/badges/glyd/Qwen3.5-9B-kestrel/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/glyd/Qwen3.5-9B-kestrel/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/glyd/Qwen3.5-9B-kestrel.svg"
+}
