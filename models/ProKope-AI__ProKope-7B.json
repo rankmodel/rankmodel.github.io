@@ -1,0 +1,91 @@
+{
+  "model_id": "ProKope-AI/ProKope-7B",
+  "composite": 47.75,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 65,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 22.5,
+  "breakdown": {
+    "benchmarks": 43.96,
+    "efficiency": 39.58,
+    "community": 0.0,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "D",
+  "computed_at": "2026-10-16T07:56:07.958601",
+  "details": {
+    "benchmark_details": {
+      "score": 43.9576923076923,
+      "benchmarks_found": [
+        "gpqa",
+        "musr",
+        "bbh",
+        "mmlu-pro",
+        "ifeval",
+        "math"
+      ],
+      "benchmarks_missing": [
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 36.870000000000005,
+        "musr": 44.84,
+        "bbh": 53.31,
+        "mmlu-pro": 44.03,
+        "ifeval": 70.61,
+        "math": 18.86
+      }
+    },
+    "diversity_details": {
+      "count": 7,
+      "datasets": [
+        "musr",
+        "math",
+        "gpqa",
+        "ifeval",
+        "mmlu-pro",
+        "open-llm-leaderboard/leaderboard_v2",
+        "bbh"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "medium",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 6,
+    "missing_benchmarks": [
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 46.2,
+    "confidence": "medium"
+  },
+  "rank": 3,
+  "badge_url": "https://rankmodel.github.io/badges/ProKope-AI/ProKope-7B/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/ProKope-AI/ProKope-7B/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/ProKope-AI/ProKope-7B.svg"
+}
