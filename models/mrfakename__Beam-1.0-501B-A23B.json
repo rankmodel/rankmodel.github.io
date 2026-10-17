@@ -1,0 +1,92 @@
+{
+  "model_id": "mrfakename/Beam-1.0-501B-A23B",
+  "composite": 80.78,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 10,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 17.0,
+  "breakdown": {
+    "benchmarks": 92.02,
+    "efficiency": 27.26,
+    "community": 0.0,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "A",
+  "computed_at": "2026-10-17T07:34:22.777784",
+  "details": {
+    "benchmark_details": {
+      "score": 92.02000000000001,
+      "benchmarks_found": [
+        "gpqa",
+        "math"
+      ],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gpqa": 90.6,
+        "math": 97.7
+      }
+    },
+    "diversity_details": {
+      "count": 8,
+      "datasets": [
+        "cais/hle",
+        "scaleai/swe-bench_pro",
+        "gpqa",
+        "datacurve/deep-swe",
+        "math",
+        "swe-bench/swe-bench_multilingual",
+        "swe-bench/swe-bench_verified",
+        "harborframework/terminal-bench-2.1"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 2,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 15.4,
+    "confidence": "low"
+  },
+  "rank": 2,
+  "badge_url": "https://rankmodel.github.io/badges/mrfakename/Beam-1.0-501B-A23B/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/mrfakename/Beam-1.0-501B-A23B/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/mrfakename/Beam-1.0-501B-A23B.svg"
+}
