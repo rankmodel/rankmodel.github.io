@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-17T07:36:24.440654Z",
-  "date": "October 17, 2026",
+  "generated_at": "2026-10-18T07:51:38.267218Z",
+  "date": "October 18, 2026",
   "top10": [
     {
       "rank": 1,
@@ -28,59 +28,51 @@
     },
     {
       "rank": 5,
-      "model_id": "LiquidAI/LFM2.5-24B-A2B-FP8",
-      "composite": 19.3,
+      "model_id": "chuntiangu/LFM2.5-230M",
+      "composite": 35.98,
       "tier": "D"
     },
     {
       "rank": 6,
-      "model_id": "ahmadw/GPT-X3-150M-ONNX",
-      "composite": 19.27,
+      "model_id": "netgoat-ai/koda-ids-frontier",
+      "composite": 19.55,
       "tier": "D"
     },
     {
       "rank": 7,
-      "model_id": "ensu-app/LFM2.5-350M-GGUF",
-      "composite": 19.14,
+      "model_id": "ReadyArt/Wicked-Tutu-31B-v0.1-GGUF",
+      "composite": 19.21,
       "tier": "D"
     },
     {
       "rank": 8,
-      "model_id": "NANI-Nithin/LightOnOCR-3-0.8B-GGUF",
-      "composite": 19.13,
+      "model_id": "SandLogicTechnologies/FrogNano-4B-2609-GGUF",
+      "composite": 18.24,
       "tier": "D"
     },
     {
       "rank": 9,
-      "model_id": "lapadatbogdan/GLM-5.3-Flash-REAP144-Coder-GGUF",
-      "composite": 18.73,
+      "model_id": "AtomicChat/Ling-3.1-flash-GGUF",
+      "composite": 18.16,
       "tier": "D"
     },
     {
       "rank": 10,
-      "model_id": "FINAL-Bench/VKORE-46M-NPU",
-      "composite": 18.66,
+      "model_id": "md-zain/resume-parser",
+      "composite": 18.16,
       "tier": "D"
     }
   ],
   "trending": [
     {
-      "model_id": "LiquidAI/LFM2.5-24B-A2B-FP8",
-      "composite": 19.3,
+      "model_id": "ReadyArt/Wicked-Tutu-31B-v0.1-GGUF",
+      "composite": 19.21,
       "tier": "D",
-      "trend_score": 57.7,
+      "trend_score": 57.2,
       "reason": "100/100 freshness",
-      "rank": 5
-    },
-    {
-      "model_id": "NANI-Nithin/LightOnOCR-3-0.8B-GGUF",
-      "composite": 19.13,
-      "tier": "D",
-      "trend_score": 56.7,
-      "reason": "100/100 freshness",
-      "rank": 8
+      "rank": 7
     }
   ],
-  "efficiency_king": "intel-ai/GLM-5.2-MXFP4-CT-AutoRound",
+  "efficiency_king": "chuntiangu/LFM2.5-230M",
   "newcomer": "intel-ai/GLM-5.2-MXFP4-CT-AutoRound"
 }
