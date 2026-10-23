@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-22T08:26:09.802049Z",
-  "date": "October 22, 2026",
+  "generated_at": "2026-10-23T08:21:39.704067Z",
+  "date": "October 23, 2026",
   "top10": [
     {
       "rank": 1,
@@ -10,14 +10,14 @@
     },
     {
       "rank": 2,
-      "model_id": "Ibackup/GLM-4.7-Flash",
-      "composite": 69.23,
-      "tier": "C"
+      "model_id": "eshmoideas/Ling-2.6",
+      "composite": 59.51,
+      "tier": "D"
     },
     {
       "rank": 3,
-      "model_id": "eshmoideas/Ling-2.6",
-      "composite": 59.51,
+      "model_id": "mIn-MAXsystem-Htz/Mellum2-12B-A2.5B-Thinking",
+      "composite": 57.43,
       "tier": "D"
     },
     {
@@ -28,38 +28,38 @@
     },
     {
       "rank": 5,
-      "model_id": "Vxtzq/Crowd-v1",
-      "composite": 21.73,
-      "tier": "D"
-    },
-    {
-      "rank": 6,
       "model_id": "JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF",
       "composite": 21.65,
       "tier": "D"
     },
     {
-      "rank": 7,
+      "rank": 6,
       "model_id": "ornith-ai/Ornith-1.5-35B-A3B-FP8",
       "composite": 21.44,
       "tier": "D"
     },
     {
-      "rank": 8,
+      "rank": 7,
       "model_id": "incoai/Qwen3.8-27B-DFlash2-GGUF",
       "composite": 21.14,
       "tier": "D"
     },
     {
-      "rank": 9,
+      "rank": 8,
       "model_id": "unsloth/LFM2.5-24B-A2B-GGUF",
       "composite": 21.11,
       "tier": "D"
     },
     {
-      "rank": 10,
+      "rank": 9,
       "model_id": "ornith-ai/Ornith-1.5-397B-NVFP4",
       "composite": 20.98,
+      "tier": "D"
+    },
+    {
+      "rank": 10,
+      "model_id": "IFM/K2-Horizon-0.9B",
+      "composite": 20.96,
       "tier": "D"
     }
   ],
@@ -86,7 +86,7 @@
       "tier": "D",
       "trend_score": 71.8,
       "reason": "100/100 freshness",
-      "rank": 6
+      "rank": 5
     },
     {
       "model_id": "ornith-ai/Ornith-1.5-35B-A3B-FP8",
@@ -94,7 +94,7 @@
       "tier": "D",
       "trend_score": 70.6,
       "reason": "100/100 freshness",
-      "rank": 7
+      "rank": 6
     },
     {
       "model_id": "ornith-ai/Ornith-1.5-397B-NVFP4",
@@ -102,9 +102,9 @@
       "tier": "D",
       "trend_score": 69.3,
       "reason": "100/100 freshness",
-      "rank": 10
+      "rank": 9
     }
   ],
-  "efficiency_king": "Vxtzq/Crowd-v1",
+  "efficiency_king": "spiritfather/cyberneurova-Qwen3.8-Flash-Next-i1-GGUF",
   "newcomer": "Aleph-Alpha/Kolibri-1"
 }
