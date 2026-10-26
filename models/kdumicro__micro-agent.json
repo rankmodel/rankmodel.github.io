@@ -1,0 +1,85 @@
+{
+  "model_id": "kdumicro/micro-agent",
+  "composite": 54.77,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 100,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 70,
+    "hub_completeness": 0
+  },
+  "extended_composite": 29.0,
+  "breakdown": {
+    "benchmarks": 50.0,
+    "efficiency": 90.37,
+    "community": 2.56,
+    "recency": 100.0,
+    "reproducibility": 20.0
+  },
+  "tier": "D",
+  "computed_at": "2026-10-26T08:34:18.201088",
+  "details": {
+    "benchmark_details": {
+      "score": 50.0,
+      "benchmarks_found": [
+        "gsm8k"
+      ],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "gpqa",
+        "hle",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "math",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "gsm8k": 50.0
+      }
+    },
+    "diversity_details": {
+      "count": 1,
+      "datasets": [
+        "gsm8k"
+      ],
+      "diversity_bonus": 0.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "gpqa",
+      "hle",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "math",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 2,
+  "badge_url": "https://rankmodel.github.io/badges/kdumicro/micro-agent/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/kdumicro/micro-agent/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/kdumicro/micro-agent.svg"
+}

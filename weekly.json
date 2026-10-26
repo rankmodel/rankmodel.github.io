@@ -1,92 +1,76 @@
 {
-  "generated_at": "2026-10-25T08:11:26.062153Z",
-  "date": "October 25, 2026",
+  "generated_at": "2026-10-26T08:36:38.184120Z",
+  "date": "October 26, 2026",
   "top10": [
     {
       "rank": 1,
-      "model_id": "eshmoideas/Ling-2.6",
-      "composite": 59.51,
-      "tier": "D"
-    },
-    {
-      "rank": 2,
       "model_id": "mIn-MAXsystem-Htz/Mellum2-12B-A2.5B-Thinking",
       "composite": 57.43,
       "tier": "D"
     },
     {
-      "rank": 3,
-      "model_id": "XingChen-AGI/Xing4.0-29B-A4B",
-      "composite": 22.07,
+      "rank": 2,
+      "model_id": "kdumicro/micro-agent",
+      "composite": 54.77,
       "tier": "D"
     },
     {
-      "rank": 4,
+      "rank": 3,
       "model_id": "Vxtzq/Crowd-v1",
       "composite": 21.75,
       "tier": "D"
     },
     {
-      "rank": 5,
-      "model_id": "JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF",
-      "composite": 21.65,
-      "tier": "D"
-    },
-    {
-      "rank": 6,
-      "model_id": "DICPlay/RusMind-Momentum",
-      "composite": 20.39,
-      "tier": "D"
-    },
-    {
-      "rank": 7,
+      "rank": 4,
       "model_id": "AxiomicLabs/GPT-X3-150M",
       "composite": 20.2,
       "tier": "D"
     },
     {
-      "rank": 8,
+      "rank": 5,
       "model_id": "lxe/DeepSeek-V4.1-Flash-1017-dsx-mxfp4",
       "composite": 19.99,
       "tier": "D"
     },
     {
-      "rank": 9,
+      "rank": 6,
       "model_id": "ViuAI/ViuAI-500M",
       "composite": 19.96,
       "tier": "D"
     },
     {
-      "rank": 10,
+      "rank": 7,
       "model_id": "unsloth/flint-GGUF",
       "composite": 19.95,
+      "tier": "D"
+    },
+    {
+      "rank": 8,
+      "model_id": "TokenTinkerer/Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-TTQ-GGUF",
+      "composite": 19.69,
+      "tier": "D"
+    },
+    {
+      "rank": 9,
+      "model_id": "turintech/gemma-4-E2B-it-Artemis-GGUF",
+      "composite": 19.52,
+      "tier": "D"
+    },
+    {
+      "rank": 10,
+      "model_id": "litert-community/Qwen3.5-4B",
+      "composite": 19.5,
       "tier": "D"
     }
   ],
   "trending": [
-    {
-      "model_id": "XingChen-AGI/Xing4.0-29B-A4B",
-      "composite": 22.07,
-      "tier": "D",
-      "trend_score": 74.3,
-      "reason": "100/100 freshness",
-      "rank": 3
-    },
-    {
-      "model_id": "JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF",
-      "composite": 21.65,
-      "tier": "D",
-      "trend_score": 71.8,
-      "reason": "100/100 freshness",
-      "rank": 5
-    },
     {
       "model_id": "Vxtzq/Crowd-v1",
       "composite": 21.75,
       "tier": "D",
       "trend_score": 65.5,
       "reason": "100/100 freshness",
-      "rank": 4
+      "rank": 3
     },
     {
       "model_id": "AxiomicLabs/GPT-X3-150M",
@@ -94,7 +78,7 @@
       "tier": "D",
       "trend_score": 63.1,
       "reason": "100/100 freshness",
-      "rank": 7
+      "rank": 4
     },
     {
       "model_id": "TokenTinkerer/Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-TTQ-GGUF",
@@ -102,9 +86,25 @@
       "tier": "D",
       "trend_score": 60.1,
       "reason": "100/100 freshness",
-      "rank": 12
+      "rank": 8
+    },
+    {
+      "model_id": "AMAImedia/AliceAI-Foundation-80B-A3B-NOESIS-BF16-GGUF",
+      "composite": 19.31,
+      "tier": "D",
+      "trend_score": 59.3,
+      "reason": "100/100 freshness",
+      "rank": 15
+    },
+    {
+      "model_id": "turintech/gemma-4-E2B-it-Artemis-GGUF",
+      "composite": 19.52,
+      "tier": "D",
+      "trend_score": 59.0,
+      "reason": "100/100 freshness",
+      "rank": 9
     }
   ],
-  "efficiency_king": "Vxtzq/Crowd-v1",
-  "newcomer": "eshmoideas/Ling-2.6"
+  "efficiency_king": "kdumicro/micro-agent",
+  "newcomer": "mIn-MAXsystem-Htz/Mellum2-12B-A2.5B-Thinking"
 }
