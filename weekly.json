@@ -1,69 +1,69 @@
 {
-  "generated_at": "2026-10-29T09:31:30.398433Z",
-  "date": "October 29, 2026",
+  "generated_at": "2026-10-30T09:42:16.175302Z",
+  "date": "October 30, 2026",
   "top10": [
     {
       "rank": 1,
+      "model_id": "2323dwdwe/bugscribe-xss-t01-6b3f9d",
+      "composite": 88.3,
+      "tier": "A"
+    },
+    {
+      "rank": 2,
+      "model_id": "2323dwdwe/bugscribe-xss-t01b-9d2c4e",
+      "composite": 85.45,
+      "tier": "A"
+    },
+    {
+      "rank": 3,
       "model_id": "LeoHyperlink/Sage-1.5-W4A16",
       "composite": 82.54,
       "tier": "A"
     },
     {
-      "rank": 2,
+      "rank": 4,
       "model_id": "zsjTiger/Beam-1.0-501B-A23B",
       "composite": 80.78,
       "tier": "A"
     },
     {
-      "rank": 3,
-      "model_id": "kdumicro/micro-agent",
-      "composite": 54.77,
-      "tier": "D"
+      "rank": 5,
+      "model_id": "axteam/Motif-3-FP8-dynamic",
+      "composite": 75.01,
+      "tier": "B"
     },
     {
-      "rank": 4,
+      "rank": 6,
       "model_id": "Mhmadhassnz/cosmos-humanizer-gguf",
       "composite": 19.35,
       "tier": "D"
     },
     {
-      "rank": 5,
+      "rank": 7,
       "model_id": "tinyopsec/UniSS-GGUF",
       "composite": 19.06,
       "tier": "D"
     },
     {
-      "rank": 6,
+      "rank": 8,
       "model_id": "LiquidAI/LFM3-1.7B-Base",
       "composite": 18.65,
       "tier": "D"
     },
     {
-      "rank": 7,
+      "rank": 9,
       "model_id": "Jaedwards1986/L3.1-MOE-6X8B-Dark-Reasoning-Dantes-Peak-HORROR-R1-Uncensored-36B-GGUF",
       "composite": 18.37,
       "tier": "D"
     },
     {
-      "rank": 8,
+      "rank": 10,
       "model_id": "zzzekryo/Oprius-3.0-1.1B",
       "composite": 18.34,
-      "tier": "D"
-    },
-    {
-      "rank": 9,
-      "model_id": "kataguru/Industry-Coder-27B-v1.0-GGUF",
-      "composite": 18.32,
-      "tier": "D"
-    },
-    {
-      "rank": 10,
-      "model_id": "pshahabinejad/llama-3.1-8b-emergent-plus-medical-mt-misaligned-mix1t",
-      "composite": 18.14,
       "tier": "D"
     }
   ],
   "trending": [],
-  "efficiency_king": "kdumicro/micro-agent",
-  "newcomer": "LeoHyperlink/Sage-1.5-W4A16"
+  "efficiency_king": "2323dwdwe/bugscribe-xss-t01b-9d2c4e",
+  "newcomer": "2323dwdwe/bugscribe-xss-t01-6b3f9d"
 }
