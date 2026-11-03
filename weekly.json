@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-11-02T10:41:43.775549Z",
-  "date": "November 02, 2026",
+  "generated_at": "2026-11-03T10:32:22.133847Z",
+  "date": "November 03, 2026",
   "top10": [
     {
       "rank": 1,
-      "model_id": "2323dwdwe/bugscribe-xss-t01-6b3f9d",
-      "composite": 88.3,
+      "model_id": "BaiLing/intellisu-coder-pro",
+      "composite": 87.5,
       "tier": "A"
     },
     {
       "rank": 2,
-      "model_id": "2323dwdwe/bugscribe-xss-t01b-9d2c4e",
-      "composite": 85.45,
+      "model_id": "RedHatAI/Beam-1.0-501B-A23B",
+      "composite": 82.32,
       "tier": "A"
     },
     {
       "rank": 3,
-      "model_id": "axteam/Motif-3-FP8-dynamic",
-      "composite": 75.01,
-      "tier": "B"
+      "model_id": "dohxjb/LFM3-1.7B",
+      "composite": 65.72,
+      "tier": "C"
     },
     {
       "rank": 4,
@@ -73,6 +73,14 @@
       "rank": 10
     },
     {
+      "model_id": "inclusionAI/Ling-3.1-flash",
+      "composite": 20.51,
+      "tier": "D",
+      "trend_score": 66.5,
+      "reason": "100/100 freshness",
+      "rank": 13
+    },
+    {
       "model_id": "litert-community/Qwen3-0.6B",
       "composite": 20.74,
       "tier": "D",
@@ -86,7 +94,7 @@
       "tier": "D",
       "trend_score": 61.9,
       "reason": "100/100 freshness",
-      "rank": 14
+      "rank": 15
     },
     {
       "model_id": "litert-community/Qwen3-1.7B",
@@ -94,17 +102,9 @@
       "tier": "D",
       "trend_score": 61.8,
       "reason": "100/100 freshness",
-      "rank": 15
-    },
-    {
-      "model_id": "ReliquaryForge/Teutonic-I-Reliquary-RL",
-      "composite": 19.81,
-      "tier": "D",
-      "trend_score": 60.8,
-      "reason": "100/100 freshness",
       "rank": 16
     }
   ],
-  "efficiency_king": "2323dwdwe/bugscribe-xss-t01b-9d2c4e",
-  "newcomer": "2323dwdwe/bugscribe-xss-t01-6b3f9d"
+  "efficiency_king": "dohxjb/LFM3-1.7B",
+  "newcomer": "BaiLing/intellisu-coder-pro"
 }

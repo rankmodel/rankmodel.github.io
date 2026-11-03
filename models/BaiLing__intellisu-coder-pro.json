@@ -1,0 +1,87 @@
+{
+  "model_id": "BaiLing/intellisu-coder-pro",
+  "composite": 87.5,
+  "rank_percentile": null,
+  "extended": {
+    "context_window": 0,
+    "vram_tier": 100,
+    "license_score": 0,
+    "finetune_friendly": 30,
+    "multilingual": 20,
+    "safety_score": 40,
+    "update_velocity": 20,
+    "inference_coverage": 10,
+    "community_momentum": 40,
+    "hub_completeness": 0
+  },
+  "extended_composite": 26.0,
+  "breakdown": {
+    "benchmarks": 100.0,
+    "efficiency": 50.0,
+    "community": 0.0,
+    "recency": 100.0,
+    "reproducibility": 30.0
+  },
+  "tier": "A",
+  "computed_at": "2026-11-03T10:29:58.441128",
+  "details": {
+    "benchmark_details": {
+      "score": 100.0,
+      "benchmarks_found": [
+        "math"
+      ],
+      "benchmarks_missing": [
+        "mmlu-pro",
+        "gpqa",
+        "hle",
+        "gsm8k",
+        "humaneval",
+        "bbh",
+        "ifeval",
+        "musr",
+        "arc",
+        "hellaswag",
+        "truthfulqa",
+        "winogrande"
+      ],
+      "details": {
+        "math": 100.0
+      }
+    },
+    "diversity_details": {
+      "count": 3,
+      "datasets": [
+        "math",
+        "harness-hub/safeagents-judge-bench",
+        "localllama/typed-decisions"
+      ],
+      "diversity_bonus": 10.0
+    },
+    "freshness_label": "Just Released"
+  },
+  "confidence": "low",
+  "coverage": {
+    "total_benchmarks": 13,
+    "found_benchmarks": 1,
+    "missing_benchmarks": [
+      "mmlu-pro",
+      "gpqa",
+      "hle",
+      "gsm8k",
+      "humaneval",
+      "bbh",
+      "ifeval",
+      "musr",
+      "arc",
+      "hellaswag",
+      "truthfulqa",
+      "winogrande"
+    ],
+    "coverage_percent": 7.7,
+    "confidence": "low"
+  },
+  "rank": 1,
+  "badge_url": "https://rankmodel.github.io/badges/BaiLing/intellisu-coder-pro/score.svg",
+  "shields_url": "https://rankmodel.github.io/badges/BaiLing/intellisu-coder-pro/shields.json",
+  "dna_url": "https://rankmodel.github.io/dna/BaiLing/intellisu-coder-pro.svg"
+}
