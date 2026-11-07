@@ -1,10 +1,50 @@
 {
   "trending": [
     {
-      "model_id": "inclusionAI/Ling-3.1-flash",
-      "composite": 20.51,
+      "model_id": "Qwen/Qwen3.8-2.4T-A95B",
+      "composite": 86.79,
+      "tier": "A",
+      "trend_score": 73.7,
+      "reason": "100/100 freshness",
+      "rank": 1
+    },
+    {
+      "model_id": "FINAL-Bench/POCKET-35B-GGUF",
+      "composite": 21.83,
       "tier": "D",
-      "trend_score": 66.5,
+      "trend_score": 72.9,
+      "reason": "100/100 freshness",
+      "rank": 7
+    },
+    {
+      "model_id": "FINAL-Bench/POCKET-Darwin-180B-GGUF",
+      "composite": 21.43,
+      "tier": "D",
+      "trend_score": 72.0,
+      "reason": "100/100 freshness",
+      "rank": 9
+    },
+    {
+      "model_id": "FINAL-Bench/POCKET-26B-GGUF",
+      "composite": 21.47,
+      "tier": "D",
+      "trend_score": 70.8,
+      "reason": "100/100 freshness",
+      "rank": 8
+    },
+    {
+      "model_id": "Qwen/Qwen3.8-2.4T-A95B-FP8",
+      "composite": 20.8,
+      "tier": "D",
+      "trend_score": 68.2,
+      "reason": "100/100 freshness",
+      "rank": 11
+    },
+    {
+      "model_id": "Vxtzq/Crowd-v1",
+      "composite": 20.9,
+      "tier": "D",
+      "trend_score": 67.3,
       "reason": "100/100 freshness",
       "rank": 10
     },
@@ -14,56 +54,16 @@
       "tier": "D",
       "trend_score": 64.0,
       "reason": "100/100 freshness",
-      "rank": 12
+      "rank": 14
     },
     {
-      "model_id": "speakleash/Bielik-Minitron-7B-v3.0-Instruct-GGUF",
-      "composite": 19.7,
+      "model_id": "GBP-DE/Qwen3.8-Flash-Next-oQ5e-mtp",
+      "composite": 19.46,
       "tier": "D",
-      "trend_score": 60.1,
+      "trend_score": 60.2,
       "reason": "100/100 freshness",
-      "rank": 16
-    },
-    {
-      "model_id": "orcarouter/Flint-abliterated-GGUF",
-      "composite": 20.77,
-      "tier": "D",
-      "trend_score": 59.6,
-      "reason": "100/100 freshness",
-      "rank": 9
-    },
-    {
-      "model_id": "AtomicChat/Ripple-65B-Preview-GGUF",
-      "composite": 19.62,
-      "tier": "D",
-      "trend_score": 59.6,
-      "reason": "100/100 freshness",
-      "rank": 17
-    },
-    {
-      "model_id": "litert-community/Qwen3.5-0.8B",
-      "composite": 19.55,
-      "tier": "D",
-      "trend_score": 59.2,
-      "reason": "100/100 freshness",
-      "rank": 18
-    },
-    {
-      "model_id": "294-288-pretrain-interaction/160M-exp",
-      "composite": 20.5,
-      "tier": "D",
-      "trend_score": 58.0,
-      "reason": "100/100 freshness",
-      "rank": 11
-    },
-    {
-      "model_id": "IFM/K2-Horizon-32B-FP8",
-      "composite": 19.29,
-      "tier": "D",
-      "trend_score": 57.7,
-      "reason": "100/100 freshness",
-      "rank": 25
+      "rank": 27
     }
   ],
-  "generated_at": "2026-11-06T10:31:43.449219Z"
+  "generated_at": "2026-11-07T09:42:16.914823Z"
 }

@@ -1,110 +1,110 @@
 {
-  "generated_at": "2026-11-06T10:31:43.521956Z",
-  "date": "November 06, 2026",
+  "generated_at": "2026-11-07T09:42:16.986724Z",
+  "date": "November 07, 2026",
   "top10": [
     {
       "rank": 1,
-      "model_id": "BaiLing/intellisu-coder-pro",
-      "composite": 87.5,
+      "model_id": "Qwen/Qwen3.8-2.4T-A95B",
+      "composite": 86.79,
       "tier": "A"
     },
     {
       "rank": 2,
-      "model_id": "RedHatAI/Beam-1.0-501B-A23B",
-      "composite": 82.32,
-      "tier": "A"
-    },
-    {
-      "rank": 3,
-      "model_id": "dohxjb/LFM3-1.7B",
-      "composite": 65.72,
-      "tier": "C"
-    },
-    {
-      "rank": 4,
       "model_id": "tanishq5/LFM3-1.7B",
       "composite": 65.64,
       "tier": "C"
     },
     {
-      "rank": 5,
+      "rank": 3,
       "model_id": "chienhsinlin/helioslm-chat-e4b",
       "composite": 65.62,
       "tier": "C"
     },
     {
-      "rank": 6,
+      "rank": 4,
       "model_id": "Aiidkx/LFM3-1.7B",
       "composite": 65.6,
       "tier": "C"
     },
     {
-      "rank": 7,
+      "rank": 5,
       "model_id": "weibin198072/LFM3-1.7B",
       "composite": 64.23,
       "tier": "C"
     },
     {
-      "rank": 8,
+      "rank": 6,
       "model_id": "darkknight206/Lambert_AI",
       "composite": 64.03,
       "tier": "C"
     },
     {
+      "rank": 7,
+      "model_id": "FINAL-Bench/POCKET-35B-GGUF",
+      "composite": 21.83,
+      "tier": "D"
+    },
+    {
+      "rank": 8,
+      "model_id": "FINAL-Bench/POCKET-26B-GGUF",
+      "composite": 21.47,
+      "tier": "D"
+    },
+    {
       "rank": 9,
-      "model_id": "orcarouter/Flint-abliterated-GGUF",
-      "composite": 20.77,
+      "model_id": "FINAL-Bench/POCKET-Darwin-180B-GGUF",
+      "composite": 21.43,
       "tier": "D"
     },
     {
       "rank": 10,
-      "model_id": "inclusionAI/Ling-3.1-flash",
-      "composite": 20.51,
+      "model_id": "Vxtzq/Crowd-v1",
+      "composite": 20.9,
       "tier": "D"
     }
   ],
   "trending": [
     {
-      "model_id": "inclusionAI/Ling-3.1-flash",
-      "composite": 20.51,
-      "tier": "D",
-      "trend_score": 66.5,
+      "model_id": "Qwen/Qwen3.8-2.4T-A95B",
+      "composite": 86.79,
+      "tier": "A",
+      "trend_score": 73.7,
       "reason": "100/100 freshness",
-      "rank": 10
+      "rank": 1
     },
     {
-      "model_id": "speakleash/Bielik-11B-v3.0-Instruct-GGUF",
-      "composite": 20.35,
+      "model_id": "FINAL-Bench/POCKET-35B-GGUF",
+      "composite": 21.83,
       "tier": "D",
-      "trend_score": 64.0,
+      "trend_score": 72.9,
       "reason": "100/100 freshness",
-      "rank": 12
+      "rank": 7
     },
     {
-      "model_id": "speakleash/Bielik-Minitron-7B-v3.0-Instruct-GGUF",
-      "composite": 19.7,
+      "model_id": "FINAL-Bench/POCKET-Darwin-180B-GGUF",
+      "composite": 21.43,
       "tier": "D",
-      "trend_score": 60.1,
-      "reason": "100/100 freshness",
-      "rank": 16
-    },
-    {
-      "model_id": "orcarouter/Flint-abliterated-GGUF",
-      "composite": 20.77,
-      "tier": "D",
-      "trend_score": 59.6,
+      "trend_score": 72.0,
       "reason": "100/100 freshness",
       "rank": 9
     },
     {
-      "model_id": "AtomicChat/Ripple-65B-Preview-GGUF",
-      "composite": 19.62,
+      "model_id": "FINAL-Bench/POCKET-26B-GGUF",
+      "composite": 21.47,
       "tier": "D",
-      "trend_score": 59.6,
+      "trend_score": 70.8,
       "reason": "100/100 freshness",
-      "rank": 17
+      "rank": 8
+    },
+    {
+      "model_id": "Qwen/Qwen3.8-2.4T-A95B-FP8",
+      "composite": 20.8,
+      "tier": "D",
+      "trend_score": 68.2,
+      "reason": "100/100 freshness",
+      "rank": 11
     }
   ],
-  "efficiency_king": "dohxjb/LFM3-1.7B",
-  "newcomer": "BaiLing/intellisu-coder-pro"
+  "efficiency_king": "tanishq5/LFM3-1.7B",
+  "newcomer": "Qwen/Qwen3.8-2.4T-A95B"
 }
