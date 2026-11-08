@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-07T09:42:16.986724Z",
-  "date": "November 07, 2026",
+  "generated_at": "2026-11-08T09:56:43.368578Z",
+  "date": "November 08, 2026",
   "top10": [
     {
       "rank": 1,
@@ -10,8 +10,8 @@
     },
     {
       "rank": 2,
-      "model_id": "tanishq5/LFM3-1.7B",
-      "composite": 65.64,
+      "model_id": "mrzenin/Decka-Small",
+      "composite": 65.84,
       "tier": "C"
     },
     {
@@ -22,44 +22,44 @@
     },
     {
       "rank": 4,
-      "model_id": "Aiidkx/LFM3-1.7B",
-      "composite": 65.6,
-      "tier": "C"
-    },
-    {
-      "rank": 5,
       "model_id": "weibin198072/LFM3-1.7B",
       "composite": 64.23,
       "tier": "C"
     },
     {
-      "rank": 6,
-      "model_id": "darkknight206/Lambert_AI",
-      "composite": 64.03,
-      "tier": "C"
-    },
-    {
-      "rank": 7,
+      "rank": 5,
       "model_id": "FINAL-Bench/POCKET-35B-GGUF",
       "composite": 21.83,
       "tier": "D"
     },
     {
-      "rank": 8,
+      "rank": 6,
       "model_id": "FINAL-Bench/POCKET-26B-GGUF",
       "composite": 21.47,
       "tier": "D"
     },
     {
-      "rank": 9,
+      "rank": 7,
       "model_id": "FINAL-Bench/POCKET-Darwin-180B-GGUF",
       "composite": 21.43,
       "tier": "D"
     },
     {
-      "rank": 10,
+      "rank": 8,
       "model_id": "Vxtzq/Crowd-v1",
       "composite": 20.9,
+      "tier": "D"
+    },
+    {
+      "rank": 9,
+      "model_id": "Qwen/Qwen3.8-2.4T-A95B-FP8",
+      "composite": 20.8,
+      "tier": "D"
+    },
+    {
+      "rank": 10,
+      "model_id": "orcarouter/Flint-abliterated-GGUF",
+      "composite": 20.77,
       "tier": "D"
     }
   ],
@@ -78,7 +78,7 @@
       "tier": "D",
       "trend_score": 72.9,
       "reason": "100/100 freshness",
-      "rank": 7
+      "rank": 5
     },
     {
       "model_id": "FINAL-Bench/POCKET-Darwin-180B-GGUF",
@@ -86,7 +86,7 @@
       "tier": "D",
       "trend_score": 72.0,
       "reason": "100/100 freshness",
-      "rank": 9
+      "rank": 7
     },
     {
       "model_id": "FINAL-Bench/POCKET-26B-GGUF",
@@ -94,7 +94,7 @@
       "tier": "D",
       "trend_score": 70.8,
       "reason": "100/100 freshness",
-      "rank": 8
+      "rank": 6
     },
     {
       "model_id": "Qwen/Qwen3.8-2.4T-A95B-FP8",
@@ -102,9 +102,9 @@
       "tier": "D",
       "trend_score": 68.2,
       "reason": "100/100 freshness",
-      "rank": 11
+      "rank": 9
     }
   ],
-  "efficiency_king": "tanishq5/LFM3-1.7B",
+  "efficiency_king": "mrzenin/Decka-Small",
   "newcomer": "Qwen/Qwen3.8-2.4T-A95B"
 }
