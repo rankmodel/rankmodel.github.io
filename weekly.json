@@ -1,65 +1,65 @@
 {
-  "generated_at": "2026-11-18T11:16:59.284961Z",
-  "date": "November 18, 2026",
+  "generated_at": "2026-11-19T11:16:47.658680Z",
+  "date": "November 19, 2026",
   "top10": [
     {
       "rank": 1,
-      "model_id": "gagni/LFM3-1.7B",
-      "composite": 64.93,
-      "tier": "C"
-    },
-    {
-      "rank": 2,
       "model_id": "AlekseyCalvin/LFM3_3d_coder_exp2",
       "composite": 64.03,
       "tier": "C"
     },
     {
-      "rank": 3,
+      "rank": 2,
       "model_id": "balllvin/LFM3-1.7B-MLX",
       "composite": 64.03,
       "tier": "C"
     },
     {
-      "rank": 4,
+      "rank": 3,
       "model_id": "brbrainerd/vox-mens-qwen3.5-0.8b",
       "composite": 61.37,
       "tier": "C"
     },
     {
-      "rank": 5,
+      "rank": 4,
       "model_id": "Lythri/Lythri-Wink-2B",
       "composite": 31.52,
       "tier": "D"
     },
     {
-      "rank": 6,
-      "model_id": "kabachuha/DeepSeek-V4.1-Flash-1017-control-vectors",
-      "composite": 19.91,
-      "tier": "D"
-    },
-    {
-      "rank": 7,
+      "rank": 5,
       "model_id": "hoanghai2110/zi-2",
       "composite": 19.56,
       "tier": "D"
     },
     {
+      "rank": 6,
+      "model_id": "hoanghai2110/zi-1",
+      "composite": 19.42,
+      "tier": "D"
+    },
+    {
+      "rank": 7,
+      "model_id": "SandLogicTechnologies/Raon-1-nano-GGUF",
+      "composite": 19.39,
+      "tier": "D"
+    },
+    {
       "rank": 8,
-      "model_id": "olaverse/MIST-QG-1.1-GGUF",
-      "composite": 19.51,
+      "model_id": "Vxtzq/Crowd-v1.5",
+      "composite": 19.34,
       "tier": "D"
     },
     {
       "rank": 9,
-      "model_id": "Xylolabs/GLM-4.7-Flash-GGUF",
-      "composite": 19.49,
+      "model_id": "tabisai/tabis-1.1-experimental",
+      "composite": 19.32,
       "tier": "D"
     },
     {
       "rank": 10,
-      "model_id": "Heitor0408/SAGE-A1P5-DERISKED-GSQ-RCO-GGUF",
-      "composite": 19.43,
+      "model_id": "CosmicBull/Moderato-V1-Pro-GGUF",
+      "composite": 19.32,
       "tier": "D"
     }
   ],
@@ -70,9 +70,9 @@
       "tier": "D",
       "trend_score": 57.2,
       "reason": "100/100 freshness",
-      "rank": 18
+      "rank": 11
     }
   ],
   "efficiency_king": "brbrainerd/vox-mens-qwen3.5-0.8b",
-  "newcomer": "gagni/LFM3-1.7B"
+  "newcomer": "AlekseyCalvin/LFM3_3d_coder_exp2"
 }
